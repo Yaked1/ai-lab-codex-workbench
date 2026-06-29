@@ -37,6 +37,9 @@ jobs:
           python scripts/score_research_candidates.py
           python scripts/generate_research_report.py --date "$today" --issue-body .tmp/research-issue.md
 
+      - name: Normalize generated reports
+        run: python scripts/safe_autofix.py --write
+
       - name: Validate generated reports
         run: |
           python scripts/repo_health_check.py --ci
