@@ -3,21 +3,60 @@
     {
       "block_reasons": [],
       "blocked": false,
+      "category": "hermes_agent",
+      "discovered_at": "2026-06-29",
+      "id": "nous-hermes-agent-repo",
+      "kind": "official_repository",
+      "license_hint": "Verify repository license before adapting examples.",
+      "metadata": {
+        "checked": true,
+        "github_description": "The agent that grows with you",
+        "github_forks": 37106,
+        "github_full_name": "NousResearch/hermes-agent",
+        "github_license": "MIT",
+        "github_pushed_at": "2026-06-29T15:36:08Z",
+        "github_stars": 205558,
+        "http_status": 200
+      },
+      "name": "Official Nous Research Hermes Agent repository",
+      "official": true,
+      "quality": "high",
+      "safety_note": "Do not add Hermes language model, quantization, model-card, benchmark, or serving coverage.",
+      "score": 91,
+      "source_status": "official-repository",
+      "summary": "The agent that grows with you",
+      "tags": [
+        "hermes-agent",
+        "agent_framework",
+        "skills",
+        "memory",
+        "automations",
+        "provider_configuration",
+        "public_repo_safety"
+      ],
+      "url": "https://github.com/nousresearch/hermes-agent"
+    },
+    {
+      "block_reasons": [],
+      "blocked": false,
       "category": "claude_code_skills",
       "discovered_at": "2026-06-29",
       "id": "anthropic-claude-code-overview",
       "kind": "official_docs",
       "license_hint": "Official documentation; verify current commands and feature availability.",
       "metadata": {
-        "checked": false
+        "checked": true,
+        "content_type": "text/html; charset=utf-8",
+        "http_status": 200,
+        "title": "Overview - Claude Code Docs"
       },
       "name": "Official Anthropic Claude Code documentation",
       "official": true,
       "quality": "high",
       "safety_note": "Mark product behavior and platform details as official-doc verification items.",
-      "score": 75,
+      "score": 83,
       "source_status": "official-docs",
-      "summary": "Official Claude Code overview for tool behavior and setup references.",
+      "summary": "Overview - Claude Code Docs",
       "tags": [
         "claude-code",
         "skills",
@@ -34,15 +73,18 @@
       "kind": "official_docs",
       "license_hint": "Official documentation; link and summarize.",
       "metadata": {
-        "checked": false
+        "checked": true,
+        "content_type": "text/html; charset=utf-8",
+        "http_status": 200,
+        "title": "Extend Claude with skills - Claude Code Docs"
       },
       "name": "Official Anthropic Claude Code skills documentation",
       "official": true,
       "quality": "high",
       "safety_note": "Verify exact skill folder structure and install behavior before publishing commands.",
-      "score": 75,
+      "score": 83,
       "source_status": "official-docs",
-      "summary": "Official skills reference for Claude Code.",
+      "summary": "Extend Claude with skills - Claude Code Docs",
       "tags": [
         "claude-code",
         "skills",
@@ -53,21 +95,113 @@
     {
       "block_reasons": [],
       "blocked": false,
+      "category": "hermes_agent",
+      "discovered_at": "2026-06-29",
+      "id": "nous-hermes-agent-docs",
+      "kind": "official_docs",
+      "license_hint": "Official documentation; link and summarize conservatively.",
+      "metadata": {
+        "checked": true,
+        "content_type": "text/html; charset=utf-8",
+        "http_status": 200,
+        "title": "Hermes Agent Documentation | Hermes Agent"
+      },
+      "name": "Official Nous Research Hermes Agent documentation",
+      "official": true,
+      "quality": "high",
+      "safety_note": "Cover only Hermes Agent workflows, providers, skills, memory, automations, and public-repo safety.",
+      "score": 83,
+      "source_status": "official-docs",
+      "summary": "Hermes Agent Documentation | Hermes Agent",
+      "tags": [
+        "hermes-agent",
+        "agent_framework",
+        "skills",
+        "memory",
+        "automations",
+        "provider_configuration",
+        "public_repo_safety"
+      ],
+      "url": "https://hermes-agent.nousresearch.com/docs/"
+    },
+    {
+      "block_reasons": [],
+      "blocked": false,
+      "category": "mcp_tools",
+      "discovered_at": "2026-06-29",
+      "id": "model-context-protocol-docs",
+      "kind": "official_docs",
+      "license_hint": "Official documentation; verify terms before quoting.",
+      "metadata": {
+        "checked": true,
+        "content_type": "text/html; charset=utf-8",
+        "http_status": 200,
+        "title": "What is the Model Context Protocol (MCP)? - Model Context Protocol"
+      },
+      "name": "Official Model Context Protocol documentation",
+      "official": true,
+      "quality": "high",
+      "safety_note": "Prefer read-only MCP examples before write-capable tool integrations.",
+      "score": 83,
+      "source_status": "official-docs",
+      "summary": "What is the Model Context Protocol (MCP)? - Model Context Protocol",
+      "tags": [
+        "mcp",
+        "tools",
+        "connectors",
+        "safety"
+      ],
+      "url": "https://modelcontextprotocol.io/docs/getting-started/intro"
+    },
+    {
+      "block_reasons": [],
+      "blocked": false,
+      "category": "prompt_auditing",
+      "discovered_at": "2026-06-29",
+      "id": "promptfoo-docs",
+      "kind": "docs",
+      "license_hint": "Official documentation; link and summarize.",
+      "metadata": {
+        "checked": true,
+        "content_type": "text/html; charset=utf-8",
+        "http_status": 200,
+        "title": "Intro | Promptfoo"
+      },
+      "name": "Promptfoo documentation",
+      "official": true,
+      "quality": "high",
+      "safety_note": "Keep evaluation examples public-safe and avoid testing against private prompts.",
+      "score": 83,
+      "source_status": "official-docs",
+      "summary": "Intro | Promptfoo",
+      "tags": [
+        "prompt-auditing",
+        "evaluation",
+        "safety"
+      ],
+      "url": "https://www.promptfoo.dev/docs/intro/"
+    },
+    {
+      "block_reasons": [],
+      "blocked": false,
       "category": "codex_guides",
       "discovered_at": "2026-06-29",
       "id": "openai-codex-agents-md",
       "kind": "official_docs",
       "license_hint": "Official documentation; link rather than copying.",
       "metadata": {
-        "checked": false
+        "checked": true,
+        "content_type": "text/html; charset=utf-8",
+        "http_status": 206,
+        "title": "Custom instructions with AGENTS.md \u2013 Codex | OpenAI Developers"
       },
       "name": "Official OpenAI Codex AGENTS.md guidance",
       "official": true,
       "quality": "high",
       "safety_note": "Keep repository instructions concise and public-safe.",
-      "score": 75,
+      "score": 79,
       "source_status": "official-docs",
-      "summary": "Official guidance for repository instructions consumed by Codex.",
+      "summary": "Custom instructions with AGENTS.md \u2013 Codex | OpenAI Developers",
       "tags": [
         "codex",
         "agents-md",
@@ -84,15 +218,18 @@
       "kind": "official_docs",
       "license_hint": "Official documentation; link and summarize conservatively.",
       "metadata": {
-        "checked": false
+        "checked": true,
+        "content_type": "text/html; charset=utf-8",
+        "http_status": 206,
+        "title": "CLI \u2013 Codex | OpenAI Developers"
       },
       "name": "Official OpenAI Codex CLI documentation",
       "official": true,
       "quality": "high",
       "safety_note": "Verify current install, model, permissions, skills, subagents, and pricing details before publishing exact claims.",
-      "score": 75,
+      "score": 79,
       "source_status": "official-docs",
-      "summary": "Official Codex documentation anchor for CLI and agent workflow guidance.",
+      "summary": "CLI \u2013 Codex | OpenAI Developers",
       "tags": [
         "codex",
         "skills",
@@ -104,105 +241,24 @@
     {
       "block_reasons": [],
       "blocked": false,
-      "category": "hermes_agent",
-      "discovered_at": "2026-06-29",
-      "id": "nous-hermes-agent-docs",
-      "kind": "official_docs",
-      "license_hint": "Official documentation; link and summarize conservatively.",
-      "metadata": {
-        "checked": false
-      },
-      "name": "Official Nous Research Hermes Agent documentation",
-      "official": true,
-      "quality": "high",
-      "safety_note": "Cover only Hermes Agent workflows, providers, skills, memory, automations, and public-repo safety.",
-      "score": 75,
-      "source_status": "official-docs",
-      "summary": "Official documentation for Nous Research Hermes Agent.",
-      "tags": [
-        "hermes-agent",
-        "agent_framework",
-        "skills",
-        "memory",
-        "automations",
-        "provider_configuration",
-        "public_repo_safety"
-      ],
-      "url": "https://hermes-agent.nousresearch.com/docs/"
-    },
-    {
-      "block_reasons": [],
-      "blocked": false,
-      "category": "hermes_agent",
-      "discovered_at": "2026-06-29",
-      "id": "nous-hermes-agent-repo",
-      "kind": "official_repository",
-      "license_hint": "Verify repository license before adapting examples.",
-      "metadata": {
-        "checked": false
-      },
-      "name": "Official Nous Research Hermes Agent repository",
-      "official": true,
-      "quality": "high",
-      "safety_note": "Do not add Hermes language model, quantization, model-card, benchmark, or serving coverage.",
-      "score": 75,
-      "source_status": "official-repository",
-      "summary": "Official repository for Nous Research Hermes Agent.",
-      "tags": [
-        "hermes-agent",
-        "agent_framework",
-        "skills",
-        "memory",
-        "automations",
-        "provider_configuration",
-        "public_repo_safety"
-      ],
-      "url": "https://github.com/nousresearch/hermes-agent"
-    },
-    {
-      "block_reasons": [],
-      "blocked": false,
-      "category": "mcp_tools",
-      "discovered_at": "2026-06-29",
-      "id": "model-context-protocol-docs",
-      "kind": "official_docs",
-      "license_hint": "Official documentation; verify terms before quoting.",
-      "metadata": {
-        "checked": false
-      },
-      "name": "Official Model Context Protocol documentation",
-      "official": true,
-      "quality": "high",
-      "safety_note": "Prefer read-only MCP examples before write-capable tool integrations.",
-      "score": 75,
-      "source_status": "official-docs",
-      "summary": "Official MCP documentation for tool-use and connector concepts.",
-      "tags": [
-        "mcp",
-        "tools",
-        "connectors",
-        "safety"
-      ],
-      "url": "https://modelcontextprotocol.io/docs/getting-started/intro"
-    },
-    {
-      "block_reasons": [],
-      "blocked": false,
       "category": "mcp_tools",
       "discovered_at": "2026-06-29",
       "id": "model-context-protocol-repo",
       "kind": "public_repositories",
       "license_hint": "Repository licenses vary; verify per repository.",
       "metadata": {
-        "checked": false
+        "checked": true,
+        "content_type": "text/html; charset=utf-8",
+        "http_status": 206,
+        "title": "Model Context Protocol \u00b7 GitHub"
       },
       "name": "Public Model Context Protocol repository",
       "official": true,
       "quality": "high",
       "safety_note": "Do not copy server code or configuration secrets into this public guide.",
-      "score": 75,
+      "score": 79,
       "source_status": "official-repository",
-      "summary": "Public repositories for MCP specifications, SDKs, and examples.",
+      "summary": "Model Context Protocol \u00b7 GitHub",
       "tags": [
         "mcp",
         "sdk",
@@ -213,46 +269,28 @@
     {
       "block_reasons": [],
       "blocked": false,
-      "category": "prompt_auditing",
-      "discovered_at": "2026-06-29",
-      "id": "promptfoo-docs",
-      "kind": "docs",
-      "license_hint": "Official documentation; link and summarize.",
-      "metadata": {
-        "checked": false
-      },
-      "name": "Promptfoo documentation",
-      "official": true,
-      "quality": "high",
-      "safety_note": "Keep evaluation examples public-safe and avoid testing against private prompts.",
-      "score": 75,
-      "source_status": "official-docs",
-      "summary": "Prompt evaluation and red-team testing documentation.",
-      "tags": [
-        "prompt-auditing",
-        "evaluation",
-        "safety"
-      ],
-      "url": "https://www.promptfoo.dev/docs/intro/"
-    },
-    {
-      "block_reasons": [],
-      "blocked": false,
       "category": "image_prompting",
       "discovered_at": "2026-06-29",
       "id": "public-image-prompting-guide",
       "kind": "public_repository",
       "license_hint": "Verify repository license and attribution requirements before adapting.",
       "metadata": {
-        "checked": false
+        "checked": true,
+        "github_description": "21 Lessons, Get Started Building with Generative AI ",
+        "github_forks": 60390,
+        "github_full_name": "microsoft/generative-ai-for-beginners",
+        "github_license": "MIT",
+        "github_pushed_at": "2026-06-25T03:43:42Z",
+        "github_stars": 112403,
+        "http_status": 200
       },
       "name": "Public image prompting guide examples",
       "official": false,
-      "quality": "low",
+      "quality": "medium",
       "safety_note": "Use only public-safe prompt structures and avoid private image references.",
-      "score": 37,
+      "score": 53,
       "source_status": "community-repository",
-      "summary": "Public educational generative AI material that may include image prompting patterns.",
+      "summary": "21 Lessons, Get Started Building with Generative AI ",
       "tags": [
         "image-prompting",
         "beginner",
@@ -269,15 +307,22 @@
       "kind": "public_repository",
       "license_hint": "Verify repository license and model licenses separately.",
       "metadata": {
-        "checked": false
+        "checked": true,
+        "github_description": "Stable Diffusion web UI",
+        "github_forks": 30373,
+        "github_full_name": "AUTOMATIC1111/stable-diffusion-webui",
+        "github_license": "AGPL-3.0",
+        "github_pushed_at": "2026-03-02T07:00:53Z",
+        "github_stars": 163937,
+        "http_status": 200
       },
       "name": "Stable Diffusion Web UI public repository",
       "official": false,
-      "quality": "low",
+      "quality": "medium",
       "safety_note": "Treat as advanced local GPU workflow; do not recommend as a beginner default on weak laptops.",
-      "score": 37,
+      "score": 53,
       "source_status": "community-repository",
-      "summary": "Popular local diffusion web UI repository for advanced local image-generation workflows.",
+      "summary": "Stable Diffusion web UI",
       "tags": [
         "image-generation",
         "diffusion",
@@ -295,15 +340,22 @@
       "kind": "public_repository",
       "license_hint": "Verify repository license and model licenses separately.",
       "metadata": {
-        "checked": false
+        "checked": true,
+        "github_description": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface.",
+        "github_forks": 13895,
+        "github_full_name": "Comfy-Org/ComfyUI",
+        "github_license": "GPL-3.0",
+        "github_pushed_at": "2026-06-29T12:38:28Z",
+        "github_stars": 118767,
+        "http_status": 200
       },
       "name": "ComfyUI public repository",
       "official": false,
-      "quality": "low",
+      "quality": "medium",
       "safety_note": "Treat node-based local workflows as advanced; warn about VRAM and model licensing.",
-      "score": 37,
+      "score": 53,
       "source_status": "community-repository",
-      "summary": "Public node-based UI repository for advanced diffusion workflows.",
+      "summary": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface.",
       "tags": [
         "image-generation",
         "diffusion",
@@ -321,15 +373,22 @@
       "kind": "public_repository",
       "license_hint": "Verify repository license before quoting or adapting examples.",
       "metadata": {
-        "checked": false
+        "checked": true,
+        "github_description": "\ud83d\udc19 Guides, papers, lessons, notebooks and resources for prompt engineering, context engineering, RAG, and AI Agents.",
+        "github_forks": 8329,
+        "github_full_name": "dair-ai/Prompt-Engineering-Guide",
+        "github_license": "MIT",
+        "github_pushed_at": "2026-03-11T20:09:13Z",
+        "github_stars": 76070,
+        "http_status": 200
       },
       "name": "Public prompt engineering guide repository",
       "official": false,
-      "quality": "low",
+      "quality": "medium",
       "safety_note": "Summarize patterns and link to source; avoid copying long prompt collections.",
-      "score": 37,
+      "score": 53,
       "source_status": "community-repository",
-      "summary": "Community prompt engineering guide with broad prompting concepts.",
+      "summary": "\ud83d\udc19 Guides, papers, lessons, notebooks and resources for prompt engineering, context engineering, RAG, and AI Agents.",
       "tags": [
         "prompt-engineering",
         "guides",
@@ -346,15 +405,22 @@
       "kind": "public_repository",
       "license_hint": "Verify source and legal status; do not republish verbatim prompt dumps.",
       "metadata": {
-        "checked": false
+        "checked": true,
+        "github_description": "Extracted system prompts from Anthropic - Claude Fable 5, Opus 4.8, Claude Code, Claude Design. OpenAI - ChatGPT 5.5 Thinking, GPT 5.5 Instant, Codex. Google - Gemini 3.5 Flash, 3.1 Pro, Antigravity. xAI - Grok, Cursor, Copilot, VS Code, Perplexity, and more. Updated regularly.",
+        "github_forks": 7686,
+        "github_full_name": "asgeirtj/system_prompts_leaks",
+        "github_license": "CC0-1.0",
+        "github_pushed_at": "2026-06-29T00:26:14Z",
+        "github_stars": 47047,
+        "http_status": 200
       },
       "name": "Unofficial leaked system prompt pattern source",
       "official": false,
-      "quality": "review-required",
+      "quality": "low",
       "safety_note": "Use only for pattern extraction, structural comparison, public-safe summaries, short attributed excerpts when legally safe and necessary, and source links.",
-      "score": 0,
+      "score": 9,
       "source_status": "unofficial/leak-derived-pattern-source",
-      "summary": "Unofficial leak-derived repository allowed only for structural pattern extraction and public-safe summaries.",
+      "summary": "Extracted system prompts from Anthropic - Claude Fable 5, Opus 4.8, Claude Code, Claude Design. OpenAI - ChatGPT 5.5 Thinking, GPT 5.5 Instant, Codex. Google - Gemini 3.5 Flash, 3.1 Pro, Antigravity. xAI - Grok, Cursor, Copilot, VS Code, Perplexity, and more. Updated regularly.",
       "tags": [
         "unofficial",
         "leak-derived",
