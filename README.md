@@ -215,6 +215,80 @@ git push -u origin agent/fix-readme-typos
 gh pr create --fill
 ```
 
+## My First Codex Task
+
+Use this walkthrough for a small, safe first task such as fixing a typo, improving one paragraph, or adding a short note to a documentation file.
+
+1. Open Windows PowerShell in this repository:
+
+```powershell
+cd "$HOME\Documents\AI-Lab\ai-lab-codex-workbench"
+```
+
+2. Check that you are starting from a clean working tree:
+
+```powershell
+git status
+```
+
+If Git shows files you did not expect, stop and review them before continuing.
+
+3. Create a task branch:
+
+```powershell
+git switch -c agent/my-first-codex-task
+```
+
+4. Start Codex:
+
+```powershell
+codex
+```
+
+5. Give Codex a small, specific task. For example:
+
+```text
+Update README.md by improving one beginner-friendly sentence. Do not change unrelated files.
+```
+
+6. After Codex finishes, review what changed:
+
+```powershell
+git status
+git diff
+```
+
+Read the diff carefully. Make sure the change matches the task and does not include unrelated files.
+
+7. Run the local checks:
+
+```powershell
+python scripts/repo_health_check.py
+python scripts/safe_autofix.py --check
+python -m unittest discover -s tests
+```
+
+8. If the checks pass, commit the change:
+
+```powershell
+git add README.md
+git commit -m "Add my first Codex task guide"
+```
+
+9. Push the branch to GitHub:
+
+```powershell
+git push -u origin agent/my-first-codex-task
+```
+
+10. Open a pull request:
+
+```powershell
+gh pr create --fill
+```
+
+Before merging, review the pull request and wait for GitHub Actions to pass.
+
 ## Safety rules
 
 - Keep changes small.
