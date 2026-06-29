@@ -1,38 +1,116 @@
 # Aider Agent Task Template
 
-Use this template for terminal pair programming with Aider.
+## Target Tool
+
+Aider.
+
+## Purpose
+
+Use this template for terminal pair programming where the human chooses the exact files that Aider may edit.
+
+## Inputs To Fill
+
+| Input | Example |
+| --- | --- |
+| Selected files | `README.md`, `docs/tools/aider.md` |
+| Task | "Improve beginner clarity in one section" |
+| Out of scope | "No workflow YAML, no dependencies" |
+| Checks | Repo health, safe autofix, unit tests |
 
 ## Before Starting
 
 - Start from the repository root.
-- Check `git status`.
+- Run `git status`.
 - Add only the files needed for the task.
 - Keep automatic commits disabled unless the maintainer explicitly wants them.
+- Keep provider credentials outside the repository.
 
-## Goal
+## Full Prompt
 
 ```text
-Make this specific change to the selected file or files.
+Target tool:
+Aider
+
+Selected files:
+[FILES ADDED TO AIDER]
+
+Purpose:
+[ONE-SENTENCE TASK]
+
+Instructions:
+- Read and follow AGENTS.md.
+- Edit only the selected files.
+- Keep the diff small and reviewable.
+- Preserve existing meaning unless the task says otherwise.
+- Do not add dependencies.
+- Do not edit secrets, .env files, private links, or unrelated folders.
+- Do not run destructive commands.
+- Do not invent exact pricing, model, or platform claims.
+
+Success criteria:
+- The requested change is complete.
+- No unselected files are changed.
+- The diff is understandable.
+- Local checks pass or failures are reported.
+
+Validation:
+- python scripts/repo_health_check.py
+- python scripts/safe_autofix.py --check
+- python -m unittest discover -s tests
+
+Final response:
+- Summary
+- Files changed
+- Commands run
+- Checks run
+- Remaining risks
 ```
 
-## Boundaries
+## Short Version
 
-- Read and follow `AGENTS.md`.
-- Do not edit files that were not selected for the task.
-- Do not add dependencies.
-- Do not touch secrets, `.env` files, private links, or unrelated folders.
-- Do not run destructive commands.
+```text
+Edit only [FILES] to [TASK]. Follow AGENTS.md, keep the diff small, avoid secrets/dependencies/workflow changes, run checks, and report files, commands, checks, and risks.
+```
 
-## Validation
+## Success Criteria
 
-Run:
+- Only selected files changed.
+- The task is complete.
+- Local checks pass.
+- Any provider or product claim is conservative.
+
+## Safety Boundaries
+
+- No unselected files.
+- No secrets.
+- No dependency installation.
+- No destructive commands.
+- No automatic commits unless explicitly requested.
+
+## Verification
 
 ```powershell
+git diff
 python scripts/repo_health_check.py
 python scripts/safe_autofix.py --check
 python -m unittest discover -s tests
 ```
 
-## Final Response
+## Final Report Format
 
-Summarize the diff, checks run, and any remaining manual review needed.
+```markdown
+## Summary
+## Files changed
+## Commands run
+## Checks/tests
+## Remaining risks
+```
+
+## Failure Cases
+
+| Failure | What to do |
+| --- | --- |
+| Aider needs another file | Ask before adding it. |
+| Diff touches unselected files | Stop and review before commit. |
+| Provider setup fails | Report setup issue without exposing credentials. |
+| Checks fail | Fix related failure or report clearly. |

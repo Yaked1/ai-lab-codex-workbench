@@ -1,20 +1,54 @@
 # Contributing
 
-This repository uses a safe, boring, effective workflow. Boring is good. Boring means fewer disasters wearing a hoodie.
+This repository uses a small, reviewable workflow. The goal is to teach reliable AI-assisted repository work, not to reward large unreviewed diffs.
 
-## Workflow
+## Contribution Principles
 
-1. Create or choose an issue.
-2. Create a branch named `agent/<task-name>`.
-3. Make a small change.
-4. Run checks.
-5. Commit.
-6. Open a pull request.
-7. Wait for CI.
-8. Review the diff.
-9. Merge manually or through the controlled merge workflow.
+- One task per branch.
+- Clear task intake before agent work starts.
+- Small diffs that a human can review.
+- Local checks before a pull request.
+- CI checks before merge.
+- Conservative claims about third-party AI tools.
+- No secrets, private links, personal data, or private machine details.
 
-## Local checks
+## Standard Workflow
+
+1. Create or choose a small issue.
+2. Write the objective, included scope, excluded scope, success criteria, and checks.
+3. Create a branch named `agent/<task-name>`.
+4. Ask the agent to read [AGENTS.md](AGENTS.md) and inspect files before editing.
+5. Make the smallest useful change.
+6. Run local checks.
+7. Review `git diff`.
+8. Commit with a short factual message.
+9. Open a pull request.
+10. Wait for CI.
+11. Review the full diff and CI logs.
+12. Squash merge only after the change is understood.
+13. Update [CHANGELOG.md](CHANGELOG.md) when the change is user-visible.
+
+## Branch Names
+
+Use:
+
+```text
+agent/<short-task-name>
+```
+
+Examples:
+
+```text
+agent/expand-codex-guide
+agent/add-public-safety-checklist
+agent/fix-local-check-docs
+```
+
+Avoid branch names that include private project names, account IDs, internal tickets, or sensitive context.
+
+## Local Checks
+
+Run from PowerShell in the repository root:
 
 ```powershell
 python scripts/repo_health_check.py
@@ -22,13 +56,68 @@ python scripts/safe_autofix.py --check
 python -m unittest discover -s tests
 ```
 
-To apply safe formatting fixes:
+To apply deterministic whitespace cleanup:
 
 ```powershell
 python scripts/safe_autofix.py --write
 ```
 
-## Commit style
+Then rerun:
+
+```powershell
+python scripts/safe_autofix.py --check
+```
+
+## Pull Request Expectations
+
+Every PR should include:
+
+- What changed.
+- Why it changed.
+- Files or areas touched.
+- Commands run.
+- Checks run.
+- Known limitations.
+- Claims that still need official-doc verification.
+- Screenshots only if the change affects visuals.
+
+## Documentation Contributions
+
+Good documentation changes in this repo are:
+
+- Beginner-friendly.
+- Structured with headings, tables, checklists, and examples.
+- Practical for Windows PowerShell users.
+- Honest about limitations and failure modes.
+- Conservative about fast-changing AI tools.
+- Linked to deeper docs where useful.
+
+Do not add:
+
+- Exact pricing unless verified immediately from official docs and clearly dated.
+- Unsupported model or feature claims.
+- Private links.
+- Fake secrets that match real secret patterns.
+- Long vendor marketing copy.
+
+## Prompt Template Contributions
+
+Prompt templates should include:
+
+- Target tool.
+- Purpose.
+- Full prompt.
+- Short version.
+- Inputs to fill.
+- Success criteria.
+- Safety boundaries.
+- Verification steps.
+- Final report format.
+- Failure cases.
+
+Use existing files in [prompts/](prompts/) as the pattern.
+
+## Commit Style
 
 Use short factual commit messages:
 
@@ -36,13 +125,31 @@ Use short factual commit messages:
 Add Codex task template
 Fix README setup commands
 Update safe autofix policy
+Expand tool comparison matrix
 ```
 
-## Do not contribute
+Do not claim broad outcomes in commit messages unless the diff proves them.
+
+## Do Not Contribute
 
 - Secrets or API keys.
+- `.env` files.
 - Private personal documents.
+- Private repository links.
+- Browser cookies or profiles.
 - Huge generated files.
 - Large model weights.
-- Docker stacks unless the repository deliberately grows into that later.
+- Docker stacks unless the project deliberately grows into that later.
 - Unsafe automation that merges without review.
+- Tool claims copied from old docs without verification.
+
+## Maintainer Review Checklist
+
+- [ ] Scope matches the issue.
+- [ ] Diff is understandable.
+- [ ] Local checks are reported.
+- [ ] CI passed or failure is explained.
+- [ ] No secrets or private data are present.
+- [ ] External claims are conservative.
+- [ ] Changelog was updated when needed.
+- [ ] PR can be squash merged cleanly.
