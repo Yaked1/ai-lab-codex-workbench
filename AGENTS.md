@@ -4,7 +4,7 @@ This file gives Codex and other AI coding agents the local rules for this reposi
 
 ## Project Purpose
 
-This is a public, student-friendly AI coding-agent and prompting guide. It teaches safe repository work with Codex and comparable tools: task intake, branch creation, prompt design, local checks, pull requests, review, controlled merge, rollback, changelog updates, and public-repository hygiene.
+This is a public, beginner-friendly AI coding-agent and prompting guide. It teaches safe repository work with Codex, Claude Code, and comparable tools: task intake, branch creation, prompt design, local checks, pull requests, review, controlled merge, rollback, changelog updates, and public-repository hygiene.
 
 ## Repository Profile
 
@@ -140,13 +140,13 @@ Prompt templates in [prompts/](prompts/) should include:
 - The daily research scout must stay cheap, public-safe, and free of Codex or OpenAI API key usage.
 - Repository Autopilot may only automate generated research files: `data/research/candidates.json`, `docs/research/inbox/*.md`, and `docs/research/curated/curator-prompt-*.md`.
 - Safe automerge must reject content, code, workflow, policy, script, test, Hermes Agent, image-generation, skills, README, AGENTS, or changelog changes.
-- Local Codex curation remains manual through ChatGPT sign-in, local branch work, pull request checks, and human review.
+- Local AI curation remains manual through a local agent (Codex via ChatGPT sign-in, or Claude Code), local branch work, pull request checks, and human review.
 - Never add API-key LLM execution to GitHub Actions.
 - Never auto-publish releases.
 - Scheduled workflows must not add `OPENAI_API_KEY` requirements.
 - GitHub Actions must not run Codex directly through the OpenAI Codex Action or any paid LLM provider.
 - The curator prompt prep workflow must stay cheap, run only when manually triggered, and prepare a local Codex prompt instead of writing AI-generated guide content.
-- Codex guide writing must happen locally through Codex CLI or the Codex app using ChatGPT sign-in, followed by branch, pull request, checks, review, and merge.
+- Guide writing must happen locally through a local agent (Codex CLI or the Codex app using ChatGPT sign-in, or Claude Code), followed by branch, pull request, checks, review, and merge.
 - Never push curated guide content directly to `main`.
 - Do not mirror leaked prompts or publish leaked system prompts verbatim.
 - Do not publish private data, private memories, private conversations, private logs, private paths, OAuth files, or secrets.

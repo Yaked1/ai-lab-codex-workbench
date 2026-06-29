@@ -78,6 +78,56 @@ Final report:
 - Claims to verify in official docs
 ```
 
+## Local Research Curation Workflow
+
+Claude Code is a first-class alternative to Codex for the repository's local
+research curation loop. The flow is the same: the cheap GitHub workflows prepare
+a curator prompt, and a local agent does the actual guide edits on a branch.
+No GitHub Actions workflow calls a model provider or needs an API key.
+
+The helper script can set up the branch, fast-forward `main`, and copy the
+latest curator prompt for you:
+
+```powershell
+.\scripts\local_autopilot.ps1 -Mode prompt -Scope hermes-agent -DryRun $true -MaxSources 5
+.\scripts\local_autopilot.ps1 -Mode local-claude
+```
+
+`-Mode local-claude` defaults to the `claude/curate-research-guides` branch; pass
+`-Branch <name>` to override it. To do the same steps by hand:
+
+```powershell
+git switch main
+git pull --ff-only origin main
+git switch -c claude/curate-research-guides
+claude
+```
+
+Then set the task from the generated prompt at
+`docs/research/curated/curator-prompt-YYYY-MM-DD.md`. You can paste the prompt
+directly, or save a reusable custom slash command. Claude Code loads Markdown
+files from `.claude/commands/` as `/command`, so a `.claude/commands/goal.md`
+file containing the instructions lets you run `/goal` each session:
+
+```text
+Follow docs/research/curated/curator-prompt-YYYY-MM-DD.md exactly. Only edit the listed guide files, keep claims conservative, run the three local checks, and report files changed plus checks run.
+```
+
+`/goal` here is a custom command you define, not a built-in. Verify the current
+custom-command directory and syntax in the official docs.
+
+After Claude Code edits, review the diff and run the local checks before opening
+a pull request for human review:
+
+```powershell
+python scripts/repo_health_check.py
+python scripts/safe_autofix.py --check
+python -m unittest discover -s tests
+```
+
+The script never commits, never merges pull requests, never force-pushes, and
+never deletes branches. Human review and merge stay manual.
+
 ## Safety Risks
 
 - A review can drift into an implementation if the prompt is unclear.

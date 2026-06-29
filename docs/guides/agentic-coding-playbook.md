@@ -1,6 +1,6 @@
 # Agentic Coding Playbook
 
-This playbook describes a safe branch-to-review workflow for AI coding agents. It is intended for public repositories, student laptops, and maintainers who want useful agent help without losing control of the diff.
+This playbook describes a safe branch-to-review workflow for AI coding agents. It is intended for public repositories, contributors working on modest hardware, and maintainers who want useful agent help without losing control of the diff.
 
 ## Beginner Path
 

@@ -37,7 +37,7 @@ Repository Autopilot does not:
 
 ## Why No OpenAI API Keys
 
-This repository is meant to teach public, student-friendly AI-assisted repo work. GitHub automation stays cheap and auditable by collecting metadata and preparing local prompts only. The maintainer can then run Codex locally through ChatGPT sign-in, review the diff, and open a normal pull request.
+This repository is meant to teach public, beginner-friendly AI-assisted repo work. GitHub automation stays cheap and auditable by collecting metadata and preparing local prompts only. The maintainer can then run a local agent (Codex through ChatGPT sign-in, or Claude Code), review the diff, and open a normal pull request.
 
 Keeping the workflow free of model-provider secrets also reduces the risk of accidental secret exposure, unexpected spend, and unattended AI-written changes.
 

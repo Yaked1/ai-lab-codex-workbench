@@ -37,7 +37,7 @@ cd <tool-folder>
 - Python or Node version mismatch.
 - VRAM too small for the selected model.
 - Missing model weights.
-- Long install time on weak hardware.
+- Long install time on entry-level hardware.
 
 ## Safer Alternatives
 

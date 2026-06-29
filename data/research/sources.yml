@@ -151,7 +151,7 @@ sources:
     official: false
     source_status: community-repository
     license_hint: Verify repository license and model licenses separately.
-    safety_note: Treat as advanced local GPU workflow; do not recommend as a beginner default on weak laptops.
+    safety_note: Treat as advanced local GPU workflow; do not recommend as a beginner default on entry-level hardware.
     summary: Popular local diffusion web UI repository for advanced local image-generation workflows.
     tags:
       - image-generation
