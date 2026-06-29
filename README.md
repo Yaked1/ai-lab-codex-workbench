@@ -1,759 +1,808 @@
-# AI Agent Coding and Prompting Workbench
+# AI Prompting, Agent Skills, and Image Generation Playbook
 
-Professional, public-friendly guidance for using AI coding agents without skipping Git, tests, review, releases, or repository safety.
+A practical guide to advanced prompting for language models, coding agents, Claude Code skills, Codex operating instructions, tool-using agents, and modern image generation systems. The focus is simple: turn vague intent into reliable outputs that can be checked, repeated, refined, and safely reused.
 
-[![CI](https://github.com/Yaked1/ai-lab-codex-workbench/actions/workflows/ci.yml/badge.svg)](https://github.com/Yaked1/ai-lab-codex-workbench/actions/workflows/ci.yml)
-[![Safe Autofix PR](https://github.com/Yaked1/ai-lab-codex-workbench/actions/workflows/autofix.yml/badge.svg)](https://github.com/Yaked1/ai-lab-codex-workbench/actions/workflows/autofix.yml)
-[![Latest release](https://img.shields.io/github/v/release/Yaked1/ai-lab-codex-workbench?include_prereleases&label=release)](https://github.com/Yaked1/ai-lab-codex-workbench/releases)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+This guide combines durable ideas from major public prompt-engineering projects, official agent documentation, prompt evaluation tools, and modern image-generation research. It does not copy prompt dumps. It extracts reusable structures, patterns, checklists, and failure modes.
 
-## For General Users
+## Core Principle
 
-This repository is for anyone who wants a practical, reusable guide to AI-assisted coding work. You do not need this exact machine, account, folder layout, or maintainer setup to use it.
+A prompt is not a magic phrase. It is an operating specification.
 
-Use it when you want to:
+A strong prompt tells the model:
 
-- Learn a safe branch, prompt, check, pull request, review, merge, and rollback loop.
-- Copy public-safe task specs, prompt templates, and review checklists into another repository.
-- Teach a workshop or class about AI coding agents and GitHub workflow.
-- Compare agent tools without relying on stale pricing, model, or platform claims.
-- Download a versioned release bundle that contains the docs, prompts, scripts, tests, and workflows.
-
-Most visitors should start with [docs/site/index.html](docs/site/index.html), [docs/codex/00-start-here.md](docs/codex/00-start-here.md), or the release bundle from [GitHub Releases](https://github.com/Yaked1/ai-lab-codex-workbench/releases).
-
-## Overview
-
-This repository is a public guide and lightweight workbench for learning practical AI-assisted software work. It began as a Codex-focused GitHub automation lab, but the larger purpose is broader: show a beginner how to turn a vague request into a safe branch, a focused agent prompt, local checks, a pull request, review notes, a merge decision, and a changelog entry.
-
-The repo is intentionally low-setup and cross-platform in spirit. It favors Markdown, PowerShell and POSIX-friendly commands, Git, standard-library Python, GitHub Actions, and browser, IDE, CLI, or cloud agents. It does not assume Docker, WSL, a local model server, or any particular GPU, so it runs on a wide range of machines without special hardware.
-
-Use it as:
-
-- A starter repository for practicing AI coding-agent workflows.
-- A public checklist for safe agent-generated pull requests.
-- A prompt library for Codex and other agentic coding tools.
-- A lightweight teaching repo for GitHub Actions, branch discipline, review, and controlled merge workflows.
-- A conservative comparison guide for Codex, Claude Code, Cursor, Antigravity, GitHub Copilot, OpenCode, Kilo Code, Aider, Windsurf, and MCP.
-
-## Audience
-
-| Audience | What this repo helps with | Recommended starting point |
-| --- | --- | --- |
-| Beginner student | Learn branches, prompts, checks, PRs, and review habits. | [docs/codex/00-start-here.md](docs/codex/00-start-here.md) |
-| Self-taught developer | Compare agent tools without over-installing. | [docs/tools/comparison-matrix.md](docs/tools/comparison-matrix.md) |
-| Maintainer | Add safe AI-agent contribution rules to a public repo. | [AGENTS.md](AGENTS.md) |
-| Instructor | Teach repeatable task intake, validation, and public-safety checks. | [docs/workflows/agent-task-lifecycle.md](docs/workflows/agent-task-lifecycle.md) |
-| Advanced user | Build prompt templates, agent rules, and controlled automation. | [prompts/](prompts/) |
-
-## Why This Exists
-
-AI coding agents are useful because they can read code, edit files, run commands, summarize diffs, prepare tests, and explain failures. Those same capabilities create risk when the task is vague, the branch is dirty, the agent has too much permission, or nobody reviews the result.
-
-This repo teaches a safer operating model:
-
-- Git branches isolate experiments.
-- `AGENTS.md` gives agents durable local instructions.
-- Prompt templates force clear scope, success criteria, safety boundaries, and final reporting.
-- Local checks catch basic repository problems before a pull request.
-- GitHub Actions repeat the checks in CI.
-- Pull requests keep human review in the loop.
-- Changelog updates make visible changes easier to audit later.
-
-## What This Repository Teaches
-
-The repo is organized around a practical operating system for AI-assisted repository work. The goal is not to memorize one tool. The goal is to learn habits that still work when tools, model names, user interfaces, and pricing change.
-
-By working through the guides, templates, and checks, a learner should be able to:
-
-- Convert a vague request into a scoped task with success criteria.
-- Create a public-safe branch name and keep one task per branch.
-- Write a prompt that tells an agent what to inspect, what to change, what to avoid, and how to report back.
-- Decide when a task is too broad for one agent run.
-- Run local checks before a pull request.
-- Review a generated diff without trusting the agent's summary.
-- Identify unsafe automation, private data exposure, and stale third-party tool claims.
-- Prepare a merge report and rollback plan.
-- Keep documentation useful for beginners without hiding advanced failure modes.
-
-The core lesson is repeatability. If a task cannot be described, checked, reviewed, and rolled back, it is not ready for unattended automation.
-
-## What This Repository Is Not
-
-This project deliberately stays small. It is not trying to become every possible AI engineering setup.
-
-| Not included | Reason |
+| Component | Purpose |
 | --- | --- |
-| Production deployment stack | The repo teaches repository workflow, not hosting. |
-| Docker or WSL dependency | Beginner Windows users should be able to run the examples without heavy setup. |
-| Local model serving | Hardware requirements would distract from Git, review, and safety basics. |
-| Enterprise secret scanning | The included checks are lightweight guardrails, not a replacement for professional security tooling. |
-| Tool pricing database | Pricing and plan details change quickly and should be verified in official docs. |
-| Benchmark leaderboard | The repo focuses on safe process and reviewable work, not model ranking. |
-| Unattended merge system | Generated changes should stay reviewable by a human maintainer. |
+| Task | What must be produced or changed. |
+| Context | What background information matters. |
+| Constraints | What must be avoided. |
+| Method | How the work should be approached. |
+| Output format | How the answer should be structured. |
+| Verification | How success should be checked. |
+| Failure behavior | What to do when information is missing or uncertain. |
 
-## Architecture
+Weak prompts ask the model to guess. Strong prompts reduce guessing.
 
-The repository is intentionally simple. The docs teach the process, the scripts validate the repo, and GitHub Actions provide repeatable automation.
+## Prompt Anatomy
 
-```mermaid
-flowchart TB
-    U[User or maintainer] --> T[Task spec or issue]
-    T --> P[Prompt template]
-    P --> A[AI coding agent]
-    A --> F[Focused file edits]
-    F --> L[Local checks]
-    L --> PR[Pull request]
-    PR --> CI[GitHub Actions CI]
-    CI --> R[Human review]
-    R --> M[Controlled merge]
-    M --> C[Changelog and follow-up notes]
-```
-
-Core pieces:
-
-| Area | Purpose | Key files |
-| --- | --- | --- |
-| Agent policy | Shared operating rules for Codex and other agents. | [AGENTS.md](AGENTS.md) |
-| Tool guides | Conservative comparisons and first-task guidance. | [docs/tools/](docs/tools/) |
-| Workflows | Full task lifecycle and public-safety checklists. | [docs/workflows/](docs/workflows/) |
-| Codex guides | Codex-specific branch, goal, review, and roadmap docs. | [docs/codex/](docs/codex/) |
-| Prompt templates | Reusable prompts with scope, validation, and report formats. | [prompts/](prompts/) |
-| Local checks | Standard-library validation scripts. | [scripts/](scripts/) |
-| Release and package | Versioned downloadable ZIP bundles for offline use, teaching, and reuse. | [docs/releases/release-process.md](docs/releases/release-process.md) |
-| Research loop | Cheap candidate discovery plus manually gated Codex guide curation. | [docs/research/source-policy.md](docs/research/source-policy.md) |
-| CI | Repository health, formatting check, unit tests, and controlled automation. | [.github/workflows/](.github/workflows/) |
-
-## Operating Contract
-
-Every useful workflow in this repository follows the same contract:
-
-| Contract item | Practical meaning | Evidence |
-| --- | --- | --- |
-| Scope is explicit | The task says what files, folders, or behavior are in scope. | Task spec, issue, prompt, or PR body. |
-| Risk is bounded | The prompt names excluded actions such as dependency installs, workflow edits, deletion, and secrets. | Excluded scope and safety boundaries. |
-| Work is inspectable | The agent reads files before editing and produces a normal Git diff. | `git diff`, changed file list, final report. |
-| Checks are repeatable | Local commands and CI use the same small validation surface. | Local check output and GitHub Actions logs. |
-| Review is human-readable | The PR explains what changed, why, and what remains uncertain. | PR body, review comments, merge report. |
-| Rollback is possible | The change is small enough to revert cleanly if it causes problems. | One focused branch and a rollback plan. |
-
-If a proposed task cannot satisfy this contract, split it into smaller tasks before asking an agent to edit files.
-
-## Safety Model
-
-This repo assumes AI output is useful but untrusted until reviewed. The default safety model is:
-
-1. Keep work inside the repository.
-2. Start from a clean or understood Git state.
-3. Use a short branch for each task.
-4. Ask the agent to inspect files before editing.
-5. Give explicit included and excluded scope.
-6. Never paste or commit secrets.
-7. Avoid broad write tools, destructive commands, and system-wide changes.
-8. Run local checks before opening or merging a PR.
-9. Review every generated diff.
-10. Keep claims about external tools conservative and verify them in official docs.
-
-## Decision Guide
-
-Use this table when deciding how to approach a new task.
-
-| Situation | Recommended action | Avoid |
-| --- | --- | --- |
-| One typo, link, or wording fix | Edit directly or use a tiny docs prompt. | Whole-repo cleanup. |
-| One guide needs clearer structure | Use a docs-update goal with exact file scope. | Letting the agent rewrite unrelated pages. |
-| A script test fails | Reproduce, inspect the script and test, then make the smallest fix. | Updating tests to hide the failure. |
-| A workflow YAML change is requested | Read the workflow and explain the risk before editing. | Changing automation as incidental cleanup. |
-| A tool comparison seems stale | Reword conservatively and link to official docs. | Inventing exact support, pricing, or model details. |
-| A prompt template is missing details | Add scope, checks, report format, and failure cases. | Adding a long generic prompt with no verification path. |
-| A task touches many folders | Split into phases and use a task spec. | One broad branch called `agent/fix-everything`. |
-
-## Quick Start
-
-From PowerShell in the repository root:
-
-```powershell
-git status
-python scripts/repo_health_check.py
-python scripts/safe_autofix.py --check
-python -m unittest discover -s tests
-```
-
-For a first safe branch:
-
-```powershell
-git switch -c agent/readme-small-edit
-```
-
-Then choose a prompt template:
-
-| Task | Template |
-| --- | --- |
-| Improve one doc page | [prompts/codex/docs-update.goal.md](prompts/codex/docs-update.goal.md) |
-| Fix a small bug | [prompts/codex/fix-bug.goal.md](prompts/codex/fix-bug.goal.md) |
-| Implement a small feature | [prompts/codex/implement-feature.goal.md](prompts/codex/implement-feature.goal.md) |
-| Review a PR | [prompts/codex/review-pr.goal.md](prompts/codex/review-pr.goal.md) |
-| Use an IDE agent | [prompts/cursor/agent-task.md](prompts/cursor/agent-task.md) or [prompts/windsurf/agent-task.md](prompts/windsurf/agent-task.md) |
-| Use GitHub Copilot coding agent | [prompts/github-copilot/agent-task.md](prompts/github-copilot/agent-task.md) |
-
-## Release And Package
-
-This repository now supports versioned release bundles for general users. A release bundle is a downloadable `.zip` package containing the top-level project docs, Markdown guides, offline HTML site, prompt templates, scripts, tests, and GitHub workflow files.
-
-Use a release bundle when you want:
-
-- A stable snapshot for a class, workshop, or team onboarding session.
-- An offline copy of the docs and prompt templates.
-- A reviewable package artifact that was produced after local validation.
-- A way to reuse the workbench without cloning the full Git history.
-
-Build a package locally:
-
-```powershell
-python scripts/build_release_package.py --version v0.1.0
-```
-
-The package builder writes:
+Use this structure for most serious prompts:
 
 ```text
-dist/ai-agent-coding-workbench-v0.1.0.zip
-dist/package-manifest-v0.1.0.json
+Role:
+You are acting as [specialist role].
+
+Goal:
+Produce [specific output] for [specific audience/use case].
+
+Context:
+Here is the relevant background, files, examples, constraints, and definitions.
+
+Scope:
+Include [allowed areas]. Exclude [forbidden areas].
+
+Method:
+First inspect the provided context, then plan, then produce the answer, then verify it.
+
+Output format:
+Use [Markdown/table/JSON/checklist/code block/etc.].
+
+Quality bar:
+The answer must be accurate, complete, concise where possible, and honest about uncertainty.
+
+Verification:
+Check for [facts, tests, formatting, safety, edge cases, source alignment].
+
+Failure mode:
+If information is missing, state exactly what is missing and make the safest useful assumption.
 ```
 
-The manual **Release Package** GitHub Actions workflow runs validation, builds the ZIP and JSON manifest, and creates a GitHub Release with both files attached as assets. It uses the workflow `GITHUB_TOKEN`; it does not require a personal access token and does not publish to npm, PyPI, Docker Hub, or GitHub Packages.
+The structure matters more than fancy wording. Models do not need theatrical language. They need constraints, context, and a clear finish line. Humanity keeps rediscovering this and naming it a productivity breakthrough.
 
-Trigger the first release from PowerShell with GitHub CLI:
+## Prompting Techniques
 
-```powershell
-gh workflow run release-package.yml -f version=v0.1.0 -f prerelease=false
-gh run list --workflow release-package.yml
-gh run view <RUN_ID> --log-failed
-gh release view v0.1.0 --web
-```
+| Technique | Best use | Risk |
+| --- | --- | --- |
+| Zero-shot prompting | Direct tasks where the model already knows the pattern. | Too little context for specialized work. |
+| Few-shot prompting | Matching a style, schema, grading pattern, or transformation. | Bad examples teach bad behavior. |
+| Role prompting | Framing the level of expertise and viewpoint. | Empty role labels do little without task constraints. |
+| Chain-of-thought style decomposition | Breaking complex work into steps, plans, or visible summaries. | Can become verbose or overconfident. Ask for concise reasoning summaries, not hidden reasoning. |
+| Self-consistency | Asking for multiple candidate answers or checks before final output. | Costs more time and tokens. |
+| Prompt chaining | Splitting a large workflow into inspect, extract, plan, draft, verify. | Requires clean handoffs between steps. |
+| ReAct-style prompting | Combining reasoning summaries with tool use and observations. | Tool access increases risk if permissions are broad. |
+| RAG prompting | Grounding answers in retrieved documents or source snippets. | Retrieval errors become answer errors. |
+| Program-aided prompting | Using code or calculations for exactness. | Bad code gives precise nonsense. |
+| Tree or graph exploration | Exploring multiple solution paths before selection. | Can explode in cost and complexity. |
+| Prompt compression | Shortening a prompt while preserving constraints. | Important safety rules may be cut accidentally. |
+| Evaluation prompting | Testing outputs against rubrics or fixtures. | A weak evaluator can approve weak work. |
 
-Keep release workflow names unique; duplicate names make manual release runs harder to audit.
+## The Work-Order Pattern
 
-This is a documentation and prompt-template package, not an installable library package. See [docs/releases/release-process.md](docs/releases/release-process.md) and [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md) for release gates, package review guidance, and first-release notes.
-
-## Research Loop
-
-The repository now has a safe public research loop for AI skills, prompt guides,
-image prompting, local/cloud image-generation guidance, MCP/tool-use systems,
-public agent workflow repositories, and Nous Research Hermes Agent.
-
-It deliberately separates cheap GitHub automation from local/manual AI curation:
-
-| Workflow | Cost profile | What it does | What it must not do |
-| --- | --- | --- | --- |
-| `daily-research-scout.yml` | Cheap daily workflow; no Codex and no OpenAI API key. | Reads `data/research/sources.yml`, checks public URLs or repositories, updates `data/research/candidates.json`, writes `docs/research/inbox/YYYY-MM-DD.md`, and opens or updates one candidate issue. | Must not publish polished guides, call paid LLMs, create releases, run image models, or modify core docs automatically. |
-| `curator-prompt-prep.yml` | Cheap manual workflow; no Codex, no OpenAI API key, no paid LLM, and no model provider. | Reads candidate reports and writes `docs/research/curated/curator-prompt-YYYY-MM-DD.md`, a ready-to-copy prompt for local Codex CLI or the Codex app. | Must not create a PR with AI-written guide content, run Codex in GitHub Actions, call model providers, or publish guide updates. |
-
-Source policy lives in [docs/research/source-policy.md](docs/research/source-policy.md) and the public publication rules live in [docs/publication-policy.md](docs/publication-policy.md). Leak-derived prompt repositories may be used only for structural pattern extraction, public-safe summaries, short legally safe attributed excerpts when necessary, and links. They must not be mirrored or republished verbatim.
-
-Hermes Agent coverage is limited to Nous Research Hermes Agent as an agent/workflow tool: providers, skills, memory, automations, prompting, troubleshooting, and public-repo safety. It does not add Hermes language model serving, model cards, benchmarks, quantization, GGUF, Ollama, vLLM, or SGLang guidance.
-
-Image-generation guides are split into browser/API workflows, lightweight local experiments, advanced local GPU workflows, and cloud workflows. On entry-level hardware without a capable GPU, the beginner default is browser/API tools or lightweight local experiments, not heavy diffusion or local training. The [hardware requirements](docs/image-generation/hardware-requirements.md) page covers the browser/API, CPU-only, entry GPU, advanced GPU, and cloud tiers.
-
-Run the cheap scout manually:
-
-```powershell
-gh workflow run daily-research-scout.yml
-```
-
-Prepare local Codex curator prompts in dry-run mode:
-
-```powershell
-gh workflow run curator-prompt-prep.yml -f scope=skills -f dry_run=true -f max_sources=5
-gh workflow run curator-prompt-prep.yml -f scope=hermes-agent -f dry_run=true -f max_sources=5
-gh workflow run curator-prompt-prep.yml -f scope=image-guides -f dry_run=true -f max_sources=5
-```
-
-No GitHub Actions workflow requires an OpenAI API key or any model-provider key.
-AI curation is local and manual with the agent of your choice. The maintainer
-signs into a local agent, pastes the generated curator prompt, reviews the
-edits, runs checks, pushes a branch, and opens a PR.
-
-You can use either agent. Both follow the same branch, prompt, check, review,
-and merge loop.
-
-Local Codex curation:
-
-```powershell
-git switch main
-git pull --ff-only origin main
-git switch -c codex/curate-research-guides
-codex
-```
-
-Then paste the generated curator prompt from
-`docs/research/curated/curator-prompt-YYYY-MM-DD.md` into Codex.
-
-Local Claude Code curation:
-
-```powershell
-git switch main
-git pull --ff-only origin main
-git switch -c claude/curate-research-guides
-claude
-```
-
-Then set the task from the same generated prompt. With Claude Code you can paste
-the prompt directly, or save a reusable custom slash command. Claude Code loads
-Markdown files from `.claude/commands/` as `/command`, so a `.claude/commands/goal.md`
-file lets you run `/goal` to apply the same instructions every session. For
-example, `.claude/commands/goal.md` could contain:
+For coding agents, research agents, and document agents, use a work-order prompt:
 
 ```text
-Follow docs/research/curated/curator-prompt-YYYY-MM-DD.md exactly. Only edit the listed guide files, run the three local checks, and report files changed plus checks run.
+Task:
+[One sentence describing the final result.]
+
+Read first:
+[List the exact files, snippets, docs, or examples.]
+
+Allowed changes:
+[List what may change.]
+
+Forbidden changes:
+[List what must not change.]
+
+Procedure:
+1. Inspect the relevant material.
+2. Summarize the current state.
+3. Propose the smallest safe plan.
+4. Apply the plan.
+5. Verify the result.
+6. Report changed items, checks, and risks.
+
+Acceptance criteria:
+- [Criterion 1]
+- [Criterion 2]
+- [Criterion 3]
+
+Final report:
+- What changed
+- Why it changed
+- How it was checked
+- What remains uncertain
 ```
 
-`/goal` here is a custom command you define, not a built-in. Custom slash
-commands are a Claude Code feature; verify the current commands directory and
-syntax in the [official docs](https://docs.anthropic.com/en/docs/claude-code/overview).
+This pattern prevents the classic agent disaster: “I improved everything,” which usually means “I touched eleven unrelated files and invented a test result.”
 
-The local agent modes in `scripts/local_autopilot.ps1` automate the branch
-setup and prompt copy for both agents: use `-Mode local-codex` for Codex and
-`-Mode local-claude` for Claude Code. See
-[docs/tools/claude-code.md](docs/tools/claude-code.md) for a fuller Claude Code
-walkthrough.
+## Context Engineering
 
-After Codex edits locally:
+Prompting is not only the words you type. It is the management of everything the model sees.
 
-```powershell
-python scripts/repo_health_check.py
-python scripts/safe_autofix.py --check
-python -m unittest discover -s tests
+Good context engineering answers:
 
-git add .
-git commit -m "Curate research guide updates"
-git push -u origin codex/curate-research-guides
-gh pr create --title "Curate research guide updates" --body "Curates public-safe research guide updates from the scout report."
-gh pr checks --watch
-```
+- What information is required?
+- What information is distracting?
+- What should be loaded now?
+- What should be linked or summarized instead?
+- What should be turned into a durable instruction file?
+- What should be checked with a tool rather than trusted from memory?
 
-The repo does not auto-publish daily LLM output because generated guide content
-can contain stale setup claims, copied source text, unsafe prompt patterns, or
-private data if it is not reviewed. The safe path is scout, prompt prep, local
-Codex, branch, PR, checks, human review, and merge.
+### Context Budget Rules
 
-## Repository Autopilot
+| Rule | Reason |
+| --- | --- |
+| Put stable rules in instruction files. | Repeating them wastes context and invites inconsistency. |
+| Put examples near the task. | Models imitate nearby patterns strongly. |
+| Remove stale conversation history. | Old instructions can conflict with the current task. |
+| Prefer source snippets over source summaries when accuracy matters. | Summaries can erase important details. |
+| Separate facts from instructions. | The model should know what is true and what it must do. |
+| Label assumptions. | Hidden assumptions become hidden errors. |
 
-Repository Autopilot wraps the generated research loop in one safe maintenance layer. It can refresh candidate metadata, inbox reports, and local curator prompts on an `autopilot/` branch, then open a pull request for generated files only. It does not write curated guide content, run Codex in GitHub Actions, call model providers, publish releases, or commit directly to `main`.
+## Prompt Libraries and Prompt Functions
 
-Local PowerShell commands:
+Public prompt collections teach an important lesson: a prompt is often a reusable function.
 
-```powershell
-.\scripts\local_autopilot.ps1 -Mode status
-.\scripts\local_autopilot.ps1 -Mode scout
-.\scripts\local_autopilot.ps1 -Mode prompt -Scope hermes-agent -DryRun $true -MaxSources 5
-.\scripts\local_autopilot.ps1 -Mode local-codex
-.\scripts\local_autopilot.ps1 -Mode local-claude
-.\scripts\local_autopilot.ps1 -Mode full-safe -Scope hermes-agent -DryRun $true -MaxSources 5
-```
-
-`local-codex` defaults to the `codex/curate-research-guides` branch and `local-claude` defaults to `claude/curate-research-guides`. Pass `-Branch <name>` to override either one. Both modes refuse to run on a dirty tree unless you pass `-AllowDirty`, and neither commits, merges, force-pushes, or deletes branches.
-
-GitHub workflow commands:
-
-```powershell
-gh workflow run repo-autopilot.yml -f scope=hermes-agent -f dry_run=true -f max_sources=5 -f create_pr=true
-gh workflow run monthly-release-draft.yml
-```
-
-Safe generated-file automerge is limited to:
+A prompt function maps:
 
 ```text
-data/research/candidates.json
-docs/research/inbox/*.md
-docs/research/curated/curator-prompt-*.md
+input data + instructions + constraints -> expected output
 ```
 
-Read the detailed policies:
+Good reusable prompts have:
 
-- [Repository Autopilot](docs/automation/repository-autopilot.md)
-- [Local Autopilot](docs/automation/local-autopilot.md)
-- [Safe Automerge Policy](docs/automation/safe-automerge-policy.md)
-- [Release Draft Policy](docs/automation/release-draft-policy.md)
+- A name.
+- A purpose.
+- Inputs to fill.
+- A target audience.
+- A schema or output format.
+- Examples.
+- Edge cases.
+- Evaluation criteria.
+- Version notes.
 
-## First 30 Minutes
-
-For a new learner, the first session should be small and concrete:
-
-1. Clone or open the repository.
-2. Read [AGENTS.md](AGENTS.md) and this README.
-3. Run `git status`.
-4. Run the three local checks.
-5. Create a branch named `agent/first-doc-edit`.
-6. Improve one sentence or one short paragraph in a Markdown file.
-7. Run the three local checks again.
-8. Review `git diff`.
-9. Write a short PR-style summary even if you do not open a PR.
-10. Decide whether the change is worth keeping.
-
-The point is to practice the loop, not to produce a large diff.
-
-## End-To-End Example
-
-This example shows the intended shape of a small AI-assisted documentation task.
-
-| Step | Command or action | Expected result |
-| --- | --- | --- |
-| Check state | `git status` | You know whether the tree is clean before edits. |
-| Create branch | `git switch -c agent/add-local-check-note` | Work is isolated from `main`. |
-| Write prompt | Use `prompts/codex/docs-update.goal.md` | Agent receives scope, checks, and report format. |
-| Inspect files | Agent reads `AGENTS.md`, `README.md`, and the target doc. | Edits are based on current content. |
-| Edit | Add one focused section. | Diff stays reviewable. |
-| Validate | Run the three local checks. | Basic repo rules still hold. |
-| Review | `git diff` | Human sees the actual change. |
-| Report | PR body or final agent response | Commands, checks, risks, and files are explicit. |
-| Merge decision | Approve, request changes, or discard | Human judgment remains in control. |
-
-The same loop scales to larger tasks by splitting them into separate branches and PRs.
-
-## Prompting And Agent Mastery
-
-Getting good work out of an AI coding agent is a skill, and this repository
-teaches it directly. The core idea: **a prompt is a work order, not a wish.** A
-strong agent prompt names the outcome, the boundaries, the evidence of
-completion, and what to do when something goes wrong.
-
-Principles that transfer across every tool and model:
-
-- **State the outcome, not the topic.** "Make `load_config` raise a clear error
-  with the file path, and add a test" beats "improve error handling."
-- **Give context before instructions.** Tell the agent what to read and what the
-  project is before telling it what to change.
-- **Decompose and plan.** Split large tasks into inspect, plan, implement,
-  verify. Ask for a plan before edits on anything non-trivial.
-- **Make it verify.** Name the checks and require exact output. Treat "done"
-  with no command output as unverified.
-- **Fence the scope.** Excluded paths (secrets, dependencies, workflow files,
-  unrelated refactors) matter as much as included ones.
-- **Budget the context window.** Load the spec and the relevant files; start a
-  fresh session per task instead of dragging a polluted history forward.
-- **Prompt once with memory files.** Put durable conventions in `AGENTS.md`
-  (Codex) or `CLAUDE.md` (Claude Code) so you stop repeating them.
-
-A few high-leverage agent tricks:
-
-| Tool | Trick |
-| --- | --- |
-| Claude Code | Save reusable workflows as custom slash commands in `.claude/commands/`; use plan mode and subagents to keep context clean. |
-| Codex | Encode "write tests, run checks, report results" in `AGENTS.md`; keep approval modes tight by default. |
-| Any agent | Connect external tools through MCP read-only first, in a test repo, before granting write or private-data access. |
-
-Go deeper:
-
-- [Prompting AI coding agents](docs/guides/prompting-ai-coding-agents.md) — the full craft guide.
-- [Coding agent power tips](docs/guides/coding-agent-power-tips.md) — per-agent tricks with official-doc links.
-- [Prompting references](docs/guides/prompting-references.md) — famous public prompting repositories and docs to learn from.
-
-These guides ship inside every [release bundle](#release-and-package), so the
-prompting curriculum travels with the offline package. Feature names are kept as
-pointers to official docs because tool details change quickly.
-
-## Offline Quick-Start Site And Playbooks
-
-For a browser-friendly overview that works offline, open [docs/site/index.html](docs/site/index.html). The HTML guide site links together the agent lifecycle, prompt patterns, skills and prompt-guide setup, MCP safety notes, Windows PowerShell examples, and public-repository checklists without external scripts, CDNs, analytics, or remote fonts.
-
-Longer Markdown playbooks:
-
-| Guide | Use it for |
-| --- | --- |
-| [Prompting AI coding agents](docs/guides/prompting-ai-coding-agents.md) | The craft of prompting agents: anatomy, transferable techniques, patterns, and anti-patterns. |
-| [Coding agent power tips](docs/guides/coding-agent-power-tips.md) | Per-agent tricks for Claude Code, Codex, Cursor, Copilot, Aider, Windsurf, and MCP. |
-| [Prompting references](docs/guides/prompting-references.md) | Famous public prompting repositories and docs to learn from, with safe-use rules. |
-| [Prompt engineering playbook](docs/guides/prompt-engineering-playbook.md) | Designing scoped prompts with examples, checks, mistakes, and failure modes. |
-| [Agentic coding playbook](docs/guides/agentic-coding-playbook.md) | Running safe branch, agent, check, PR, review, merge, and rollback workflows. |
-| [Skills and prompt guides](docs/guides/skills-and-prompt-guides.md) | Creating local SKILL.md-style guides, prompt packs, and MCP-aware safety boundaries. |
-| [Windows setup commands](docs/guides/windows-setup-commands.md) | Using PowerShell-safe repo commands, folder setup, placeholders, and clone workflows. |
-| [Prompt audit checklist](docs/guides/prompt-audit-checklist.md) | Reviewing prompts before sending, publishing, or teaching them. |
-
-## Learning Path
-
-1. Read the local rules in [AGENTS.md](AGENTS.md).
-2. Open [docs/site/index.html](docs/site/index.html) for the offline quick-start map.
-3. Read [docs/codex/00-start-here.md](docs/codex/00-start-here.md) for the mental model.
-4. Run the three local checks.
-5. Make one small Markdown change on a branch.
-6. Open a PR and compare your local check output with CI.
-7. Review the diff as if it came from another contributor.
-8. Update [CHANGELOG.md](CHANGELOG.md) when the change is user-visible.
-9. Try one non-Codex prompt template after you understand the review workflow.
-10. Compare tools using [docs/tools/comparison-matrix.md](docs/tools/comparison-matrix.md).
-11. Only then consider adding MCP, hooks, subagents, or stronger automation.
-
-## Scenario Playbooks
-
-Different users should start in different parts of the repo.
-
-| Scenario | Start here | Then use |
-| --- | --- | --- |
-| "I want to learn Codex safely." | [docs/codex/00-start-here.md](docs/codex/00-start-here.md) | [docs/codex/01-codex-goal-workflow.md](docs/codex/01-codex-goal-workflow.md) |
-| "I need a prompt for a real docs task." | [prompts/codex/docs-update.goal.md](prompts/codex/docs-update.goal.md) | [docs/templates/task-spec.md](docs/templates/task-spec.md) |
-| "I need to review an AI-generated PR." | [docs/codex/04-review-checklist.md](docs/codex/04-review-checklist.md) | [docs/templates/merge-report.md](docs/templates/merge-report.md) |
-| "I am teaching a workshop." | [docs/site/index.html](docs/site/index.html) | [docs/guides/agentic-coding-playbook.md](docs/guides/agentic-coding-playbook.md) |
-| "I want to compare tools." | [docs/tools/comparison-matrix.md](docs/tools/comparison-matrix.md) | Individual pages in [docs/tools/](docs/tools/) |
-| "I want to connect external tools." | [docs/tools/mcp.md](docs/tools/mcp.md) | [docs/workflows/public-repo-safety.md](docs/workflows/public-repo-safety.md) |
-
-## Main Workflow
-
-```mermaid
-flowchart LR
-    A[task or issue] --> B[agent branch]
-    B --> C[prompted agent work]
-    C --> D[local checks]
-    D --> E[pull request]
-    E --> F[CI checks]
-    F --> G[human review]
-    G --> H[squash merge]
-    H --> I[changelog]
-```
-
-Use [docs/workflows/agent-task-lifecycle.md](docs/workflows/agent-task-lifecycle.md) for the full checklist.
-
-## Tool Matrix
-
-Tool behavior, pricing, model access, and platform support change quickly. This table is an orientation guide, not a substitute for official docs.
-
-| Tool | Best fit | Beginner fit | Windows fit | Setup style | Risk level | Best first task |
-| --- | --- | --- | --- | --- | --- | --- |
-| [OpenAI Codex](docs/tools/codex.md) | Git-first repo edits, checks, Codex goals, PR prep. | Medium | Good | CLI, IDE, web, cloud/hybrid depending on current setup | Medium | Improve one README paragraph and run checks. |
-| [Claude Code](docs/tools/claude-code.md) | Codebase explanation, docs review, multi-file agent work. | Medium | Good; verify current install guidance | CLI, IDE, desktop, web, hybrid | Medium | Review docs without editing. |
-| [Cursor](docs/tools/cursor.md) | IDE planning, codebase chat, visible diffs, rules, MCP. | High | Good | IDE, CLI, hybrid | Medium | Ask for a plan before edits. |
-| [Google Antigravity](docs/tools/antigravity.md) | Agent-first planning and artifact-driven work. | Medium | Verify current support | IDE, cloud, hybrid depending on current product | Medium to high | Create a docs-cleanup plan artifact. |
-| [GitHub Copilot](docs/tools/github-copilot.md) | IDE help, GitHub issues, cloud-agent PRs, review loops. | High for suggestions; medium for agent PRs | Good through supported IDEs and GitHub | IDE, cloud, hybrid | Medium | Draft a tiny docs PR and inspect it. |
-| [OpenCode](docs/tools/opencode.md) | Open-source agent workflows and provider-flexible experiments. | Medium | Verify current Windows path | CLI, desktop, IDE, hybrid | Medium | Read-only repo overview. |
-| [Kilo Code](docs/tools/kilo-code.md) | IDE/CLI agent experiments and mode comparison. | Medium | Good where supported | IDE, CLI, cloud, hybrid | Medium | Plan one small issue. |
-| [Aider](docs/tools/aider.md) | Terminal pair programming with explicit files. | Medium | Good with Python and Git | CLI, local/hybrid | Medium | Edit one selected Markdown file. |
-| [Windsurf](docs/tools/windsurf.md) | IDE-based code explanation and multi-file edits. | High | Verify current desktop support | IDE, hybrid | Medium | Explain one folder before edits. |
-| [MCP](docs/tools/mcp.md) | Connecting agents to controlled tools, data, and prompts. | Low to medium | Good for lightweight local servers | Protocol, local/cloud server, hybrid | High if write-capable or connected to private data | Read-only docs server in a test repo. |
-
-See the full ranking tables in [docs/tools/comparison-matrix.md](docs/tools/comparison-matrix.md).
-
-## Recommended Workflows
-
-| Workflow | When to use it | Guide |
-| --- | --- | --- |
-| Issue and task intake | Before asking any agent to work. | [docs/workflows/agent-task-lifecycle.md](docs/workflows/agent-task-lifecycle.md#1-issuetask-intake) |
-| Branch naming | Before edits begin. | [docs/workflows/agent-task-lifecycle.md](docs/workflows/agent-task-lifecycle.md#2-branch-naming) |
-| Goal prompt creation | For any task larger than one quick response. | [docs/codex/01-codex-goal-workflow.md](docs/codex/01-codex-goal-workflow.md) |
-| Local checks | After edits and before PR. | [docs/workflows/agent-task-lifecycle.md](docs/workflows/agent-task-lifecycle.md#5-local-checks) |
-| CI checks | After PR creation. | [docs/workflows/agent-task-lifecycle.md](docs/workflows/agent-task-lifecycle.md#6-ci-checks) |
-| PR review | Before merge. | [docs/codex/04-review-checklist.md](docs/codex/04-review-checklist.md) |
-| Squash merge | For focused learning branches. | [docs/codex/02-git-branch-pr-merge-workflow.md](docs/codex/02-git-branch-pr-merge-workflow.md) |
-| Rollback | When a bad commit reaches `main`. | [docs/codex/02-git-branch-pr-merge-workflow.md](docs/codex/02-git-branch-pr-merge-workflow.md#rollback) |
-| Public repo safety | Before public release or external sharing. | [docs/workflows/public-repo-safety.md](docs/workflows/public-repo-safety.md) |
-
-## Quality Bar
-
-Professional GitHub documentation should help a reader make decisions, not just describe features. For this repo, a high-quality contribution usually has these properties:
-
-| Quality area | Good documentation does this |
-| --- | --- |
-| Audience | Names who the guidance is for and what they should already know. |
-| Scope | States what the guide covers and what it deliberately avoids. |
-| Steps | Gives commands and review points in the order a user will need them. |
-| Safety | Identifies secrets, permissions, destructive actions, and private-data risks. |
-| Verification | Lists checks that prove the change is safe enough to review. |
-| Failure modes | Explains what usually goes wrong and how to recover. |
-| Maintenance | Avoids brittle claims and points to official docs for fast-changing details. |
-
-Low-quality documentation often looks long but is hard to use. It repeats general advice, hides assumptions, omits commands, or fails to say what success looks like. Prefer shorter precise sections over broad filler.
-
-## Public Repository Checklist
-
-Before publishing the repository, opening a PR from an agent, or teaching from a fork:
-
-- [ ] `git status` shows only expected files.
-- [ ] No `.env`, credentials, browser profiles, cookies, private keys, or tokens are tracked.
-- [ ] No private links, school portals, private dashboards, or internal repositories appear in docs.
-- [ ] No personal account IDs, private machine paths, emails, or screenshots are committed.
-- [ ] External tool claims are conservative and marked for official-doc verification where needed.
-- [ ] GitHub Actions logs do not print environment variables or secrets.
-- [ ] AI-generated diffs were reviewed by a human.
-- [ ] Local checks and CI pass.
-- [ ] User-visible changes are recorded in [CHANGELOG.md](CHANGELOG.md).
-
-## Repository Structure
+### Prompt Function Template
 
 ```text
-ai-lab-codex-workbench/
-  README.md                       # Project overview and learning path
-  AGENTS.md                       # Agent operating rules
-  CONTRIBUTING.md                 # Contribution workflow
-  SECURITY.md                     # Secret and automation safety policy
-  CHANGELOG.md                    # User-visible changes
-  docs/
-    automation/                   # Repository Autopilot and release draft policies
-    releases/
-      release-process.md           # Manual release and package guide
-      v0.1.0.md                    # First public release notes
-    codex/                        # Codex-specific guides
-    guides/                       # Practical playbooks and checklists
-    hermes/                       # Hermes Agent workflow and safety guides
-    image-generation/             # Image prompting and workflow guides
-    research/                     # Source policy, inbox reports, curated notes
-    site/                         # Offline static HTML guide site
-    skills/                       # Skills, prompt-guide, Codex, Claude, MCP guides
-    tools/                        # AI coding tool guide pages
-    workflows/                    # End-to-end workflow guides
-    templates/                    # Human-facing task and merge templates
-  data/
-    research/                     # Research source config, blocklist, candidates
-  prompts/
-    aider/
-    antigravity/
-    claude-code/
-    codex/
-    cursor/
-    github-copilot/
-    opencode/
-    windsurf/
-  scripts/
-    build_release_package.py       # Builds versioned zip bundles for releases
-    check_safe_generated_diff.py   # Verifies generated-file-only PR diffs
-    local_autopilot.ps1            # Windows helper for scout, prompt, and local curation
-    repo_autopilot_status.py       # Prints generated research autopilot status
-    repo_health_check.py          # Secret patterns, required files, final newlines
-    safe_autofix.py               # Deterministic whitespace cleanup
-    local_check.ps1               # PowerShell local validation helper
-  tests/                          # Unit tests for local scripts
-  .github/workflows/
-    ci.yml                        # Read-only validation
-    autofix.yml                   # Manual safe-autofix PR
-    automerge-safe-generated.yml   # Generated-file-only squash automerge guard
-    release-package.yml           # Manual GitHub Release package workflow
-    monthly-release-draft.yml      # Monthly release checklist issue draft
-    repo-autopilot.yml             # Generated research autopilot PR workflow
-    daily-research-scout.yml      # Cheap daily candidate discovery
-    curator-prompt-prep.yml       # Cheap local Codex prompt preparation
-    merge-pr.yml                  # Manual controlled merge workflow
+Name:
+[Short descriptive name]
+
+Purpose:
+[What this prompt reliably does]
+
+Inputs:
+- {input_1}: [description]
+- {input_2}: [description]
+
+Prompt:
+[Reusable prompt body with placeholders]
+
+Expected output:
+[Schema or format]
+
+Good examples:
+[Examples that should pass]
+
+Bad examples:
+[Examples that should fail]
+
+Evaluation:
+[How to judge the output]
 ```
 
-## Local Validation
+## Prompt Evaluation
 
-Run these before committing agent-generated work:
+A prompt is not good because it sounds clever. It is good when it performs reliably.
 
-```powershell
-python scripts/repo_health_check.py
-python scripts/safe_autofix.py --check
-python -m unittest discover -s tests
-```
+Evaluate prompts with:
 
-What they cover:
-
-| Check | What it protects |
+| Evaluation type | What to check |
 | --- | --- |
-| `repo_health_check.py` | Required files, simple secret patterns, final newlines, large-file warnings. |
-| `safe_autofix.py --check` | Whether deterministic whitespace cleanup would change files. |
-| `python -m unittest discover -s tests` | Script behavior covered by unit tests. |
+| Golden examples | Does the prompt pass known cases? |
+| Edge cases | Does it handle weird but valid inputs? |
+| Refusal cases | Does it avoid unsafe or out-of-scope tasks? |
+| Format checks | Does the output follow the required schema? |
+| Factual checks | Are claims grounded in sources? |
+| Regression checks | Did a prompt update break previous behavior? |
+| Human review | Is the output actually useful, not just valid-looking? |
 
-## Troubleshooting Local Checks
+### Prompt Test Case
 
-Most failures in this repository are intentionally simple to diagnose.
+```text
+Test name:
+[Case name]
 
-| Symptom | Likely cause | First response |
+Input:
+[What the model receives]
+
+Expected behavior:
+[What a good answer must do]
+
+Forbidden behavior:
+[What would make the answer fail]
+
+Scoring:
+- 0 = fails core task
+- 1 = partially correct
+- 2 = correct but weak
+- 3 = correct, robust, and well formatted
+```
+
+## Claude Code Skills
+
+Claude Code skills are reusable procedures that Claude can load when relevant or when invoked directly. A skill should be narrow, operational, and testable.
+
+A good Claude Code skill has:
+
+- A clear `description` that says when to use it.
+- A focused `SKILL.md` body.
+- Optional supporting files for templates, examples, scripts, or reference material.
+- Tool permissions that are no broader than necessary.
+- A final report format.
+- Verification steps.
+- Failure behavior.
+
+### Claude Code Skill Skeleton
+
+```markdown
+---
+description: Use this skill when [specific trigger or task].
+allowed-tools: Read Grep
+disable-model-invocation: false
+---
+
+# Skill: [Name]
+
+## Purpose
+Perform [specific recurring task].
+
+## Inputs
+- [Input 1]
+- [Input 2]
+
+## Procedure
+1. Inspect the relevant context.
+2. Identify the smallest safe action.
+3. Apply the action only if it is within scope.
+4. Verify the result.
+5. Report the outcome.
+
+## Verification
+- [Check 1]
+- [Check 2]
+
+## Failure behavior
+If required context is missing, stop and report what is missing.
+If a check fails, report the failure and do not claim success.
+
+## Final report
+- Action taken
+- Evidence
+- Remaining risks
+```
+
+### Claude Code Skill Design Rules
+
+| Rule | Why it matters |
+| --- | --- |
+| One skill, one job. | Broad skills trigger unpredictably. |
+| Put the trigger in the description. | Claude uses the description to decide when to load the skill. |
+| Keep the body concise. | Loaded skill text stays in context. |
+| Use supporting files for long references. | Keeps the main procedure readable. |
+| Prefer read-only tools first. | Tool access is where mistakes become real edits. |
+| Use subagents for isolated work. | Keeps context cleaner and reduces cross-task contamination. |
+| Test skills on small cases. | A reusable bad instruction is just a mistake factory. |
+
+## Codex Skills and AGENTS.md Patterns
+
+Codex-style prompting works best when standing instructions are separated from task prompts.
+
+Use durable instruction files for:
+
+- Persistent conventions.
+- Coding style.
+- Test commands.
+- Safety boundaries.
+- Review expectations.
+- Change discipline.
+- What not to touch.
+
+Use the immediate prompt for:
+
+- The current task.
+- Current files or snippets.
+- Acceptance criteria.
+- Verification commands.
+- Final reporting requirements.
+
+### Codex Operating Instruction Skeleton
+
+````markdown
+# Agent Instructions
+
+## Purpose
+This workspace is for [purpose].
+
+## Rules
+1. Inspect before editing.
+2. Keep changes focused.
+3. Do not touch secrets or private files.
+4. Do not add dependencies unless requested.
+5. Do not claim tests passed unless they were run.
+
+## Style
+- [Formatting rule]
+- [Naming rule]
+- [Documentation rule]
+
+## Checks
+Run:
+
+```text
+[check command 1]
+[check command 2]
+```
+
+## Final Response
+Report:
+- Changed files
+- Commands run
+- Check results
+- Risks or limitations
+````
+
+### Codex Task Prompt Skeleton
+
+```text
+Goal:
+[Specific outcome]
+
+Read first:
+[Files, snippets, or docs]
+
+Allowed scope:
+[What may change]
+
+Excluded scope:
+[What must not change]
+
+Implementation rules:
+- Make the smallest useful change.
+- Preserve existing style.
+- Add or update checks only when relevant.
+- Do not invent external facts.
+
+Verification:
+Run [commands] or explain why they cannot be run.
+
+Final report:
+Changed files, checks, risks, and remaining work.
+```
+
+## Agentic Coding Prompts
+
+Agentic coding is not autocomplete. It is delegated work with review gates.
+
+Use this sequence:
+
+1. **Inspect.** Ask the agent to read relevant files first.
+2. **Plan.** Ask for a small plan before edits.
+3. **Edit.** Allow only scoped changes.
+4. **Verify.** Run tests, linters, type checks, or focused commands.
+5. **Review.** Inspect the diff yourself or ask a separate reviewer agent.
+6. **Report.** Require exact changed files and check output.
+
+### Coding Agent Anti-Patterns
+
+| Anti-pattern | Better version |
+| --- | --- |
+| “Fix everything.” | “Fix the failing config parser test only.” |
+| “Improve the code.” | “Refactor this function without changing behavior, then run the existing tests.” |
+| “Make it professional.” | “Rewrite the introduction for beginners, keep links unchanged, and preserve headings.” |
+| “Run whatever you need.” | “Run only these commands unless you ask first.” |
+| “Use the best approach.” | “Prefer the smallest change that satisfies these acceptance criteria.” |
+
+## Tool-Using Agents and MCP
+
+Tool access changes the risk profile. A model that can call tools can affect files, accounts, services, and data.
+
+Safe tool-use prompting includes:
+
+- Start read-only.
+- Name allowed tools.
+- Name forbidden tools.
+- Require confirmation before writes.
+- Keep private data out of prompts unless required and allowed.
+- Log what was read, changed, or skipped.
+- Require the agent to stop on unexpected access or missing permission.
+
+### Tool-Use Prompt Pattern
+
+```text
+You may use only these tools:
+- [tool 1]
+- [tool 2]
+
+You must not use:
+- [forbidden tool/action]
+
+Before any write action:
+1. Explain what will change.
+2. Explain why it is necessary.
+3. Wait for approval unless approval is already explicitly granted.
+
+After tool use:
+Report every tool call category, what it affected, and what remains unverified.
+```
+
+## General Image Prompting
+
+Image prompts work best when they describe visual evidence, not abstract wishes.
+
+A strong image prompt specifies:
+
+| Element | Example of what to define |
+| --- | --- |
+| Subject | Main person, object, creature, scene, or symbol. |
+| Composition | Framing, perspective, foreground, middle ground, background. |
+| Spatial relations | What is left, right, above, behind, near, far, centered, overlapping, separated. |
+| Medium | Photograph, oil painting, 3D render, ink drawing, cinematic still. |
+| Lighting | Soft dawn, hard noon sun, rim light, volumetric fog, studio softbox. |
+| Material and texture | Stone, brushed metal, wet asphalt, fabric weave, old paper. |
+| Color palette | Muted earth tones, monochrome, high contrast, warm gold and deep blue. |
+| Detail priority | What must be sharp, what can be atmospheric. |
+| Negative constraints | What must not appear. |
+| Output use | Poster, concept art, product shot, UI asset, 3D reference, storyboard frame. |
+
+### Image Prompt Skeleton
+
+```text
+Create [image type] of [main subject].
+
+Composition:
+[Camera angle, framing, spatial layout, foreground/background.]
+
+Visual details:
+[Materials, textures, colors, lighting, atmosphere.]
+
+Style:
+[Medium, genre, rendering style, realism level.]
+
+Constraints:
+[Object count, anatomy, text rules, forbidden elements, safety limits.]
+
+Use case:
+[Poster, reference image, product mockup, game asset, storyboard, etc.]
+```
+
+## Diffusion Model Prompting
+
+Diffusion systems usually generate by iteratively denoising from noise toward an image conditioned on text, images, masks, or other controls. Prompting therefore often benefits from clear visual descriptors, style anchors, negative constraints, and model-specific parameters.
+
+### Diffusion Prompt Structure
+
+```text
+Subject:
+[Main visual content]
+
+Scene:
+[Environment and composition]
+
+Style:
+[Medium, genre, rendering quality]
+
+Lighting:
+[Light source, intensity, mood]
+
+Camera:
+[Lens, distance, perspective, depth of field]
+
+Details:
+[Materials, textures, fine features]
+
+Negative prompt:
+[Artifacts, wrong anatomy, unwanted objects, text, watermark, distortion]
+
+Controls:
+[Aspect ratio, seed, steps, guidance, reference image, mask, ControlNet/IP-adapter/etc. when supported]
+```
+
+### Diffusion Prompting Rules
+
+| Rule | Why it works |
+| --- | --- |
+| Put the main subject early. | Early tokens often steer composition strongly. |
+| Describe visible traits. | Models respond better to concrete visual evidence than abstract intentions. |
+| Use negative prompts carefully. | Overloaded negatives can suppress useful detail. |
+| Separate content from style. | Mixing them causes muddier outputs. |
+| Use references or control signals for strict layout. | Text alone is weak for exact geometry. |
+| Iterate one variable at a time. | Otherwise you cannot tell what improved the result. |
+| Save seeds and settings. | Reproducibility matters when refining. |
+
+### Diffusion Failure Modes
+
+- Extra limbs or distorted anatomy.
+- Incorrect text rendering.
+- Unwanted logos or watermarks.
+- Style overwhelming subject accuracy.
+- Negation failure, such as asking for “no X” and still getting X.
+- Weak spatial reasoning when many objects interact.
+- Over-sharpened or plastic textures from excessive quality tags.
+
+## Autoregressive Image Model Prompting
+
+Autoregressive image systems generate visual tokens or elements sequentially. Some newer systems combine language-style reasoning with image generation. Prompting these models should emphasize ordered structure, explicit spatial constraints, and concise visual planning.
+
+### Autoregressive Prompt Structure
+
+```text
+Goal:
+Generate [image type] with [main subject and purpose].
+
+Global layout:
+[Overall composition before details.]
+
+Spatial constraints:
+[Exact relationships between objects.]
+
+Entity list:
+- Object 1: [appearance, position, role]
+- Object 2: [appearance, position, role]
+
+Rendering priorities:
+[What must be coherent first: anatomy, object count, perspective, typography, material, lighting.]
+
+Style and finish:
+[Medium, color, detail level, lighting.]
+
+Do not include:
+[Forbidden elements or common artifacts.]
+```
+
+### Autoregressive Prompting Rules
+
+| Rule | Why it matters |
+| --- | --- |
+| State the global layout before details. | Sequential generation benefits from a stable plan. |
+| Use object inventories. | Helps preserve counts and identities. |
+| Specify spatial relations explicitly. | Reduces overlap and placement ambiguity. |
+| Keep reasoning concise. | Overlong visual reasoning can add contradictions. |
+| Prioritize constraints. | The model should know which details are non-negotiable. |
+| Avoid decorative overload. | Too many adjectives compete with structure. |
+
+### Autoregressive vs Diffusion Prompting
+
+| Need | Diffusion emphasis | Autoregressive emphasis |
 | --- | --- | --- |
-| `repo_health_check.py` reports a missing file | Required repo file was moved or deleted. | Restore the file or update the checker only if the project structure intentionally changed. |
-| Secret-like text is reported | A placeholder looks too realistic or a sensitive string was added. | Replace it with a public-safe placeholder such as `YOUR_TOKEN_HERE`. |
-| Final newline warning | A text file does not end with a newline. | Run `python scripts/safe_autofix.py --write`, then review the diff. |
-| Safe autofix check fails | Whitespace cleanup would change files. | Apply safe autofix, review the changed files, rerun the check. |
-| Unit test fails | Script behavior changed or an expected fixture no longer matches. | Read the failing test, inspect the script, and fix the smallest related cause. |
-| CI fails but local checks passed | Environment or path difference. | Read the CI log, then reproduce the exact failing command locally when possible. |
+| Mood and texture | Strong style, lighting, medium, negative prompt. | Style after layout and entity constraints. |
+| Exact composition | Use control images, masks, or layout tools when available. | Write explicit global layout and spatial rules. |
+| Object count | Keep prompt simple, use negatives sparingly. | Use an entity list and count constraints. |
+| Iteration | Adjust seed, guidance, negatives, reference strength. | Adjust planning, ordering, and constraint wording. |
+| Detail control | Layer descriptive tokens and references. | Prioritize detail after structure. |
 
-Do not hide failures by deleting tests, weakening safety checks, or claiming a command passed when it was not run.
+## Reasoning-Integrated Image Prompting
 
-## GitHub Automation
+For models that reason before or during image generation, ask for **visual planning**, not endless internal explanation.
 
-The repo includes conservative automation:
+Good instruction:
 
-- **CI** runs repository health checks, safe autofix check, and unit tests.
-- **Safe Autofix PR** applies deterministic whitespace cleanup and opens a PR only when files change.
-- **Controlled Merge PR** is manually triggered and waits for required PR checks before merging.
-- **Release Package** is manually triggered, runs validation, builds a versioned ZIP package and JSON manifest, and creates a GitHub Release with both files attached as assets.
-- **Repository Autopilot** refreshes generated research files on an `autopilot/` branch and opens a generated-file PR.
-- **Safe Generated File Automerge** only considers `autopilot/` PRs whose diffs are limited to generated research files, then uses squash merge without admin bypass.
-- **Monthly Release Draft** runs checks and a smoke package build, then opens or updates a release checklist issue without publishing a release.
-- **Daily Research Scout** is a cheap daily metadata scout for public candidate sources and does not use Codex or OpenAI API keys.
-- **Curator Prompt Prep** is manually triggered, uses no OpenAI API key, calls no model provider, and prepares a ready-to-copy prompt for local Codex CLI or the Codex app.
+```text
+Before generating, internally plan the composition, spatial relationships, lighting, materials, and negative constraints. Do not show the reasoning. Render only the final image.
+```
 
-Workflow YAML is intentionally small. Do not modify it unless the task specifically requires automation changes.
+Better when the model accepts visible planning:
 
-## Low-Setup, Cross-Platform Defaults
+```text
+Use a concise visual plan with these fields only:
+1. Subject
+2. Layout
+3. Lighting
+4. Materials
+5. Constraints
+Then generate the image from that plan.
+```
 
-This repo is designed to run with minimal setup on a wide range of machines:
+Avoid:
 
-- Prefer PowerShell examples, with POSIX-friendly equivalents where it matters.
-- Prefer Python standard library scripts so there is little to install.
-- Prefer browser, cloud, CLI, and IDE workflows over local model hosting.
-- Avoid Docker, WSL, GPU-heavy generation, and large dependency trees unless a maintainer explicitly asks.
-- Keep agents inside the repo so private user folders are not exposed.
+```text
+Think forever about the metaphysics of the chair, then create a realistic chair.
+```
 
-## Limitations
+The chair does not need a tragic backstory unless the image actually requires it.
 
-- This repo is a guide and workbench, not a production security scanner.
-- It does not store API keys or manage paid tool accounts.
-- It does not guarantee third-party pricing, plan limits, model names, platform support, or release timing.
-- It does not publish an npm, PyPI, NuGet, container, or GitHub Packages registry package by default.
-- It does not replace human code review.
-- It does not attempt to benchmark agent quality.
-- It does not teach unsafe broad automation, force pushes, or unattended merges.
+## Prompt Compression
 
-## Maintenance Model
+Prompt compression means preserving the task while removing waste.
 
-The repository should stay useful as AI tools change. Use these rules when maintaining it:
+Keep:
 
-- Keep process guidance durable and tool details conservative.
-- Prefer official documentation links over copied setup claims.
-- Date or qualify anything that could become stale quickly.
-- Update [CHANGELOG.md](CHANGELOG.md) for user-visible guide, template, workflow, or safety changes.
-- Keep examples public-safe and free of account-specific data.
-- Keep scripts standard-library unless a dependency is explicitly justified and approved.
-- Keep static HTML offline-safe with local assets only.
-- Review the README whenever a new guide, prompt folder, or workflow is added.
+- Goal.
+- Non-negotiable constraints.
+- Required context.
+- Output format.
+- Verification.
+- Safety boundaries.
 
-## Roadmap
+Cut:
 
-Near-term:
+- Repeated adjectives.
+- Motivational filler.
+- Contradictory style labels.
+- Vague intensifiers like “best,” “amazing,” or “professional” without criteria.
+- Long explanations of why the task matters unless they affect the output.
 
-- Expand prompt-evaluation examples.
-- Add issue templates for beginner agent tasks.
-- Add a troubleshooting guide for failed local checks.
-- Add a small before/after prompt improvement exercise.
+### Compression Example
 
-Medium-term:
+Weak:
 
-- Add lightweight examples for rules, skills, subagents, and MCP with read-only defaults.
-- Add CI log-reading practice material.
-- Add release package inspection exercises for workshops.
-- Add a prompt review rubric for comparing agent outputs.
+```text
+Please make a really amazing and super detailed image that looks extremely professional and beautiful and cinematic and very high quality with perfect lighting.
+```
 
-Advanced, only after the basics are stable:
+Stronger:
 
-- Add optional prompt evaluation tooling.
-- Add changelog validation.
-- Add generated documentation review checks.
-- Add richer GitHub automation while keeping human approval gates.
+```text
+Create a cinematic 35mm-style portrait with soft rim lighting, shallow depth of field, realistic skin texture, muted warm colors, and no visible text or watermark.
+```
 
-See [docs/codex/05-repository-roadmap.md](docs/codex/05-repository-roadmap.md) for a fuller roadmap.
+## Prompt Audit Checklist
 
-## External Claims and Official Docs
+Before using a serious prompt, check:
 
-Before using this repo in public material, verify current official docs for tool behavior, pricing, plans, installation commands, platform support, model names, and feature availability:
+- Does it state the exact output?
+- Does it name the audience or use case?
+- Does it include the necessary context?
+- Does it exclude unsafe or irrelevant actions?
+- Does it define success?
+- Does it define failure behavior?
+- Does it specify format?
+- Does it avoid copied proprietary prompt text?
+- Does it avoid private data?
+- Does it avoid unverifiable claims?
+- Does it tell the model how to verify the result?
 
-- OpenAI Codex: <https://developers.openai.com/codex/cli>
-- Codex `AGENTS.md`: <https://developers.openai.com/codex/guides/agents-md>
-- Claude Code: <https://docs.anthropic.com/en/docs/claude-code/overview>
-- Cursor: <https://cursor.com/docs>
-- Google Antigravity: <https://antigravity.google/docs>
-- GitHub Copilot coding agent: <https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent>
-- OpenCode: <https://opencode.ai/docs/>
-- Kilo Code: <https://kilo.ai/docs>
-- Aider: <https://aider.chat/docs/>
-- MCP: <https://modelcontextprotocol.io/docs/getting-started/intro>
-- Windsurf / Devin Desktop Cascade: <https://docs.windsurf.com/windsurf/cascade>
-- Nous Research Hermes Agent: <https://hermes-agent.nousresearch.com/docs/>
+## Advanced Prompt Patterns
 
-## License
+### Critic-Builder Loop
 
-MIT License. Use, modify, and learn from it.
+```text
+First, critique the draft against the rubric.
+Second, identify the top three defects.
+Third, revise only those defects.
+Fourth, provide the final answer without repeating the full critique.
+```
+
+### Multi-Pass Extraction
+
+```text
+Pass 1: Extract facts only.
+Pass 2: Group facts by theme.
+Pass 3: Identify contradictions or missing data.
+Pass 4: Produce the final structured summary.
+```
+
+### Specification-First Coding
+
+```text
+Write a short specification first.
+Then identify edge cases.
+Then implement the smallest change.
+Then run or describe verification.
+```
+
+### Rubric-Guided Generation
+
+```text
+Use this rubric:
+- Accuracy: [criteria]
+- Completeness: [criteria]
+- Clarity: [criteria]
+- Safety: [criteria]
+- Format: [criteria]
+Generate the answer, then check it against the rubric before finalizing.
+```
+
+### Source-Grounded Answering
+
+```text
+Use only the provided sources.
+For each factual claim, connect it to a source.
+If the sources do not answer a question, say so.
+Do not fill gaps from memory.
+```
+
+## Common Failure Modes
+
+| Failure | Cause | Fix |
+| --- | --- | --- |
+| Hallucinated facts | Prompt allows unsupported claims. | Require source-grounding and uncertainty labels. |
+| Format drift | Output schema is vague. | Provide exact schema and examples. |
+| Scope creep | Task is too broad. | Name allowed and forbidden work. |
+| Overlong answers | No length or priority constraints. | Specify audience, depth, and section limits. |
+| Weak code changes | Agent edits before inspecting. | Require read-plan-edit-verify sequence. |
+| Bad image composition | Prompt lists aesthetics but not layout. | Add spatial constraints and object inventory. |
+| Prompt brittleness | No test cases. | Add representative examples and edge cases. |
+| Unsafe tool use | Permissions are too broad. | Use read-only tools first and require approval for writes. |
+
+## Prompt Improvement Formula
+
+For any weak prompt, improve it by adding:
+
+```text
+1. Specific goal
+2. Relevant context
+3. Explicit constraints
+4. Output format
+5. Verification method
+6. Failure behavior
+```
+
+Example:
+
+Weak:
+
+```text
+Explain AI agents.
+```
+
+Strong:
+
+```text
+Explain AI agents to a beginner who knows basic programming. Cover what agents are, how they use tools, how they differ from chatbots, common safety risks, and one simple example. Use headings, a comparison table, and a short checklist. Avoid hype and unverifiable product claims.
+```
+
+## Master Template
+
+```text
+You are [role].
+
+Goal:
+[Specific deliverable]
+
+Audience:
+[Who will use the output]
+
+Context:
+[Relevant facts, examples, source snippets, files, or assumptions]
+
+Scope:
+Include:
+- [Allowed item]
+- [Allowed item]
+
+Exclude:
+- [Forbidden item]
+- [Forbidden item]
+
+Method:
+1. Analyze the provided context.
+2. Identify missing or uncertain information.
+3. Produce the answer using the required structure.
+4. Verify the output against the quality bar.
+
+Output format:
+[Exact format]
+
+Quality bar:
+- Accurate
+- Specific
+- Complete enough for the use case
+- No unsupported claims
+- No private data
+- No copied proprietary prompt text
+
+Final check:
+Before finalizing, confirm that the output satisfies the goal, scope, format, and constraints.
+```
+
+## Minimal Template
+
+```text
+Task: [What to do]
+Context: [What matters]
+Constraints: [What not to do]
+Format: [How to answer]
+Check: [How to verify]
+```
+
+Use the minimal template for simple work. Use the master template for serious work. Use skill files for recurring work. Use evaluation cases when quality matters. Use caution when tools can write, delete, publish, spend money, or expose private data.
+
+That is the whole boring miracle: clear instructions, bounded context, controlled tools, and verification. Apparently civilization needed neural networks to rediscover checklists.

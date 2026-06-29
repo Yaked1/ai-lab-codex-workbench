@@ -8,6 +8,7 @@ Fixed:
 
 Changed:
 
+- Reworked the README into a standalone prompting and agent-skill playbook focused on prompting concepts, Claude Code skills, Codex operating instructions, tool-use safety, prompt evaluation, prompt compression, and autoregressive/diffusion image-generation prompting.
 - De-personalized public-facing docs: the README, offline site, image-generation guides, publication policy, source policy, and prompt templates no longer reference a specific personal laptop (exact RAM, GPU model, or VRAM) and instead use generic hardware tiers (browser/API, entry GPU, advanced GPU, cloud). Audience framing moved from "student-friendly" to "beginner-friendly" for general public users.
 - Made `local-codex` and `local-claude` default their branch (`codex/curate-research-guides` and `claude/curate-research-guides`) so they run without a `-Branch` argument, fast-forward `main` with `--ff-only` when possible (warn and continue when the branch has diverged), and keep refusing dirty trees, PR merges, force-pushes, and branch deletes.
 - Made `repo_health_check.py` and `safe_autofix.py` skip local scratch, editor, and agent-tool state directories (`.tmp`, `.idea`, `.vscode`, `.omc`) and added them to `.gitignore` so local tooling does not break the standard validation.
