@@ -25,6 +25,7 @@ discover_ai_sources = load_script("discover_ai_sources")
 score_research_candidates = load_script("score_research_candidates")
 generate_research_report = load_script("generate_research_report")
 generate_curator_prompt = load_script("generate_curator_prompt")
+safe_autofix = load_script("safe_autofix")
 
 
 class ResearchDiscoveryTests(unittest.TestCase):
@@ -150,6 +151,8 @@ class ResearchDiscoveryTests(unittest.TestCase):
             text = report_path.read_text(encoding="utf-8")
             self.assertIn("Daily AI Skills And Prompt Guide Candidates - 2026-06-29", text)
             self.assertIn("Official Example Docs", text)
+            self.assertTrue(text.endswith("\n"))
+            self.assertEqual(text, safe_autofix.normalize_text(text))
 
     def test_no_secret_looking_strings_in_generated_reports(self):
         candidates = [

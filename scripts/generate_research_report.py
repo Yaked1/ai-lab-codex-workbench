@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from discover_ai_sources import DEFAULT_CANDIDATES, has_secret_looking_text, redact_secret_text, utc_today
+from safe_autofix import normalize_text
 
 
 def report_path_for_date(root: Path, report_date: str) -> Path:
@@ -101,24 +102,26 @@ def render_report(candidates: list[dict[str, Any]], report_date: str, max_candid
     report = "\n".join(lines)
     if has_secret_looking_text(report):
         report = redact_secret_text(report)
-    return report
+    return normalize_text(report)
 
 
 def render_issue_body(report_path: Path, report_date: str, candidates: list[dict[str, Any]]) -> str:
     usable_count = sum(1 for candidate in candidates if not candidate.get("blocked"))
     blocked_count = sum(1 for candidate in candidates if candidate.get("blocked"))
-    return "\n".join(
-        [
-            "Daily AI skills and prompt guide candidates",
-            "",
-            f"- Date: {report_date}",
-            f"- Report: `{report_path.as_posix()}`",
-            f"- Usable candidates: {usable_count}",
-            f"- Blocked or review-required candidates: {blocked_count}",
-            "",
-            "This issue is an inbox pointer only. It does not publish curated guides and does not run Codex.",
-            "",
-        ]
+    return normalize_text(
+        "\n".join(
+            [
+                "Daily AI skills and prompt guide candidates",
+                "",
+                f"- Date: {report_date}",
+                f"- Report: `{report_path.as_posix()}`",
+                f"- Usable candidates: {usable_count}",
+                f"- Blocked or review-required candidates: {blocked_count}",
+                "",
+                "This issue is an inbox pointer only. It does not publish curated guides and does not run Codex.",
+                "",
+            ]
+        )
     )
 
 
@@ -132,7 +135,7 @@ def load_candidates(path: Path) -> list[dict[str, Any]]:
 def write_report(root: Path, report_date: str, candidates: list[dict[str, Any]], max_candidates: int) -> Path:
     path = report_path_for_date(root, report_date)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(render_report(candidates, report_date, max_candidates), encoding="utf-8")
+    path.write_text(render_report(candidates, report_date, max_candidates), encoding="utf-8", newline="\n")
     return path
 
 
@@ -153,7 +156,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.issue_body:
         args.issue_body.parent.mkdir(parents=True, exist_ok=True)
         body = render_issue_body(report_path.relative_to(root), args.date, candidates)
-        args.issue_body.write_text(body, encoding="utf-8")
+        args.issue_body.write_text(body, encoding="utf-8", newline="\n")
         print(f"Wrote {args.issue_body}")
     return 0
 
