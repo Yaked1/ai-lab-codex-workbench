@@ -120,6 +120,7 @@ Core pieces:
 | Prompt templates | Reusable prompts with scope, validation, and report formats. | [prompts/](prompts/) |
 | Local checks | Standard-library validation scripts. | [scripts/](scripts/) |
 | Release and package | Versioned downloadable ZIP bundles for offline use, teaching, and reuse. | [docs/releases/release-process.md](docs/releases/release-process.md) |
+| Research loop | Cheap candidate discovery plus manually gated Codex guide curation. | [docs/research/source-policy.md](docs/research/source-policy.md) |
 | CI | Repository health, formatting check, unit tests, and controlled automation. | [.github/workflows/](.github/workflows/) |
 
 ## Operating Contract
@@ -232,6 +233,78 @@ gh release view v0.1.0 --web
 Keep release workflow names unique; duplicate names make manual release runs harder to audit.
 
 This is a documentation and prompt-template package, not an installable library package. See [docs/releases/release-process.md](docs/releases/release-process.md) and [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md) for release gates, package review guidance, and first-release notes.
+
+## Research Loop
+
+The repository now has a safe public research loop for AI skills, prompt guides,
+image prompting, local/cloud image-generation guidance, MCP/tool-use systems,
+public agent workflow repositories, and Nous Research Hermes Agent.
+
+It deliberately separates cheap GitHub automation from local/manual AI curation:
+
+| Workflow | Cost profile | What it does | What it must not do |
+| --- | --- | --- | --- |
+| `daily-research-scout.yml` | Cheap daily workflow; no Codex and no OpenAI API key. | Reads `data/research/sources.yml`, checks public URLs or repositories, updates `data/research/candidates.json`, writes `docs/research/inbox/YYYY-MM-DD.md`, and opens or updates one candidate issue. | Must not publish polished guides, call paid LLMs, create releases, run image models, or modify core docs automatically. |
+| `curator-prompt-prep.yml` | Cheap manual workflow; no Codex, no OpenAI API key, no paid LLM, and no model provider. | Reads candidate reports and writes `docs/research/curated/curator-prompt-YYYY-MM-DD.md`, a ready-to-copy prompt for local Codex CLI or the Codex app. | Must not create a PR with AI-written guide content, run Codex in GitHub Actions, call model providers, or publish guide updates. |
+
+Source policy lives in [docs/research/source-policy.md](docs/research/source-policy.md) and the public publication rules live in [docs/publication-policy.md](docs/publication-policy.md). Leak-derived prompt repositories may be used only for structural pattern extraction, public-safe summaries, short legally safe attributed excerpts when necessary, and links. They must not be mirrored or republished verbatim.
+
+Hermes Agent coverage is limited to Nous Research Hermes Agent as an agent/workflow tool: providers, skills, memory, automations, prompting, troubleshooting, and public-repo safety. It does not add Hermes language model serving, model cards, benchmarks, quantization, GGUF, Ollama, vLLM, or SGLang guidance.
+
+Image-generation guides are split into browser/API workflows, lightweight local experiments, advanced local GPU workflows, and cloud workflows. For weak Windows laptops with 8 GB RAM, an MX-class GPU, and about 2 GB VRAM, the beginner default is browser/API tools or lightweight local experiments, not heavy diffusion or local training.
+
+Run the cheap scout manually:
+
+```powershell
+gh workflow run daily-research-scout.yml
+```
+
+Prepare local Codex curator prompts in dry-run mode:
+
+```powershell
+gh workflow run curator-prompt-prep.yml -f scope=skills -f dry_run=true -f max_sources=5
+gh workflow run curator-prompt-prep.yml -f scope=hermes-agent -f dry_run=true -f max_sources=5
+gh workflow run curator-prompt-prep.yml -f scope=image-guides -f dry_run=true -f max_sources=5
+```
+
+No GitHub Actions workflow requires an OpenAI API key. AI curation is local and
+manual: the maintainer signs into Codex CLI or the Codex app with ChatGPT,
+pastes the generated curator prompt, reviews the edits, runs checks, pushes a
+branch, and opens a PR.
+
+Local Codex curation:
+
+```powershell
+git switch main
+git pull --ff-only origin main
+git switch -c codex/curate-research-guides
+codex
+```
+
+Then paste the generated curator prompt from:
+
+```text
+docs/research/curated/curator-prompt-YYYY-MM-DD.md
+```
+
+After Codex edits locally:
+
+```powershell
+python scripts/repo_health_check.py
+python scripts/safe_autofix.py --check
+python -m unittest discover -s tests
+
+git add .
+git commit -m "Curate research guide updates"
+git push -u origin codex/curate-research-guides
+gh pr create --title "Curate research guide updates" --body "Curates public-safe research guide updates from the scout report."
+gh pr checks --watch
+```
+
+The repo does not auto-publish daily LLM output because generated guide content
+can contain stale setup claims, copied source text, unsafe prompt patterns, or
+private data if it is not reviewed. The safe path is scout, prompt prep, local
+Codex, branch, PR, checks, human review, and merge.
 
 ## First 30 Minutes
 
@@ -403,10 +476,16 @@ ai-lab-codex-workbench/
       v0.1.0.md                    # First public release notes
     codex/                        # Codex-specific guides
     guides/                       # Practical playbooks and checklists
+    hermes/                       # Hermes Agent workflow and safety guides
+    image-generation/             # Image prompting and workflow guides
+    research/                     # Source policy, inbox reports, curated notes
     site/                         # Offline static HTML guide site
+    skills/                       # Skills, prompt-guide, Codex, Claude, MCP guides
     tools/                        # AI coding tool guide pages
     workflows/                    # End-to-end workflow guides
     templates/                    # Human-facing task and merge templates
+  data/
+    research/                     # Research source config, blocklist, candidates
   prompts/
     aider/
     antigravity/
@@ -426,6 +505,8 @@ ai-lab-codex-workbench/
     ci.yml                        # Read-only validation
     autofix.yml                   # Manual safe-autofix PR
     release-package.yml           # Manual GitHub Release package workflow
+    daily-research-scout.yml      # Cheap daily candidate discovery
+    curator-prompt-prep.yml       # Cheap local Codex prompt preparation
     merge-pr.yml                  # Manual controlled merge workflow
 ```
 
@@ -470,6 +551,8 @@ The repo includes conservative automation:
 - **Safe Autofix PR** applies deterministic whitespace cleanup and opens a PR only when files change.
 - **Controlled Merge PR** is manually triggered and waits for required PR checks before merging.
 - **Release Package** is manually triggered, runs validation, builds a versioned ZIP package and JSON manifest, and creates a GitHub Release with both files attached as assets.
+- **Daily Research Scout** is a cheap daily metadata scout for public candidate sources and does not use Codex or OpenAI API keys.
+- **Curator Prompt Prep** is manually triggered, uses no OpenAI API key, calls no model provider, and prepares a ready-to-copy prompt for local Codex CLI or the Codex app.
 
 Workflow YAML is intentionally small. Do not modify it unless the task specifically requires automation changes.
 
@@ -546,6 +629,7 @@ Before using this repo in public material, verify current official docs for tool
 - Aider: <https://aider.chat/docs/>
 - MCP: <https://modelcontextprotocol.io/docs/getting-started/intro>
 - Windsurf / Devin Desktop Cascade: <https://docs.windsurf.com/windsurf/cascade>
+- Nous Research Hermes Agent: <https://hermes-agent.nousresearch.com/docs/>
 
 ## License
 

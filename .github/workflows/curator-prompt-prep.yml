@@ -1,0 +1,96 @@
+name: Curator Prompt Prep
+
+on:
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: "Guide area to prepare a local Codex prompt for"
+        required: true
+        default: "all"
+        type: choice
+        options:
+          - skills
+          - prompt-guides
+          - image-guides
+          - model-guides
+          - hermes-agent
+          - all
+      dry_run:
+        description: "Tell the local Codex prompt to propose changes instead of editing"
+        required: true
+        default: true
+        type: boolean
+      max_sources:
+        description: "Maximum candidate sources to include in the local prompt"
+        required: true
+        default: 5
+        type: number
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  prep:
+    name: Prepare local Codex curator prompt
+    runs-on: ubuntu-latest
+    env:
+      CURATOR_SCOPE: ${{ inputs.scope }}
+      CURATOR_DRY_RUN: ${{ inputs.dry_run }}
+      CURATOR_MAX_SOURCES: ${{ inputs.max_sources }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Generate local curator prompt
+        run: |
+          set -euo pipefail
+          today="$(date -u +%F)"
+          python scripts/generate_curator_prompt.py \
+            --date "$today" \
+            --scope "$CURATOR_SCOPE" \
+            --dry-run "$CURATOR_DRY_RUN" \
+            --max-sources "$CURATOR_MAX_SOURCES" \
+            --issue-body .tmp/curator-prompt-issue.md
+
+      - name: Validate generated prompt
+        run: |
+          python scripts/repo_health_check.py --ci
+          python scripts/safe_autofix.py --check
+          python -m unittest discover -s tests
+
+      - name: Open or update local-run issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_TITLE: Run local Codex curator when usage is available
+        run: |
+          set -euo pipefail
+          issue_number="$(gh issue list --state open --search "$ISSUE_TITLE in:title" --json number,title --jq '.[] | select(.title == env.ISSUE_TITLE) | .number' | head -n 1)"
+          if [ -n "$issue_number" ]; then
+            gh issue edit "$issue_number" --body-file .tmp/curator-prompt-issue.md
+          else
+            gh issue create --title "$ISSUE_TITLE" --body-file .tmp/curator-prompt-issue.md
+          fi
+
+      - name: Commit generated prompt file only
+        run: |
+          set -euo pipefail
+          git add docs/research/curated/curator-prompt-*.md
+          if git diff --cached --quiet; then
+            echo "No generated curator prompt changes to commit."
+            exit 0
+          fi
+          git commit -m "Prepare local curator prompt"
+          git push

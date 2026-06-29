@@ -23,10 +23,12 @@ def make_package_fixture(root):
         write_file(root, relative, f"{relative}\n")
 
     write_file(root, "docs/guide.md")
+    write_file(root, "data/research/sources.yml")
     write_file(root, "prompts/codex/example.md")
     write_file(root, "scripts/helper.py", "print('helper')\n")
     write_file(root, "tests/test_helper.py", "def test_helper():\n    assert True\n")
     write_file(root, ".github/workflows/release-package.yml", "name: Release Package\n")
+    write_file(root, ".github/codex/prompts/daily-guide-curator.md", "Prompt\n")
 
 
 class BuildReleasePackageTests(unittest.TestCase):
@@ -47,11 +49,13 @@ class BuildReleasePackageTests(unittest.TestCase):
 
             self.assertIn("README.md", names)
             self.assertIn("AGENTS.md", names)
+            self.assertIn("data/research/sources.yml", names)
             self.assertIn("docs/guide.md", names)
             self.assertIn("prompts/codex/example.md", names)
             self.assertIn("scripts/helper.py", names)
             self.assertIn("tests/test_helper.py", names)
             self.assertIn(".github/workflows/release-package.yml", names)
+            self.assertIn(".github/codex/prompts/daily-guide-curator.md", names)
 
             manifest = json.loads(outputs.manifest_path.read_text(encoding="utf-8"))
             self.assertEqual(manifest["package_name"], "ai-agent-coding-workbench")
