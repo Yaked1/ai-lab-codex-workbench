@@ -11,11 +11,11 @@
       "metadata": {
         "checked": true,
         "github_description": "The agent that grows with you",
-        "github_forks": 37106,
+        "github_forks": 37118,
         "github_full_name": "NousResearch/hermes-agent",
         "github_license": "MIT",
-        "github_pushed_at": "2026-06-29T15:36:08Z",
-        "github_stars": 205558,
+        "github_pushed_at": "2026-06-29T17:09:55Z",
+        "github_stars": 205585,
         "http_status": 200
       },
       "name": "Official Nous Research Hermes Agent repository",
@@ -277,11 +277,11 @@
       "metadata": {
         "checked": true,
         "github_description": "21 Lessons, Get Started Building with Generative AI ",
-        "github_forks": 60390,
+        "github_forks": 60392,
         "github_full_name": "microsoft/generative-ai-for-beginners",
         "github_license": "MIT",
         "github_pushed_at": "2026-06-25T03:43:42Z",
-        "github_stars": 112403,
+        "github_stars": 112402,
         "http_status": 200
       },
       "name": "Public image prompting guide examples",
@@ -309,11 +309,11 @@
       "metadata": {
         "checked": true,
         "github_description": "Stable Diffusion web UI",
-        "github_forks": 30373,
+        "github_forks": 30372,
         "github_full_name": "AUTOMATIC1111/stable-diffusion-webui",
         "github_license": "AGPL-3.0",
         "github_pushed_at": "2026-03-02T07:00:53Z",
-        "github_stars": 163937,
+        "github_stars": 163938,
         "http_status": 200
       },
       "name": "Stable Diffusion Web UI public repository",
@@ -345,8 +345,8 @@
         "github_forks": 13895,
         "github_full_name": "Comfy-Org/ComfyUI",
         "github_license": "GPL-3.0",
-        "github_pushed_at": "2026-06-29T12:38:28Z",
-        "github_stars": 118767,
+        "github_pushed_at": "2026-06-29T16:56:15Z",
+        "github_stars": 118771,
         "http_status": 200
       },
       "name": "ComfyUI public repository",
@@ -379,7 +379,7 @@
         "github_full_name": "dair-ai/Prompt-Engineering-Guide",
         "github_license": "MIT",
         "github_pushed_at": "2026-03-11T20:09:13Z",
-        "github_stars": 76070,
+        "github_stars": 76071,
         "http_status": 200
       },
       "name": "Public prompt engineering guide repository",
@@ -407,11 +407,11 @@
       "metadata": {
         "checked": true,
         "github_description": "Extracted system prompts from Anthropic - Claude Fable 5, Opus 4.8, Claude Code, Claude Design. OpenAI - ChatGPT 5.5 Thinking, GPT 5.5 Instant, Codex. Google - Gemini 3.5 Flash, 3.1 Pro, Antigravity. xAI - Grok, Cursor, Copilot, VS Code, Perplexity, and more. Updated regularly.",
-        "github_forks": 7686,
+        "github_forks": 7687,
         "github_full_name": "asgeirtj/system_prompts_leaks",
         "github_license": "CC0-1.0",
         "github_pushed_at": "2026-06-29T00:26:14Z",
-        "github_stars": 47047,
+        "github_stars": 47060,
         "http_status": 200
       },
       "name": "Unofficial leaked system prompt pattern source",
