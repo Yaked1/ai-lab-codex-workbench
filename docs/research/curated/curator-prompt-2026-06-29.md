@@ -39,7 +39,7 @@ You are helping curate public-safe research guide updates in this repository.
 
 Configuration:
 
-- Scope: all
+- Scope: hermes-agent
 - Dry run: true
 - Max sources: 5
 - Latest scout report: docs/research/inbox/2026-06-29.md
@@ -82,54 +82,6 @@ Required behavior:
 
 Selected sources:
 
-### Official Anthropic Claude Code documentation
-
-- ID: `anthropic-claude-code-overview`
-- URL: <https://docs.anthropic.com/en/docs/claude-code/overview>
-- Category: `claude_code_skills`
-- Score: `75` (high)
-- Source status: official-docs
-- License/source status: Official documentation; verify current commands and feature availability.
-- Tags: claude-code, skills, slash-commands
-- Summary: Official Claude Code overview for tool behavior and setup references.
-- Safety note: Mark product behavior and platform details as official-doc verification items.
-
-### Official Anthropic Claude Code skills documentation
-
-- ID: `anthropic-claude-code-skills`
-- URL: <https://docs.anthropic.com/en/docs/claude-code/skills>
-- Category: `claude_code_skills`
-- Score: `75` (high)
-- Source status: official-docs
-- License/source status: Official documentation; link and summarize.
-- Tags: claude-code, skills, public-repo-safety
-- Summary: Official skills reference for Claude Code.
-- Safety note: Verify exact skill folder structure and install behavior before publishing commands.
-
-### Official OpenAI Codex AGENTS.md guidance
-
-- ID: `openai-codex-agents-md`
-- URL: <https://developers.openai.com/codex/guides/agents-md>
-- Category: `codex_guides`
-- Score: `75` (high)
-- Source status: official-docs
-- License/source status: Official documentation; link rather than copying.
-- Tags: codex, agents-md, repo-policy
-- Summary: Official guidance for repository instructions consumed by Codex.
-- Safety note: Keep repository instructions concise and public-safe.
-
-### Official OpenAI Codex CLI documentation
-
-- ID: `openai-codex-cli`
-- URL: <https://developers.openai.com/codex/cli>
-- Category: `codex_guides`
-- Score: `75` (high)
-- Source status: official-docs
-- License/source status: Official documentation; link and summarize conservatively.
-- Tags: codex, skills, subagents, prompt-guides
-- Summary: Official Codex documentation anchor for CLI and agent workflow guidance.
-- Safety note: Verify current install, model, permissions, skills, subagents, and pricing details before publishing exact claims.
-
 ### Official Nous Research Hermes Agent documentation
 
 - ID: `nous-hermes-agent-docs`
@@ -141,6 +93,18 @@ Selected sources:
 - Tags: hermes-agent, agent_framework, skills, memory, automations, provider_configuration, public_repo_safety
 - Summary: Official documentation for Nous Research Hermes Agent.
 - Safety note: Cover only Hermes Agent workflows, providers, skills, memory, automations, and public-repo safety.
+
+### Official Nous Research Hermes Agent repository
+
+- ID: `nous-hermes-agent-repo`
+- URL: <https://github.com/nousresearch/hermes-agent>
+- Category: `hermes_agent`
+- Score: `75` (high)
+- Source status: official-repository
+- License/source status: Verify repository license before adapting examples.
+- Tags: hermes-agent, agent_framework, skills, memory, automations, provider_configuration, public_repo_safety
+- Summary: Official repository for Nous Research Hermes Agent.
+- Safety note: Do not add Hermes language model, quantization, model-card, benchmark, or serving coverage.
 
 
 Before finishing, run:
