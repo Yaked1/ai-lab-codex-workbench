@@ -82,29 +82,29 @@ Required behavior:
 
 Selected sources:
 
-### Official Nous Research Hermes Agent documentation
-
-- ID: `nous-hermes-agent-docs`
-- URL: <https://hermes-agent.nousresearch.com/docs/>
-- Category: `hermes_agent`
-- Score: `75` (high)
-- Source status: official-docs
-- License/source status: Official documentation; link and summarize conservatively.
-- Tags: hermes-agent, agent_framework, skills, memory, automations, provider_configuration, public_repo_safety
-- Summary: Official documentation for Nous Research Hermes Agent.
-- Safety note: Cover only Hermes Agent workflows, providers, skills, memory, automations, and public-repo safety.
-
 ### Official Nous Research Hermes Agent repository
 
 - ID: `nous-hermes-agent-repo`
 - URL: <https://github.com/nousresearch/hermes-agent>
 - Category: `hermes_agent`
-- Score: `75` (high)
+- Score: `91` (high)
 - Source status: official-repository
 - License/source status: Verify repository license before adapting examples.
 - Tags: hermes-agent, agent_framework, skills, memory, automations, provider_configuration, public_repo_safety
-- Summary: Official repository for Nous Research Hermes Agent.
+- Summary: The agent that grows with you
 - Safety note: Do not add Hermes language model, quantization, model-card, benchmark, or serving coverage.
+
+### Official Nous Research Hermes Agent documentation
+
+- ID: `nous-hermes-agent-docs`
+- URL: <https://hermes-agent.nousresearch.com/docs/>
+- Category: `hermes_agent`
+- Score: `83` (high)
+- Source status: official-docs
+- License/source status: Official documentation; link and summarize conservatively.
+- Tags: hermes-agent, agent_framework, skills, memory, automations, provider_configuration, public_repo_safety
+- Summary: Hermes Agent Documentation | Hermes Agent
+- Safety note: Cover only Hermes Agent workflows, providers, skills, memory, automations, and public-repo safety.
 
 
 Before finishing, run:
