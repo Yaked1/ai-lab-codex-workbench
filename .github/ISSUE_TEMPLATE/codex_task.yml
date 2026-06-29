@@ -1,0 +1,45 @@
+name: Codex task
+description: A task designed for Codex /goal mode
+title: "Codex: "
+labels: [codex-task]
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: One clear task for Codex.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Files, folders, or docs Codex should inspect first.
+      placeholder: |
+        Inspect:
+        - README.md
+        - AGENTS.md
+    validations:
+      required: true
+  - type: textarea
+    id: success
+    attributes:
+      label: Success criteria
+      description: Exact completion conditions.
+      placeholder: |
+        - [ ] ...
+        - [ ] Checks pass
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Safety boundaries
+      description: What Codex must not touch.
+      value: |
+        - Do not edit secrets or `.env` files.
+        - Do not install dependencies without approval.
+        - Do not delete files.
+        - Keep changes inside the repository.
+    validations:
+      required: true

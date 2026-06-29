@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Repository health check
+        run: python scripts/repo_health_check.py --ci
+
+      - name: Safe autofix check
+        run: python scripts/safe_autofix.py --check
+
+      - name: Unit tests
+        run: python -m unittest discover -s tests

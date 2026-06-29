@@ -1,0 +1,32 @@
+name: Prompt audit
+description: Request an audit of a prompt for reliability, clarity, and safety
+title: "Prompt audit: "
+labels: [prompt-audit]
+body:
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Prompt to audit
+      description: Paste the prompt.
+    validations:
+      required: true
+  - type: dropdown
+    id: target_model
+    attributes:
+      label: Target model or harness
+      options:
+        - ChatGPT / GPT-5.5
+        - Codex
+        - Claude Code
+        - Gemini
+        - Image model
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: desired_output
+    attributes:
+      label: Desired output
+      description: What should the prompt produce?
+    validations:
+      required: true

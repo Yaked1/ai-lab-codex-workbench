@@ -1,0 +1,61 @@
+name: Safe Autofix PR
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Why are you running autofix?"
+        required: true
+        default: "Apply safe formatting cleanup"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  autofix:
+    name: Apply deterministic safe fixes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Run safe autofix
+        run: python scripts/safe_autofix.py --write
+
+      - name: Run validation
+        run: |
+          python scripts/repo_health_check.py --ci
+          python scripts/safe_autofix.py --check
+          python -m unittest discover -s tests
+
+      - name: Create pull request if changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet; then
+            echo "No changes to propose. Civilization spared one PR."
+            exit 0
+          fi
+          BRANCH="automation/safe-autofix-${{ github.run_id }}"
+          git checkout -b "$BRANCH"
+          git add .
+          git commit -m "Apply safe autofix"
+          git push -u origin "$BRANCH"
+          gh pr create \
+            --title "Apply safe autofix" \
+            --body "Automated deterministic cleanup. Reason: ${{ inputs.reason }}" \
+            --base main \
+            --head "$BRANCH"

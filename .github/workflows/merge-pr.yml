@@ -1,0 +1,46 @@
+name: Controlled Merge PR
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: "Pull request number to merge"
+        required: true
+      merge_method:
+        description: "Merge method"
+        required: true
+        default: "squash"
+        type: choice
+        options:
+          - squash
+          - merge
+          - rebase
+
+permissions:
+  contents: write
+  pull-requests: write
+  checks: read
+
+jobs:
+  merge:
+    name: Merge only after checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check PR status and merge
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ inputs.pr_number }}
+          MERGE_METHOD: ${{ inputs.merge_method }}
+        run: |
+          echo "Checking PR #$PR_NUMBER"
+          gh pr view "$PR_NUMBER" --json state,mergeable,isDraft,reviewDecision
+          IS_DRAFT=$(gh pr view "$PR_NUMBER" --json isDraft --jq '.isDraft')
+          if [ "$IS_DRAFT" = "true" ]; then
+            echo "Refusing to merge a draft PR. Sensible, annoyingly enough."
+            exit 1
+          fi
+          gh pr checks "$PR_NUMBER" --watch --required
+          gh pr merge "$PR_NUMBER" --$MERGE_METHOD --delete-branch
