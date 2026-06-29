@@ -1,5 +1,20 @@
 # Changelog
 
+## Unreleased
+
+Added:
+
+- Professional public positioning for the AI agent coding and prompting workbench.
+- Expanded README sections covering audience, architecture, safety model, quick start, learning path, tool matrix, recommended workflows, limitations, and roadmap.
+- Real GitHub Actions status badges for CI and Safe Autofix PR workflows.
+- Stronger `AGENTS.md` guidance for safe edits, docs quality, public repo hygiene, testing, prompt templates, and conservative external claims.
+- Expanded contribution and security guidance for public AI-agent collaboration.
+- Comprehensive tool guide structure for Codex, Claude Code, Cursor, Antigravity, GitHub Copilot, OpenCode, Kilo Code, Aider, Windsurf, and MCP.
+- Serious tool comparison matrix with beginner, practical, advanced, Windows laptop, docs, refactor, PR review, risk, and avoid-for-now rankings.
+- Full workflow guidance for issue intake, branch naming, goal prompts, agent execution, local checks, CI checks, PR review, squash merge, rollback, public safety, secret scanning, and changelog updates.
+- Professional reusable prompt templates with target tool, purpose, full prompt, short version, inputs, success criteria, safety boundaries, verification, final report format, and failure cases.
+- Expanded Codex-specific guides for goal-style work, Git branch/PR/merge flow, safe autofix policy, review checklists, and roadmap planning.
+
 ## 0.1.0
 
 Initial Codex automation workbench.
