@@ -223,8 +223,13 @@ The manual **Release Package** GitHub Actions workflow runs validation, builds t
 Trigger the first release from PowerShell with GitHub CLI:
 
 ```powershell
-gh workflow run release.yml -f version=v0.1.0 -f prerelease=false
+gh workflow run release-package.yml -f version=v0.1.0 -f prerelease=false
+gh run list --workflow release-package.yml
+gh run view <RUN_ID> --log-failed
+gh release view v0.1.0 --web
 ```
+
+Keep release workflow names unique; duplicate names make manual release runs harder to audit.
 
 This is a documentation and prompt-template package, not an installable library package. See [docs/releases/release-process.md](docs/releases/release-process.md) and [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md) for release gates, package review guidance, and first-release notes.
 
@@ -420,7 +425,7 @@ ai-lab-codex-workbench/
   .github/workflows/
     ci.yml                        # Read-only validation
     autofix.yml                   # Manual safe-autofix PR
-    release.yml                   # Manual GitHub Release package workflow
+    release-package.yml           # Manual GitHub Release package workflow
     merge-pr.yml                  # Manual controlled merge workflow
 ```
 

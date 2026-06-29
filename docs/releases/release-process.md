@@ -65,9 +65,10 @@ The release workflow is manual. It does not run on every push.
 Trigger it with GitHub CLI:
 
 ```powershell
-gh workflow run release.yml -f version=v0.1.0 -f prerelease=false
-gh run list --workflow release.yml --limit 5
-gh run watch
+gh workflow run release-package.yml -f version=v0.1.0 -f prerelease=false
+gh run list --workflow release-package.yml
+gh run view <RUN_ID> --log-failed
+gh release view v0.1.0 --web
 ```
 
 The workflow:
@@ -82,6 +83,8 @@ The workflow:
 8. Uploads the ZIP and JSON manifest as release assets.
 
 The workflow uses the repository-scoped `GITHUB_TOKEN` from the workflow environment. It does not require a personal access token and does not print token values.
+
+Keep the release automation to one workflow file with one unique workflow name. Duplicate workflow names make GitHub Actions and `gh workflow` commands harder to audit and can cause maintainers to trigger the wrong release path.
 
 ## Release Notes
 
