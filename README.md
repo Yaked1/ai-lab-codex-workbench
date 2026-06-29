@@ -306,6 +306,41 @@ can contain stale setup claims, copied source text, unsafe prompt patterns, or
 private data if it is not reviewed. The safe path is scout, prompt prep, local
 Codex, branch, PR, checks, human review, and merge.
 
+## Repository Autopilot
+
+Repository Autopilot wraps the generated research loop in one safe maintenance layer. It can refresh candidate metadata, inbox reports, and local curator prompts on an `autopilot/` branch, then open a pull request for generated files only. It does not write curated guide content, run Codex in GitHub Actions, call model providers, publish releases, or commit directly to `main`.
+
+Local PowerShell commands:
+
+```powershell
+.\scripts\local_autopilot.ps1 -Mode status
+.\scripts\local_autopilot.ps1 -Mode scout
+.\scripts\local_autopilot.ps1 -Mode prompt -Scope hermes-agent -DryRun $true -MaxSources 5
+.\scripts\local_autopilot.ps1 -Mode full-safe -Scope hermes-agent -DryRun $true -MaxSources 5
+```
+
+GitHub workflow commands:
+
+```powershell
+gh workflow run repo-autopilot.yml -f scope=hermes-agent -f dry_run=true -f max_sources=5 -f create_pr=true
+gh workflow run monthly-release-draft.yml
+```
+
+Safe generated-file automerge is limited to:
+
+```text
+data/research/candidates.json
+docs/research/inbox/*.md
+docs/research/curated/curator-prompt-*.md
+```
+
+Read the detailed policies:
+
+- [Repository Autopilot](docs/automation/repository-autopilot.md)
+- [Local Autopilot](docs/automation/local-autopilot.md)
+- [Safe Automerge Policy](docs/automation/safe-automerge-policy.md)
+- [Release Draft Policy](docs/automation/release-draft-policy.md)
+
 ## First 30 Minutes
 
 For a new learner, the first session should be small and concrete:
@@ -471,6 +506,7 @@ ai-lab-codex-workbench/
   SECURITY.md                     # Secret and automation safety policy
   CHANGELOG.md                    # User-visible changes
   docs/
+    automation/                   # Repository Autopilot and release draft policies
     releases/
       release-process.md           # Manual release and package guide
       v0.1.0.md                    # First public release notes
@@ -497,6 +533,9 @@ ai-lab-codex-workbench/
     windsurf/
   scripts/
     build_release_package.py       # Builds versioned zip bundles for releases
+    check_safe_generated_diff.py   # Verifies generated-file-only PR diffs
+    local_autopilot.ps1            # Windows helper for scout, prompt, and local curation
+    repo_autopilot_status.py       # Prints generated research autopilot status
     repo_health_check.py          # Secret patterns, required files, final newlines
     safe_autofix.py               # Deterministic whitespace cleanup
     local_check.ps1               # PowerShell local validation helper
@@ -504,7 +543,10 @@ ai-lab-codex-workbench/
   .github/workflows/
     ci.yml                        # Read-only validation
     autofix.yml                   # Manual safe-autofix PR
+    automerge-safe-generated.yml   # Generated-file-only squash automerge guard
     release-package.yml           # Manual GitHub Release package workflow
+    monthly-release-draft.yml      # Monthly release checklist issue draft
+    repo-autopilot.yml             # Generated research autopilot PR workflow
     daily-research-scout.yml      # Cheap daily candidate discovery
     curator-prompt-prep.yml       # Cheap local Codex prompt preparation
     merge-pr.yml                  # Manual controlled merge workflow
@@ -551,6 +593,9 @@ The repo includes conservative automation:
 - **Safe Autofix PR** applies deterministic whitespace cleanup and opens a PR only when files change.
 - **Controlled Merge PR** is manually triggered and waits for required PR checks before merging.
 - **Release Package** is manually triggered, runs validation, builds a versioned ZIP package and JSON manifest, and creates a GitHub Release with both files attached as assets.
+- **Repository Autopilot** refreshes generated research files on an `autopilot/` branch and opens a generated-file PR.
+- **Safe Generated File Automerge** only considers `autopilot/` PRs whose diffs are limited to generated research files, then uses squash merge without admin bypass.
+- **Monthly Release Draft** runs checks and a smoke package build, then opens or updates a release checklist issue without publishing a release.
 - **Daily Research Scout** is a cheap daily metadata scout for public candidate sources and does not use Codex or OpenAI API keys.
 - **Curator Prompt Prep** is manually triggered, uses no OpenAI API key, calls no model provider, and prepares a ready-to-copy prompt for local Codex CLI or the Codex app.
 

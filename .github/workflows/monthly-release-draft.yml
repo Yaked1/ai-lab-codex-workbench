@@ -1,0 +1,133 @@
+name: Monthly Release Draft
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Smoke-build version placeholder"
+        required: true
+        default: "v0.1.2-test"
+        type: string
+      keep_dist:
+        description: "Keep generated dist files after the smoke build"
+        required: true
+        default: false
+        type: boolean
+  schedule:
+    - cron: "23 8 1 * *"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  draft:
+    name: Prepare release draft issue
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run checks and smoke build
+        run: |
+          set +e
+          mkdir -p .tmp
+          : > .tmp/monthly-release-checks.md
+          status=0
+
+          run_check() {
+            label="$1"
+            shift
+            "$@"
+            result="$?"
+            if [ "$result" -eq 0 ]; then
+              echo "- $label: passed" >> .tmp/monthly-release-checks.md
+            else
+              echo "- $label: failed" >> .tmp/monthly-release-checks.md
+              status=1
+            fi
+          }
+
+          version="${{ inputs.version }}"
+          keep_dist="${{ inputs.keep_dist }}"
+          if [ -z "$version" ]; then
+            version="v0.1.2-test"
+          fi
+          if [ -z "$keep_dist" ]; then
+            keep_dist="false"
+          fi
+
+          run_check "Repository health check" python scripts/repo_health_check.py --ci
+          run_check "Safe autofix check" python scripts/safe_autofix.py --check
+          run_check "Unit tests" python -m unittest discover -s tests
+          run_check "Release package smoke build" python scripts/build_release_package.py --version "$version"
+
+          if [ "$keep_dist" != "true" ]; then
+            rm -rf dist
+          fi
+
+          echo "$status" > .tmp/monthly-release-status.txt
+
+      - name: Open or update release draft issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_TITLE: Monthly release draft
+        run: |
+          set -euo pipefail
+
+          version="${{ inputs.version }}"
+          if [ -z "$version" ]; then
+            version="v0.1.2-test"
+          fi
+
+          today="$(date -u +%F)"
+          latest_commit="$(git rev-parse --short HEAD)"
+          mkdir -p .tmp
+
+          cat > .tmp/monthly-release-draft.md <<BODY
+          Monthly release draft
+
+          - Date: $today
+          - Latest commit: $latest_commit
+          - Suggested version placeholder: $version
+
+          Checks:
+
+          $(cat .tmp/monthly-release-checks.md)
+
+          Maintainer release commands:
+
+          \`\`\`powershell
+          python scripts/repo_health_check.py
+          python scripts/safe_autofix.py --check
+          python -m unittest discover -s tests
+          python scripts/build_release_package.py --version $version
+          gh workflow run release-package.yml -f version=$version -f prerelease=false
+          gh run list --workflow release-package.yml
+          gh release view $version --web
+          \`\`\`
+
+          This issue is a draft checklist only. It does not publish a GitHub Release automatically.
+          BODY
+
+          issue_number="$(gh issue list --state open --search "$ISSUE_TITLE in:title" --json number,title --jq '.[] | select(.title == env.ISSUE_TITLE) | .number' | head -n 1)"
+          if [ -n "$issue_number" ]; then
+            gh issue edit "$issue_number" --body-file .tmp/monthly-release-draft.md
+          else
+            gh issue create --title "$ISSUE_TITLE" --body-file .tmp/monthly-release-draft.md
+          fi
+
+      - name: Fail if checks failed
+        run: |
+          status="$(cat .tmp/monthly-release-status.txt)"
+          if [ "$status" -ne 0 ]; then
+            echo "One or more release draft checks failed. See the Monthly release draft issue body."
+            exit "$status"
+          fi

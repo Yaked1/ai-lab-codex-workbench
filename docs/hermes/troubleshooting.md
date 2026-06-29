@@ -3,6 +3,10 @@
 Use this guide for public documentation workflows. For current product behavior,
 verify official Hermes Agent docs and local `hermes --help` output.
 
+Source status: official-doc anchored. License/source status: official
+documentation plus official MIT-licensed repository; verify current commands
+before publishing exact remediation steps.
+
 ## Install Problems
 
 | Symptom | Likely cause | Response |
@@ -34,6 +38,8 @@ verify official Hermes Agent docs and local `hermes --help` output.
 | Job runs without review | Automation is too autonomous. | Disable it and require dry-run plus PR review. |
 | Output goes to wrong place | Destination or gateway config is wrong. | Test with private dry-run output first. |
 | Duplicate scheduled runs | Scheduler or gateway overlap. | Check official cron docs and lock behavior. |
+| Job skips after model changes | Unattended job is not pinned to the new provider/model. | Review current official cron docs, then explicitly update the job only if the cost and provider choice are intended. |
+| Job ignores repo instructions | Scheduled job did not run in the intended project directory. | Use a reviewed absolute work directory and confirm the output before publishing. |
 
 ## Public Repository Recovery
 

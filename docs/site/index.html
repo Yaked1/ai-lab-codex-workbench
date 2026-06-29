@@ -32,6 +32,8 @@
         </div>
         <div class="nav-group">
           <h2>Research Loop</h2>
+          <a href="../automation/repository-autopilot.md">Repository Autopilot</a>
+          <a href="../automation/local-autopilot.md">Local Autopilot</a>
           <a href="../research/source-policy.md">Research loop</a>
           <a href="../skills/README.md">Skills guides</a>
           <a href="../image-generation/README.md">Image generation</a>
@@ -111,6 +113,13 @@ git branch</code></pre>
 python scripts/safe_autofix.py --check
 python -m unittest discover -s tests</code></pre>
           </article>
+          <article class="card wide">
+            <span class="tag">Autopilot</span>
+            <h3>Inspect generated research status</h3>
+            <p>Use this before triggering scout or local curation work.</p>
+            <pre><code>.\scripts\local_autopilot.ps1 -Mode status
+python scripts/repo_autopilot_status.py</code></pre>
+          </article>
         </div>
       </section>
 
@@ -136,6 +145,11 @@ python -m unittest discover -s tests</code></pre>
             <h3>Research Loop</h3>
             <p>Cheap daily discovery, local Codex prompt prep, source labels, dry runs, and PR review.</p>
             <a href="../research/source-policy.md">Read source policy</a>
+          </article>
+          <article class="card">
+            <h3>Repository Autopilot</h3>
+            <p>Generated research PRs, safe automerge allowlists, local PowerShell helper, and release draft issues.</p>
+            <a href="../automation/repository-autopilot.md">Read autopilot policy</a>
           </article>
           <article class="card">
             <h3>Image Generation</h3>

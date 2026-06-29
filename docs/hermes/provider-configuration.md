@@ -4,6 +4,10 @@ Source status: official-doc anchored. Verify current configuration behavior in
 the official Hermes Agent configuration docs:
 <https://hermes-agent.nousresearch.com/docs/user-guide/configuration>
 
+License/source status: official documentation plus official MIT-licensed
+repository. Provider names, plan behavior, and pricing can change; verify them
+in current provider and Hermes docs.
+
 ## What Providers Mean
 
 In Hermes Agent, a provider is the configured service or endpoint that supplies
@@ -57,6 +61,14 @@ For public beginner guides, prefer:
 hermes setup --portal
 hermes model
 ```
+
+## Tool And Terminal Safety
+
+Official configuration docs describe local and container-backed terminal modes.
+For a public beginner guide, assume the agent may have access to the user's
+files and commands unless the current setup explicitly constrains tools. Tell
+learners to review enabled tools with official commands and disable anything
+they do not need before running write-capable tasks.
 
 ## Public-Safe Provider Checklist
 
