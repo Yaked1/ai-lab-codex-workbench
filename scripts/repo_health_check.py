@@ -20,7 +20,7 @@ REQUIRED_FILES = [
     ".github/workflows/ci.yml",
     ".github/workflows/autofix.yml",
     ".github/workflows/merge-pr.yml",
-    ".github/workflows/release.yml",
+    ".github/workflows/release-package.yml",
     "scripts/build_release_package.py",
     "tests/test_build_release_package.py",
     "scripts/safe_autofix.py",

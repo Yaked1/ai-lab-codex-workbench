@@ -91,7 +91,7 @@ The `dist/` folder is ignored by Git so local package artifacts do not get commi
 
 ## Manual GitHub Release Workflow
 
-The repository includes `.github/workflows/release.yml`.
+The repository includes `.github/workflows/release-package.yml`.
 
 The workflow is manual on purpose:
 
@@ -104,6 +104,7 @@ The workflow is manual on purpose:
 7. A maintainer reviews the release assets and keeps the package reversible through normal GitHub release controls.
 
 Manual `workflow_dispatch` keeps a human in the loop. Do not auto-publish release artifacts on every push.
+Keep release workflow names unique so GitHub Actions and GitHub CLI commands identify the intended workflow clearly.
 
 ## Release Checklist
 

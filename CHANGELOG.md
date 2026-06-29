@@ -5,8 +5,8 @@
 Added:
 
 - Reworked the README opening and quick-start path for general public users, including release-bundle guidance and clearer links for visitors, instructors, maintainers, and learners.
-- Added safe autonomous release package support with `scripts/build_release_package.py`, `.github/workflows/release.yml`, `docs/releases/release-process.md`, `docs/releases/v0.1.0.md`, package-builder tests, and GitHub Release ZIP plus JSON manifest assets.
-- Added release package files to repository health requirements and documented manual `gh workflow run release.yml` triggering without npm, PyPI, Docker, binary package, or GitHub Packages publishing.
+- Added safe autonomous release package support with `scripts/build_release_package.py`, `.github/workflows/release-package.yml`, `docs/releases/release-process.md`, `docs/releases/v0.1.0.md`, package-builder tests, and GitHub Release ZIP plus JSON manifest assets.
+- Added release package files to repository health requirements and documented manual `gh workflow run release-package.yml` triggering without npm, PyPI, Docker, binary package, or GitHub Packages publishing.
 - Expanded the README with repository non-goals, operating contract, decision guide, first-session workflow, end-to-end example, scenario playbooks, quality bar, troubleshooting, and maintenance model.
 - Expanded `CONTRIBUTING.md` with contribution types, definition of ready, scope control, PR expectations, documentation style guidance, script/test expectations, review roles, and post-merge practices.
 - Expanded `SECURITY.md` with a public-repository threat model, public-safe examples, permission levels, workflow-secrets guidance, security review checklist, incident response steps, and AI-agent risk patterns.
@@ -25,6 +25,10 @@ Added:
 - Offline static HTML quick-start site for AI agent workflows, prompt engineering, skills, tool setup, MCP safety, Windows commands, and public repository safety.
 - Practical Markdown playbooks for prompt engineering, agentic coding, skills and prompt guides, Windows setup commands, and prompt audits.
 - Static HTML documentation safety guidance covering offline assets, local CSS, no trackers, no CDNs, no analytics, no remote fonts, and no private links.
+
+Fixed:
+
+- Removed the duplicate release workflow path and restored package-builder tests required by repository health checks so `release-package.yml` can run without ambiguous workflow names.
 
 ## 0.1.0
 
