@@ -1,76 +1,34 @@
-# AI Lab Codex Workbench
+# AI Agent Coding Workbench
 
-A lightweight GitHub repository template for learning prompt engineering, AI agents, repository automation, safe Codex workflows, pull requests, commits, reviews, and controlled merges.
+Prompting, Agents, GitHub Automation, and Safe AI Coding Workflows
 
-This repository is designed for a Windows 11 student laptop with limited hardware. It avoids heavy local LLMs, Docker-first stacks, GPU workflows, and the usual software-engineering ritual of installing half the internet before writing one useful file.
+This repository is a public, student-friendly workbench for learning how to use AI coding agents safely. It began as a Codex-focused GitHub automation lab, and now compares and supports multiple agentic coding tools: OpenAI Codex, Claude Code, Cursor, Google Antigravity, GitHub Copilot, OpenCode, Kilo Code, Aider, Windsurf, MCP servers, reusable skills, hooks, prompt evaluation, GitHub Actions, safe autofix, pull request review, and public repository safety.
 
-## What this repository gives you
+The practical target is a Windows laptop and a beginner-to-intermediate learner. The repo favors browser, cloud, API, CLI, and lightweight IDE workflows. Heavy Docker stacks, large local language models, WSL-heavy setups, and strong-GPU workflows are intentionally treated as advanced or unsuitable for limited laptops.
 
-- A clean `AGENTS.md` for Codex and other coding agents.
-- A safe Git workflow: branches, commits, pull requests, CI checks, review, and merge.
-- Deterministic autofix scripts for simple formatting cleanup.
-- GitHub Actions for CI, autofix PRs, and controlled manual merges.
-- Codex `/goal` prompts for bug fixes, feature work, documentation, PR review, and repository cleanup.
-- Issue and PR templates so tasks are clear before the agent starts rearranging civilization.
-- No required Docker, WSL, GPU, paid API dependency, or large local model.
+## What This Repository Gives You
 
-## Recommended repository name
+- A safe `AGENTS.md` operating policy for AI coding agents.
+- A public-ready README and tool comparison matrix.
+- Beginner docs for Codex, Claude Code, Cursor, Antigravity, GitHub Copilot, OpenCode, Kilo Code, Aider, Windsurf, and MCP.
+- Prompt templates for common agent tasks.
+- GitHub Actions for CI, safe autofix pull requests, and controlled manual merges.
+- Python standard-library scripts for repo health checks and deterministic formatting cleanup.
+- A repeatable branch, test, pull request, review, merge, and changelog workflow.
+- Explicit safety checklists for secrets, private links, personal data, and risky automation.
 
-Use one of these:
+## Start Here
 
-1. `ai-lab-codex-workbench`
-2. `codex-agent-automation-lab`
-3. `prompt-agents-github-lab`
-4. `student-codex-github-automation`
+Read these first:
 
-Best default: **`ai-lab-codex-workbench`**.
+1. [AGENTS.md](AGENTS.md)
+2. [CONTRIBUTING.md](CONTRIBUTING.md)
+3. [SECURITY.md](SECURITY.md)
+4. [docs/tools/comparison-matrix.md](docs/tools/comparison-matrix.md)
+5. [docs/workflows/agent-task-lifecycle.md](docs/workflows/agent-task-lifecycle.md)
+6. [docs/workflows/public-repo-safety.md](docs/workflows/public-repo-safety.md)
 
-## Quick start on Windows PowerShell
-
-Install base tools:
-
-```powershell
-winget install Git.Git
-winget install Microsoft.VisualStudioCode
-winget install GitHub.cli
-```
-
-Install Codex CLI, using the current OpenAI installer:
-
-```powershell
-powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
-```
-
-Check tools:
-
-```powershell
-git --version
-gh --version
-codex --version
-python --version
-```
-
-Create the Git repository:
-
-```powershell
-cd "$HOME\Documents"
-mkdir AI-Lab
-cd AI-Lab
-# Copy or extract this template folder here, then:
-cd ai-lab-codex-workbench
-git init
-git add .
-git commit -m "Initial Codex automation workbench"
-```
-
-Create GitHub repository and push:
-
-```powershell
-gh auth login
-gh repo create ai-lab-codex-workbench --private --source . --remote origin --push
-```
-
-Run local checks:
+Then run the local checks:
 
 ```powershell
 python scripts/repo_health_check.py
@@ -78,47 +36,87 @@ python scripts/safe_autofix.py --check
 python -m unittest discover -s tests
 ```
 
-Start Codex:
+## Tool Comparison
 
-```powershell
-codex
-```
+Tool behavior changes quickly. Treat this table as an orientation map, not a substitute for each vendor's official documentation.
 
-Then paste one of the prompts from `prompts/codex/`.
+| Tool | What it is used for | Beginner friendliness | Windows suitability | Surface | Main risks | Best first task |
+| --- | --- | --- | --- | --- | --- | --- |
+| [OpenAI Codex](docs/tools/codex.md) | Local repository edits, terminal-driven coding tasks, docs updates, tests, and PR preparation. | Medium: powerful once Git basics are clear. | Good for PowerShell and Git workflows. | CLI, IDE, web, hybrid depending on setup. | Overbroad edits, command execution, stale assumptions. | Improve one README paragraph and run local checks. |
+| [Claude Code](docs/tools/claude-code.md) | Codebase understanding, multi-file edits, documentation review, refactors, and agent workflows. | Medium: strong explanations, still needs review discipline. | Good; verify current Windows install and shell guidance. | CLI, IDE, desktop, web, hybrid. | Excessive scope, tool permissions, cost, changing product surfaces. | Review docs for clarity without editing code. |
+| [Cursor](docs/tools/cursor.md) | IDE-based agent planning, inline code edits, chat over a project, and MCP-assisted workflows. | High for users who already like VS Code-style editors. | Good on Windows. | IDE, CLI, hybrid. | Accepting large diffs too quickly, hidden context gaps. | Ask Agent/Plan mode to create a task plan for a small issue. |
+| [Google Antigravity](docs/tools/antigravity.md) | Agent-first project work, parallel agent orchestration, and structured artifacts. | Medium: promising, but fast-changing. | Verify current Windows support and installation path. | IDE, CLI, cloud/hybrid depending on product surface. | Preview/rapid-change behavior, unclear permissions, parallel-agent drift. | Create a plan artifact for a documentation cleanup. |
+| [GitHub Copilot / Copilot coding agent](docs/tools/github-copilot.md) | IDE assistance, GitHub issue work, cloud-agent branches, pull requests, and review loops. | High for small IDE suggestions; medium for autonomous agent work. | Good through VS Code, Visual Studio, JetBrains, GitHub, and browser flows. | IDE, GitHub cloud, hybrid. | Trusting generated PRs without review, account/plan differences. | Assign or ask for a tiny docs issue and inspect the draft PR. |
+| [OpenCode](docs/tools/opencode.md) | Open-source coding-agent workflows in terminal, desktop, or IDE surfaces. | Medium: comfortable for terminal users. | Verify the current Windows install path before teaching it. | CLI, desktop, IDE, hybrid. | Provider configuration mistakes, terminal command permissions. | Ask for a repo overview without allowing edits. |
+| [Kilo Code](docs/tools/kilo-code.md) | Open-source agentic coding across IDE, CLI, and cloud-oriented workflows. | Medium: easier in IDE mode than raw CLI. | Good if the chosen IDE or CLI path supports the machine. | IDE, CLI, cloud, hybrid. | Model/provider setup, cost, broad tool permissions. | Use planning mode for one small bug or docs issue. |
+| [Aider](docs/tools/aider.md) | Terminal pair programming with explicit files in a Git repository. | Medium: simple mental model, terminal required. | Good with Python and Git installed. | CLI, local/hybrid depending on provider. | Accidentally editing too many files, automatic commits if configured. | Add one selected Markdown file and request a small wording edit. |
+| [Windsurf](docs/tools/windsurf.md) | IDE-based AI coding with an agentic assistant for multi-file tasks. | High for editor-first learners. | Good if the current desktop product supports the user's setup. | IDE, hybrid. | Brand/product changes, large generated diffs, extension trust. | Ask the assistant to explain one folder and propose a small edit. |
+| [MCP servers](docs/tools/mcp.md) | Connecting agents to tools, files, services, prompts, and workflows through a standard protocol. | Low to medium: useful after basic agent safety is understood. | Good for lightweight local servers; avoid sensitive services at first. | Protocol, local server, cloud server, hybrid. | Tool injection, secret exposure, unsafe write tools, untrusted servers. | Connect a read-only filesystem or documentation server in a test repo. |
 
-## The safe development loop
+## Recommended First 5 Workflows
+
+1. Small Codex README edit: use Codex to improve one paragraph, then run the three local checks.
+2. Claude Code documentation review: ask Claude Code to review docs for clarity and public-safety issues before editing.
+3. Cursor agent task planning: use Cursor to create a plan for a tiny issue, then manually choose what to implement.
+4. GitHub Actions autofix PR: run the safe autofix workflow and review the generated pull request before merging.
+5. Manual PR review and squash merge: inspect the diff, read CI logs, verify checks, then merge with a human decision.
+
+## Safe Agent Task Lifecycle
 
 ```mermaid
-flowchart TD
-    A[Create issue or task] --> B[Create branch]
-    B --> C[Start Codex /goal]
-    C --> D[Codex reads AGENTS.md]
-    D --> E[Small edits]
-    E --> F[Local checks]
-    F --> G{Checks pass?}
-    G -- No --> H[Codex fixes minimal failure]
-    H --> F
-    G -- Yes --> I[Commit]
-    I --> J[Open PR]
-    J --> K[GitHub Actions CI]
-    K --> L[Human review]
-    L --> M[Manual merge]
+flowchart LR
+    A[issue/task] --> B[branch]
+    B --> C[agent work]
+    C --> D[tests]
+    D --> E[PR]
+    E --> F[review]
+    F --> G[merge]
+    G --> H[changelog]
 ```
 
-## What should be automated
+Use [docs/workflows/agent-task-lifecycle.md](docs/workflows/agent-task-lifecycle.md) for the full checklist.
 
-| Task | Automate? | Why |
-|---|---:|---|
-| Trim trailing spaces | Yes | Safe and deterministic. |
-| Ensure final newline | Yes | Safe and deterministic. |
-| Run tests | Yes | Computers are good at repetitive disappointment. |
-| Create PR after clean changes | Yes, with review | Useful. |
-| Merge PRs | Only manual workflow | Merging blindly is how bugs acquire citizenship. |
-| Delete files | No | Require explicit human approval. |
-| Install dependencies | No | Require explicit human approval. |
-| Touch secrets | Never | `.env` and credentials are not playground equipment. |
+## Public Safety Checklist
 
-## Folder structure
+Before making this repository public or merging an AI-generated pull request:
+
+- Verify Git commits use a GitHub noreply commit email or another public-safe email.
+- Scan for secrets, tokens, private keys, and credentials.
+- Check GitHub Actions logs for accidental environment output.
+- Confirm no `.env` or `.env.*` files are committed.
+- Confirm no private links, school portals, private dashboards, or private repository URLs are included.
+- Confirm no personal data, account IDs, browser profile paths, or private machine details appear in docs.
+- Review every AI-generated diff before merge.
+- Confirm the repository still passes local checks and CI.
+
+See [docs/workflows/public-repo-safety.md](docs/workflows/public-repo-safety.md) for a longer release checklist.
+
+## Laptop Reality Check
+
+This repo is intentionally light. A Dell Latitude-class Windows laptop with 8 GB RAM can handle Git, PowerShell, VS Code, browser-based AI tools, cloud agents, small Python scripts, Markdown docs, prompt templates, and GitHub Actions workflows.
+
+Avoid these as default beginner paths:
+
+- Running large local language models.
+- Building Docker-heavy stacks.
+- Relying on GPU-heavy local inference.
+- Requiring WSL for basic workflows.
+- Installing large dependency trees just to edit docs.
+- Giving agents broad access to the whole user profile.
+
+Use cloud, browser, API, CLI, and IDE workflows where they reduce local hardware load and keep the review path clear.
+
+## What This Repo Does Not Do
+
+- It does not store API keys.
+- It does not run destructive automation.
+- It does not auto-merge AI code without review.
+- It does not require heavy local models.
+- It does not replace human judgment.
+- It does not ask agents to edit private folders outside the repository.
+- It does not guarantee any third-party tool feature, price, or platform support.
+
+## Repository Map
 
 ```text
 ai-lab-codex-workbench/
@@ -127,16 +125,7 @@ ai-lab-codex-workbench/
   CONTRIBUTING.md
   SECURITY.md
   CHANGELOG.md
-  LICENSE
-  .gitignore
-  .editorconfig
   .github/
-    PULL_REQUEST_TEMPLATE.md
-    ISSUE_TEMPLATE/
-      bug_report.yml
-      feature_request.yml
-      codex_task.yml
-      prompt_audit.yml
     workflows/
       ci.yml
       autofix.yml
@@ -149,153 +138,66 @@ ai-lab-codex-workbench/
       03-safe-autofix-policy.md
       04-review-checklist.md
       05-repository-roadmap.md
+    tools/
+      comparison-matrix.md
+      codex.md
+      claude-code.md
+      cursor.md
+      antigravity.md
+      github-copilot.md
+      opencode.md
+      kilo-code.md
+      aider.md
+      windsurf.md
+      mcp.md
+    workflows/
+      agent-task-lifecycle.md
+      public-repo-safety.md
     templates/
       task-spec.md
       merge-report.md
   prompts/
     codex/
-      fix-bug.goal.md
-      implement-feature.goal.md
-      docs-update.goal.md
-      review-pr.goal.md
-      repository-cleanup.goal.md
+    claude-code/
+    cursor/
+    antigravity/
+    github-copilot/
+    opencode/
+    aider/
+    windsurf/
   scripts/
-    safe_autofix.py
     repo_health_check.py
+    safe_autofix.py
     create_task_branch.ps1
     local_check.ps1
     bootstrap_github_repo.ps1
   tests/
-    test_safe_autofix.py
-    test_repo_health.py
-  examples/
-    sample-task.md
 ```
 
-## Daily usage
+## GitHub Automation
 
-1. Create an issue or write a task in `docs/templates/task-spec.md`.
-2. Create a branch:
+This repository includes three controlled workflows:
 
-```powershell
-.\scripts\create_task_branch.ps1 -Name "fix-readme-typos"
-```
+- CI: runs repository health checks, safe autofix check, and unit tests.
+- Safe Autofix PR: applies deterministic whitespace cleanup and opens a pull request when needed.
+- Controlled Merge PR: merges a reviewed pull request only after required checks pass.
 
-3. Start Codex:
+The automation is deliberately conservative. It should teach safe habits before adding more powerful agents, hooks, prompt evaluation systems, or deployment workflows.
 
-```powershell
-codex
-```
+## Public Release Notes for Tool Claims
 
-4. Paste a `/goal` prompt from `prompts/codex/`.
-5. Review the diff:
+External AI coding tools change quickly. Before using this repo in a workshop or public course, manually verify the current official docs for:
 
-```powershell
-git status
-git diff
-```
-
-6. Run checks:
-
-```powershell
-.\scripts\local_check.ps1
-```
-
-7. Commit and push:
-
-```powershell
-git add .
-git commit -m "Fix README typos"
-git push -u origin agent/fix-readme-typos
-```
-
-8. Open a PR:
-
-```powershell
-gh pr create --fill
-```
-
-## My First Codex Task
-
-Use this walkthrough for a small, safe first task such as fixing a typo, improving one paragraph, or adding a short note to a documentation file.
-
-1. Open Windows PowerShell in this repository:
-
-```powershell
-cd "$HOME\Documents\AI-Lab\ai-lab-codex-workbench"
-```
-
-2. Check that you are starting from a clean working tree:
-
-```powershell
-git status
-```
-
-If Git shows files you did not expect, stop and review them before continuing.
-
-3. Create a task branch:
-
-```powershell
-git switch -c agent/my-first-codex-task
-```
-
-4. Start Codex:
-
-```powershell
-codex
-```
-
-5. Give Codex a small, specific task. For example:
-
-```text
-Update README.md by improving one beginner-friendly sentence. Do not change unrelated files.
-```
-
-6. After Codex finishes, review what changed:
-
-```powershell
-git status
-git diff
-```
-
-Read the diff carefully. Make sure the change matches the task and does not include unrelated files.
-
-7. Run the local checks:
-
-```powershell
-python scripts/repo_health_check.py
-python scripts/safe_autofix.py --check
-python -m unittest discover -s tests
-```
-
-8. If the checks pass, commit the change:
-
-```powershell
-git add README.md
-git commit -m "Add my first Codex task guide"
-```
-
-9. Push the branch to GitHub:
-
-```powershell
-git push -u origin agent/my-first-codex-task
-```
-
-10. Open a pull request:
-
-```powershell
-gh pr create --fill
-```
-
-Before merging, review the pull request and wait for GitHub Actions to pass.
-
-## Safety rules
-
-- Keep changes small.
-- Never let Codex edit `.env`, credentials, browser profiles, school/private documents, or unrelated folders.
-- Do not run broad cleanup commands unless Git is clean and you understand the effect.
-- Do not use auto-merge until CI is green and you reviewed the diff.
-- Prefer cloud/API/browser workflows. Your laptop is good for Git, Codex, prompts, and small Python scripts. It is not a secret datacenter.
+- OpenAI Codex: <https://developers.openai.com/codex/cli>
+- Claude Code: <https://docs.anthropic.com/en/docs/claude-code/overview>
+- Cursor: <https://cursor.com/docs>
+- Google Antigravity: <https://antigravity.google/docs>
+- GitHub Copilot coding agent: <https://docs.github.com/copilot/concepts/agents/cloud-agent/about-cloud-agent>
+- OpenCode: <https://opencode.ai/docs/>
+- Kilo Code: <https://kilo.ai/docs>
+- Aider: <https://aider.chat/docs/>
+- MCP: <https://modelcontextprotocol.io/docs/getting-started/intro>
+- Windsurf / Devin Desktop Cascade: <https://docs.windsurf.com/windsurf/cascade>
 
 ## License
 
