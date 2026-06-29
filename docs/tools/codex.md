@@ -17,6 +17,20 @@ Codex-related product surfaces and names can change. Treat installation, subscri
 | Repository cleanup | Medium | Limit to deterministic cleanup or specific docs. |
 | Large architecture rewrite | Weak at first | Break into design, tests, and small implementation PRs. |
 
+## Operating Modes
+
+Codex can be used in several practical modes. The exact product surfaces can change, so verify current setup details in official OpenAI docs before publishing instructions.
+
+| Mode | Best for | Review habit |
+| --- | --- | --- |
+| Chat or planning | Understanding a task, drafting a prompt, reviewing a design. | Treat output as advice until checked against files. |
+| Local repo editing | Focused docs, scripts, tests, and small features. | Inspect `git diff` and run local checks. |
+| Goal-style work | Multi-step tasks that need persistence and verification. | Keep success criteria concrete and evidence-based. |
+| PR review | Finding bugs, missing tests, safety issues, and documentation gaps. | Ask for findings first and verify line references. |
+| Cloud or remote workflow | Work that benefits from offloading compute or keeping a laptop light. | Confirm permissions, branch state, and PR output. |
+
+The safest beginner mode is local repo editing on a short branch with a named file scope.
+
 ## Beginner Friendliness
 
 Medium. Codex is approachable after a learner understands:
@@ -28,6 +42,20 @@ Medium. Codex is approachable after a learner understands:
 - The difference between an agent summary and the real file diff.
 
 Beginners should start with one Markdown file and one branch. Do not begin with dependency upgrades, workflow rewrites, or broad refactors.
+
+## Task Sizing
+
+Codex works best when the task has enough context to be useful and enough boundaries to stay reviewable.
+
+| Task shape | Good prompt boundary |
+| --- | --- |
+| One docs section | Name the file, audience, required section, and checks. |
+| One script bug | Provide reproduction, expected behavior, relevant test, and allowed files. |
+| One prompt template | Require target tool, purpose, full prompt, short version, inputs, criteria, safety, verification, report, and failure cases. |
+| One review | Make it read-only and ask for findings ordered by severity. |
+| Multi-file guide update | Name every file allowed and require a changelog entry. |
+
+Avoid prompts that say "fix anything" unless the first output is a plan and no edits are made.
 
 ## Setup Style
 
@@ -51,6 +79,26 @@ python -m unittest discover -s tests
 
 Avoid requiring WSL, Docker, or local model hosting for basic Codex learning tasks.
 
+## Repository Workflow
+
+In this repo, a typical Codex task should look like this:
+
+```powershell
+git status
+git switch -c agent/<short-task-name>
+```
+
+Then the prompt should ask Codex to:
+
+1. Read `AGENTS.md`.
+2. Inspect relevant files before editing.
+3. Keep changes inside the included scope.
+4. Avoid secrets, dependency installs, workflow changes, deletion, and broad cleanup unless explicitly requested.
+5. Run the three local checks when edits are complete.
+6. Report files changed, commands run, checks run, claims needing verification, and remaining risks.
+
+The reviewer then checks the diff and local check evidence before opening or merging a PR.
+
 ## Hardware, API, Docker, and WSL Requirements
 
 | Requirement | Practical guidance |
@@ -60,6 +108,19 @@ Avoid requiring WSL, Docker, or local model hosting for basic Codex learning tas
 | Docker | Not needed for this repo. |
 | WSL | Not needed for this repo. |
 | GPU | Not needed. |
+
+## Trust Boundaries
+
+Codex can operate across text, code, commands, and connected tools. Keep these boundaries explicit:
+
+| Boundary | Safe default |
+| --- | --- |
+| Filesystem | Work inside the repository unless a maintainer explicitly approves otherwise. |
+| Secrets | Never read, print, edit, or commit secrets. |
+| Network | Use official docs for current product facts; avoid private services unless approved. |
+| Commands | Prefer read-only and repo-local commands. Ask before destructive or system-wide commands. |
+| Automation | Generated changes should open a reviewable PR, not merge themselves. |
+| External tools | Start read-only and document permissions before enabling writes. |
 
 ## Best First Task
 
@@ -133,6 +194,30 @@ Avoid Codex for:
 | GitHub Copilot coding agent | You want GitHub issue-to-PR cloud workflow. |
 | Aider | You want terminal pair programming with explicit files. |
 | MCP | You need controlled access to external docs or tools. |
+
+## Common Failure Patterns
+
+| Pattern | Risk | Correction |
+| --- | --- | --- |
+| Vague prompt | Large, unrelated diff. | Add included and excluded scope. |
+| No checks requested | Final state is unverified. | List exact local commands in the prompt. |
+| Trusting summary | Missed file changes or unsupported claims. | Review `git diff` directly. |
+| Exact product claims | Docs become stale. | Link to official docs and qualify the claim. |
+| Workflow edits bundled into docs task | Automation risk hidden in a broad PR. | Split workflow changes into a separate reviewed task. |
+| Missing changelog | User-visible docs change is harder to audit later. | Add a factual `CHANGELOG.md` entry. |
+
+## Reviewer Questions
+
+Ask these before accepting Codex output:
+
+- Did the task start from a known Git state?
+- Did Codex inspect the relevant files before editing?
+- Are all changed files expected?
+- Does the diff solve the requested problem?
+- Are local checks current for this diff?
+- Are public-safety rules preserved?
+- Are fast-changing external claims marked for official-doc verification?
+- Is rollback straightforward?
 
 ## Verification Notes
 

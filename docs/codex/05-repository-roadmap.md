@@ -21,8 +21,9 @@ The repository already contains:
 - Workflow docs.
 - Prompt templates.
 - Local health and safe autofix scripts.
+- Release package builder and release/package guide.
 - Unit tests for local scripts.
-- CI, safe autofix PR, and controlled merge workflows.
+- CI, safe autofix PR, release package, and controlled merge workflows.
 
 ## Next 10 Tasks
 
@@ -37,7 +38,7 @@ The repository already contains:
 | 7 | Add prompt before/after examples. | Easy | Shows how to make prompts clearer and testable. | `agent/prompt-before-after` |
 | 8 | Add a docs freshness checklist. | Easy | Keeps setup and roadmap docs aligned with the repo. | `agent/docs-freshness-checklist` |
 | 9 | Add a lightweight link checker or link-check guidance. | Medium | Helps public docs stay usable without heavy tooling. | `agent/link-check-guidance` |
-| 10 | Add a public release checklist issue template. | Easy | Makes launch and workshop prep repeatable. | `agent/public-release-template` |
+| 10 | Add a release package inspection exercise. | Easy | Teaches users how to inspect release artifacts before publishing. | `agent/release-package-inspection` |
 
 ## Phase 1: Safe Foundation
 
@@ -92,6 +93,7 @@ Add or improve:
 - CI troubleshooting guide.
 - Safe autofix examples.
 - Controlled merge documentation.
+- Release package review examples.
 - Changelog review checklist.
 
 Completion criteria:
@@ -130,7 +132,7 @@ Only after the basics are stable:
 - Changelog validation.
 - Link checking.
 - Docs generation checks.
-- Release note drafting.
+- Release note validation.
 - Read-only MCP examples.
 - Agent skills or subagents examples.
 - Lightweight dashboard or status report.
@@ -169,7 +171,7 @@ Before adding a roadmap item:
 
 | Milestone | Theme | Exit criteria |
 | --- | --- | --- |
-| `0.2.0` | Professional guide baseline | Expanded docs, prompts, workflows, checks passing. |
+| `0.2.0` | Professional guide baseline | Expanded docs, release package workflow, prompts, workflows, checks passing. |
 | `0.3.0` | Prompt evaluation practice | Rubric, examples, and before/after prompts. |
 | `0.4.0` | GitHub workflow teaching kit | Issue/PR templates and CI troubleshooting. |
 | `0.5.0` | Optional advanced integrations | Read-only MCP and automation examples with safeguards. |

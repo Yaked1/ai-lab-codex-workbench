@@ -4,6 +4,14 @@
 
 Added:
 
+- Reworked the README opening and quick-start path for general public users, including release-bundle guidance and clearer links for visitors, instructors, maintainers, and learners.
+- Added safe autonomous release package support with `scripts/build_release_package.py`, `.github/workflows/release.yml`, `docs/releases/release-process.md`, `docs/releases/v0.1.0.md`, package-builder tests, and GitHub Release ZIP plus JSON manifest assets.
+- Added release package files to repository health requirements and documented manual `gh workflow run release.yml` triggering without npm, PyPI, Docker, binary package, or GitHub Packages publishing.
+- Expanded the README with repository non-goals, operating contract, decision guide, first-session workflow, end-to-end example, scenario playbooks, quality bar, troubleshooting, and maintenance model.
+- Expanded `CONTRIBUTING.md` with contribution types, definition of ready, scope control, PR expectations, documentation style guidance, script/test expectations, review roles, and post-merge practices.
+- Expanded `SECURITY.md` with a public-repository threat model, public-safe examples, permission levels, workflow-secrets guidance, security review checklist, incident response steps, and AI-agent risk patterns.
+- Expanded Codex onboarding, goal workflow, review checklist, and tool guide docs with beginner concepts, scope calibration, evidence-based completion, trust boundaries, reviewer questions, and failure patterns.
+- Expanded task, merge, and sample-task templates with readiness checks, acceptance evidence, external-claim review, rollback planning, and stronger final-report examples.
 - Professional public positioning for the AI agent coding and prompting workbench.
 - Expanded README sections covering audience, architecture, safety model, quick start, learning path, tool matrix, recommended workflows, limitations, and roadmap.
 - Real GitHub Actions status badges for CI and Safe Autofix PR workflows.

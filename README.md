@@ -1,16 +1,31 @@
 # AI Agent Coding and Prompting Workbench
 
-Professional, student-friendly guidance for using AI coding agents without skipping Git, tests, review, or public-repository safety.
+Professional, public-friendly guidance for using AI coding agents without skipping Git, tests, review, releases, or repository safety.
 
 [![CI](https://github.com/Yaked1/ai-lab-codex-workbench/actions/workflows/ci.yml/badge.svg)](https://github.com/Yaked1/ai-lab-codex-workbench/actions/workflows/ci.yml)
 [![Safe Autofix PR](https://github.com/Yaked1/ai-lab-codex-workbench/actions/workflows/autofix.yml/badge.svg)](https://github.com/Yaked1/ai-lab-codex-workbench/actions/workflows/autofix.yml)
+[![Latest release](https://img.shields.io/github/v/release/Yaked1/ai-lab-codex-workbench?include_prereleases&label=release)](https://github.com/Yaked1/ai-lab-codex-workbench/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-## Project Positioning
+## For General Users
+
+This repository is for anyone who wants a practical, reusable guide to AI-assisted coding work. You do not need this exact machine, account, folder layout, or maintainer setup to use it.
+
+Use it when you want to:
+
+- Learn a safe branch, prompt, check, pull request, review, merge, and rollback loop.
+- Copy public-safe task specs, prompt templates, and review checklists into another repository.
+- Teach a workshop or class about AI coding agents and GitHub workflow.
+- Compare agent tools without relying on stale pricing, model, or platform claims.
+- Download a versioned release bundle that contains the docs, prompts, scripts, tests, and workflows.
+
+Most visitors should start with [docs/site/index.html](docs/site/index.html), [docs/codex/00-start-here.md](docs/codex/00-start-here.md), or the release bundle from [GitHub Releases](https://github.com/Yaked1/ai-lab-codex-workbench/releases).
+
+## Overview
 
 This repository is a public guide and lightweight workbench for learning practical AI-assisted software work. It began as a Codex-focused GitHub automation lab, but the larger purpose is broader: show a beginner how to turn a vague request into a safe branch, a focused agent prompt, local checks, a pull request, review notes, a merge decision, and a changelog entry.
 
-The repo is deliberately Windows and student laptop friendly. It favors Markdown, PowerShell, Git, standard-library Python, GitHub Actions, browser/IDE/CLI agents, and cloud-hosted work where that reduces local hardware pressure. It does not assume Docker, WSL, a large GPU, a local model server, or a high-end workstation.
+The repo is deliberately Windows and modest-laptop friendly. It favors Markdown, PowerShell, Git, standard-library Python, GitHub Actions, browser/IDE/CLI agents, and cloud-hosted work where that reduces local hardware pressure. It does not assume Docker, WSL, a large GPU, a local model server, or a high-end workstation.
 
 Use it as:
 
@@ -44,6 +59,38 @@ This repo teaches a safer operating model:
 - Pull requests keep human review in the loop.
 - Changelog updates make visible changes easier to audit later.
 
+## What This Repository Teaches
+
+The repo is organized around a practical operating system for AI-assisted repository work. The goal is not to memorize one tool. The goal is to learn habits that still work when tools, model names, user interfaces, and pricing change.
+
+By working through the guides, templates, and checks, a learner should be able to:
+
+- Convert a vague request into a scoped task with success criteria.
+- Create a public-safe branch name and keep one task per branch.
+- Write a prompt that tells an agent what to inspect, what to change, what to avoid, and how to report back.
+- Decide when a task is too broad for one agent run.
+- Run local checks before a pull request.
+- Review a generated diff without trusting the agent's summary.
+- Identify unsafe automation, private data exposure, and stale third-party tool claims.
+- Prepare a merge report and rollback plan.
+- Keep documentation useful for beginners without hiding advanced failure modes.
+
+The core lesson is repeatability. If a task cannot be described, checked, reviewed, and rolled back, it is not ready for unattended automation.
+
+## What This Repository Is Not
+
+This project deliberately stays small. It is not trying to become every possible AI engineering setup.
+
+| Not included | Reason |
+| --- | --- |
+| Production deployment stack | The repo teaches repository workflow, not hosting. |
+| Docker or WSL dependency | Beginner Windows users should be able to run the examples without heavy setup. |
+| Local model serving | Hardware requirements would distract from Git, review, and safety basics. |
+| Enterprise secret scanning | The included checks are lightweight guardrails, not a replacement for professional security tooling. |
+| Tool pricing database | Pricing and plan details change quickly and should be verified in official docs. |
+| Benchmark leaderboard | The repo focuses on safe process and reviewable work, not model ranking. |
+| Unattended merge system | Generated changes should stay reviewable by a human maintainer. |
+
 ## Architecture
 
 The repository is intentionally simple. The docs teach the process, the scripts validate the repo, and GitHub Actions provide repeatable automation.
@@ -72,7 +119,23 @@ Core pieces:
 | Codex guides | Codex-specific branch, goal, review, and roadmap docs. | [docs/codex/](docs/codex/) |
 | Prompt templates | Reusable prompts with scope, validation, and report formats. | [prompts/](prompts/) |
 | Local checks | Standard-library validation scripts. | [scripts/](scripts/) |
+| Release and package | Versioned downloadable ZIP bundles for offline use, teaching, and reuse. | [docs/releases/release-process.md](docs/releases/release-process.md) |
 | CI | Repository health, formatting check, unit tests, and controlled automation. | [.github/workflows/](.github/workflows/) |
+
+## Operating Contract
+
+Every useful workflow in this repository follows the same contract:
+
+| Contract item | Practical meaning | Evidence |
+| --- | --- | --- |
+| Scope is explicit | The task says what files, folders, or behavior are in scope. | Task spec, issue, prompt, or PR body. |
+| Risk is bounded | The prompt names excluded actions such as dependency installs, workflow edits, deletion, and secrets. | Excluded scope and safety boundaries. |
+| Work is inspectable | The agent reads files before editing and produces a normal Git diff. | `git diff`, changed file list, final report. |
+| Checks are repeatable | Local commands and CI use the same small validation surface. | Local check output and GitHub Actions logs. |
+| Review is human-readable | The PR explains what changed, why, and what remains uncertain. | PR body, review comments, merge report. |
+| Rollback is possible | The change is small enough to revert cleanly if it causes problems. | One focused branch and a rollback plan. |
+
+If a proposed task cannot satisfy this contract, split it into smaller tasks before asking an agent to edit files.
 
 ## Safety Model
 
@@ -88,6 +151,20 @@ This repo assumes AI output is useful but untrusted until reviewed. The default 
 8. Run local checks before opening or merging a PR.
 9. Review every generated diff.
 10. Keep claims about external tools conservative and verify them in official docs.
+
+## Decision Guide
+
+Use this table when deciding how to approach a new task.
+
+| Situation | Recommended action | Avoid |
+| --- | --- | --- |
+| One typo, link, or wording fix | Edit directly or use a tiny docs prompt. | Whole-repo cleanup. |
+| One guide needs clearer structure | Use a docs-update goal with exact file scope. | Letting the agent rewrite unrelated pages. |
+| A script test fails | Reproduce, inspect the script and test, then make the smallest fix. | Updating tests to hide the failure. |
+| A workflow YAML change is requested | Read the workflow and explain the risk before editing. | Changing automation as incidental cleanup. |
+| A tool comparison seems stale | Reword conservatively and link to official docs. | Inventing exact support, pricing, or model details. |
+| A prompt template is missing details | Add scope, checks, report format, and failure cases. | Adding a long generic prompt with no verification path. |
+| A task touches many folders | Split into phases and use a task spec. | One broad branch called `agent/fix-everything`. |
 
 ## Quick Start
 
@@ -117,6 +194,75 @@ Then choose a prompt template:
 | Use an IDE agent | [prompts/cursor/agent-task.md](prompts/cursor/agent-task.md) or [prompts/windsurf/agent-task.md](prompts/windsurf/agent-task.md) |
 | Use GitHub Copilot coding agent | [prompts/github-copilot/agent-task.md](prompts/github-copilot/agent-task.md) |
 
+## Release And Package
+
+This repository now supports versioned release bundles for general users. A release bundle is a downloadable `.zip` package containing the top-level project docs, Markdown guides, offline HTML site, prompt templates, scripts, tests, and GitHub workflow files.
+
+Use a release bundle when you want:
+
+- A stable snapshot for a class, workshop, or team onboarding session.
+- An offline copy of the docs and prompt templates.
+- A reviewable package artifact that was produced after local validation.
+- A way to reuse the workbench without cloning the full Git history.
+
+Build a package locally:
+
+```powershell
+python scripts/build_release_package.py --version v0.1.0
+```
+
+The package builder writes:
+
+```text
+dist/ai-agent-coding-workbench-v0.1.0.zip
+dist/package-manifest-v0.1.0.json
+```
+
+The manual **Release Package** GitHub Actions workflow runs validation, builds the ZIP and JSON manifest, and creates a GitHub Release with both files attached as assets. It uses the workflow `GITHUB_TOKEN`; it does not require a personal access token and does not publish to npm, PyPI, Docker Hub, or GitHub Packages.
+
+Trigger the first release from PowerShell with GitHub CLI:
+
+```powershell
+gh workflow run release.yml -f version=v0.1.0 -f prerelease=false
+```
+
+This is a documentation and prompt-template package, not an installable library package. See [docs/releases/release-process.md](docs/releases/release-process.md) and [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md) for release gates, package review guidance, and first-release notes.
+
+## First 30 Minutes
+
+For a new learner, the first session should be small and concrete:
+
+1. Clone or open the repository.
+2. Read [AGENTS.md](AGENTS.md) and this README.
+3. Run `git status`.
+4. Run the three local checks.
+5. Create a branch named `agent/first-doc-edit`.
+6. Improve one sentence or one short paragraph in a Markdown file.
+7. Run the three local checks again.
+8. Review `git diff`.
+9. Write a short PR-style summary even if you do not open a PR.
+10. Decide whether the change is worth keeping.
+
+The point is to practice the loop, not to produce a large diff.
+
+## End-To-End Example
+
+This example shows the intended shape of a small AI-assisted documentation task.
+
+| Step | Command or action | Expected result |
+| --- | --- | --- |
+| Check state | `git status` | You know whether the tree is clean before edits. |
+| Create branch | `git switch -c agent/add-local-check-note` | Work is isolated from `main`. |
+| Write prompt | Use `prompts/codex/docs-update.goal.md` | Agent receives scope, checks, and report format. |
+| Inspect files | Agent reads `AGENTS.md`, `README.md`, and the target doc. | Edits are based on current content. |
+| Edit | Add one focused section. | Diff stays reviewable. |
+| Validate | Run the three local checks. | Basic repo rules still hold. |
+| Review | `git diff` | Human sees the actual change. |
+| Report | PR body or final agent response | Commands, checks, risks, and files are explicit. |
+| Merge decision | Approve, request changes, or discard | Human judgment remains in control. |
+
+The same loop scales to larger tasks by splitting them into separate branches and PRs.
+
 ## Offline Quick-Start Site And Playbooks
 
 For a browser-friendly overview that works offline, open [docs/site/index.html](docs/site/index.html). The HTML guide site links together the agent lifecycle, prompt patterns, skills and prompt-guide setup, MCP safety notes, Windows PowerShell examples, and public-repository checklists without external scripts, CDNs, analytics, or remote fonts.
@@ -144,6 +290,19 @@ Longer Markdown playbooks:
 9. Try one non-Codex prompt template after you understand the review workflow.
 10. Compare tools using [docs/tools/comparison-matrix.md](docs/tools/comparison-matrix.md).
 11. Only then consider adding MCP, hooks, subagents, or stronger automation.
+
+## Scenario Playbooks
+
+Different users should start in different parts of the repo.
+
+| Scenario | Start here | Then use |
+| --- | --- | --- |
+| "I want to learn Codex safely." | [docs/codex/00-start-here.md](docs/codex/00-start-here.md) | [docs/codex/01-codex-goal-workflow.md](docs/codex/01-codex-goal-workflow.md) |
+| "I need a prompt for a real docs task." | [prompts/codex/docs-update.goal.md](prompts/codex/docs-update.goal.md) | [docs/templates/task-spec.md](docs/templates/task-spec.md) |
+| "I need to review an AI-generated PR." | [docs/codex/04-review-checklist.md](docs/codex/04-review-checklist.md) | [docs/templates/merge-report.md](docs/templates/merge-report.md) |
+| "I am teaching a workshop." | [docs/site/index.html](docs/site/index.html) | [docs/guides/agentic-coding-playbook.md](docs/guides/agentic-coding-playbook.md) |
+| "I want to compare tools." | [docs/tools/comparison-matrix.md](docs/tools/comparison-matrix.md) | Individual pages in [docs/tools/](docs/tools/) |
+| "I want to connect external tools." | [docs/tools/mcp.md](docs/tools/mcp.md) | [docs/workflows/public-repo-safety.md](docs/workflows/public-repo-safety.md) |
 
 ## Main Workflow
 
@@ -194,6 +353,22 @@ See the full ranking tables in [docs/tools/comparison-matrix.md](docs/tools/comp
 | Rollback | When a bad commit reaches `main`. | [docs/codex/02-git-branch-pr-merge-workflow.md](docs/codex/02-git-branch-pr-merge-workflow.md#rollback) |
 | Public repo safety | Before public release or external sharing. | [docs/workflows/public-repo-safety.md](docs/workflows/public-repo-safety.md) |
 
+## Quality Bar
+
+Professional GitHub documentation should help a reader make decisions, not just describe features. For this repo, a high-quality contribution usually has these properties:
+
+| Quality area | Good documentation does this |
+| --- | --- |
+| Audience | Names who the guidance is for and what they should already know. |
+| Scope | States what the guide covers and what it deliberately avoids. |
+| Steps | Gives commands and review points in the order a user will need them. |
+| Safety | Identifies secrets, permissions, destructive actions, and private-data risks. |
+| Verification | Lists checks that prove the change is safe enough to review. |
+| Failure modes | Explains what usually goes wrong and how to recover. |
+| Maintenance | Avoids brittle claims and points to official docs for fast-changing details. |
+
+Low-quality documentation often looks long but is hard to use. It repeats general advice, hides assumptions, omits commands, or fails to say what success looks like. Prefer shorter precise sections over broad filler.
+
 ## Public Repository Checklist
 
 Before publishing the repository, opening a PR from an agent, or teaching from a fork:
@@ -218,6 +393,9 @@ ai-lab-codex-workbench/
   SECURITY.md                     # Secret and automation safety policy
   CHANGELOG.md                    # User-visible changes
   docs/
+    releases/
+      release-process.md           # Manual release and package guide
+      v0.1.0.md                    # First public release notes
     codex/                        # Codex-specific guides
     guides/                       # Practical playbooks and checklists
     site/                         # Offline static HTML guide site
@@ -234,6 +412,7 @@ ai-lab-codex-workbench/
     opencode/
     windsurf/
   scripts/
+    build_release_package.py       # Builds versioned zip bundles for releases
     repo_health_check.py          # Secret patterns, required files, final newlines
     safe_autofix.py               # Deterministic whitespace cleanup
     local_check.ps1               # PowerShell local validation helper
@@ -241,6 +420,7 @@ ai-lab-codex-workbench/
   .github/workflows/
     ci.yml                        # Read-only validation
     autofix.yml                   # Manual safe-autofix PR
+    release.yml                   # Manual GitHub Release package workflow
     merge-pr.yml                  # Manual controlled merge workflow
 ```
 
@@ -262,6 +442,21 @@ What they cover:
 | `safe_autofix.py --check` | Whether deterministic whitespace cleanup would change files. |
 | `python -m unittest discover -s tests` | Script behavior covered by unit tests. |
 
+## Troubleshooting Local Checks
+
+Most failures in this repository are intentionally simple to diagnose.
+
+| Symptom | Likely cause | First response |
+| --- | --- | --- |
+| `repo_health_check.py` reports a missing file | Required repo file was moved or deleted. | Restore the file or update the checker only if the project structure intentionally changed. |
+| Secret-like text is reported | A placeholder looks too realistic or a sensitive string was added. | Replace it with a public-safe placeholder such as `YOUR_TOKEN_HERE`. |
+| Final newline warning | A text file does not end with a newline. | Run `python scripts/safe_autofix.py --write`, then review the diff. |
+| Safe autofix check fails | Whitespace cleanup would change files. | Apply safe autofix, review the changed files, rerun the check. |
+| Unit test fails | Script behavior changed or an expected fixture no longer matches. | Read the failing test, inspect the script, and fix the smallest related cause. |
+| CI fails but local checks passed | Environment or path difference. | Read the CI log, then reproduce the exact failing command locally when possible. |
+
+Do not hide failures by deleting tests, weakening safety checks, or claiming a command passed when it was not run.
+
 ## GitHub Automation
 
 The repo includes conservative automation:
@@ -269,6 +464,7 @@ The repo includes conservative automation:
 - **CI** runs repository health checks, safe autofix check, and unit tests.
 - **Safe Autofix PR** applies deterministic whitespace cleanup and opens a PR only when files change.
 - **Controlled Merge PR** is manually triggered and waits for required PR checks before merging.
+- **Release Package** is manually triggered, runs validation, builds a versioned ZIP package and JSON manifest, and creates a GitHub Release with both files attached as assets.
 
 Workflow YAML is intentionally small. Do not modify it unless the task specifically requires automation changes.
 
@@ -287,9 +483,23 @@ This repo is designed to be usable on a limited Windows laptop:
 - This repo is a guide and workbench, not a production security scanner.
 - It does not store API keys or manage paid tool accounts.
 - It does not guarantee third-party pricing, plan limits, model names, platform support, or release timing.
+- It does not publish an npm, PyPI, NuGet, container, or GitHub Packages registry package by default.
 - It does not replace human code review.
 - It does not attempt to benchmark agent quality.
 - It does not teach unsafe broad automation, force pushes, or unattended merges.
+
+## Maintenance Model
+
+The repository should stay useful as AI tools change. Use these rules when maintaining it:
+
+- Keep process guidance durable and tool details conservative.
+- Prefer official documentation links over copied setup claims.
+- Date or qualify anything that could become stale quickly.
+- Update [CHANGELOG.md](CHANGELOG.md) for user-visible guide, template, workflow, or safety changes.
+- Keep examples public-safe and free of account-specific data.
+- Keep scripts standard-library unless a dependency is explicitly justified and approved.
+- Keep static HTML offline-safe with local assets only.
+- Review the README whenever a new guide, prompt folder, or workflow is added.
 
 ## Roadmap
 
@@ -304,7 +514,7 @@ Medium-term:
 
 - Add lightweight examples for rules, skills, subagents, and MCP with read-only defaults.
 - Add CI log-reading practice material.
-- Add a public release checklist for workshops.
+- Add release package inspection exercises for workshops.
 - Add a prompt review rubric for comparing agent outputs.
 
 Advanced, only after the basics are stable:
