@@ -1,0 +1,86 @@
+name: Release Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release tag, for example v0.1.0"
+        required: true
+        type: string
+      prerelease:
+        description: "Mark the GitHub Release as a prerelease"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and publish release package
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ inputs.version }}
+      PRERELEASE: ${{ inputs.prerelease }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run repository health check
+        run: python scripts/repo_health_check.py
+
+      - name: Run safe autofix check
+        run: python scripts/safe_autofix.py --check
+
+      - name: Run unit tests
+        run: python -m unittest discover -s tests
+
+      - name: Build release package
+        run: python scripts/build_release_package.py --version "$VERSION"
+
+      - name: Create GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          zip_path="dist/ai-agent-coding-workbench-${VERSION}.zip"
+          manifest_path="dist/package-manifest-${VERSION}.json"
+          notes_path="docs/releases/${VERSION}.md"
+
+          if [ ! -f "$zip_path" ]; then
+            echo "Missing release package: $zip_path"
+            exit 1
+          fi
+
+          if [ ! -f "$manifest_path" ]; then
+            echo "Missing package manifest: $manifest_path"
+            exit 1
+          fi
+
+          if [ ! -f "$notes_path" ]; then
+            echo "Missing release notes: $notes_path"
+            exit 1
+          fi
+
+          if gh release view "$VERSION" >/dev/null 2>&1; then
+            echo "Release $VERSION already exists. Refusing to overwrite it."
+            exit 1
+          fi
+
+          release_flags=()
+          if [ "$PRERELEASE" = "true" ]; then
+            release_flags+=(--prerelease)
+          fi
+
+          gh release create "$VERSION" "$zip_path" "$manifest_path" \
+            --title "AI Agent Coding Workbench ${VERSION}" \
+            --notes-file "$notes_path" \
+            --target "$GITHUB_SHA" \
+            "${release_flags[@]}"

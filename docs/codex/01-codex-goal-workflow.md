@@ -16,6 +16,21 @@ The point of a goal is not to make the agent unbounded. The point is to give it 
 | Build an entire app | Weak | Split into design, scaffold, and feature PRs. |
 | Install many tools | Avoid | Too much setup and risk for one goal. |
 
+## Goal Design Principles
+
+A good goal is durable enough for multi-step work but narrow enough to review.
+
+| Principle | What it means |
+| --- | --- |
+| One outcome | The goal names a concrete target state. |
+| Bounded scope | The goal lists files, folders, or behaviors that may change. |
+| Explicit exclusions | The goal names risky areas that must not change. |
+| Evidence-based completion | Success criteria can be proven by files, diffs, checks, or rendered output. |
+| Reviewable diff | The expected result fits one PR or one clear review unit. |
+| Honest uncertainty | External product behavior and unrun checks are reported, not guessed. |
+
+Do not use a goal as a substitute for thinking through the task. Use it to preserve the task once the scope is clear.
+
 ## Standard Goal Shape
 
 ```text
@@ -52,6 +67,20 @@ Workflow:
 5. Fix related failures.
 6. Report unverified claims and remaining risks.
 ```
+
+## Scope Calibration
+
+Use this table to decide whether a goal is the right size.
+
+| Goal size | Example | Recommendation |
+| --- | --- | --- |
+| Tiny | Fix one typo or link. | A goal is optional. Direct edit may be enough. |
+| Small | Improve one README section and update changelog. | Good goal. |
+| Medium | Expand one guide and one related template. | Good goal if files are named. |
+| Large | Improve every tool page. | Split by tool category or review surface. |
+| Very large | Redesign docs, prompts, scripts, and workflows together. | Start with a planning issue and separate implementation goals. |
+
+If a goal cannot name its success evidence, it is too vague.
 
 ## Good Goal Prompt Example
 
@@ -98,6 +127,20 @@ Why it is weak:
 - No verification commands.
 - No definition of "professional."
 
+## Goal State Template
+
+For larger work, add a target-state block:
+
+```text
+Target state:
+- README explains the repository purpose, audience, workflow, safety model, validation commands, and maintenance rules.
+- CONTRIBUTING explains task readiness, scope control, PR expectations, docs style, and review roles.
+- SECURITY explains threat model, private data rules, agent permissions, and incident response.
+- CHANGELOG records user-visible documentation changes.
+```
+
+This makes completion easier to audit because each bullet can be checked against the current files.
+
 ## Goal Execution Checklist
 
 - [ ] Start from the repository root.
@@ -110,6 +153,18 @@ Why it is weak:
 - [ ] Review `git diff`.
 - [ ] Update changelog when useful.
 - [ ] Report remaining risks.
+
+## Evidence Checklist
+
+Before calling a goal complete, identify the evidence for each success criterion.
+
+| Requirement | Strong evidence | Weak evidence |
+| --- | --- | --- |
+| "README improved" | Diff shows new sections that address the requested audience and workflow. | Agent says it improved the README. |
+| "Checks pass" | Current command output from the required checks. | Checks passed before edits. |
+| "No unrelated files changed" | `git status` and `git diff --stat` match the intended scope. | A quick glance at one file. |
+| "No private data added" | Repo health check plus manual scan of changed files. | Assuming docs are safe because they are Markdown. |
+| "External claims are conservative" | Claims are qualified or linked to official docs. | Exact pricing or model statements without verification. |
 
 ## Verification Commands
 
@@ -137,6 +192,8 @@ Review the diff after any write command.
 | Tool claims are stale | Product behavior was assumed. | Reword with official-doc verification note. |
 | Diff is too large | Task was not split. | Break into smaller PRs. |
 | Final report is vague | Report format was not specified. | Require files changed, commands, checks, and risks. |
+| Goal never finishes | Completion criteria were subjective. | Convert "better" into concrete sections, files, and checks. |
+| Goal ignores latest user request | Context drift during a long session. | Re-read the current objective and inspect the latest worktree. |
 
 ## Completion Report Format
 
@@ -159,3 +216,16 @@ For public docs work, add:
 ```markdown
 ## Claims needing manual verification
 ```
+
+## Example Completion Audit
+
+Before accepting the final report, ask:
+
+- Did the goal require README changes, and does `git diff` show them?
+- Did it require meaningful additions to high-value docs, and are those docs named?
+- Did it require public-safety constraints, and did the changed text avoid secrets and private links?
+- Did it require local checks, and were the current checks run after edits?
+- Did it require changelog updates, and does the changelog describe the visible change?
+- Did the final report mention anything not verified?
+
+Completion is not "the agent stopped working." Completion is when the evidence proves the requested end state.

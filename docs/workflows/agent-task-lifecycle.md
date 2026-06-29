@@ -34,6 +34,20 @@ Start by turning the request into a testable task. A good task has boundaries:
 
 Use [docs/templates/task-spec.md](../templates/task-spec.md) when you need a reusable task format.
 
+### Intake Gate
+
+Do not start agent editing until these questions have answers:
+
+- What is the exact outcome?
+- Which files or folders may change?
+- Which files, commands, or behaviors are out of scope?
+- What checks will prove the result?
+- What public-safety risks exist?
+- Does this task need a changelog entry?
+- Are any external tool claims fast-changing enough to require official-doc verification?
+
+If the answer to "which files may change" is "anything," the task is not ready.
+
 ## 2. Branch Naming
 
 Use a short branch name that describes one task:
@@ -58,6 +72,16 @@ agent/update-codex-prompts
 
 Avoid branch names that include private project names, account IDs, internal ticket numbers, or sensitive context.
 
+### Branch Hygiene
+
+Before editing:
+
+```powershell
+git status
+```
+
+If the working tree is dirty, decide whether the changes are part of the task. Do not mix unrelated local edits into an agent branch. If you are not sure where a change came from, stop and ask a maintainer before overwriting it.
+
 ## 3. Goal Prompt Creation
 
 Use a goal-style prompt when work is more than a one-line edit. A strong prompt includes:
@@ -71,6 +95,8 @@ Use a goal-style prompt when work is more than a one-line edit. A strong prompt 
 - Success criteria.
 - Verification commands.
 - Final report format.
+
+Prompt quality is part of engineering quality. A good prompt makes the eventual diff easier to review.
 
 Template:
 
@@ -108,6 +134,16 @@ Final report:
 - Remaining risks
 ```
 
+### Prompt Review Before Sending
+
+- [ ] The prompt tells the agent what to read first.
+- [ ] The prompt lists allowed files or folders.
+- [ ] The prompt lists forbidden changes.
+- [ ] The prompt includes public-safety boundaries.
+- [ ] The prompt names exact validation commands.
+- [ ] The prompt requires a final report.
+- [ ] The prompt avoids vague words such as "professional" unless it defines what that means.
+
 ## 4. Agent Execution
 
 Before editing, the agent should:
@@ -128,6 +164,17 @@ During editing, the agent should:
 - Keep public safety constraints in mind.
 
 For broad tasks, ask the agent to produce a plan first and then implement only the approved part.
+
+### Execution Gate
+
+During execution, stop and re-scope if:
+
+- The agent proposes changing workflow YAML for a docs task.
+- The agent wants to install dependencies for a Markdown-only task.
+- The changed-file list grows beyond the task scope.
+- The agent needs private account access that was not part of the task.
+- The task requires current product facts that have not been verified.
+- A local check failure points to unrelated existing work.
 
 ## 5. Local Checks
 
@@ -156,6 +203,18 @@ python scripts/safe_autofix.py --check
 
 Review the diff after any write command.
 
+### Local Check Interpretation
+
+Passing checks are necessary but not enough. They do not prove that the change is useful, scoped, or complete. They only prove the covered repository rules still pass.
+
+Failing checks should be handled in this order:
+
+1. Read the exact failure.
+2. Decide whether it is related to your change.
+3. Fix the smallest related cause.
+4. Rerun the focused failing command.
+5. If unrelated, report it clearly instead of rewriting the project.
+
 ## 6. CI Checks
 
 CI repeats the repository validation on GitHub. Read the workflow logs when CI fails instead of guessing.
@@ -169,6 +228,17 @@ Current CI checks:
 | `merge-pr.yml` | Manual dispatch. | Checks a PR and merges only after required checks pass. |
 
 Do not edit workflow YAML unless the task is specifically about automation.
+
+### CI Review
+
+When CI fails:
+
+- Open the failing job.
+- Identify the exact command and error.
+- Compare it with the local command.
+- Check whether the failure is from the current diff.
+- Fix related failures in the same branch.
+- For unrelated failures, document the evidence in the PR.
 
 ## 7. Pull Request
 
@@ -198,6 +268,17 @@ Example:
 - Current Codex platform details should be verified in official docs before workshop use.
 ```
 
+### PR Evidence Checklist
+
+- [ ] Objective is visible in the PR body.
+- [ ] Files changed are summarized.
+- [ ] Commands run are listed.
+- [ ] Local checks are listed with outcomes.
+- [ ] CI status is reviewed.
+- [ ] Public-safety risks are addressed.
+- [ ] Claims needing verification are named.
+- [ ] Remaining limitations are honest.
+
 ## 8. PR Review
 
 Review the diff as if it came from a new contributor:
@@ -212,6 +293,20 @@ Review the diff as if it came from a new contributor:
 - Do CI logs expose anything private?
 
 Use [docs/codex/04-review-checklist.md](../codex/04-review-checklist.md) for a deeper checklist.
+
+### Requesting Changes
+
+Good review comments are specific and actionable:
+
+```markdown
+Please narrow this PR to README.md and CHANGELOG.md. The workflow YAML edit is unrelated to the stated docs task and should be a separate PR.
+```
+
+Avoid vague review comments such as:
+
+```markdown
+Make this safer.
+```
 
 ## 9. Squash Merge
 
@@ -230,6 +325,17 @@ Do not merge when:
 - The PR contains secrets or private data.
 - The PR changes unrelated files.
 - The final report claims checks passed but no evidence is provided.
+
+### Merge Notes
+
+Before merging, record:
+
+- The merge method.
+- The checks reviewed.
+- The reason remaining risks are acceptable.
+- The rollback path if the change causes confusion.
+
+Use [docs/templates/merge-report.md](../templates/merge-report.md) for larger or teaching-oriented changes.
 
 ## 10. Rollback
 
@@ -309,6 +415,8 @@ Avoid vague entries:
 | Safe autofix check fails | Whitespace or missing final newline. | Run `safe_autofix.py --write`, review diff, rerun check. |
 | Tool claims sound too exact | Product docs were not verified. | Reword as "verify in official docs." |
 | PR is hard to review | Task was too broad. | Split into smaller PRs. |
+| Agent final report omits risks | Report format was too weak or task was incomplete. | Ask for a revised report tied to the diff and checks. |
+| Changelog missing | User-visible change was treated as internal. | Add a factual changelog entry before merge. |
 
 ## Definition Of Done
 
