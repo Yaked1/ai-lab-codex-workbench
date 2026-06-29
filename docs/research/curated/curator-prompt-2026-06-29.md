@@ -40,7 +40,7 @@ You are helping curate public-safe research guide updates in this repository.
 Configuration:
 
 - Scope: hermes-agent
-- Dry run: false
+- Dry run: true
 - Max sources: 5
 - Latest scout report: docs/research/inbox/2026-06-29.md
 
