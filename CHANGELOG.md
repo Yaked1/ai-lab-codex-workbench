@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+Added:
+
+- Public multi-agent workbench README.
+- Tool comparison docs for Codex, Claude Code, Cursor, Antigravity, GitHub Copilot, OpenCode, Kilo Code, Aider, Windsurf, and MCP.
+- Public repository safety and agent task lifecycle workflow docs.
+- Prompt templates for non-Codex agent workflows.
+
 ## 0.1.0
 
 Initial Codex automation workbench.
