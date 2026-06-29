@@ -4,6 +4,15 @@
 
 Added:
 
+- Added the cheap `Daily Research Scout` workflow for public AI skills, prompt-guide, image-generation, MCP/tool-use, public agent workflow, and Hermes Agent candidate discovery without Codex or OpenAI API keys.
+- Added the no-API-key `Curator Prompt Prep` workflow with `scope`, `dry_run`, and `max_sources` inputs to prepare local Codex prompts without calling Codex, paid LLMs, or model providers from GitHub Actions.
+- Changed the curator architecture to local/manual Codex curation using Codex CLI or the Codex app with ChatGPT sign-in instead of an OpenAI API key or cloud Codex GitHub Action.
+- Added public source and publication policies for official, community, unofficial, leak-derived, inferred, and unverified sources, including restrictions on leaked prompt dumps and private data.
+- Added starter research source configuration, blocklist, candidates store, deterministic discovery/scoring/report scripts, and research inbox/curated folders.
+- Added skills guide structure for Claude Code skills, Codex skills, MCP tool-use systems, and reusable prompt guides.
+- Added image-generation guide structure for autoregressive systems, diffusion systems, local workflows, hardware requirements, prompting patterns, weak-laptop warnings, and GitHub Actions boundaries.
+- Added Hermes Agent documentation for Nous Research Hermes Agent setup, provider configuration, skills, memory, automations, prompting, troubleshooting, comparison with Codex and Claude Code, and public-repo safety.
+- Added tests for research source parsing, candidate scoring, report generation, blocklist behavior, secret-looking string redaction, report path formatting, and scout dry-run mode.
 - Reworked the README opening and quick-start path for general public users, including release-bundle guidance and clearer links for visitors, instructors, maintainers, and learners.
 - Added safe autonomous release package support with `scripts/build_release_package.py`, `.github/workflows/release-package.yml`, `docs/releases/release-process.md`, `docs/releases/v0.1.0.md`, package-builder tests, and GitHub Release ZIP plus JSON manifest assets.
 - Added release package files to repository health requirements and documented manual `gh workflow run release-package.yml` triggering without npm, PyPI, Docker, binary package, or GitHub Packages publishing.

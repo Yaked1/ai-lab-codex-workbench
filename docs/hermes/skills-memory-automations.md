@@ -1,0 +1,90 @@
+# Hermes Agent Skills, Memory, And Automations
+
+Source status: official-doc anchored. Verify current behavior in official
+Hermes Agent docs before publishing exact commands.
+
+## Skills
+
+Hermes Agent skills are reusable task instructions. Official skill pages show
+bundled and optional skills with metadata, file paths, versions, platforms, tags,
+and source references.
+
+Public guide requirements:
+
+- Explain what the skill does.
+- Say whether it is bundled, optional, local, or repo-shipped.
+- Include install commands only when verified.
+- Include test steps.
+- Include safe and unsafe use cases.
+- Include public repository safety notes.
+
+Example optional skill install command from an official skill page, only for
+that specific verified skill:
+
+```powershell
+hermes skills install official/creative/hyperframes
+```
+
+Do not generalize one skill's install command to every skill.
+
+## Memory
+
+Hermes Agent memory is persistent context. Official memory docs list:
+
+```powershell
+hermes memory setup
+hermes memory status
+```
+
+Official memory-provider docs also document:
+
+```powershell
+hermes memory off
+```
+
+Public safety:
+
+- Keep memory private.
+- Do not commit memory files.
+- Do not publish private user facts.
+- Do not use private memory as source material for public docs.
+- Keep memory provider credentials out of Git.
+
+## Automations
+
+Hermes Agent automations can use scheduled tasks. Official cron docs describe
+the built-in scheduler and lock behavior. Automation blueprints are useful for
+learning, but public repo publishing must still be manually reviewed.
+
+Safe automation pattern:
+
+1. Draft the automation as a private local experiment.
+2. Use dry-run or read-only mode first.
+3. Review the output manually.
+4. Create a branch and PR for public docs.
+5. Run checks.
+6. Merge only after review.
+
+Unsafe automation pattern:
+
+- Always-on job that writes polished public docs daily.
+- Direct push to `main`.
+- Job that reads private memory and publishes it.
+- Job that uses provider keys from a public repo.
+
+## Failure Modes
+
+| Area | Failure | Response |
+| --- | --- | --- |
+| Skills | Skill trigger is too broad. | Narrow description and allowed actions. |
+| Memory | Private facts leak into output. | Keep public tasks separate from private memory. |
+| Automations | Scheduled work runs without review. | Require dry-run, branch, PR, checks, review, merge. |
+| Provider config | Token appears in logs. | Stop the job, rotate credentials, redact logs. |
+
+## Evaluation Checklist
+
+- [ ] Skill source and license are labeled.
+- [ ] Memory is private and excluded from Git.
+- [ ] Automations are manually reviewed before publishing.
+- [ ] No direct push to `main`.
+- [ ] No private chats, logs, OAuth files, or tokens are published.

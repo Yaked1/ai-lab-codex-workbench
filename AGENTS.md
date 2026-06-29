@@ -134,6 +134,21 @@ Prompt templates in [prompts/](prompts/) should include:
 - Final report format.
 - Failure cases.
 
+## Research Automation Rules
+
+- Do not run expensive LLM workflows automatically.
+- The daily research scout must stay cheap, public-safe, and free of Codex or OpenAI API key usage.
+- Scheduled workflows must not add `OPENAI_API_KEY` requirements.
+- GitHub Actions must not run Codex directly through the OpenAI Codex Action or any paid LLM provider.
+- The curator prompt prep workflow must stay cheap, run only when manually triggered, and prepare a local Codex prompt instead of writing AI-generated guide content.
+- Codex guide writing must happen locally through Codex CLI or the Codex app using ChatGPT sign-in, followed by branch, pull request, checks, review, and merge.
+- Never push curated guide content directly to `main`.
+- Do not mirror leaked prompts or publish leaked system prompts verbatim.
+- Do not publish private data, private memories, private conversations, private logs, private paths, OAuth files, or secrets.
+- Do not recommend heavy local image-generation models, local training, vLLM, SGLang, or GPU-heavy workflows as beginner defaults.
+- Hermes Agent docs must cover only Nous Research Hermes Agent as an agent/workflow tool and must exclude Hermes language model, model-card, benchmark, quantization, GGUF, Ollama, vLLM, and SGLang coverage.
+- All generated guides must include failure modes, source references, source/license status, and verification steps.
+
 ## Public Repository Hygiene
 
 Before finalizing public-facing docs:

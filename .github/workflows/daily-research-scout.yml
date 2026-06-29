@@ -1,0 +1,68 @@
+name: Daily Research Scout
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * *"
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  scout:
+    name: Collect public research candidates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Run cheap public scout
+        run: |
+          set -euo pipefail
+          today="$(date -u +%F)"
+          python scripts/discover_ai_sources.py --fetch --date "$today"
+          python scripts/score_research_candidates.py
+          python scripts/generate_research_report.py --date "$today" --issue-body .tmp/research-issue.md
+
+      - name: Validate generated reports
+        run: |
+          python scripts/repo_health_check.py --ci
+          python scripts/safe_autofix.py --check
+          python -m unittest discover -s tests
+
+      - name: Open or update candidate issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_TITLE: Daily AI skills and prompt guide candidates
+        run: |
+          set -euo pipefail
+          issue_number="$(gh issue list --state open --search "$ISSUE_TITLE in:title" --json number,title --jq '.[] | select(.title == env.ISSUE_TITLE) | .number' | head -n 1)"
+          if [ -n "$issue_number" ]; then
+            gh issue edit "$issue_number" --body-file .tmp/research-issue.md
+          else
+            gh issue create --title "$ISSUE_TITLE" --body-file .tmp/research-issue.md
+          fi
+
+      - name: Commit generated candidate reports only
+        run: |
+          set -euo pipefail
+          git add data/research/candidates.json docs/research/inbox/*.md
+          if git diff --cached --quiet; then
+            echo "No generated research candidate changes to commit."
+            exit 0
+          fi
+          git commit -m "Update daily research candidates"
+          git push

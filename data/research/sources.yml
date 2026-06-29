@@ -1,0 +1,225 @@
+version: 1
+
+categories:
+  - official_docs
+  - agent_frameworks
+  - claude_code_skills
+  - codex_guides
+  - mcp_tools
+  - prompt_engineering
+  - prompt_auditing
+  - image_prompting
+  - local_image_generation
+  - public_research_repositories
+  - hermes_agent
+  - unofficial_pattern_sources
+
+sources:
+  - id: openai-codex-cli
+    name: Official OpenAI Codex CLI documentation
+    category: codex_guides
+    url: https://developers.openai.com/codex/cli
+    kind: official_docs
+    official: true
+    source_status: official-docs
+    license_hint: Official documentation; link and summarize conservatively.
+    safety_note: Verify current install, model, permissions, skills, subagents, and pricing details before publishing exact claims.
+    summary: Official Codex documentation anchor for CLI and agent workflow guidance.
+    tags:
+      - codex
+      - skills
+      - subagents
+      - prompt-guides
+  - id: openai-codex-agents-md
+    name: Official OpenAI Codex AGENTS.md guidance
+    category: codex_guides
+    url: https://developers.openai.com/codex/guides/agents-md
+    kind: official_docs
+    official: true
+    source_status: official-docs
+    license_hint: Official documentation; link rather than copying.
+    safety_note: Keep repository instructions concise and public-safe.
+    summary: Official guidance for repository instructions consumed by Codex.
+    tags:
+      - codex
+      - agents-md
+      - repo-policy
+  - id: anthropic-claude-code-overview
+    name: Official Anthropic Claude Code documentation
+    category: claude_code_skills
+    url: https://docs.anthropic.com/en/docs/claude-code/overview
+    kind: official_docs
+    official: true
+    source_status: official-docs
+    license_hint: Official documentation; verify current commands and feature availability.
+    safety_note: Mark product behavior and platform details as official-doc verification items.
+    summary: Official Claude Code overview for tool behavior and setup references.
+    tags:
+      - claude-code
+      - skills
+      - slash-commands
+  - id: anthropic-claude-code-skills
+    name: Official Anthropic Claude Code skills documentation
+    category: claude_code_skills
+    url: https://docs.anthropic.com/en/docs/claude-code/skills
+    kind: official_docs
+    official: true
+    source_status: official-docs
+    license_hint: Official documentation; link and summarize.
+    safety_note: Verify exact skill folder structure and install behavior before publishing commands.
+    summary: Official skills reference for Claude Code.
+    tags:
+      - claude-code
+      - skills
+      - public-repo-safety
+  - id: model-context-protocol-docs
+    name: Official Model Context Protocol documentation
+    category: mcp_tools
+    url: https://modelcontextprotocol.io/docs/getting-started/intro
+    kind: official_docs
+    official: true
+    source_status: official-docs
+    license_hint: Official documentation; verify terms before quoting.
+    safety_note: Prefer read-only MCP examples before write-capable tool integrations.
+    summary: Official MCP documentation for tool-use and connector concepts.
+    tags:
+      - mcp
+      - tools
+      - connectors
+      - safety
+  - id: model-context-protocol-repo
+    name: Public Model Context Protocol repository
+    category: mcp_tools
+    url: https://github.com/modelcontextprotocol
+    kind: public_repositories
+    official: true
+    source_status: official-repository
+    license_hint: Repository licenses vary; verify per repository.
+    safety_note: Do not copy server code or configuration secrets into this public guide.
+    summary: Public repositories for MCP specifications, SDKs, and examples.
+    tags:
+      - mcp
+      - sdk
+      - public-repository
+  - id: prompt-engineering-guide-repo
+    name: Public prompt engineering guide repository
+    category: prompt_engineering
+    url: https://github.com/dair-ai/Prompt-Engineering-Guide
+    kind: public_repository
+    official: false
+    source_status: community-repository
+    license_hint: Verify repository license before quoting or adapting examples.
+    safety_note: Summarize patterns and link to source; avoid copying long prompt collections.
+    summary: Community prompt engineering guide with broad prompting concepts.
+    tags:
+      - prompt-engineering
+      - guides
+      - evaluation
+  - id: promptfoo-docs
+    name: Promptfoo documentation
+    category: prompt_auditing
+    url: https://www.promptfoo.dev/docs/intro/
+    kind: docs
+    official: true
+    source_status: official-docs
+    license_hint: Official documentation; link and summarize.
+    safety_note: Keep evaluation examples public-safe and avoid testing against private prompts.
+    summary: Prompt evaluation and red-team testing documentation.
+    tags:
+      - prompt-auditing
+      - evaluation
+      - safety
+  - id: public-image-prompting-guide
+    name: Public image prompting guide examples
+    category: image_prompting
+    url: https://github.com/microsoft/generative-ai-for-beginners
+    kind: public_repository
+    official: false
+    source_status: community-repository
+    license_hint: Verify repository license and attribution requirements before adapting.
+    safety_note: Use only public-safe prompt structures and avoid private image references.
+    summary: Public educational generative AI material that may include image prompting patterns.
+    tags:
+      - image-prompting
+      - beginner
+      - education
+  - id: automatic1111-stable-diffusion-webui
+    name: Stable Diffusion Web UI public repository
+    category: local_image_generation
+    url: https://github.com/AUTOMATIC1111/stable-diffusion-webui
+    kind: public_repository
+    official: false
+    source_status: community-repository
+    license_hint: Verify repository license and model licenses separately.
+    safety_note: Treat as advanced local GPU workflow; do not recommend as a beginner default on weak laptops.
+    summary: Popular local diffusion web UI repository for advanced local image-generation workflows.
+    tags:
+      - image-generation
+      - diffusion
+      - heavy-gpu
+      - advanced
+  - id: comfyui-repo
+    name: ComfyUI public repository
+    category: local_image_generation
+    url: https://github.com/comfyanonymous/ComfyUI
+    kind: public_repository
+    official: false
+    source_status: community-repository
+    license_hint: Verify repository license and model licenses separately.
+    safety_note: Treat node-based local workflows as advanced; warn about VRAM and model licensing.
+    summary: Public node-based UI repository for advanced diffusion workflows.
+    tags:
+      - image-generation
+      - diffusion
+      - workflows
+      - advanced
+  - id: nous-hermes-agent-docs
+    name: Official Nous Research Hermes Agent documentation
+    category: hermes_agent
+    url: https://hermes-agent.nousresearch.com/docs/
+    kind: official_docs
+    official: true
+    source_status: official-docs
+    license_hint: Official documentation; link and summarize conservatively.
+    safety_note: Cover only Hermes Agent workflows, providers, skills, memory, automations, and public-repo safety.
+    summary: Official documentation for Nous Research Hermes Agent.
+    tags:
+      - hermes-agent
+      - agent_framework
+      - skills
+      - memory
+      - automations
+      - provider_configuration
+      - public_repo_safety
+  - id: nous-hermes-agent-repo
+    name: Official Nous Research Hermes Agent repository
+    category: hermes_agent
+    url: https://github.com/nousresearch/hermes-agent
+    kind: official_repository
+    official: true
+    source_status: official-repository
+    license_hint: Verify repository license before adapting examples.
+    safety_note: Do not add Hermes language model, quantization, model-card, benchmark, or serving coverage.
+    summary: Official repository for Nous Research Hermes Agent.
+    tags:
+      - hermes-agent
+      - agent_framework
+      - skills
+      - memory
+      - automations
+      - provider_configuration
+      - public_repo_safety
+  - id: asgeirtj-system-prompts-leaks
+    name: Unofficial leaked system prompt pattern source
+    category: unofficial_pattern_sources
+    url: https://github.com/asgeirtj/system_prompts_leaks
+    kind: public_repository
+    official: false
+    source_status: unofficial/leak-derived-pattern-source
+    license_hint: Verify source and legal status; do not republish verbatim prompt dumps.
+    safety_note: Use only for pattern extraction, structural comparison, public-safe summaries, short attributed excerpts when legally safe and necessary, and source links.
+    summary: Unofficial leak-derived repository allowed only for structural pattern extraction and public-safe summaries.
+    tags:
+      - unofficial
+      - leak-derived
+      - pattern-extraction-only

@@ -1,0 +1,21 @@
+version: 1
+
+blocked_domains:
+  - pastebin.com
+  - ghostbin.co
+  - rentry.co
+
+blocked_url_contains:
+  - /raw/private
+  - /secrets/
+  - /tokens/
+  - /credentials/
+
+blocked_terms:
+  - credential theft
+  - token dump
+  - private key leak
+  - malware builder
+  - exfiltration kit
+  - jailbreak collection
+  - bypass paywall

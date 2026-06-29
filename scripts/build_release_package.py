@@ -25,6 +25,7 @@ TOP_LEVEL_FILES = (
 )
 
 PACKAGE_DIRS = (
+    "data",
     "docs",
     "prompts",
     "scripts",
@@ -33,6 +34,7 @@ PACKAGE_DIRS = (
 
 PACKAGE_SUBDIRS = (
     Path(".github") / "workflows",
+    Path(".github") / "codex" / "prompts",
 )
 
 REQUIRED_PACKAGE_PATHS = tuple(Path(path) for path in TOP_LEVEL_FILES) + tuple(
