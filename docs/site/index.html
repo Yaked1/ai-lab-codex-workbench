@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Agent Coding Workbench Quick Start</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <strong>AI Agent Workbench</strong>
+        <span>Offline public guide</span>
+      </div>
+      <nav aria-label="Site pages">
+        <div class="nav-group">
+          <h2>HTML Guides</h2>
+          <a class="active" href="index.html">Quick start</a>
+          <a href="agent-workflow.html">Agent workflow</a>
+          <a href="prompt-engineering.html">Prompt engineering</a>
+          <a href="skills-and-tools.html">Skills and tools</a>
+        </div>
+        <div class="nav-group">
+          <h2>Markdown Playbooks</h2>
+          <a href="../guides/agentic-coding-playbook.md">Agentic coding</a>
+          <a href="../guides/prompt-engineering-playbook.md">Prompt engineering</a>
+          <a href="../guides/skills-and-prompt-guides.md">Skills and prompt guides</a>
+          <a href="../guides/windows-setup-commands.md">Windows setup</a>
+          <a href="../guides/prompt-audit-checklist.md">Prompt audit checklist</a>
+        </div>
+      </nav>
+    </aside>
+
+    <main id="main" class="content">
+      <header class="hero">
+        <p class="eyebrow">Branch, prompt, check, review</p>
+        <h1>AI agent coding without skipping the safety rails.</h1>
+        <p>
+          This offline quick-start site turns the repository's Markdown guidance into a compact path for
+          student-friendly AI coding work: define the task, make a branch, prompt an agent, run checks,
+          review the diff, and merge only when the result is public-safe.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="agent-workflow.html">Open workflow guide</a>
+          <a class="button" href="prompt-engineering.html">Open prompt patterns</a>
+          <a class="button" href="skills-and-tools.html">Open tool setup</a>
+        </div>
+      </header>
+
+      <section>
+        <h2>First Safe Loop</h2>
+        <p>
+          Run this loop before letting any agent make multi-file changes. It keeps the work reviewable and
+          gives you a clean rollback point if the agent misunderstands the task.
+        </p>
+        <div class="flow" aria-label="Safe agent workflow">
+          <div class="step">
+            <b>1</b>
+            <h3>Inspect</h3>
+            <p>Read `AGENTS.md`, check `git status`, and identify the exact files in scope.</p>
+          </div>
+          <div class="step">
+            <b>2</b>
+            <h3>Branch</h3>
+            <p>Create one focused branch for the task and avoid mixing unrelated edits.</p>
+          </div>
+          <div class="step">
+            <b>3</b>
+            <h3>Prompt</h3>
+            <p>Give the agent purpose, boundaries, verification steps, and a final report format.</p>
+          </div>
+          <div class="step">
+            <b>4</b>
+            <h3>Check</h3>
+            <p>Run local checks and fix only the smallest related failure.</p>
+          </div>
+          <div class="step">
+            <b>5</b>
+            <h3>Review</h3>
+            <p>Review the diff, open a PR, wait for CI, and record user-visible changes.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Local Commands</h2>
+        <p>Use PowerShell from the repository root. These commands are safe validation commands for this repo.</p>
+        <div class="grid">
+          <article class="card wide">
+            <span class="tag">Baseline</span>
+            <h3>Check the current tree</h3>
+            <p>Run this before prompting an agent so you know which changes are yours.</p>
+            <pre><code>git status
+git branch</code></pre>
+          </article>
+          <article class="card wide">
+            <span class="tag">Validation</span>
+            <h3>Run the repo checks</h3>
+            <p>These commands use Python standard library scripts already present in the repository.</p>
+            <pre><code>python scripts/repo_health_check.py
+python scripts/safe_autofix.py --check
+python -m unittest discover -s tests</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Guide Map</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Agent Workflow</h3>
+            <p>Lifecycle from task intake through branch, agent work, checks, PR, review, merge, and rollback.</p>
+            <a href="agent-workflow.html">Read the workflow page</a>
+          </article>
+          <article class="card">
+            <h3>Prompt Engineering</h3>
+            <p>Prompt patterns, examples, audit questions, and failure modes for coding agents.</p>
+            <a href="prompt-engineering.html">Read prompt patterns</a>
+          </article>
+          <article class="card">
+            <h3>Skills And Tools</h3>
+            <p>Codex and Claude-style goal workflows, local prompt-guide folders, MCP safety, and setup commands.</p>
+            <a href="skills-and-tools.html">Read setup notes</a>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Public Repository Safety</h2>
+        <div class="two-col">
+          <div class="callout">
+            <h3>Before you share</h3>
+            <ul class="checklist">
+              <li>No `.env`, keys, tokens, passwords, cookies, or private profiles are tracked.</li>
+              <li>No private links, private account IDs, personal emails, or private file paths are present.</li>
+              <li>External tool claims are conservative and marked for official-doc verification.</li>
+              <li>AI-generated diffs have been reviewed by a human.</li>
+            </ul>
+          </div>
+          <div class="callout warning">
+            <h3>For fast-changing tools</h3>
+            <p>
+              Verify product behavior, plan access, model availability, pricing, installation commands,
+              platform support, and MCP permissions in official documentation before publishing exact claims.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Which Tool Should A Beginner Try First?</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Need</th>
+              <th>Safe first move</th>
+              <th>Repo resource</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Learn the whole process</td>
+              <td>Use a docs-only task on a short branch.</td>
+              <td><a href="../workflows/agent-task-lifecycle.md">Agent task lifecycle</a></td>
+            </tr>
+            <tr>
+              <td>Improve prompts</td>
+              <td>Compare a weak prompt with a scoped prompt and audit the risk.</td>
+              <td><a href="../guides/prompt-engineering-playbook.md">Prompt playbook</a></td>
+            </tr>
+            <tr>
+              <td>Set up skills or prompt packs</td>
+              <td>Start with a local folder and read-only examples. Verify external commands first.</td>
+              <td><a href="../guides/skills-and-prompt-guides.md">Skills guide</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <footer class="footer">
+        <p>
+          Offline-safe page. No external scripts, no analytics, no CDNs, no remote fonts, and no private links.
+        </p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

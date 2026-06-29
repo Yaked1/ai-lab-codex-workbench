@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt Engineering For AI Coding Agents</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <strong>AI Agent Workbench</strong>
+        <span>Offline public guide</span>
+      </div>
+      <nav aria-label="Site pages">
+        <div class="nav-group">
+          <h2>HTML Guides</h2>
+          <a href="index.html">Quick start</a>
+          <a href="agent-workflow.html">Agent workflow</a>
+          <a class="active" href="prompt-engineering.html">Prompt engineering</a>
+          <a href="skills-and-tools.html">Skills and tools</a>
+        </div>
+        <div class="nav-group">
+          <h2>Prompt Docs</h2>
+          <a href="../guides/prompt-engineering-playbook.md">Prompt playbook</a>
+          <a href="../guides/prompt-audit-checklist.md">Audit checklist</a>
+          <a href="../../prompts/codex/docs-update.goal.md">Codex docs prompt</a>
+          <a href="../../prompts/cursor/agent-task.md">Cursor task prompt</a>
+        </div>
+      </nav>
+    </aside>
+
+    <main id="main" class="content">
+      <header class="hero">
+        <p class="eyebrow">Prompt design for reviewable work</p>
+        <h1>Give agents enough context to succeed and enough boundaries to stay safe.</h1>
+        <p>
+          A good coding-agent prompt is not just a request. It is a task contract with scope, constraints,
+          examples, verification, and a final report format.
+        </p>
+      </header>
+
+      <section>
+        <h2>Prompt Pattern</h2>
+        <div class="grid">
+          <article class="card">
+            <span class="tag">Context</span>
+            <h3>What is the repo?</h3>
+            <p>Name the project goal, audience, active branch, and files likely involved.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Objective</span>
+            <h3>What should change?</h3>
+            <p>Use one clear outcome. Avoid asking for broad cleanup and feature work together.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Boundaries</span>
+            <h3>What must not change?</h3>
+            <p>Exclude secrets, dependencies, workflow YAML, unrelated refactors, and private paths.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Evidence</span>
+            <h3>How will we verify?</h3>
+            <p>List commands, tests, screenshots, or manual review steps that prove the task is done.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Reporting</span>
+            <h3>What should be returned?</h3>
+            <p>Require changed files, commands run, checks run, risks, and claims needing verification.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Recovery</span>
+            <h3>What if it fails?</h3>
+            <p>Tell the agent how to handle unrelated failures, blockers, conflicts, and risky commands.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Reusable Prompt Skeleton</h2>
+        <pre><code>Objective:
+Describe the one outcome you want.
+
+Context:
+- Repository purpose:
+- Audience:
+- Current branch:
+- Relevant files:
+
+Scope:
+- Include:
+- Exclude:
+
+Safety:
+- Do not add dependencies unless explicitly approved.
+- Do not edit secrets, private files, or browser profiles.
+- Mark fast-changing tool behavior as "verify in official documentation."
+
+Verification:
+- Run:
+- Inspect:
+- Report anything not verified.
+
+Final response:
+- Summary
+- Files changed
+- Commands run
+- Checks run
+- Risks and manual verification items</code></pre>
+      </section>
+
+      <section>
+        <h2>Prompt Engineering Patterns</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Pattern</th>
+              <th>Use it when</th>
+              <th>Example instruction</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Inspect then edit</td>
+              <td>The agent may not know local conventions.</td>
+              <td>Read `AGENTS.md` and the target files before changing anything.</td>
+            </tr>
+            <tr>
+              <td>Smallest correct change</td>
+              <td>The task is focused and reviewability matters.</td>
+              <td>Keep the diff minimal and avoid unrelated refactors.</td>
+            </tr>
+            <tr>
+              <td>Verification-first final report</td>
+              <td>You need trustworthy completion status.</td>
+              <td>List exact commands run and distinguish failures from skipped checks.</td>
+            </tr>
+            <tr>
+              <td>Claim control</td>
+              <td>The docs mention external products.</td>
+              <td>Do not state pricing, plan access, or model availability without official-doc verification.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Prompt Audit Checklist</h2>
+        <div class="two-col">
+          <div class="callout">
+            <h3>Before sending</h3>
+            <ul class="checklist">
+              <li>The task has one primary objective.</li>
+              <li>Included and excluded files are clear.</li>
+              <li>The agent knows which checks to run.</li>
+              <li>The prompt forbids secrets and private paths.</li>
+              <li>The final report format is explicit.</li>
+            </ul>
+          </div>
+          <div class="callout warning">
+            <h3>Common prompt mistakes</h3>
+            <p>
+              Avoid prompts that ask for "improve everything", skip file inspection, omit checks, request exact
+              fast-changing product claims, or let the agent install dependencies without approval.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Weak Prompt To Strong Prompt</h2>
+        <div class="grid">
+          <article class="card wide">
+            <h3>Weak</h3>
+            <pre><code>Make the repo better and add AI docs.</code></pre>
+            <p>This is too broad. It does not say what to edit, what to avoid, or how to verify success.</p>
+          </article>
+          <article class="card wide">
+            <h3>Stronger</h3>
+            <pre><code>Read AGENTS.md, README.md, and docs/workflows/public-repo-safety.md.
+Add one beginner-friendly section about reviewing AI-generated PRs.
+Do not edit workflow YAML, dependencies, or private files.
+Run the repo health check and safe autofix check.
+Final report: summary, files changed, checks run, and remaining risks.</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Failure Modes</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Failure</th>
+              <th>Why it happens</th>
+              <th>Prompt fix</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Large unrelated diff</td>
+              <td>The task was too broad or the agent reformatted too much.</td>
+              <td>State exact files and forbid unrelated refactors.</td>
+            </tr>
+            <tr>
+              <td>Stale product claim</td>
+              <td>The agent guessed current pricing, model access, or setup.</td>
+              <td>Require "verify in official documentation" for fast-changing facts.</td>
+            </tr>
+            <tr>
+              <td>Unsafe command</td>
+              <td>The prompt did not constrain install, delete, or system settings commands.</td>
+              <td>List safe commands and require approval for risky commands.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <footer class="footer">
+        <p>Offline-safe page. For the long-form version, open the Markdown prompt playbook and audit checklist.</p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,47 +1,131 @@
 # MCP Servers
 
-Model Context Protocol, usually shortened to MCP, is an open protocol for connecting AI applications to external tools, data, prompts, and workflows. MCP can be useful, but it also expands what an agent can see and do.
+## What It Is
 
-## Best For
+Model Context Protocol, usually shortened to MCP, is a protocol for connecting AI applications to external tools, data, prompts, and workflows. MCP can make agents more useful, but it also expands what an agent can see and do.
 
-- Read-only documentation lookup.
-- Local filesystem context in a test repository.
-- Connecting agents to controlled tools.
-- Reusing prompts or workflows across tools.
-- Teaching permission boundaries.
+In this repository, MCP is an advanced topic. The recommended beginner path is read-only servers connected to public docs or a test repository.
 
-## Beginner Fit
+## Best Use Cases
 
-Low to medium. MCP is easier to understand after a learner has used at least one coding agent safely without extra tools.
+| Use case | Fit | Notes |
+| --- | --- | --- |
+| Read-only documentation lookup | Strong | Best first MCP use. |
+| Local test-repo filesystem context | Strong | Avoid private folders. |
+| Reusable prompts/tools | Medium | Keep permission boundaries clear. |
+| Controlled service integration | Medium | Use least privilege. |
+| Write-capable automation | Advanced | Requires review and audit logs. |
+| Private account integration | High risk | Avoid until permissions are understood. |
 
-## Windows Fit
+## Beginner Friendliness
 
-Good for lightweight local servers and simple tool integrations. Avoid sensitive services and write-capable servers in beginner setups.
+Low to medium. MCP is easier after a learner has used at least one coding agent safely without extra tools. The hard part is not the protocol name; it is understanding trust boundaries.
 
-## Surface
+## Setup Style
 
-Protocol plus local or cloud servers, usually connected to an AI tool that supports MCP.
+| Style | When to use it | Beginner note |
+| --- | --- | --- |
+| Local server | Safe for test repos and public docs. | Prefer read-only. |
+| Cloud server | Useful for hosted tools. | Verify data exposure. |
+| IDE/agent integration | Depends on the AI tool. | Read both server and client docs. |
+| Hybrid | Local repo plus external service. | Use least privilege. |
 
-## Main Risks
+## Windows Suitability
 
-- Exposing secrets or private files through a server.
-- Installing untrusted MCP servers.
-- Letting a tool run write operations without review.
-- Prompt or tool injection through connected data.
-- Confusing server trust with model trust.
+Good for lightweight local servers and simple tool integrations. Avoid sensitive services, write-capable servers, browser data, and private folders in beginner setups.
+
+## Hardware, API, Docker, and WSL Requirements
+
+| Requirement | Practical guidance |
+| --- | --- |
+| Hardware | Lightweight for simple local servers. |
+| API/account | Depends on the server; use least privilege. |
+| Docker | Some servers may offer Docker, but do not require it for this repo by default. |
+| WSL | Not required for the learning path here unless a selected server requires it. |
+| GPU | Not needed. |
 
 ## Best First Task
 
 Connect a read-only documentation or filesystem server to a test repository. Ask the agent to summarize files, not edit them.
 
-## Safe MCP Rules
+## Prompt/Task Template
 
-- Prefer read-only servers for learning.
-- Avoid private accounts, browser data, and credentials.
-- Review the server source and permissions.
-- Use a test repository first.
-- Disable the server when it is not needed.
+```text
+Target tool: MCP-capable coding agent
 
-## Official Docs
+Task:
+Use the configured read-only MCP server to summarize the public docs in this repository.
+
+Boundaries:
+- Use read-only tools only.
+- Do not access private folders.
+- Do not request secrets.
+- Do not run write operations.
+- Do not install new servers.
+
+Success criteria:
+- Summary names the files inspected.
+- No files are modified.
+- Any missing permissions are reported.
+
+Final report:
+- MCP server used
+- Tools called
+- Files or resources read
+- Data not accessed
+- Risks and next steps
+```
+
+## Safety Risks
+
+- Exposing secrets or private files through a server.
+- Installing untrusted servers.
+- Tool injection through connected data.
+- Write tools changing state without review.
+- Confusing server trust with model trust.
+- Logging sensitive content through the server or client.
+
+## Review Checklist
+
+- [ ] Is the server from a trusted source?
+- [ ] Is the server read-only for first use?
+- [ ] Are private folders excluded?
+- [ ] Are credentials scoped and stored outside Git?
+- [ ] Are tool calls visible or logged?
+- [ ] Is the server disabled when not needed?
+
+## When To Avoid It
+
+Avoid MCP for:
+
+- First AI-agent tasks.
+- Secret-heavy repositories.
+- Private services without least-privilege tokens.
+- Write-capable automation without audit logs.
+- Servers you cannot inspect or trust.
+
+## Alternatives
+
+| Alternative | Use when |
+| --- | --- |
+| Built-in repo context | You only need the current files. |
+| Official docs in browser | You only need to read public docs. |
+| Local scripts | You need deterministic repository checks. |
+| Read-only GitHub PR review | You need review without service integration. |
+
+## Verification Notes
+
+Verify MCP specification version, client support, server permissions, transport/security guidance, authentication behavior, and current best practices in official docs.
+
+## Claims To Verify In Official Docs
+
+- Current protocol overview and terminology.
+- Supported transports and authentication guidance.
+- Client support for your chosen AI tool.
+- Server permission and security recommendations.
+- Tool, prompt, and resource behavior.
+- Logging and data exposure risks.
+
+Official docs:
 
 - <https://modelcontextprotocol.io/docs/getting-started/intro>
