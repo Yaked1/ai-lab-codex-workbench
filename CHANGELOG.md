@@ -8,6 +8,10 @@ Fixed:
 
 Changed:
 
+- Reworked the README into a sharper public landing page with a direct start-here table, fast path, core workflow, validation commands, prompt-template guide, safety rules, repository map, and linked archive/source-audit references instead of an inline archive manifest.
+- Reworked the README into a public landing page with a clearer start-here path, repository map, validation commands, prompt-template usage, Codex/Claude Code navigation, and explicit public-safety non-goals.
+- Added a `docs/guides/README.md` navigation page and expanded the Codex prompt templates into more operational work orders with included/excluded scope, safety boundaries, verification steps, final report formats, and failure cases.
+- Added a source-inspired prompting curriculum and connected README, guide navigation, Prompting OS source maps, automation docs, release review guidance, and offline-site navigation to the public-safe source-to-release loop.
 - Reworked the README into a standalone prompting and agent-skill playbook focused on prompting concepts, Claude Code skills, Codex operating instructions, tool-use safety, prompt evaluation, prompt compression, and autoregressive/diffusion image-generation prompting.
 - De-personalized public-facing docs: the README, offline site, image-generation guides, publication policy, source policy, and prompt templates no longer reference a specific personal laptop (exact RAM, GPU model, or VRAM) and instead use generic hardware tiers (browser/API, entry GPU, advanced GPU, cloud). Audience framing moved from "student-friendly" to "beginner-friendly" for general public users.
 - Made `local-codex` and `local-claude` default their branch (`codex/curate-research-guides` and `claude/curate-research-guides`) so they run without a `-Branch` argument, fast-forward `main` with `--ff-only` when possible (warn and continue when the branch has diverged), and keep refusing dirty trees, PR merges, force-pushes, and branch deletes.
@@ -15,6 +19,8 @@ Changed:
 
 Added:
 
+- Added deterministic Prompting OS package builder coverage: `scripts/create_prompting_os_package.py` now builds a versioned ZIP plus public-safe JSON manifest with fixed archive timestamps, SHA-256 hashes, cache/private/archive exclusions, configurable source/output directories, and unit tests in `tests/test_prompting_os_package.py`.
+- Added Prompting OS package build documentation to `docs/prompting-os/README.md` and `docs/releases-and-packages.md`, and made repository health checks require the Prompting OS docs, packaging script, and package tests.
 - Added a comprehensive prompting curriculum: `docs/guides/prompting-ai-coding-agents.md` (the craft of prompting agents), `docs/guides/coding-agent-power-tips.md` (per-agent tricks for Claude Code, Codex, Cursor, Copilot, Aider, Windsurf, and MCP), and `docs/guides/prompting-references.md` (famous public prompting repositories and vendor docs to learn from, with leaked-prompt safe-use rules). The guides ship in every release bundle.
 - Added a self-contained "Prompting And Agent Mastery" section to the README, surfaced the new guides in the offline site (`docs/site/index.html`, `docs/site/prompt-engineering.html`), and added `tests/test_prompting_docs.py` covering guide existence, README linkage, agent coverage, secret-free content, and release-package inclusion.
 - Corrected the `/goal` references in the README, `docs/tools/claude-code.md`, and `docs/automation/local-autopilot.md`: `/goal` is not a built-in Claude Code feature, so the guidance now describes defining a reusable custom slash command in `.claude/commands/`.
