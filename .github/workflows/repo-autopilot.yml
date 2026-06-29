@@ -1,0 +1,176 @@
+name: Repository Autopilot
+
+on:
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: "Guide area for the generated local curator prompt"
+        required: true
+        default: "hermes-agent"
+        type: choice
+        options:
+          - skills
+          - prompt-guides
+          - image-guides
+          - model-guides
+          - hermes-agent
+          - all
+      dry_run:
+        description: "Tell the generated local prompt to propose changes first"
+        required: true
+        default: true
+        type: boolean
+      max_sources:
+        description: "Maximum public sources to fetch and include"
+        required: true
+        default: 5
+        type: number
+      create_pr:
+        description: "Open or update the generated research pull request"
+        required: true
+        default: true
+        type: boolean
+  schedule:
+    - cron: "41 7 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: repository-autopilot
+  cancel-in-progress: false
+
+jobs:
+  generated-research:
+    name: Refresh generated research files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Prepare generated research branch
+        env:
+          BASE_BRANCH: ${{ github.event.repository.default_branch }}
+          AUTOPILOT_BRANCH: autopilot/generated-research-updates
+        run: |
+          set -euo pipefail
+          git fetch origin "$BASE_BRANCH"
+          if git ls-remote --exit-code --heads origin "$AUTOPILOT_BRANCH" >/dev/null 2>&1; then
+            git fetch origin "$AUTOPILOT_BRANCH"
+            git switch -C "$AUTOPILOT_BRANCH" "origin/$AUTOPILOT_BRANCH"
+            git merge --no-edit "origin/$BASE_BRANCH"
+          else
+            git switch -C "$AUTOPILOT_BRANCH" "origin/$BASE_BRANCH"
+          fi
+
+      - name: Run generated research autopilot
+        run: |
+          set -euo pipefail
+
+          scope="${{ inputs.scope }}"
+          dry_run="${{ inputs.dry_run }}"
+          max_sources="${{ inputs.max_sources }}"
+
+          if [ -z "$scope" ]; then
+            scope="hermes-agent"
+          fi
+          if [ -z "$dry_run" ]; then
+            dry_run="true"
+          fi
+          if [ -z "$max_sources" ]; then
+            max_sources="5"
+          fi
+
+          today="$(date -u +%F)"
+          python scripts/discover_ai_sources.py --fetch --date "$today" --max-sources "$max_sources"
+          python scripts/score_research_candidates.py
+          python scripts/generate_research_report.py --date "$today"
+          python scripts/generate_curator_prompt.py \
+            --date "$today" \
+            --scope "$scope" \
+            --dry-run "$dry_run" \
+            --max-sources "$max_sources"
+          python scripts/safe_autofix.py --write
+
+      - name: Validate generated research files
+        run: |
+          python scripts/repo_health_check.py --ci
+          python scripts/safe_autofix.py --check
+          python -m unittest discover -s tests
+
+      - name: Commit allowed generated files only
+        env:
+          AUTOPILOT_BRANCH: autopilot/generated-research-updates
+        run: |
+          set -euo pipefail
+          mkdir -p .tmp
+          git add data/research/candidates.json docs/research/inbox/*.md docs/research/curated/curator-prompt-*.md
+          python scripts/check_safe_generated_diff.py --staged
+          if git diff --cached --quiet; then
+            echo "No generated research changes to commit."
+            echo "false" > .tmp/autopilot-has-changes.txt
+            exit 0
+          fi
+          git commit -m "Update generated research autopilot files"
+          git push origin "HEAD:$AUTOPILOT_BRANCH"
+          echo "true" > .tmp/autopilot-has-changes.txt
+
+      - name: Open or update pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_BRANCH: ${{ github.event.repository.default_branch }}
+          AUTOPILOT_BRANCH: autopilot/generated-research-updates
+          PR_TITLE: Autopilot generated research updates
+        run: |
+          set -euo pipefail
+
+          if [ ! -f .tmp/autopilot-has-changes.txt ] || [ "$(cat .tmp/autopilot-has-changes.txt)" != "true" ]; then
+            echo "No pushed generated changes; skipping pull request creation."
+            exit 0
+          fi
+
+          create_pr="${{ inputs.create_pr }}"
+          if [ -z "$create_pr" ]; then
+            create_pr="true"
+          fi
+          if [ "$create_pr" != "true" ]; then
+            echo "create_pr=false, leaving the generated branch without a pull request."
+            exit 0
+          fi
+
+          mkdir -p .tmp
+          cat > .tmp/repo-autopilot-pr.md <<'BODY'
+          This pull request contains generated research autopilot updates only.
+
+          Allowed files:
+
+          - `data/research/candidates.json`
+          - `docs/research/inbox/*.md`
+          - `docs/research/curated/curator-prompt-*.md`
+
+          It does not write curated guide content, run a model provider, publish a release, or commit directly to `main`.
+          BODY
+
+          existing_pr="$(gh pr list --state open --head "$AUTOPILOT_BRANCH" --json number --jq '.[0].number')"
+          if [ -n "$existing_pr" ]; then
+            gh pr edit "$existing_pr" --title "$PR_TITLE" --body-file .tmp/repo-autopilot-pr.md
+          else
+            gh pr create \
+              --title "$PR_TITLE" \
+              --body-file .tmp/repo-autopilot-pr.md \
+              --base "$BASE_BRANCH" \
+              --head "$AUTOPILOT_BRANCH"
+          fi

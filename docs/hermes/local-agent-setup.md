@@ -5,6 +5,9 @@ Hermes Agent installation documentation as of 2026-06-29. Verify the official
 installation guide before teaching or publishing them:
 <https://hermes-agent.nousresearch.com/docs/getting-started/installation>
 
+License/source status: official documentation plus official MIT-licensed
+repository. Link to the source instead of copying installer scripts.
+
 ## Recommended First Choice
 
 For beginners on macOS or Windows, the official docs recommend the Hermes
@@ -31,6 +34,16 @@ After installing, official docs point users to setup:
 
 ```powershell
 hermes setup --portal
+```
+
+For users who do not want the portal path, official docs also expose the general
+setup and model/tool configuration commands:
+
+```powershell
+hermes setup
+hermes model
+hermes tools
+hermes gateway setup
 ```
 
 If the official docs change, replace these commands rather than preserving stale

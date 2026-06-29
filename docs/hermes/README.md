@@ -12,10 +12,17 @@ Official source anchors:
 
 - Hermes Agent docs: <https://hermes-agent.nousresearch.com/docs/>
 - Hermes Agent repository: <https://github.com/NousResearch/hermes-agent>
+- Repository license: MIT, as listed by the official repository and docs.
 - Installation: <https://hermes-agent.nousresearch.com/docs/getting-started/installation>
 - Configuration: <https://hermes-agent.nousresearch.com/docs/user-guide/configuration>
+- Skills: <https://hermes-agent.nousresearch.com/docs/user-guide/features/skills>
 - Memory: <https://hermes-agent.nousresearch.com/docs/user-guide/features/memory>
 - Cron: <https://hermes-agent.nousresearch.com/docs/user-guide/features/cron>
+
+Source status: official documentation and official repository. Link to these
+sources and summarize conservatively rather than copying long examples. Verify
+current commands, platform support, provider behavior, and pricing in the
+official docs before teaching setup.
 
 ## Guide Map
 

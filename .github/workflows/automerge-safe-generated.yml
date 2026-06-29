@@ -1,0 +1,95 @@
+name: Safe Generated File Automerge
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: "Pull request number to check and squash-merge"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+  checks: read
+
+jobs:
+  automerge:
+    name: Check generated-file policy and enable squash merge
+    if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'autopilot/') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Resolve pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_PR_NUMBER: ${{ github.event.pull_request.number }}
+          INPUT_PR_NUMBER: ${{ inputs.pr_number }}
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
+        run: |
+          set -euo pipefail
+
+          pr_number="$EVENT_PR_NUMBER"
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            pr_number="$INPUT_PR_NUMBER"
+          fi
+
+          head_ref="$(gh pr view "$pr_number" --json headRefName --jq '.headRefName')"
+          base_ref="$(gh pr view "$pr_number" --json baseRefName --jq '.baseRefName')"
+          head_owner="$(gh pr view "$pr_number" --json headRepositoryOwner --jq '.headRepositoryOwner.login')"
+          is_draft="$(gh pr view "$pr_number" --json isDraft --jq '.isDraft')"
+
+          if [[ "$head_ref" != autopilot/* ]]; then
+            echo "Refusing PR #$pr_number because branch '$head_ref' does not start with autopilot/."
+            exit 1
+          fi
+          if [ "$head_owner" != "$REPOSITORY_OWNER" ]; then
+            echo "Refusing PR #$pr_number because it is not from this repository owner."
+            exit 1
+          fi
+          if [ "$is_draft" = "true" ]; then
+            echo "Refusing PR #$pr_number because draft pull requests are not auto-merged."
+            exit 1
+          fi
+
+          git fetch origin "$base_ref" "$head_ref"
+          gh pr checkout "$pr_number"
+
+          {
+            echo "PR_NUMBER=$pr_number"
+            echo "BASE_REF=$base_ref"
+          } >> "$GITHUB_ENV"
+
+      - name: Check generated-file allowlist
+        run: python scripts/check_safe_generated_diff.py --base "origin/$BASE_REF" --head HEAD
+
+      - name: Run required local checks
+        run: |
+          python scripts/repo_health_check.py --ci
+          python scripts/safe_autofix.py --check
+          python -m unittest discover -s tests
+
+      - name: Enable squash merge without admin bypass
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr merge "$PR_NUMBER" \
+            --squash \
+            --auto \
+            --subject "Autopilot generated research updates"

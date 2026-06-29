@@ -2,6 +2,7 @@ import contextlib
 import importlib.util
 import io
 import json
+import re
 import sys
 import tempfile
 import unittest
@@ -26,6 +27,8 @@ score_research_candidates = load_script("score_research_candidates")
 generate_research_report = load_script("generate_research_report")
 generate_curator_prompt = load_script("generate_curator_prompt")
 safe_autofix = load_script("safe_autofix")
+check_safe_generated_diff = load_script("check_safe_generated_diff")
+repo_autopilot_status = load_script("repo_autopilot_status")
 
 
 class ResearchDiscoveryTests(unittest.TestCase):
@@ -256,6 +259,97 @@ class ResearchDiscoveryTests(unittest.TestCase):
         self.assertNotIn("openai-" + "api-key", workflow_text)
         self.assertNotIn("OPENAI" + "_API_KEY", workflow_text)
         self.assertNotIn("Run Codex", workflow_text)
+        self.assertIsNone(re.search(r"(?im)^\s*run:\s*codex(?:\s|$)", workflow_text))
+        self.assertIsNone(re.search(r"(?im)^\s*codex(?:\s|$)", workflow_text))
+
+    def test_safe_generated_diff_allows_only_generated_files(self):
+        report = check_safe_generated_diff.classify_changed_files(
+            [
+                "data/research/candidates.json",
+                "docs/research/inbox/2026-06-29.md",
+                "docs/research/curated/curator-prompt-2026-06-29.md",
+            ]
+        )
+        self.assertTrue(report.is_safe)
+        self.assertEqual(report.refused, [])
+
+    def test_safe_generated_diff_rejects_forbidden_files(self):
+        report = check_safe_generated_diff.classify_changed_files(
+            [
+                "docs/research/inbox/2026-06-29.md",
+                "README.md",
+                ".github/workflows/repo-autopilot.yml",
+                "scripts/repo_health_check.py",
+                "docs/hermes/hermes-agent.md",
+            ]
+        )
+        self.assertFalse(report.is_safe)
+        self.assertIn("README.md", report.refused)
+        self.assertIn(".github/workflows/repo-autopilot.yml", report.refused)
+        self.assertIn("scripts/repo_health_check.py", report.refused)
+        self.assertIn("docs/hermes/hermes-agent.md", report.refused)
+
+    def test_repo_autopilot_status_candidate_summary(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            candidates_path = root / "data" / "research" / "candidates.json"
+            candidates_path.parent.mkdir(parents=True, exist_ok=True)
+            candidates_path.write_text(
+                json.dumps(
+                    {
+                        "generated_at": "2026-06-29T00:00:00Z",
+                        "candidates": [
+                            {
+                                "id": "safe",
+                                "category": "hermes_agent",
+                                "score": 91,
+                                "blocked": False,
+                            },
+                            {
+                                "id": "blocked",
+                                "category": "prompt_engineering",
+                                "score": 0,
+                                "blocked": True,
+                            },
+                        ],
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            (root / "docs" / "research" / "inbox").mkdir(parents=True)
+            (root / "docs" / "research" / "inbox" / "2026-06-29.md").write_text("report\n", encoding="utf-8")
+            (root / "docs" / "research" / "curated").mkdir(parents=True)
+            (root / "docs" / "research" / "curated" / "curator-prompt-2026-06-29.md").write_text(
+                "prompt\n",
+                encoding="utf-8",
+            )
+
+            status = repo_autopilot_status.build_status(root)
+            self.assertEqual(status["candidate_count"], 2)
+            self.assertEqual(status["blocked_count"], 1)
+            self.assertEqual(status["generated_at"], "2026-06-29T00:00:00Z")
+            self.assertEqual(status["top_candidates"][0]["id"], "safe")
+            rendered = repo_autopilot_status.render_status(status)
+            self.assertIn("candidate_count: 2", rendered)
+            self.assertIn("docs/research/inbox/2026-06-29.md", rendered)
+
+    def test_autopilot_docs_and_workflows_exist(self):
+        required = [
+            "docs/automation/repository-autopilot.md",
+            "docs/automation/local-autopilot.md",
+            "docs/automation/safe-automerge-policy.md",
+            "docs/automation/release-draft-policy.md",
+            ".github/workflows/repo-autopilot.yml",
+            ".github/workflows/automerge-safe-generated.yml",
+            ".github/workflows/monthly-release-draft.yml",
+            "scripts/local_autopilot.ps1",
+            "scripts/repo_autopilot_status.py",
+            "scripts/check_safe_generated_diff.py",
+        ]
+        for relative in required:
+            with self.subTest(relative=relative):
+                self.assertTrue((ROOT / relative).is_file())
 
 
 if __name__ == "__main__":

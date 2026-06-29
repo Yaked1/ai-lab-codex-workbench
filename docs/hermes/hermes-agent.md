@@ -3,6 +3,13 @@
 Source status: official-doc anchored. Verify current behavior in the official
 Hermes Agent docs before publishing exact setup details.
 
+Source links:
+
+- Official docs: <https://hermes-agent.nousresearch.com/docs/>
+- Official repository: <https://github.com/NousResearch/hermes-agent>
+- License/source status: official repository, MIT license. Verify the current
+  license before adapting examples.
+
 ## What Hermes Agent Is
 
 Hermes Agent is an autonomous agent workflow tool from Nous Research. It can run
@@ -13,6 +20,10 @@ Hermes Agent is different from a normal chatbot because it is designed around
 ongoing agent work: tool use, sessions, provider configuration, memory, skills,
 and automations. A chatbot is usually a single conversation surface; Hermes
 Agent can be configured as a longer-running agent workspace.
+
+This guide treats Hermes Agent as an agent/workflow tool only. It does not cover
+Hermes language models, model cards, benchmarks, quantization, GGUF, Ollama,
+vLLM, SGLang, or local model serving.
 
 ## What It Is Used For
 

@@ -138,6 +138,11 @@ Prompt templates in [prompts/](prompts/) should include:
 
 - Do not run expensive LLM workflows automatically.
 - The daily research scout must stay cheap, public-safe, and free of Codex or OpenAI API key usage.
+- Repository Autopilot may only automate generated research files: `data/research/candidates.json`, `docs/research/inbox/*.md`, and `docs/research/curated/curator-prompt-*.md`.
+- Safe automerge must reject content, code, workflow, policy, script, test, Hermes Agent, image-generation, skills, README, AGENTS, or changelog changes.
+- Local Codex curation remains manual through ChatGPT sign-in, local branch work, pull request checks, and human review.
+- Never add API-key LLM execution to GitHub Actions.
+- Never auto-publish releases.
 - Scheduled workflows must not add `OPENAI_API_KEY` requirements.
 - GitHub Actions must not run Codex directly through the OpenAI Codex Action or any paid LLM provider.
 - The curator prompt prep workflow must stay cheap, run only when manually triggered, and prepare a local Codex prompt instead of writing AI-generated guide content.
