@@ -135,4 +135,4 @@ visibility, but it must receive a zero score and must not become guide content.
 - [ ] Avoid publishing leaked prompts or private content.
 - [ ] Include failure modes and verification steps in generated guides.
 - [ ] Keep Hermes Agent coverage limited to Nous Research Hermes Agent workflows.
-- [ ] Keep image-generation guidance realistic for weak laptops.
+- [ ] Keep image-generation guidance realistic for entry-level hardware.

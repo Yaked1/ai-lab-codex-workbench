@@ -83,8 +83,8 @@ official setup flow for the provider they intend to use.
 | Setup asks for provider credentials | A provider has not been configured. | Use environment variables or official secret setup; do not paste keys into docs. |
 | Gateway/tool features fail | Missing dependencies or incomplete setup. | Run official diagnostics or setup commands before adding automations. |
 
-## Weak Laptop Realism
+## Entry-Level Hardware Realism
 
-Hermes Agent can still be useful on weak laptops for documentation and public
-research workflows, but avoid using the laptop as a heavy local model or GPU
-serving host. Keep heavy compute in browser/API/cloud workflows.
+Hermes Agent can still be useful on entry-level hardware for documentation and
+public research workflows, but avoid using such a machine as a heavy local model
+or GPU serving host. Keep heavy compute in browser/API/cloud workflows.

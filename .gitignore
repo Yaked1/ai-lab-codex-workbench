@@ -22,3 +22,7 @@ Thumbs.db
 *.tar.gz
 logs/
 outputs/
+.tmp/
+.idea/
+.vscode/
+.omc/

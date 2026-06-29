@@ -25,7 +25,7 @@ Most visitors should start with [docs/site/index.html](docs/site/index.html), [d
 
 This repository is a public guide and lightweight workbench for learning practical AI-assisted software work. It began as a Codex-focused GitHub automation lab, but the larger purpose is broader: show a beginner how to turn a vague request into a safe branch, a focused agent prompt, local checks, a pull request, review notes, a merge decision, and a changelog entry.
 
-The repo is deliberately Windows and modest-laptop friendly. It favors Markdown, PowerShell, Git, standard-library Python, GitHub Actions, browser/IDE/CLI agents, and cloud-hosted work where that reduces local hardware pressure. It does not assume Docker, WSL, a large GPU, a local model server, or a high-end workstation.
+The repo is intentionally low-setup and cross-platform in spirit. It favors Markdown, PowerShell and POSIX-friendly commands, Git, standard-library Python, GitHub Actions, and browser, IDE, CLI, or cloud agents. It does not assume Docker, WSL, a local model server, or any particular GPU, so it runs on a wide range of machines without special hardware.
 
 Use it as:
 
@@ -251,7 +251,7 @@ Source policy lives in [docs/research/source-policy.md](docs/research/source-pol
 
 Hermes Agent coverage is limited to Nous Research Hermes Agent as an agent/workflow tool: providers, skills, memory, automations, prompting, troubleshooting, and public-repo safety. It does not add Hermes language model serving, model cards, benchmarks, quantization, GGUF, Ollama, vLLM, or SGLang guidance.
 
-Image-generation guides are split into browser/API workflows, lightweight local experiments, advanced local GPU workflows, and cloud workflows. For weak Windows laptops with 8 GB RAM, an MX-class GPU, and about 2 GB VRAM, the beginner default is browser/API tools or lightweight local experiments, not heavy diffusion or local training.
+Image-generation guides are split into browser/API workflows, lightweight local experiments, advanced local GPU workflows, and cloud workflows. On entry-level hardware without a capable GPU, the beginner default is browser/API tools or lightweight local experiments, not heavy diffusion or local training. The [hardware requirements](docs/image-generation/hardware-requirements.md) page covers the browser/API, CPU-only, entry GPU, advanced GPU, and cloud tiers.
 
 Run the cheap scout manually:
 
@@ -267,10 +267,13 @@ gh workflow run curator-prompt-prep.yml -f scope=hermes-agent -f dry_run=true -f
 gh workflow run curator-prompt-prep.yml -f scope=image-guides -f dry_run=true -f max_sources=5
 ```
 
-No GitHub Actions workflow requires an OpenAI API key. AI curation is local and
-manual: the maintainer signs into Codex CLI or the Codex app with ChatGPT,
-pastes the generated curator prompt, reviews the edits, runs checks, pushes a
-branch, and opens a PR.
+No GitHub Actions workflow requires an OpenAI API key or any model-provider key.
+AI curation is local and manual with the agent of your choice. The maintainer
+signs into a local agent, pastes the generated curator prompt, reviews the
+edits, runs checks, pushes a branch, and opens a PR.
+
+You can use either agent. Both follow the same branch, prompt, check, review,
+and merge loop.
 
 Local Codex curation:
 
@@ -281,11 +284,37 @@ git switch -c codex/curate-research-guides
 codex
 ```
 
-Then paste the generated curator prompt from:
+Then paste the generated curator prompt from
+`docs/research/curated/curator-prompt-YYYY-MM-DD.md` into Codex.
+
+Local Claude Code curation:
+
+```powershell
+git switch main
+git pull --ff-only origin main
+git switch -c claude/curate-research-guides
+claude
+```
+
+Then set the task from the same generated prompt. With Claude Code you can paste
+the prompt directly, or save a reusable custom slash command. Claude Code loads
+Markdown files from `.claude/commands/` as `/command`, so a `.claude/commands/goal.md`
+file lets you run `/goal` to apply the same instructions every session. For
+example, `.claude/commands/goal.md` could contain:
 
 ```text
-docs/research/curated/curator-prompt-YYYY-MM-DD.md
+Follow docs/research/curated/curator-prompt-YYYY-MM-DD.md exactly. Only edit the listed guide files, run the three local checks, and report files changed plus checks run.
 ```
+
+`/goal` here is a custom command you define, not a built-in. Custom slash
+commands are a Claude Code feature; verify the current commands directory and
+syntax in the [official docs](https://docs.anthropic.com/en/docs/claude-code/overview).
+
+The local agent modes in `scripts/local_autopilot.ps1` automate the branch
+setup and prompt copy for both agents: use `-Mode local-codex` for Codex and
+`-Mode local-claude` for Claude Code. See
+[docs/tools/claude-code.md](docs/tools/claude-code.md) for a fuller Claude Code
+walkthrough.
 
 After Codex edits locally:
 
@@ -316,8 +345,12 @@ Local PowerShell commands:
 .\scripts\local_autopilot.ps1 -Mode status
 .\scripts\local_autopilot.ps1 -Mode scout
 .\scripts\local_autopilot.ps1 -Mode prompt -Scope hermes-agent -DryRun $true -MaxSources 5
+.\scripts\local_autopilot.ps1 -Mode local-codex
+.\scripts\local_autopilot.ps1 -Mode local-claude
 .\scripts\local_autopilot.ps1 -Mode full-safe -Scope hermes-agent -DryRun $true -MaxSources 5
 ```
+
+`local-codex` defaults to the `codex/curate-research-guides` branch and `local-claude` defaults to `claude/curate-research-guides`. Pass `-Branch <name>` to override either one. Both modes refuse to run on a dirty tree unless you pass `-AllowDirty`, and neither commits, merges, force-pushes, or deletes branches.
 
 GitHub workflow commands:
 
@@ -376,6 +409,48 @@ This example shows the intended shape of a small AI-assisted documentation task.
 
 The same loop scales to larger tasks by splitting them into separate branches and PRs.
 
+## Prompting And Agent Mastery
+
+Getting good work out of an AI coding agent is a skill, and this repository
+teaches it directly. The core idea: **a prompt is a work order, not a wish.** A
+strong agent prompt names the outcome, the boundaries, the evidence of
+completion, and what to do when something goes wrong.
+
+Principles that transfer across every tool and model:
+
+- **State the outcome, not the topic.** "Make `load_config` raise a clear error
+  with the file path, and add a test" beats "improve error handling."
+- **Give context before instructions.** Tell the agent what to read and what the
+  project is before telling it what to change.
+- **Decompose and plan.** Split large tasks into inspect, plan, implement,
+  verify. Ask for a plan before edits on anything non-trivial.
+- **Make it verify.** Name the checks and require exact output. Treat "done"
+  with no command output as unverified.
+- **Fence the scope.** Excluded paths (secrets, dependencies, workflow files,
+  unrelated refactors) matter as much as included ones.
+- **Budget the context window.** Load the spec and the relevant files; start a
+  fresh session per task instead of dragging a polluted history forward.
+- **Prompt once with memory files.** Put durable conventions in `AGENTS.md`
+  (Codex) or `CLAUDE.md` (Claude Code) so you stop repeating them.
+
+A few high-leverage agent tricks:
+
+| Tool | Trick |
+| --- | --- |
+| Claude Code | Save reusable workflows as custom slash commands in `.claude/commands/`; use plan mode and subagents to keep context clean. |
+| Codex | Encode "write tests, run checks, report results" in `AGENTS.md`; keep approval modes tight by default. |
+| Any agent | Connect external tools through MCP read-only first, in a test repo, before granting write or private-data access. |
+
+Go deeper:
+
+- [Prompting AI coding agents](docs/guides/prompting-ai-coding-agents.md) — the full craft guide.
+- [Coding agent power tips](docs/guides/coding-agent-power-tips.md) — per-agent tricks with official-doc links.
+- [Prompting references](docs/guides/prompting-references.md) — famous public prompting repositories and docs to learn from.
+
+These guides ship inside every [release bundle](#release-and-package), so the
+prompting curriculum travels with the offline package. Feature names are kept as
+pointers to official docs because tool details change quickly.
+
 ## Offline Quick-Start Site And Playbooks
 
 For a browser-friendly overview that works offline, open [docs/site/index.html](docs/site/index.html). The HTML guide site links together the agent lifecycle, prompt patterns, skills and prompt-guide setup, MCP safety notes, Windows PowerShell examples, and public-repository checklists without external scripts, CDNs, analytics, or remote fonts.
@@ -384,6 +459,9 @@ Longer Markdown playbooks:
 
 | Guide | Use it for |
 | --- | --- |
+| [Prompting AI coding agents](docs/guides/prompting-ai-coding-agents.md) | The craft of prompting agents: anatomy, transferable techniques, patterns, and anti-patterns. |
+| [Coding agent power tips](docs/guides/coding-agent-power-tips.md) | Per-agent tricks for Claude Code, Codex, Cursor, Copilot, Aider, Windsurf, and MCP. |
+| [Prompting references](docs/guides/prompting-references.md) | Famous public prompting repositories and docs to learn from, with safe-use rules. |
 | [Prompt engineering playbook](docs/guides/prompt-engineering-playbook.md) | Designing scoped prompts with examples, checks, mistakes, and failure modes. |
 | [Agentic coding playbook](docs/guides/agentic-coding-playbook.md) | Running safe branch, agent, check, PR, review, merge, and rollback workflows. |
 | [Skills and prompt guides](docs/guides/skills-and-prompt-guides.md) | Creating local SKILL.md-style guides, prompt packs, and MCP-aware safety boundaries. |
@@ -601,12 +679,12 @@ The repo includes conservative automation:
 
 Workflow YAML is intentionally small. Do not modify it unless the task specifically requires automation changes.
 
-## Windows and Laptop Friendly Defaults
+## Low-Setup, Cross-Platform Defaults
 
-This repo is designed to be usable on a limited Windows laptop:
+This repo is designed to run with minimal setup on a wide range of machines:
 
-- Prefer PowerShell examples.
-- Prefer Python standard library scripts.
+- Prefer PowerShell examples, with POSIX-friendly equivalents where it matters.
+- Prefer Python standard library scripts so there is little to install.
 - Prefer browser, cloud, CLI, and IDE workflows over local model hosting.
 - Avoid Docker, WSL, GPU-heavy generation, and large dependency trees unless a maintainer explicitly asks.
 - Keep agents inside the repo so private user folders are not exposed.

@@ -1,5 +1,5 @@
 param(
-    [ValidateSet("status", "scout", "prompt", "local-codex", "full-safe")]
+    [ValidateSet("status", "scout", "prompt", "local-codex", "local-claude", "full-safe")]
     [string]$Mode = "status",
 
     [ValidateSet("skills", "prompt-guides", "image-guides", "model-guides", "hermes-agent", "all")]
@@ -16,6 +16,10 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+# Capture whether the caller passed -Branch before the switch runs so each
+# local agent mode can fall back to its own default branch when it was omitted.
+$BranchWasProvided = $PSBoundParameters.ContainsKey("Branch")
 
 function Test-CommandAvailable {
     param([string]$Name)
@@ -102,8 +106,14 @@ function Watch-LatestWorkflowRun {
     param([string]$Workflow)
     Assert-CommandAvailable "gh"
     Start-Sleep -Seconds 5
-    $runId = (& gh run list --workflow $Workflow --limit 1 --json databaseId --jq ".[0].databaseId").Trim()
-    if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($runId)) {
+    $runIdRaw = & gh run list --workflow $Workflow --limit 1 --json databaseId --jq ".[0].databaseId"
+    if ($LASTEXITCODE -ne 0) {
+        throw "Could not query workflow runs for $Workflow."
+    }
+    # gh can return $null (no runs) or an array; coerce to a string before trimming
+    # so this never calls .Trim() on a null-valued expression.
+    $runId = if ($null -ne $runIdRaw) { ([string]$runIdRaw).Trim() } else { "" }
+    if ([string]::IsNullOrWhiteSpace($runId)) {
         throw "Could not find a recent run for $Workflow."
     }
     Invoke-Native gh @("run", "watch", $runId, "--exit-status")
@@ -120,17 +130,72 @@ function Copy-LatestCuratorPrompt {
     return $prompt
 }
 
-function Use-CodexBranch {
-    param([string]$BranchName)
-    $existing = (& git branch --list $BranchName).Trim()
+function Test-BranchExists {
+    param([string]$Branch)
+    $matched = & git branch --list $Branch
     if ($LASTEXITCODE -ne 0) {
         throw "git branch lookup failed."
     }
-    if ($existing) {
-        Invoke-Native git @("switch", $BranchName)
-    } else {
-        Invoke-Native git @("switch", "-c", $BranchName)
+    # git branch --list returns $null when nothing matches; under Set-StrictMode
+    # calling .Trim() on that null is the bug this guard removes. Treat $null,
+    # an empty string, and a multi-line array uniformly.
+    foreach ($line in @($matched)) {
+        if (-not [string]::IsNullOrWhiteSpace($line)) {
+            return $true
+        }
     }
+    return $false
+}
+
+function Use-AgentBranch {
+    param([string]$Branch)
+    if (Test-BranchExists $Branch) {
+        Write-Host "Switching to existing branch $Branch."
+        Invoke-Native git @("switch", $Branch)
+    } else {
+        Write-Host "Creating branch $Branch from main."
+        Invoke-Native git @("switch", "-c", $Branch)
+    }
+}
+
+function Merge-MainFastForward {
+    # Bring in the latest main without creating a merge commit. A fast-forward
+    # only succeeds when the branch has not diverged from main. After a previous
+    # squash merge the curation branch will have diverged, so a failure here is
+    # expected and non-fatal: warn and continue instead of aborting the run.
+    & git merge --ff-only main
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Could not fast-forward main into this branch (it has diverged from main). Continuing without merging; rebase or recreate the branch if you need the latest main."
+    } else {
+        Write-Host "Merged the latest main into this branch with --ff-only."
+    }
+}
+
+function Invoke-LocalAgent {
+    param(
+        [string]$Command,
+        [string]$Branch
+    )
+    Assert-CleanTree
+    Assert-CommandAvailable $Command
+    Switch-ToMainAndPull
+    Use-AgentBranch $Branch
+    Merge-MainFastForward
+    Copy-LatestCuratorPrompt | Out-Null
+    Write-Host "Starting '$Command' on branch $Branch."
+    Write-Host "This script makes no commits, never merges pull requests, never force-pushes, and never deletes branches."
+    & $Command
+    if ($LASTEXITCODE -ne 0) {
+        throw "$Command exited with code $LASTEXITCODE."
+    }
+}
+
+function Resolve-AgentBranch {
+    param([string]$DefaultBranch)
+    if ($BranchWasProvided) {
+        return $Branch
+    }
+    return $DefaultBranch
 }
 
 function Invoke-Scout {
@@ -162,20 +227,7 @@ function Invoke-Prompt {
     Invoke-Native git @("pull", "--ff-only", "origin", "main")
     $prompt = Copy-LatestCuratorPrompt
     Write-Host "Prompt path: $($prompt.FullName)"
-    Write-Host "Next step: run local-codex mode to create a local branch and start Codex manually."
-}
-
-function Invoke-LocalCodex {
-    Assert-CleanTree
-    Assert-CommandAvailable "codex"
-    Switch-ToMainAndPull
-    Use-CodexBranch $Branch
-    Copy-LatestCuratorPrompt | Out-Null
-    Write-Host "Starting Codex on branch $Branch. No commits will be made by this script."
-    & codex
-    if ($LASTEXITCODE -ne 0) {
-        throw "codex exited with code $LASTEXITCODE."
-    }
+    Write-Host "Next step: run local-codex or local-claude mode to create a local branch and start your agent manually."
 }
 
 function Show-Status {
@@ -200,7 +252,7 @@ function Show-Status {
     Show-LatestFiles "Latest research inbox files" "docs/research/inbox" "*.md"
     Show-LatestFiles "Latest curator prompt files" "docs/research/curated" "curator-prompt-*.md"
     Write-Host ""
-    Write-Host "Next step: use -Mode scout, -Mode prompt, or -Mode full-safe when the tree is clean."
+    Write-Host "Next step: use -Mode scout, -Mode prompt, -Mode local-codex, -Mode local-claude, or -Mode full-safe when the tree is clean."
 }
 
 Assert-CommandAvailable "git"
@@ -216,11 +268,14 @@ switch ($Mode) {
         Invoke-Prompt
     }
     "local-codex" {
-        Invoke-LocalCodex
+        Invoke-LocalAgent -Command "codex" -Branch (Resolve-AgentBranch "codex/curate-research-guides")
+    }
+    "local-claude" {
+        Invoke-LocalAgent -Command "claude" -Branch (Resolve-AgentBranch "claude/curate-research-guides")
     }
     "full-safe" {
         Invoke-Scout
         Invoke-Prompt
-        Invoke-LocalCodex
+        Invoke-LocalAgent -Command "codex" -Branch (Resolve-AgentBranch "codex/curate-research-guides")
     }
 }

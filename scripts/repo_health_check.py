@@ -31,6 +31,9 @@ REQUIRED_FILES = [
     ".github/codex/prompts/skill-guide-generator.md",
     ".github/codex/prompts/image-prompting-guide-generator.md",
     ".github/codex/prompts/hermes-agent-guide-generator.md",
+    "docs/guides/prompting-ai-coding-agents.md",
+    "docs/guides/coding-agent-power-tips.md",
+    "docs/guides/prompting-references.md",
     "docs/publication-policy.md",
     "docs/automation/repository-autopilot.md",
     "docs/automation/local-autopilot.md",
@@ -68,6 +71,14 @@ SKIP_DIRS = {
     ".cache",
     "dist",
     "build",
+    "logs",
+    "outputs",
+    # Local scratch, editor, and agent-tool state directories. These are
+    # gitignored and never part of a release, so the checks skip them.
+    ".tmp",
+    ".idea",
+    ".vscode",
+    ".omc",
 }
 
 SECRET_PATTERNS = [

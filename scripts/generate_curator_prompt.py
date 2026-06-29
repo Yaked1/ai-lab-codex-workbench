@@ -167,8 +167,8 @@ Required behavior:
   quantization, GGUF, Ollama, vLLM, SGLang, or local model-running coverage.
 - Keep image-generation guidance separated into browser/API, lightweight local,
   advanced local GPU, and cloud workflows.
-- For weak Windows laptops with 8 GB RAM, an MX-class GPU, and about 2 GB VRAM,
-  prefer browser/API workflows or lightweight local experiments.
+- On entry-level hardware without a capable GPU, prefer browser/API workflows
+  or lightweight local experiments over heavy local diffusion.
 
 Selected sources:
 

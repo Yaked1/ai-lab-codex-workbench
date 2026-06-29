@@ -36,6 +36,12 @@ SKIP_DIRS = {
     "build",
     "logs",
     "outputs",
+    # Local scratch, editor, and agent-tool state directories. These are
+    # gitignored and never part of a release, so the checks skip them.
+    ".tmp",
+    ".idea",
+    ".vscode",
+    ".omc",
 }
 
 MAX_TEXT_BYTES = 1_000_000

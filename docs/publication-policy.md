@@ -56,8 +56,8 @@ Separate image-generation workflows into:
 - Advanced local GPU workflows.
 - Cloud GPU or managed workflows.
 
-For weak Windows laptops with 8 GB RAM, a low-end NVIDIA MX-class GPU, and about
-2 GB VRAM, prefer browser/API image generation or lightweight local experiments.
+On entry-level hardware without a capable GPU, prefer browser/API image
+generation or lightweight local experiments.
 Avoid heavy diffusion models, local training, fine-tuning, vLLM, SGLang, and
 large GPU workflows as beginner defaults.
 

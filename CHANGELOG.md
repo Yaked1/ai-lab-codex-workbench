@@ -2,8 +2,23 @@
 
 ## Unreleased
 
+Fixed:
+
+- Fixed a crash in `scripts/local_autopilot.ps1` where `-Mode local-codex` and `-Mode full-safe` failed with "You cannot call a method on a null-valued expression". The branch lookup called `.Trim()` on the null result of `git branch --list` when the target branch did not exist yet. Branch existence is now null-safe, the helper uses a single `-Branch` parameter (the unused `$BranchName` is gone), and the same null-safe guard was applied to the workflow-run lookup.
+
+Changed:
+
+- De-personalized public-facing docs: the README, offline site, image-generation guides, publication policy, source policy, and prompt templates no longer reference a specific personal laptop (exact RAM, GPU model, or VRAM) and instead use generic hardware tiers (browser/API, entry GPU, advanced GPU, cloud). Audience framing moved from "student-friendly" to "beginner-friendly" for general public users.
+- Made `local-codex` and `local-claude` default their branch (`codex/curate-research-guides` and `claude/curate-research-guides`) so they run without a `-Branch` argument, fast-forward `main` with `--ff-only` when possible (warn and continue when the branch has diverged), and keep refusing dirty trees, PR merges, force-pushes, and branch deletes.
+- Made `repo_health_check.py` and `safe_autofix.py` skip local scratch, editor, and agent-tool state directories (`.tmp`, `.idea`, `.vscode`, `.omc`) and added them to `.gitignore` so local tooling does not break the standard validation.
+
 Added:
 
+- Added a comprehensive prompting curriculum: `docs/guides/prompting-ai-coding-agents.md` (the craft of prompting agents), `docs/guides/coding-agent-power-tips.md` (per-agent tricks for Claude Code, Codex, Cursor, Copilot, Aider, Windsurf, and MCP), and `docs/guides/prompting-references.md` (famous public prompting repositories and vendor docs to learn from, with leaked-prompt safe-use rules). The guides ship in every release bundle.
+- Added a self-contained "Prompting And Agent Mastery" section to the README, surfaced the new guides in the offline site (`docs/site/index.html`, `docs/site/prompt-engineering.html`), and added `tests/test_prompting_docs.py` covering guide existence, README linkage, agent coverage, secret-free content, and release-package inclusion.
+- Corrected the `/goal` references in the README, `docs/tools/claude-code.md`, and `docs/automation/local-autopilot.md`: `/goal` is not a built-in Claude Code feature, so the guidance now describes defining a reusable custom slash command in `.claude/commands/`.
+- Added a `local-claude` mode to `scripts/local_autopilot.ps1` and documented a manual Claude Code local research-curation workflow alongside Codex, including `/goal` usage, in the README, `docs/automation/local-autopilot.md`, `docs/tools/claude-code.md`, and `AGENTS.md`.
+- Added `tests/test_local_autopilot.py` covering the autopilot default branch, null-safe branch handling, the `local-claude` mode, public README framing, offline site/deployment files, automation docs, and workflow safety guards (no `OPENAI_API_KEY`, no Codex action, generated-file-only automerge).
 - Added a no-API-key Repository Autopilot layer with generated research PR automation, safe generated-file automerge, monthly release draft issue workflow, local PowerShell helper, status script, policy docs, and tests.
 - Added the cheap `Daily Research Scout` workflow for public AI skills, prompt-guide, image-generation, MCP/tool-use, public agent workflow, and Hermes Agent candidate discovery without Codex or OpenAI API keys.
 - Added the no-API-key `Curator Prompt Prep` workflow with `scope`, `dry_run`, and `max_sources` inputs to prepare local Codex prompts without calling Codex, paid LLMs, or model providers from GitHub Actions.
@@ -11,7 +26,7 @@ Added:
 - Added public source and publication policies for official, community, unofficial, leak-derived, inferred, and unverified sources, including restrictions on leaked prompt dumps and private data.
 - Added starter research source configuration, blocklist, candidates store, deterministic discovery/scoring/report scripts, and research inbox/curated folders.
 - Added skills guide structure for Claude Code skills, Codex skills, MCP tool-use systems, and reusable prompt guides.
-- Added image-generation guide structure for autoregressive systems, diffusion systems, local workflows, hardware requirements, prompting patterns, weak-laptop warnings, and GitHub Actions boundaries.
+- Added image-generation guide structure for autoregressive systems, diffusion systems, local workflows, hardware requirements, prompting patterns, entry-level hardware warnings, and GitHub Actions boundaries.
 - Added Hermes Agent documentation for Nous Research Hermes Agent setup, provider configuration, skills, memory, automations, prompting, troubleshooting, comparison with Codex and Claude Code, and public-repo safety.
 - Updated Hermes Agent guide pages with explicit official source links, MIT license/source status, and current official-doc safety notes for setup, providers, skills, memory, and cron workflows.
 - Added tests for research source parsing, candidate scoring, report generation, blocklist behavior, secret-looking string redaction, report path formatting, and scout dry-run mode.

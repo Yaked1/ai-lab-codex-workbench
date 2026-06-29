@@ -27,7 +27,7 @@ Implement this small feature:
 [FEATURE DESCRIPTION]
 
 User context:
-This project is for a Windows student/laptop-friendly learning repository. Prefer lightweight Markdown docs, PowerShell commands, Python standard-library scripts, and GitHub Actions already present in the repo. Avoid Docker, WSL, heavy local models, and large dependencies unless explicitly approved.
+This project is a low-setup, cross-platform learning repository. Prefer lightweight Markdown docs, PowerShell commands, Python standard-library scripts, and GitHub Actions already present in the repo. Avoid Docker, WSL, heavy local models, and large dependencies unless explicitly approved.
 
 Files to inspect first:
 - AGENTS.md

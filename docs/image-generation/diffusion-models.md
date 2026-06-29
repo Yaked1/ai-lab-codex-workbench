@@ -7,7 +7,7 @@ careful license review.
 ## Beginner Fit
 
 Browser/API diffusion tools can be beginner friendly. Local diffusion stacks are
-advanced for weak laptops.
+advanced and assume a capable GPU.
 
 ## Workflow Types
 
@@ -28,9 +28,9 @@ Negative prompt: distorted text, extra fingers, private logos, watermarks,
 personal data, unsafe content, low-resolution artifacts
 ```
 
-## Weak Laptop Warning
+## Entry-Level Hardware Warning
 
-On 8 GB RAM, an MX-class GPU, and about 2 GB VRAM, do not make heavy diffusion
+On entry-level hardware without a capable GPU, do not make heavy diffusion
 workflows the beginner default. Prefer browser/API tools or cloud runs.
 
 ## Failure Modes

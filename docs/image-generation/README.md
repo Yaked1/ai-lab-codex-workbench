@@ -11,7 +11,7 @@ complex image-generation models.
 | [Autoregressive image models](autoregressive-image-models.md) | Browser/API image systems that generate images token-by-token or through multimodal model stacks. |
 | [Diffusion models](diffusion-models.md) | Local and cloud diffusion workflows, strengths, and warnings. |
 | [Local image generation](local-image-generation.md) | Separating lightweight experiments from advanced GPU setups. |
-| [Hardware requirements](hardware-requirements.md) | Realistic laptop, GPU, and cloud guidance. |
+| [Hardware requirements](hardware-requirements.md) | Realistic browser/API, CPU-only, entry GPU, advanced GPU, and cloud guidance. |
 | [Prompting patterns](prompting-patterns.md) | Prompt templates for text rendering, style, product shots, characters, and 3D references. |
 
 ## Workflow Categories
@@ -35,10 +35,10 @@ complex image-generation models.
 | Quantized/local-friendly setups | Warn about quality loss, unsupported hardware, and slow CPU fallback. |
 | Heavy GPU setups | Keep out of beginner defaults and document VRAM, disk, license, and cloud alternatives. |
 
-## Weak Laptop Warning
+## Entry-Level Hardware Warning
 
-For an 8 GB RAM Windows laptop with a low-end NVIDIA MX-class GPU and about 2 GB
-VRAM:
+On entry-level hardware without a capable GPU (integrated graphics or a low-VRAM
+discrete GPU):
 
 - Prefer browser/API image generation.
 - Use lightweight local experiments only.

@@ -319,7 +319,7 @@
       "name": "Stable Diffusion Web UI public repository",
       "official": false,
       "quality": "medium",
-      "safety_note": "Treat as advanced local GPU workflow; do not recommend as a beginner default on weak laptops.",
+      "safety_note": "Treat as advanced local GPU workflow; do not recommend as a beginner default on entry-level hardware.",
       "score": 53,
       "source_status": "community-repository",
       "summary": "Stable Diffusion web UI",

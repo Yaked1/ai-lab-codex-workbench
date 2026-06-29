@@ -25,9 +25,8 @@ Required sections to preserve or add:
 
 Hardware realism:
 
-- For weak Windows laptops with 8 GB RAM, a low-end NVIDIA MX-class GPU, and
-  about 2 GB VRAM, prefer browser/API workflows and lightweight local
-  experiments.
+- On entry-level hardware without a capable GPU, prefer browser/API workflows
+  and lightweight local experiments.
 - Do not recommend heavy diffusion models, training, fine-tuning, vLLM, SGLang,
   or heavy GPU workflows as beginner defaults.
 - Separate browser/API, lightweight local, advanced local GPU, and cloud

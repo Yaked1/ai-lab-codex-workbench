@@ -27,7 +27,7 @@ Every generated guide should include:
 - Linux/macOS notes when useful.
 - API key or subscription requirements.
 - Hardware requirements where relevant.
-- Whether it is realistic for weak laptops.
+- Whether it is realistic for entry-level hardware.
 - Safer lightweight alternatives.
 - Failure modes.
 - Evaluation checklist.
