@@ -40,11 +40,21 @@ This is a public, student-friendly AI coding-agent and prompting guide. It teach
 - For non-Codex tools, keep claims conservative and direct readers to official documentation.
 - Link to deeper docs instead of making this file bloated.
 
+## Static HTML Documentation Rules
+
+- Static HTML docs in `docs/site/` must work offline by opening the file in a browser.
+- Use plain HTML and CSS only. Do not add external JavaScript, analytics, trackers, CDNs, remote fonts, or framework assets.
+- Keep styles and assets local to the repository and public-safe.
+- Prefer relative links to repository docs and prompt templates.
+- Do not include private links, account-specific URLs, personal data, private paths, screenshots, or secrets.
+- Keep pages useful: include real workflow guidance, checklists, tables, command blocks, and safety notes.
+
 ## Safe Edit Boundaries
 
 Safe by default:
 
 - Markdown docs.
+- Static HTML/CSS docs that are offline-safe and public-safe.
 - Prompt templates.
 - Standard-library Python scripts already present in the repo.
 - Tests for existing scripts.

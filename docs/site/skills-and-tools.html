@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skills, Prompt Guides, And Tool Setup</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <strong>AI Agent Workbench</strong>
+        <span>Offline public guide</span>
+      </div>
+      <nav aria-label="Site pages">
+        <div class="nav-group">
+          <h2>HTML Guides</h2>
+          <a href="index.html">Quick start</a>
+          <a href="agent-workflow.html">Agent workflow</a>
+          <a href="prompt-engineering.html">Prompt engineering</a>
+          <a class="active" href="skills-and-tools.html">Skills and tools</a>
+        </div>
+        <div class="nav-group">
+          <h2>Tool Docs</h2>
+          <a href="../tools/comparison-matrix.md">Comparison matrix</a>
+          <a href="../tools/mcp.md">MCP notes</a>
+          <a href="../guides/skills-and-prompt-guides.md">Skills playbook</a>
+          <a href="../guides/windows-setup-commands.md">Windows commands</a>
+        </div>
+      </nav>
+    </aside>
+
+    <main id="main" class="content">
+      <header class="hero">
+        <p class="eyebrow">Prompt libraries and setup commands</p>
+        <h1>Build local skills and prompt guides before connecting bigger tools.</h1>
+        <p>
+          Skills, prompt packs, and MCP servers can make agents more useful, but they also widen the trust
+          boundary. Start with local files, placeholders, and read-only workflows.
+        </p>
+      </header>
+
+      <section>
+        <h2>Safe Setup Principles</h2>
+        <div class="grid">
+          <article class="card">
+            <span class="tag">Local first</span>
+            <h3>Use repo folders</h3>
+            <p>Keep starter prompt guides in the repository or another public-safe folder before using global config.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Verify</span>
+            <h3>Check official docs</h3>
+            <p>Exact install commands and slash-command behavior change. Verify before running or teaching them.</p>
+          </article>
+          <article class="card">
+            <span class="tag">No secrets</span>
+            <h3>Use placeholders</h3>
+            <p>Never paste API keys, tokens, cookies, passwords, or private URLs into prompts or commands.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>PowerShell Folder Setup</h2>
+        <div class="callout">
+          <p>
+            Safe local folder creation examples. Replace placeholders before use. These commands do not install
+            packages, change system settings, or write outside the selected repository folder.
+          </p>
+        </div>
+        <pre><code>New-Item -ItemType Directory -Path .\prompt-guides -Force
+New-Item -ItemType Directory -Path .\prompt-guides\agent-tasks -Force
+New-Item -ItemType Directory -Path .\prompt-guides\skills -Force
+New-Item -ItemType File -Path .\prompt-guides\README.md -Force</code></pre>
+      </section>
+
+      <section>
+        <h2>SKILL.md-Style Local Skill</h2>
+        <div class="grid">
+          <article class="card wide">
+            <h3>Minimal structure</h3>
+            <pre><code>prompt-guides/
+  skills/
+    docs-review/
+      SKILL.md
+      examples/
+      templates/</code></pre>
+          </article>
+          <article class="card wide">
+            <h3>What SKILL.md should contain</h3>
+            <ul class="checklist">
+              <li>Purpose and when to use the skill.</li>
+              <li>Files or folders the agent should read first.</li>
+              <li>Safety boundaries and commands to avoid.</li>
+              <li>Verification steps and final report format.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Tool-Specific Notes</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Tool family</th>
+              <th>Safe workflow</th>
+              <th>Verification note</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Codex</td>
+              <td>Use repository prompt templates, `AGENTS.md`, and goal-style tasks with local checks.</td>
+              <td>Verify current skill and configuration behavior in official documentation before teaching exact setup.</td>
+            </tr>
+            <tr>
+              <td>Claude Code</td>
+              <td>Use a SKILL.md-style folder and paste a goal-style task prompt when slash-command support is not verified.</td>
+              <td>Verify current Claude Code skill and slash-command syntax in official documentation.</td>
+            </tr>
+            <tr>
+              <td>Cursor, Copilot, Antigravity</td>
+              <td>Use small task templates, visible diffs, and PR review loops.</td>
+              <td>Verify current product behavior, plan access, and platform support in official documentation.</td>
+            </tr>
+            <tr>
+              <td>MCP</td>
+              <td>Start with read-only public docs servers in a test repository.</td>
+              <td>Review tool permissions, credential storage, and rollback before enabling write access.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Placeholder Command Examples</h2>
+        <div class="callout warning">
+          <p>
+            Verify these commands in official docs before running. Replace placeholders before use. Do not paste
+            secrets into commands. Use public repositories only for clone examples.
+          </p>
+        </div>
+        <p class="command-title">Clone a public prompt pack into a review folder</p>
+        <pre><code>New-Item -ItemType Directory -Path .\vendor_imports -Force
+git clone PUBLIC_PROMPT_PACK_URL .\vendor_imports\PUBLIC-PROMPT-PACK</code></pre>
+        <p class="command-title">Inspect an npm/npx-style tool without installing globally</p>
+        <pre><code># Placeholder only. Verify in official docs before running.
+npx TOOL_NAME@latest --help</code></pre>
+      </section>
+
+      <section>
+        <h2>MCP Safety Notes</h2>
+        <div class="two-col">
+          <div class="callout">
+            <h3>Start here</h3>
+            <ul class="checklist">
+              <li>Use read-only servers first.</li>
+              <li>Use test repositories and public data.</li>
+              <li>Document which tools and resources the agent can access.</li>
+              <li>Disable servers when the task is complete.</li>
+            </ul>
+          </div>
+          <div class="callout danger">
+            <h3>Avoid early</h3>
+            <p>
+              Avoid write-capable MCP servers connected to private accounts, browser profiles, cloud drives,
+              payment systems, or production databases until permissions and rollback are fully understood.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>Offline-safe page. No external scripts, analytics, CDNs, remote fonts, or private links.</p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

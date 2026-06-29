@@ -81,6 +81,25 @@ Remove:
 
 Review external links for stable official sources. For fast-changing tools, link to official docs and say "verify in official documentation."
 
+## Static HTML Safety
+
+Offline HTML pages in this repository should be self-contained public documentation. They must not add external trackers, analytics, CDNs, remote fonts, private links, account-specific links, or scripts that contact third-party services.
+
+Check static HTML for:
+
+- No `<script>` tags unless a maintainer explicitly approves a local script for a clear reason.
+- No analytics, trackers, beacons, pixels, or telemetry.
+- No remote fonts, CDN stylesheets, or external JavaScript.
+- No private links, private account IDs, personal data, or private machine paths.
+- Relative links to repository docs where possible.
+- Useful content, not decorative pages that hide missing guidance.
+
+PowerShell inspection example:
+
+```powershell
+Select-String -Path .\docs\site\*.html -Pattern "http://","https://","cdn","analytics","tracker","<script"
+```
+
 ## Agent Prompt Safety
 
 Prompt templates should not ask agents to:

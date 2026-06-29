@@ -117,18 +117,33 @@ Then choose a prompt template:
 | Use an IDE agent | [prompts/cursor/agent-task.md](prompts/cursor/agent-task.md) or [prompts/windsurf/agent-task.md](prompts/windsurf/agent-task.md) |
 | Use GitHub Copilot coding agent | [prompts/github-copilot/agent-task.md](prompts/github-copilot/agent-task.md) |
 
+## Offline Quick-Start Site And Playbooks
+
+For a browser-friendly overview that works offline, open [docs/site/index.html](docs/site/index.html). The HTML guide site links together the agent lifecycle, prompt patterns, skills and prompt-guide setup, MCP safety notes, Windows PowerShell examples, and public-repository checklists without external scripts, CDNs, analytics, or remote fonts.
+
+Longer Markdown playbooks:
+
+| Guide | Use it for |
+| --- | --- |
+| [Prompt engineering playbook](docs/guides/prompt-engineering-playbook.md) | Designing scoped prompts with examples, checks, mistakes, and failure modes. |
+| [Agentic coding playbook](docs/guides/agentic-coding-playbook.md) | Running safe branch, agent, check, PR, review, merge, and rollback workflows. |
+| [Skills and prompt guides](docs/guides/skills-and-prompt-guides.md) | Creating local SKILL.md-style guides, prompt packs, and MCP-aware safety boundaries. |
+| [Windows setup commands](docs/guides/windows-setup-commands.md) | Using PowerShell-safe repo commands, folder setup, placeholders, and clone workflows. |
+| [Prompt audit checklist](docs/guides/prompt-audit-checklist.md) | Reviewing prompts before sending, publishing, or teaching them. |
+
 ## Learning Path
 
 1. Read the local rules in [AGENTS.md](AGENTS.md).
-2. Read [docs/codex/00-start-here.md](docs/codex/00-start-here.md) for the mental model.
-3. Run the three local checks.
-4. Make one small Markdown change on a branch.
-5. Open a PR and compare your local check output with CI.
-6. Review the diff as if it came from another contributor.
-7. Update [CHANGELOG.md](CHANGELOG.md) when the change is user-visible.
-8. Try one non-Codex prompt template after you understand the review workflow.
-9. Compare tools using [docs/tools/comparison-matrix.md](docs/tools/comparison-matrix.md).
-10. Only then consider adding MCP, hooks, subagents, or stronger automation.
+2. Open [docs/site/index.html](docs/site/index.html) for the offline quick-start map.
+3. Read [docs/codex/00-start-here.md](docs/codex/00-start-here.md) for the mental model.
+4. Run the three local checks.
+5. Make one small Markdown change on a branch.
+6. Open a PR and compare your local check output with CI.
+7. Review the diff as if it came from another contributor.
+8. Update [CHANGELOG.md](CHANGELOG.md) when the change is user-visible.
+9. Try one non-Codex prompt template after you understand the review workflow.
+10. Compare tools using [docs/tools/comparison-matrix.md](docs/tools/comparison-matrix.md).
+11. Only then consider adding MCP, hooks, subagents, or stronger automation.
 
 ## Main Workflow
 
@@ -204,6 +219,8 @@ ai-lab-codex-workbench/
   CHANGELOG.md                    # User-visible changes
   docs/
     codex/                        # Codex-specific guides
+    guides/                       # Practical playbooks and checklists
+    site/                         # Offline static HTML guide site
     tools/                        # AI coding tool guide pages
     workflows/                    # End-to-end workflow guides
     templates/                    # Human-facing task and merge templates

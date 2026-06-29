@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Agent Task Workflow</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <strong>AI Agent Workbench</strong>
+        <span>Offline public guide</span>
+      </div>
+      <nav aria-label="Site pages">
+        <div class="nav-group">
+          <h2>HTML Guides</h2>
+          <a href="index.html">Quick start</a>
+          <a class="active" href="agent-workflow.html">Agent workflow</a>
+          <a href="prompt-engineering.html">Prompt engineering</a>
+          <a href="skills-and-tools.html">Skills and tools</a>
+        </div>
+        <div class="nav-group">
+          <h2>Repo Docs</h2>
+          <a href="../workflows/agent-task-lifecycle.md">Full lifecycle</a>
+          <a href="../codex/01-codex-goal-workflow.md">Codex goal workflow</a>
+          <a href="../codex/02-git-branch-pr-merge-workflow.md">Branch and PR workflow</a>
+          <a href="../workflows/public-repo-safety.md">Public repo safety</a>
+        </div>
+      </nav>
+    </aside>
+
+    <main id="main" class="content">
+      <header class="hero">
+        <p class="eyebrow">End-to-end agent lifecycle</p>
+        <h1>Turn a vague request into a reviewable pull request.</h1>
+        <p>
+          The workflow below is intentionally conservative. It treats agent output as a draft that must pass
+          repository rules, local checks, CI, and human review before merging.
+        </p>
+      </header>
+
+      <section>
+        <h2>Branch To Merge Workflow</h2>
+        <div class="grid">
+          <article class="card">
+            <span class="tag">1. Intake</span>
+            <h3>Write the task boundary</h3>
+            <p>State the objective, files likely in scope, files out of scope, success criteria, and checks to run.</p>
+          </article>
+          <article class="card">
+            <span class="tag">2. Branch</span>
+            <h3>Isolate the work</h3>
+            <p>Use one branch per task. Avoid changing workflow YAML, dependencies, or unrelated docs unless requested.</p>
+          </article>
+          <article class="card">
+            <span class="tag">3. Agent</span>
+            <h3>Inspect before editing</h3>
+            <p>Ask the agent to read the relevant files first, then make the smallest correct change.</p>
+          </article>
+          <article class="card">
+            <span class="tag">4. Checks</span>
+            <h3>Run local validation</h3>
+            <p>Run the strongest realistic check for the touched area and fix related failures only.</p>
+          </article>
+          <article class="card">
+            <span class="tag">5. PR</span>
+            <h3>Make the diff reviewable</h3>
+            <p>Summarize what changed, why, commands run, checks run, and limitations.</p>
+          </article>
+          <article class="card">
+            <span class="tag">6. Review</span>
+            <h3>Review like a maintainer</h3>
+            <p>Look for regressions, private data, stale claims, overbroad edits, and missing tests.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>PowerShell Command Path</h2>
+        <div class="callout">
+          <p>
+            These are safe repository commands. Run them from the repository root. Do not run destructive
+            cleanup, force-push, or dependency installation commands unless the task explicitly requires them.
+          </p>
+        </div>
+        <p class="command-title">Start a focused branch</p>
+        <pre><code>git status
+git switch -c agent/short-task-name</code></pre>
+        <p class="command-title">Run local checks before a PR</p>
+        <pre><code>python scripts/repo_health_check.py
+python scripts/safe_autofix.py --check
+python -m unittest discover -s tests</code></pre>
+        <p class="command-title">Review the result</p>
+        <pre><code>git diff --stat
+git diff</code></pre>
+      </section>
+
+      <section>
+        <h2>Codex Goal Workflow</h2>
+        <div class="grid">
+          <article class="card wide">
+            <h3>Goal prompt shape</h3>
+            <p>Use a goal when the task needs persistent execution, validation, and a final report.</p>
+            <pre><code>/goal Resolve the issue described below.
+
+Objective:
+- Make the smallest correct change.
+- Keep work inside this repository.
+- Run the listed checks.
+
+Scope:
+- Include: PATHS_OR_FEATURES
+- Exclude: SECRETS, DEPENDENCIES, WORKFLOW_YAML
+
+Verification:
+- python scripts/repo_health_check.py
+- python scripts/safe_autofix.py --check
+- python -m unittest discover -s tests
+
+Final report:
+- Summary
+- Files changed
+- Commands run
+- Checks run
+- Risks</code></pre>
+          </article>
+          <article class="card wide">
+            <h3>When to use it</h3>
+            <ul class="checklist">
+              <li>The task spans more than one command or file.</li>
+              <li>You need the agent to continue through verification.</li>
+              <li>You want a durable final report for review.</li>
+              <li>You can provide clear safety boundaries.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Claude Code Goal-Style Workflow</h2>
+        <div class="callout warning">
+          <p>
+            Verify current Claude Code slash-command and skill behavior in official documentation before teaching
+            exact syntax. If your setup does not support a `/goal` command, paste the same structure as a normal
+            task prompt.
+          </p>
+        </div>
+        <pre><code># Goal-style task prompt for Claude Code
+Read AGENTS.md and inspect the relevant files before editing.
+
+Objective:
+Implement REQUEST in the smallest reviewable diff.
+
+Safety:
+- Do not read private folders.
+- Do not add dependencies.
+- Do not modify workflow YAML unless asked.
+- Mark fast-changing tool behavior as "verify in official documentation."
+
+Verification:
+Run the local checks that apply and report anything not verified.</code></pre>
+      </section>
+
+      <section>
+        <h2>Agent Task Templates</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Tool style</th>
+              <th>Template focus</th>
+              <th>Safety note</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cursor-style IDE agent</td>
+              <td>Ask for a plan, inspect files, then edit visible diffs in the IDE.</td>
+              <td>Review every changed file before accepting.</td>
+            </tr>
+            <tr>
+              <td>GitHub Copilot-style agent</td>
+              <td>Start from a small issue, request a PR, and compare CI output with local checks.</td>
+              <td>Do not auto-merge agent PRs.</td>
+            </tr>
+            <tr>
+              <td>Antigravity-style agent</td>
+              <td>Use artifact-driven planning and insist on a compact implementation report.</td>
+              <td>Verify current product behavior in official docs.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Merge Gate</h2>
+        <div class="two-col">
+          <div class="callout">
+            <h3>Required before merge</h3>
+            <ul class="checklist">
+              <li>Diff is focused and understandable.</li>
+              <li>Local checks pass or failures are documented.</li>
+              <li>CI passes before merging to the protected branch.</li>
+              <li>Changelog records user-visible changes.</li>
+            </ul>
+          </div>
+          <div class="callout danger">
+            <h3>Stop and review</h3>
+            <p>
+              Stop if the diff includes secrets, private links, generated binaries, lock files, broad deletions,
+              workflow YAML changes, or unverified claims about pricing, plans, models, or platform support.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>Offline-safe page. Use the Markdown lifecycle guide for the longer checklist and examples.</p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

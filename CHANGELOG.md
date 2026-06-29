@@ -14,6 +14,9 @@ Added:
 - Full workflow guidance for issue intake, branch naming, goal prompts, agent execution, local checks, CI checks, PR review, squash merge, rollback, public safety, secret scanning, and changelog updates.
 - Professional reusable prompt templates with target tool, purpose, full prompt, short version, inputs, success criteria, safety boundaries, verification, final report format, and failure cases.
 - Expanded Codex-specific guides for goal-style work, Git branch/PR/merge flow, safe autofix policy, review checklists, and roadmap planning.
+- Offline static HTML quick-start site for AI agent workflows, prompt engineering, skills, tool setup, MCP safety, Windows commands, and public repository safety.
+- Practical Markdown playbooks for prompt engineering, agentic coding, skills and prompt guides, Windows setup commands, and prompt audits.
+- Static HTML documentation safety guidance covering offline assets, local CSS, no trackers, no CDNs, no analytics, no remote fonts, and no private links.
 
 ## 0.1.0
 

@@ -2,6 +2,8 @@
 
 This matrix helps learners choose a safe tool for a specific AI coding workflow. It is not a pricing guide and not a benchmark. Tool capabilities, plan limits, authentication flows, pricing, model access, and platform support change quickly. Verify official documentation before teaching, buying, or publishing exact setup instructions.
 
+For a browser-friendly overview of the safe workflow, open the offline quick-start site at [../site/index.html](../site/index.html). It is plain static HTML/CSS and is intended as a local navigation layer for the Markdown guides, not a source of live product claims.
+
 ## Reading The Rankings
 
 | Term | Meaning |
