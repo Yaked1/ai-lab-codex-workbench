@@ -26,9 +26,49 @@ This folder contains the broad learning guides that sit between the repository l
 - Public repository safety: [../workflows/public-repo-safety.md](../workflows/public-repo-safety.md)
 - Source and publication policy: [../research/source-policy.md](../research/source-policy.md), [../publication-policy.md](../publication-policy.md)
 
+## How To Use These Guides
+
+Start with the broad guide only when you need the full mental model. If you
+already have a concrete repository task, read the coding-agent guide, copy the
+closest prompt template, and add the exact files, checks, and success criteria
+for your task. The goal is not to produce longer prompts; the goal is to give an
+agent enough bounded context to make a small, reviewable change.
+
+For beginner workshops, pair each guide with a tiny exercise:
+
+| Exercise | Good file type | Verification |
+| --- | --- | --- |
+| Improve a prompt | Markdown prompt template | Peer review against the audit checklist |
+| Update a doc | Markdown guide | `python scripts/repo_health_check.py` |
+| Review a workflow | GitHub Actions doc | Manual checklist, no workflow edit |
+| Package docs | Release docs | Manifest spot-check |
+
+## Maintenance Notes
+
+When adding a new guide, make sure it has a clear home in the reading order. If
+it overlaps with an existing guide, either link to the existing material or make
+the difference explicit. Avoid creating parallel instructions for the same
+workflow unless the new guide serves a distinct audience.
+
+Each guide should answer:
+
+- What task does this help with?
+- What should the reader do before using an agent?
+- What files or inputs does the agent need?
+- What checks prove the work is complete?
+- What should remain manual or human-reviewed?
+
 ## Safety notes
 
 - Treat external prompt collections as inspiration for structure, not text to copy.
 - Do not publish leaked prompts, copied prompt dumps, private conversations, or private files.
 - Mark fast-changing product behavior for official-doc verification.
 - Keep automation examples preview-first and human-reviewed; do not frame them as safe to run blindly.
+
+## Review Checklist
+
+- [ ] The guide uses public-safe examples.
+- [ ] It does not include private paths, account URLs, secrets, or logs.
+- [ ] It points to official docs for fast-changing behavior.
+- [ ] It includes practical commands or checklists rather than vague advice.
+- [ ] It fits the beginner-first tone of the repository.

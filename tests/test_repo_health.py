@@ -24,5 +24,16 @@ class RepoHealthTests(unittest.TestCase):
             self.assertTrue(errors)
 
 
+class PowerShellHelperTests(unittest.TestCase):
+    def test_create_task_branch_reuses_existing_branch(self):
+        script = (Path(__file__).resolve().parents[1] / "scripts" / "create_task_branch.ps1").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("git branch --list $Branch", script)
+        self.assertIn("git checkout $Branch", script)
+        self.assertIn("git checkout -b $Branch", script)
+        self.assertIn("Using branch: $Branch", script)
+
+
 if __name__ == "__main__":
     unittest.main()

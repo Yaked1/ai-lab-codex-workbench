@@ -46,3 +46,61 @@ discrete GPU):
 - Avoid local training or fine-tuning.
 - Avoid vLLM, SGLang, and heavy GPU serving workflows.
 - Use cloud or server GPUs only as advanced options.
+
+## Decision Flow
+
+Use this flow before recommending an image-generation workflow.
+
+| Question | If yes | If no |
+| --- | --- | --- |
+| Is the user a beginner or workshop learner? | Prefer browser/API tools and prompt-pattern exercises. | Consider local or cloud only if the reader has the required setup. |
+| Is exact current product behavior needed? | Verify in official docs before publishing. | Use general workflow guidance and mark details as examples. |
+| Does the workflow require model weights or checkpoints? | Treat it as advanced and document license/storage risks. | Keep setup lighter and focus on prompt design. |
+| Does the task involve private images, faces, products, or brand assets? | Add explicit consent, license, and privacy checks. | Still avoid invented private logos or account details. |
+| Will the repo or CI run generation? | Do not do that in this public workbench. | Use static docs and tests instead. |
+
+## Public-Safe Image Prompt Contract
+
+Every reusable image prompt should define:
+
+- Purpose: documentation image, product draft, UI mood reference, character
+  sheet, diagram, or marketing concept.
+- Subject: the object, scene, or visual idea.
+- Composition: camera angle, layout, background, crop, and aspect ratio.
+- Style constraints: medium, lighting, materials, rendering style, and mood.
+- Text requirements: exact text, maximum length, and manual review needs.
+- Source status: reference image ownership, license, and consent.
+- Safety boundaries: no private people, private logos, account details,
+  medical/legal claims, or unsafe content.
+- Verification: what the reviewer must inspect in the output.
+
+## Example Workflow
+
+1. Write a short purpose statement.
+2. Choose browser/API, lightweight local, advanced local, or cloud.
+3. Draft the prompt with subject, composition, constraints, and output format.
+4. Add negative prompt only if the tool supports it.
+5. Generate one or more drafts outside the repository.
+6. Inspect for text accuracy, private data, brand drift, unsafe content, and
+   license issues.
+7. Store only public-safe final assets if the repository explicitly needs an
+   image. Otherwise keep the image out of Git and document the prompt.
+
+## Review Questions
+
+- Does the guide recommend a beginner-safe path first?
+- Are local hardware assumptions realistic?
+- Are exact product, model, pricing, and setup claims marked for official-doc
+  verification?
+- Are private references, faces, logos, and datasets excluded unless permission
+  is explicit?
+- Does the prompt specify what to inspect after generation?
+- Does the repository avoid committing model files, generated archives, and
+  private prompt histories?
+
+## Where This Folder Connects
+
+- Prompt system design: [Prompting OS image engine](../prompting-os/05-image-prompting-engine.md)
+- Source and safety policy: [Publication policy](../publication-policy.md)
+- Prompt audit: [Prompt audit checklist](../guides/prompt-audit-checklist.md)
+- Tool comparison: [Tool comparison matrix](../tools/comparison-matrix.md)

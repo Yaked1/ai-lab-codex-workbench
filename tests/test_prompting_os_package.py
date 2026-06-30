@@ -97,14 +97,40 @@ class PromptingOsPackageTests(unittest.TestCase):
             "09-security-and-governance.md",
             "10-evaluation-cookbook.md",
             "11-comprehensiveness-benchmark.md",
+            "12-prompt-pattern-library.md",
+            "13-agent-operations-manual.md",
+            "14-rag-and-tool-use-field-guide.md",
+            "15-maintenance-and-release-manual.md",
+            "16-comprehensive-examples.md",
+            "17-curriculum-and-workshops.md",
+            "18-troubleshooting-and-debugging.md",
+            "19-model-specific-adaptation.md",
+            "20-prompt-library-governance.md",
+            "21-checklists-and-templates.md",
+            "22-risk-register.md",
+            "23-quality-assurance-matrix.md",
+            "24-archive-corpus-source-map.md",
+            "25-repository-expansion-playbook.md",
+            "26-offline-package-reader-guide.md",
+            "27-prompt-evaluation-datasets.md",
+            "28-tool-permission-model.md",
+            "29-source-grounded-writing-lab.md",
+            "30-agent-review-and-red-team.md",
+            "31-workbench-maintainer-runbook.md",
+            "32-completion-evidence-manual.md",
+            "33-prompt-library-indexing.md",
+            "34-static-site-and-release-docs.md",
+            "35-workshop-assessment-bank.md",
+            "36-prompt-metrics-and-telemetry.md",
+            "37-failure-mode-catalog.md",
             "templates/master-prompt-template.md",
             "evals/prompt-quality-rubric.md",
         }
         relative_paths = {path.relative_to(source_dir).as_posix() for path in markdown_files}
 
-        self.assertGreaterEqual(len(markdown_files), 14)
-        self.assertGreaterEqual(len(large_markdown_files), 14)
-        self.assertGreaterEqual(markdown_bytes, 100_000)
+        self.assertGreaterEqual(len(markdown_files), 35)
+        self.assertGreaterEqual(len(large_markdown_files), 35)
+        self.assertGreaterEqual(markdown_bytes, 300_000)
         self.assertTrue(required.issubset(relative_paths))
         self.assertGreaterEqual((source_dir / "templates" / "master-prompt-template.md").stat().st_size, 4_000)
         self.assertGreaterEqual((source_dir / "evals" / "prompt-quality-rubric.md").stat().st_size, 4_000)
@@ -121,8 +147,8 @@ class PromptingOsPackageTests(unittest.TestCase):
             markdown_entries = [entry for entry in manifest["files"] if entry["path"].endswith(".md")]
             markdown_bytes = sum(entry["size_bytes"] for entry in markdown_entries)
 
-            self.assertGreaterEqual(len(markdown_entries), 14)
-            self.assertGreaterEqual(markdown_bytes, 100_000)
+            self.assertGreaterEqual(len(markdown_entries), 35)
+            self.assertGreaterEqual(markdown_bytes, 300_000)
             self.assertIn(
                 "Prompting_OS_v1/08-production-prompt-architecture.md",
                 {entry["archive_path"] for entry in markdown_entries},
@@ -137,6 +163,14 @@ class PromptingOsPackageTests(unittest.TestCase):
             )
             self.assertIn(
                 "Prompting_OS_v1/11-comprehensiveness-benchmark.md",
+                {entry["archive_path"] for entry in markdown_entries},
+            )
+            self.assertIn(
+                "Prompting_OS_v1/23-quality-assurance-matrix.md",
+                {entry["archive_path"] for entry in markdown_entries},
+            )
+            self.assertIn(
+                "Prompting_OS_v1/37-failure-mode-catalog.md",
                 {entry["archive_path"] for entry in markdown_entries},
             )
 

@@ -59,6 +59,22 @@ hermes setup --portal
 If `hermes setup --portal` is not appropriate for the user, follow the current
 official setup flow for the provider they intend to use.
 
+## Setup Decision Flow
+
+Use the smallest setup that matches the learner's goal:
+
+| Goal | Recommended path |
+| --- | --- |
+| Read the guide only | No Hermes install required. |
+| Try the CLI locally | Official installer, then `hermes --help`. |
+| Configure a provider | Official setup flow plus private secret storage. |
+| Use tools or gateway features | Review enabled tools before write-capable work. |
+| Build public docs | Keep Hermes local state outside this repository. |
+
+Do not ask beginners to install heavy local model stacks, GPU runtimes, or
+containerized serving layers just to follow this repository. Those topics are
+outside the Hermes Agent guide scope here.
+
 ## Windows Notes
 
 - Open a new PowerShell after installation so PATH changes are visible.
@@ -75,6 +91,18 @@ official setup flow for the provider they intend to use.
   user's environment require it.
 - Keep `~/.hermes/` private.
 
+## Public Documentation Rules
+
+When documenting a Hermes setup in this repository:
+
+- Link to the official installer instead of copying installer scripts.
+- Avoid screenshots that expose local paths, account names, or provider state.
+- Use placeholders for provider credentials.
+- Mark exact command behavior as official-doc anchored and refresh it before
+  release.
+- Separate setup instructions from automation instructions.
+- Keep memory, sessions, logs, cron jobs, and gateway state out of Git.
+
 ## Failure Modes
 
 | Symptom | Likely cause | Response |
@@ -82,9 +110,20 @@ official setup flow for the provider they intend to use.
 | `hermes` command not found | PATH not refreshed or install failed. | Open a new terminal and check official install logs. |
 | Setup asks for provider credentials | A provider has not been configured. | Use environment variables or official secret setup; do not paste keys into docs. |
 | Gateway/tool features fail | Missing dependencies or incomplete setup. | Run official diagnostics or setup commands before adding automations. |
+| Public guide includes local state | Troubleshooting output was copied too broadly. | Remove private material, rotate exposed secrets if needed, and update the guide with placeholders. |
 
 ## Entry-Level Hardware Realism
 
 Hermes Agent can still be useful on entry-level hardware for documentation and
 public research workflows, but avoid using such a machine as a heavy local model
 or GPU serving host. Keep heavy compute in browser/API/cloud workflows.
+
+## Completion Checklist
+
+- [ ] Official installation docs were checked before publishing exact commands.
+- [ ] `hermes --help` or the current official equivalent was tested locally if
+  setup claims are being made.
+- [ ] Provider secrets and local Hermes state stayed outside the repository.
+- [ ] Any failed setup step is described as a troubleshooting note, not hidden.
+- [ ] The guide still treats Hermes Agent as an agent/workflow tool, not as
+  Hermes language-model coverage.

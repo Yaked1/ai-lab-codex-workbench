@@ -63,6 +63,20 @@ Final response:
 Review [DOCS] for beginner clarity, public safety, AGENTS.md consistency, and unverified tool claims. Do not edit. Return severity-ordered findings, suggested edits, files reviewed, checks not run, and claims to verify.
 ```
 
+## Included Scope
+
+- Documentation files explicitly named for review.
+- Adjacent repository instructions needed to judge consistency.
+- Read-only checks if the human explicitly permits command execution.
+
+## Excluded Scope
+
+- File edits.
+- Dependency installation.
+- Private folders, secrets, `.env` files, browser profiles, and credentials.
+- Exact current pricing, model access, or platform support claims unless
+  official docs are checked.
+
 ## Success Criteria
 
 - Findings are specific and actionable.

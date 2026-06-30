@@ -66,3 +66,59 @@ For content docs, keep the manual path:
 ```text
 local Codex -> branch -> PR -> checks -> human review -> merge
 ```
+
+## Automerge Decision Table
+
+| Condition | Decision |
+| --- | --- |
+| Branch does not start with `autopilot/` | Refuse automerge. |
+| Any changed file is outside the generated allowlist | Refuse automerge. |
+| Required checks fail | Refuse automerge. |
+| PR includes README, docs, scripts, tests, workflow, policy, or changelog changes | Refuse automerge. |
+| PR includes only generated candidate/inbox/curator-prompt files and checks pass | Eligible for squash merge without admin bypass. |
+
+## Required Evidence
+
+The automerge workflow should leave enough evidence for a maintainer to audit:
+
+- Base and head refs checked.
+- Changed-file list.
+- Result of `check_safe_generated_diff.py`.
+- Repository health check result.
+- Safe autofix check result.
+- Unit test result.
+- Merge method used, if merged.
+
+## Why The Allowlist Is Narrow
+
+Generated research files are source queues, not final guidance. They may
+include public source titles, URLs, scores, and local curator prompts. They do
+not directly tell users what to do. Finished docs have a different risk
+profile: they can publish stale product behavior, unsafe setup instructions,
+weak source claims, or copied text.
+
+The narrow allowlist prevents the automation from turning "source discovery"
+into "unreviewed guide publication."
+
+## Human Review Path For Rejected PRs
+
+If automerge refuses a PR:
+
+1. Inspect the changed-file list.
+2. If the files are intentionally outside the generated allowlist, treat the PR
+   as a normal content/code PR.
+3. Run local checks.
+4. Review public-safety risk.
+5. Merge only after human approval.
+
+Do not widen the allowlist just to make one PR merge automatically.
+
+## Failure Modes
+
+| Failure | Response |
+| --- | --- |
+| Generated PR touches a guide | Stop automerge; require human review. |
+| Allowlist script fails | Do not merge; inspect script output. |
+| Workflow lacks permissions | Fix workflow permissions in a separate reviewed PR. |
+| Branch name is wrong | Rename or recreate from `autopilot/` only if files are generated-only. |
+| Generated prompt contains unsafe source text | Keep it as a curator prompt only; do not publish as guide content. |

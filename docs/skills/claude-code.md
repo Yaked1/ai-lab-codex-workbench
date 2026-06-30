@@ -89,3 +89,57 @@ the explicit maintenance task.
 - Do not commit private skills.
 - Do not include real tokens, personal paths, account IDs, or private links.
 - Include failure modes and verification steps in every public skill guide.
+
+## Skill Design Checklist
+
+- [ ] The skill has a narrow trigger.
+- [ ] `SKILL.md` can be read without private context.
+- [ ] References are public-safe.
+- [ ] Scripts are optional and documented.
+- [ ] The skill starts read-only when possible.
+- [ ] Write-capable actions name allowed files.
+- [ ] The skill avoids hidden prompts, private memories, and credentials.
+- [ ] The skill final report is reviewable.
+
+## Example Read-Only Skill Brief
+
+```markdown
+# Public Docs Reviewer
+
+Trigger:
+Use when the user asks for a documentation review in this repository.
+
+Procedure:
+1. Read AGENTS.md.
+2. Read README.md and requested docs.
+3. Review for clarity, safety, source support, and verification.
+4. Do not edit files.
+5. Report findings first, ordered by severity.
+
+Forbidden:
+- Secrets.
+- Private links.
+- Private machine paths.
+- Exact current tool claims without official-doc verification.
+```
+
+## Write-Capable Skill Gate
+
+Before a Claude Code skill edits files:
+
+1. It should name files in scope.
+2. It should name files out of scope.
+3. It should avoid dependency changes unless explicitly approved.
+4. It should run or request the relevant checks.
+5. It should report changed files and risks.
+
+If those gates are missing, keep the skill read-only.
+
+## Review Questions
+
+- Does the skill trigger too broadly?
+- Does it duplicate a normal prompt template?
+- Are local examples generic and public-safe?
+- Are source claims official-doc verified or conservative?
+- Does the guide explain how to disable the skill?
+- Does it state what to do when checks fail?

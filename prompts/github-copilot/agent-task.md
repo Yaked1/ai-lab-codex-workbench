@@ -61,6 +61,21 @@ Before merge, inspect the diff, read Actions logs, confirm no private data appea
 Create a small PR for [TASK]. Touch only [FILES], avoid secrets/dependencies/workflow changes, keep claims conservative, require Actions checks, and include summary, checks, limitations, and verification gaps in the PR.
 ```
 
+## Included Scope
+
+- Files, issue body, pull request context, and repository areas explicitly
+  selected for the Copilot task.
+- Local and GitHub checks relevant to the changed files.
+- Documentation or tests needed to keep the task reviewable.
+
+## Excluded Scope
+
+- Secrets, `.env` files, credentials, browser profiles, private links, and
+  private machine paths.
+- Dependency installation, workflow YAML, generated archives, release
+  publishing, and destructive commands unless explicitly approved.
+- Exact current product claims unless verified in official docs.
+
 ## Success Criteria
 
 - PR is focused and understandable.

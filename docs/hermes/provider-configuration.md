@@ -42,6 +42,23 @@ $env:PROVIDER_API_KEY = "replace-with-your-key"
 Do not include real keys, realistic token examples, or private provider account
 IDs.
 
+## Choosing A Provider Path
+
+For this repository, provider documentation should stay generic unless the
+current official Hermes Agent docs and the provider docs have both been checked.
+Beginner-facing examples should focus on the decision process rather than
+claiming that one provider, plan, or model is always available.
+
+Use this table when writing or reviewing provider guidance:
+
+| Question | Public-safe guidance |
+| --- | --- |
+| Does the reader already have an account? | Tell them to follow that provider's official setup flow. |
+| Is pricing mentioned? | Link to official pricing instead of copying numbers. |
+| Is a model name mentioned? | Mark availability as something to verify. |
+| Is a token required? | Use an environment-variable placeholder only. |
+| Is local state created? | Explain that it stays outside the public repository. |
+
 ## Verified Configuration Commands
 
 Official docs list these configuration commands:
@@ -61,6 +78,20 @@ For public beginner guides, prefer:
 hermes setup --portal
 hermes model
 ```
+
+## Private State Inventory
+
+Provider setup can create useful local state that must stay private. Before
+copying commands, screenshots, logs, or troubleshooting output into a public
+guide, scan for:
+
+- Provider keys and bearer tokens.
+- OAuth refresh tokens or browser session references.
+- Account IDs, tenant IDs, workspace IDs, or project IDs.
+- Local absolute paths to Hermes home folders.
+- Model-provider billing or quota details.
+- Private tool gateway URLs.
+- Chat transcripts, memories, or scheduled job payloads.
 
 ## Tool And Terminal Safety
 
@@ -86,3 +117,16 @@ they do not need before running write-capable tasks.
 | Provider auth fails | Missing or invalid key/OAuth state. | Re-run official setup and keep secrets out of docs. |
 | Config value goes to wrong file | Manual edits bypassed expected config behavior. | Use official config commands or review `config.yaml` and `.env` privately. |
 | Private config appears in a PR | Local state was copied into repo docs. | Remove it, rotate exposed secrets if needed, and review history. |
+
+## Documentation Pattern
+
+When adding provider-specific material, prefer this shape:
+
+1. Name the provider and link to official docs.
+2. State that pricing, region support, model names, and account requirements
+   may change.
+3. Show placeholder environment-variable examples only.
+4. Explain how to verify the configuration locally.
+5. Explain which generated files must stay out of Git.
+
+This keeps the guide useful without turning it into a stale setup mirror.

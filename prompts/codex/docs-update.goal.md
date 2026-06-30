@@ -109,6 +109,14 @@ git diff --stat
 git diff
 ```
 
+## Success Criteria
+
+- The target documentation is clearer, public-safe, and easier to navigate for
+  the named audience.
+- Scope, safety, and verification requirements are satisfied.
+- Internal links and related docs are updated where needed.
+- Checks pass or failures are reported with relevant context.
+
 ## Final Report Format
 
 ```markdown

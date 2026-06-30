@@ -113,6 +113,13 @@ git diff --stat
 git diff
 ```
 
+## Success Criteria
+
+- The requested feature is implemented within the approved scope.
+- Tests or documentation cover the new behavior where practical.
+- Existing public-safety and repository conventions are preserved.
+- The final report identifies changed files, commands, verification, and risks.
+
 ## Final Report Format
 
 ```markdown

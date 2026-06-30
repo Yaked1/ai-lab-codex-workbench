@@ -69,6 +69,20 @@ Final response:
 Use OpenCode read-only first for [TASK]. Read AGENTS.md, summarize repo, propose files and plan, wait before editing, keep credentials out of Git, run checks after edits, and report assumptions and risks.
 ```
 
+## Included Scope
+
+- Files or repository areas explicitly selected for the OpenCode task.
+- The requested task and adjacent docs or tests needed for verification.
+- Safe local checks named by repository docs or the human.
+
+## Excluded Scope
+
+- Secrets, `.env` files, credentials, browser profiles, private links, and
+  private machine paths.
+- Dependency installation, workflow YAML, generated archives, provider account
+  changes, and destructive commands unless explicitly approved.
+- Unsupported current product claims.
+
 ## Success Criteria
 
 - First pass is read-only.

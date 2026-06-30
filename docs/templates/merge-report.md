@@ -140,3 +140,44 @@ Notes:
 - [ ] The report does not claim checks passed unless they did.
 - [ ] The report records any unverified claims.
 - [ ] The report is short enough for a future maintainer to scan.
+
+## Package Metrics, If Relevant
+
+Use this when the PR changes release packaging, `docs/prompting-os/`, package
+builders, or package tests.
+
+| Metric | Value |
+| --- | --- |
+| Full package built |  |
+| Focused Prompting OS package built |  |
+| ZIP file count |  |
+| Markdown file count |  |
+| Markdown byte count |  |
+| Shortest Markdown file |  |
+| ZIP SHA-256 |  |
+| Manifest reviewed |  |
+| Generated artifacts committed intentionally |  |
+
+## Source Review, If Relevant
+
+| Source | Status | What it supports | What remains unverified |
+| --- | --- | --- | --- |
+|  | official / community / structural-only / unverified |  |  |
+
+Use this table when the PR uses public repositories, official docs, local
+archives, or generated research candidates. Do not paste copied source text or
+private local paths.
+
+## Automation Review, If Relevant
+
+- [ ] Workflow or script cannot publish without human approval.
+- [ ] Generated-file allowlist is still narrow.
+- [ ] No model-provider API key requirement was added to GitHub Actions.
+- [ ] Dry-run behavior is documented.
+- [ ] Rollback or refusal behavior is documented.
+
+## Template Safety Reminder
+
+This report is a public artifact when copied into a PR or release note. It
+should contain evidence and decisions, not secrets, raw logs, account URLs,
+browser session details, private file paths, or unsupported product claims.

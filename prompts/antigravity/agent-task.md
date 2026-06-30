@@ -65,6 +65,20 @@ Final response:
 Use Antigravity to plan [TASK]. Read AGENTS.md, list files first, do not edit until approved, avoid secrets/dependencies/workflow changes, run checks after edits, and report verification gaps.
 ```
 
+## Included Scope
+
+- Files, plans, issue text, or repository areas explicitly named by the human.
+- The requested task and adjacent documentation needed to keep links accurate.
+- Verification steps that are safe and relevant to the edited area.
+
+## Excluded Scope
+
+- Secrets, `.env` files, credentials, private links, private paths, and browser
+  profiles.
+- Dependency installation, workflow YAML, generated archives, account actions,
+  and destructive commands unless explicitly approved.
+- Exact current product claims unless verified in official docs.
+
 ## Success Criteria
 
 - Plan or implementation is bounded.

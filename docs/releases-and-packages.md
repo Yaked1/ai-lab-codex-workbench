@@ -118,10 +118,22 @@ The focused package is not meant to be a thin README wrapper. It should contain
 long-form technical files that are useful offline: a prompt kernel, model-family
 drivers, context engineering, agent/skill patterns, image prompting, evaluation
 and optimization, source mapping, production prompt architecture, security and
-governance, an evaluation cookbook, a comprehensiveness benchmark, a master
-template, and a rubric. The unit tests check both package mechanics and minimum
-source depth so the ZIP remains substantial enough to study without returning
-to the repository.
+governance, an evaluation cookbook, a comprehensiveness benchmark, prompt
+patterns, agent operations, RAG/tool-use guidance, maintenance guidance, worked
+examples, workshop material, troubleshooting, model adaptation, library
+governance, checklists, risk registers, QA matrices, archive source mapping,
+repository expansion playbooks, offline reader guidance, evaluation datasets,
+tool permission models, source-grounded writing labs, red-team review,
+maintainer runbooks, completion-evidence manuals, prompt-library indexing,
+static-site/release documentation, workshop assessments, metrics guidance,
+failure-mode catalogs, a master template, and a rubric.
+
+The unit tests check both package mechanics and minimum source depth so the ZIP
+remains substantial enough to study without returning to the repository. The
+focused package should retain at least 35 Markdown files and at least 300 KB of
+Markdown payload. If those floors fail, add useful examples, failure modes,
+review questions, source-policy notes, or verification steps rather than
+padding text.
 
 ## Manual GitHub Release Workflow
 
@@ -152,6 +164,8 @@ Before publishing a release:
 - [ ] `python scripts/build_release_package.py --version VERSION` builds a zip and JSON manifest.
 - [ ] The generated JSON manifest looks reasonable.
 - [ ] The focused Prompting OS package contains substantial technical Markdown files, not only short notes.
+- [ ] The focused Prompting OS package has at least 35 Markdown files and 300 KB of Markdown payload.
+- [ ] The focused Prompting OS package manifest has been inspected for file count, Markdown bytes, shortest Markdown file, relative paths, and ZIP SHA-256.
 - [ ] No secrets, private links, private paths, or account-specific data are present.
 - [ ] External tool claims are conservative or marked for official-doc verification.
 - [ ] The release title, notes, tag, attached zip, and attached manifest are correct.

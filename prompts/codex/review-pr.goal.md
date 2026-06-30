@@ -126,6 +126,13 @@ python -m unittest discover -s tests
 
 Only run checks if review scope allows command execution.
 
+## Success Criteria
+
+- Findings are ordered by severity and grounded in specific files or lines.
+- Behavioral regressions, safety risks, and missing tests are prioritized.
+- The review is clear when no issues are found.
+- Open questions, checks run, checks not run, and residual risks are reported.
+
 ## Final Report Format
 
 ```markdown

@@ -72,6 +72,19 @@ Final response:
 Edit only [FILES] to [TASK]. Follow AGENTS.md, keep the diff small, avoid secrets/dependencies/workflow changes, run checks, and report files, commands, checks, and risks.
 ```
 
+## Included Scope
+
+- Files explicitly added to the Aider session.
+- The requested task and directly necessary local context.
+- Local checks named by the human or repository docs.
+
+## Excluded Scope
+
+- Files not selected for the Aider session.
+- Secrets, `.env` files, credentials, private links, and browser profiles.
+- Dependency installation, workflow YAML, generated archives, and destructive
+  commands unless explicitly approved.
+
 ## Success Criteria
 
 - Only selected files changed.

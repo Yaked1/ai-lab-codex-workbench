@@ -70,3 +70,47 @@ releases, call model providers, or run image-generation models.
 The curator prompt prep workflow may prepare a ready-to-copy local Codex prompt
 only when manually triggered. Actual Codex writing happens locally through Codex
 CLI or the Codex app, followed by branch, pull request, checks, and human review.
+
+## Attribution Requirements
+
+Every guide that is materially informed by external material should make the
+source status clear. A short source note is enough for most docs, but deeper
+guides should include a source ledger or reference section. The goal is to make
+the origin of ideas auditable without copying private, leaked, or copyrighted
+material into the repository.
+
+Use this minimum standard:
+
+- Official docs: link to the relevant page and note that behavior may change.
+- Official repositories: link to the repository and verify the license.
+- Community repositories: link to the source, verify the license, and avoid
+  overstating maintenance status.
+- Archive corpus material: use it for structure and coverage ideas, then write
+  original guidance in this repository's voice.
+- Leak-derived sources: do not mirror or normalize the prompt text.
+
+## Pre-Publication Review
+
+Before merging public-facing content, reviewers should confirm:
+
+- No token-like strings, private paths, private account IDs, or private logs are
+  present.
+- External claims are either evergreen or marked for official-doc verification.
+- Source/license status is documented where source material shaped the guide.
+- Automation remains bounded, preview-first, and human-reviewed.
+- Beginner recommendations do not assume heavy GPU, local training, or complex
+  provider setup by default.
+- The content teaches safe workflow habits instead of bypassing review.
+
+## Incident Response
+
+If private or unsafe material is found after publication:
+
+1. Stop expanding the affected content.
+2. Remove the unsafe material in the smallest possible follow-up change.
+3. Rotate exposed credentials if any real secret or auth material appeared.
+4. Review commit history and release assets for the same material.
+5. Add a changelog or release note when users need to understand the correction.
+
+Do not replace an incident response with vague wording. Name the class of issue
+and the corrective action while avoiding repetition of the sensitive material.

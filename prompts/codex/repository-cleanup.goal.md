@@ -113,6 +113,13 @@ python scripts/safe_autofix.py --write
 python scripts/safe_autofix.py --check
 ```
 
+## Success Criteria
+
+- Cleanup is scoped, reversible where practical, and preserves user data.
+- No files are deleted or moved unless the task explicitly allows it.
+- Manifests, logs, or reports exist when organization work affects many files.
+- Checks pass or failures are reported with the changed-file list.
+
 ## Final Report Format
 
 ```markdown

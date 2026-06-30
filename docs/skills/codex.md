@@ -87,3 +87,63 @@ example, remove it through a normal branch and PR.
 - Do not commit private memories or hidden local config.
 - Do not add dependencies unless explicitly approved.
 - Keep generated guide updates behind branch, PR, checks, and review.
+
+## Skill Authoring Checklist
+
+- [ ] The skill name describes a repeatable task.
+- [ ] `SKILL.md` states trigger conditions.
+- [ ] Required files are public-safe.
+- [ ] Optional scripts are documented and testable.
+- [ ] The skill says what it may read.
+- [ ] The skill says what it may edit.
+- [ ] The skill says what requires approval.
+- [ ] The final report format includes files, commands, checks, and risks.
+- [ ] Current product behavior is marked for official-doc verification.
+
+## Minimal Public Skill Skeleton
+
+```markdown
+# Documentation Review Skill
+
+Use when the user asks for a public documentation review.
+
+Read:
+- AGENTS.md
+- README.md
+- The requested docs
+
+Do:
+- Identify clarity, safety, source, and verification issues.
+- Return findings ordered by severity.
+
+Do not:
+- Edit files unless explicitly asked.
+- Read secrets or private folders.
+- Make exact current product claims without official docs.
+
+Final report:
+- Findings
+- Files reviewed
+- Checks run or not run
+- Claims needing verification
+```
+
+## Review Questions
+
+- Does the skill duplicate an existing prompt template, or does it add real
+  reusable procedure?
+- Would a new user know when it triggers?
+- Could it accidentally read private data?
+- Could it edit files outside the intended scope?
+- Are scripts optional, safe, and covered by tests?
+- Is disabling or removing the skill straightforward?
+
+## Maintenance
+
+Review public skill docs when:
+
+- Codex skill behavior changes in official docs.
+- Repository checks change.
+- Prompt-template section requirements change.
+- A skill starts producing broad diffs.
+- A security or public-safety rule changes.

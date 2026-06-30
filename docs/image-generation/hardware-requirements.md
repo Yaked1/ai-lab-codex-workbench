@@ -32,3 +32,69 @@ or train/fine-tune models.
 - [ ] Does it warn entry-level hardware users?
 - [ ] Does it avoid local training as a beginner default?
 - [ ] Does it tell readers to verify current tool requirements?
+
+## Recommendation Language
+
+Use careful language because hardware requirements change by model and tool.
+
+Preferred:
+
+```text
+For beginner readers, prefer browser/API workflows. Local generation becomes
+practical only when the user has enough VRAM, disk, driver support, and time to
+debug the selected tool. Verify exact requirements in the tool's official docs.
+```
+
+Avoid:
+
+```text
+Any laptop can run this model.
+```
+
+Also avoid exact performance promises unless measured in the current setup and
+documented with model, resolution, batch size, precision, driver, and hardware.
+
+## Cost And Privacy Tradeoffs
+
+| Path | Cost risk | Privacy risk | Best fit |
+| --- | --- | --- | --- |
+| Browser/API | Subscription or usage fees. | Prompts/images may be processed by provider. | Beginners, workshops, quick drafts. |
+| Lightweight local | Time and storage. | Data stays local if no external calls occur. | Learning prompt structure and small experiments. |
+| Advanced local GPU | Hardware cost, disk, power, maintenance. | Local control, but outputs and model licenses still matter. | Advanced users with verified setup. |
+| Cloud GPU | Usage fees can grow quickly. | Private data may leave local machine. | Batch jobs or experiments with clear budget and policy. |
+
+## Hardware Disclosure Template
+
+When publishing a local workflow, include:
+
+```text
+Tested on:
+- Operating system:
+- CPU/RAM:
+- GPU/VRAM:
+- Driver/runtime:
+- Tool version:
+- Model/checkpoint:
+- Resolution and batch size:
+- Approximate generation time:
+- Known failures:
+```
+
+If those fields are not known, do not present the workflow as verified.
+
+## CI And Repository Boundary
+
+This repository's CI should stay lightweight:
+
+- Markdown checks.
+- Standard-library Python tests.
+- Package manifest creation.
+- Static safety checks.
+
+It should not:
+
+- Download model weights.
+- Run GPU jobs.
+- Generate images.
+- Train or fine-tune models.
+- Upload private prompt or image data.

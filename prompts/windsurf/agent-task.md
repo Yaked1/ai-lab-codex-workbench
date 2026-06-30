@@ -65,6 +65,20 @@ Final response:
 Use Windsurf to [TASK]. Explain files first, wait for approval, edit only [FILES], avoid secrets/dependencies/workflow changes, run checks, and report verification gaps and risks.
 ```
 
+## Included Scope
+
+- Files or repository areas explicitly selected for the Windsurf task.
+- The requested task and directly related docs or tests needed for consistency.
+- Safe checks named by repository docs or the human.
+
+## Excluded Scope
+
+- Secrets, `.env` files, credentials, browser profiles, private links, and
+  private machine paths.
+- Dependency installation, workflow YAML, generated archives, and destructive
+  commands unless explicitly approved.
+- Exact current product claims unless verified in official docs.
+
 ## Success Criteria
 
 - Explanation precedes editing.

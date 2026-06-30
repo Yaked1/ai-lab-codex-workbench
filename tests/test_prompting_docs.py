@@ -29,6 +29,21 @@ GOAL_DOCS = (
     "docs/guides/coding-agent-power-tips.md",
 )
 
+PROMPT_REQUIRED_SECTIONS = {
+    "Target tool": ("## Target Tool",),
+    "Purpose": ("## Purpose",),
+    "Inputs to fill": ("## Inputs To Fill",),
+    "Full prompt": ("## Full Prompt", "## Full Prompt / Issue Body"),
+    "Short version": ("## Short Version",),
+    "Included scope": ("## Included Scope",),
+    "Excluded scope": ("## Excluded Scope",),
+    "Safety boundaries": ("## Safety Boundaries",),
+    "Verification steps": ("## Verification Steps", "## Verification"),
+    "Success criteria": ("## Success Criteria",),
+    "Final report format": ("## Final Report Format",),
+    "Failure cases": ("## Failure Cases",),
+}
+
 
 def load_script(name):
     script = ROOT / "scripts" / f"{name}.py"
@@ -111,6 +126,42 @@ class PromptingGuidesReadmeLinkageTests(unittest.TestCase):
     def test_readme_has_prompting_section(self):
         readme = read("README.md")
         self.assertIn("Prompting And Agent Mastery", readme)
+
+    def test_readme_is_comprehensive_public_manual(self):
+        readme_path = ROOT / "README.md"
+        readme = read("README.md")
+        self.assertGreaterEqual(readme_path.stat().st_size, 50_000)
+        for needle in (
+            "Table Of Contents",
+            "Prompting OS",
+            "Core Workflow",
+            "Context Engineering",
+            "Evaluation And Regression",
+            "Automation And Release Packages",
+            "Public Safety Rules",
+            "Maintainer Playbook",
+            "Repository Operating Manual",
+            "Package Evidence Model",
+            "Evidence Quick Reference",
+        ):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, readme)
+
+
+class PromptTemplateCompletenessTests(unittest.TestCase):
+    def test_prompt_templates_include_operational_sections(self):
+        prompt_files = sorted((ROOT / "prompts").rglob("*.md"))
+        self.assertGreaterEqual(len(prompt_files), 10)
+
+        for path in prompt_files:
+            text = path.read_text(encoding="utf-8")
+            relative = path.relative_to(ROOT).as_posix()
+            for label, aliases in PROMPT_REQUIRED_SECTIONS.items():
+                with self.subTest(prompt=relative, section=label):
+                    self.assertTrue(
+                        any(alias in text for alias in aliases),
+                        f"{relative} is missing {label}",
+                    )
 
 
 class GoalCustomCommandTests(unittest.TestCase):

@@ -51,6 +51,23 @@ python scripts/safe_autofix.py --check
 git diff
 ```
 
+## Expected Diff Shape
+
+A normal safe-autofix diff should be boring. It may show removed trailing
+spaces, normalized final newlines, or line-ending cleanup. It should not show
+rewritten headings, changed examples, reordered lists, new sections, deleted
+paragraphs, or code logic changes.
+
+When reviewing a safe-autofix PR, use this quick triage:
+
+| Diff sign | Expected? | Response |
+| --- | --- | --- |
+| Only whitespace markers changed | Yes | Continue review. |
+| File content changed meaningfully | No | Ask for a separate normal PR. |
+| Binary file appears | No | Stop and inspect script candidate rules. |
+| Workflow file logic changed | No | Reject as out of scope. |
+| Generated output appears | Usually no | Confirm whether it was explicitly requested. |
+
 ## GitHub Automation
 
 Use the `Safe Autofix PR` workflow for repository cleanup. It opens a PR instead of pushing directly to `main`.
@@ -85,6 +102,28 @@ Do not use safe autofix for:
 
 Those tasks need normal review and explicit instructions.
 
+## Maintainer Rules
+
+Treat `safe_autofix.py` as infrastructure with a deliberately small contract.
+If you want to add a new transformation, first document the transformation in
+plain language, then add a focused test that proves the script changes only the
+intended text. Do not add behavior because it is convenient for one cleanup PR.
+
+Good candidates:
+
+- More accurate text/binary classification.
+- Better ignored-directory handling.
+- Clearer reporting in `--check` mode.
+
+Bad candidates:
+
+- Markdown reflow.
+- Import sorting.
+- Code formatting.
+- Link rewriting.
+- Heading renumbering.
+- Generated documentation updates.
+
 ## Failure Modes
 
 | Failure | Cause | Fix |
@@ -106,3 +145,14 @@ Any expansion of `safe_autofix.py` should meet these requirements:
 - No destructive behavior.
 - Covered by unit tests.
 - Documented in this file.
+
+## Final Report Language
+
+When safe autofix is part of a task report, use precise wording:
+
+- Say `safe autofix check passed` only when `--check` ran and returned success.
+- Say `safe autofix applied whitespace/final-newline cleanup` only after
+  reviewing the diff from `--write`.
+- Say `not run` when the command was skipped.
+- Do not imply that safe autofix validates prose, links, secrets, or code
+  behavior. It only validates the deterministic cleanup rules above.

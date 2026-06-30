@@ -70,6 +70,20 @@ Final response:
 Use Cursor to [TASK]. Read AGENTS.md, plan first, edit only [FILES], avoid secrets/dependencies/workflow changes, run checks, and report files, commands, verification gaps, and risks.
 ```
 
+## Included Scope
+
+- Files or repository areas explicitly selected for the Cursor task.
+- Adjacent docs needed to preserve navigation and consistency.
+- Local checks named in repository docs or by the human.
+
+## Excluded Scope
+
+- Secrets, `.env` files, credentials, browser profiles, private links, and
+  private machine paths.
+- Dependency installation, workflow YAML, generated archives, and destructive
+  commands unless explicitly approved.
+- Unsupported current product claims.
+
 ## Success Criteria
 
 - Plan is understandable.

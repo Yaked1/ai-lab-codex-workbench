@@ -43,3 +43,70 @@ The daily research scout may discover Hermes Agent updates, but it must not run
 Hermes Agent automatically. Curator prompt prep may prepare a local Codex prompt,
 but Hermes Agent documentation updates still happen through local/manual editing
 and a reviewed pull request.
+
+## Reader Paths
+
+| Reader | Path |
+| --- | --- |
+| Beginner evaluating Hermes Agent | Read this README, then `hermes-agent.md`, then `public-repo-safety.md`. |
+| Maintainer writing setup docs | Read `local-agent-setup.md`, `provider-configuration.md`, and verify official docs. |
+| Prompt author | Read `prompting-hermes-agent.md` and adapt the public-safe prompt template. |
+| Automation reviewer | Read `skills-memory-automations.md`, `public-repo-safety.md`, and `troubleshooting.md`. |
+| Tool comparison reader | Read `hermes-agent-vs-codex-vs-claude-code.md` and avoid model comparisons. |
+
+## Hard Scope Boundary
+
+This folder covers Hermes Agent as a workflow tool:
+
+- public research organization
+- provider configuration safety
+- skills
+- memory
+- scheduled work
+- public repository documentation workflows
+
+This folder does not cover:
+
+- Hermes language model families
+- model cards
+- benchmark claims
+- quantization
+- GGUF files
+- Ollama setup
+- vLLM
+- SGLang
+- local model serving
+- training or fine-tuning
+
+If a future contribution adds model-serving material here, move it out or
+reject it unless the project scope changes explicitly.
+
+## Verification Standard
+
+Before updating Hermes Agent docs:
+
+- Check official docs for installation, configuration, skills, memory, and cron
+  behavior.
+- Use placeholders for commands not verified in the current change.
+- Keep provider credentials out of examples.
+- Run repository checks.
+- Update changelog when the public guide changes.
+- Mark pricing, provider behavior, and platform support as official-doc
+  verification items.
+
+## Public-Safe Example Boundary
+
+Safe examples:
+
+- Public candidate report review.
+- Public source ledger creation.
+- Drafting a guide outline for PR review.
+- Read-only explanation of a public repository folder.
+
+Unsafe examples:
+
+- Using private memory as source material.
+- Publishing a scheduled daily guide update automatically.
+- Committing provider config.
+- Copying prompt dumps.
+- Reading browser sessions or OAuth state.

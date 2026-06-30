@@ -122,6 +122,13 @@ git diff
 
 Replace the focused unittest command with the actual relevant test.
 
+## Success Criteria
+
+- The reported bug is reproduced, explained, or bounded by current evidence.
+- The smallest practical fix is implemented without unrelated rewrites.
+- Focused and repository-level checks pass or failures are reported clearly.
+- The final report includes root cause, changed files, commands, and risks.
+
 ## Final Report Format
 
 ```markdown
