@@ -34,6 +34,22 @@ REQUIRED_FILES = [
     "docs/guides/prompting-ai-coding-agents.md",
     "docs/guides/coding-agent-power-tips.md",
     "docs/guides/prompting-references.md",
+    "docs/guides/source-inspired-prompting-curriculum.md",
+    "docs/prompting-os/README.md",
+    "docs/prompting-os/01-kernel.md",
+    "docs/prompting-os/02-model-family-drivers.md",
+    "docs/prompting-os/03-context-engineering.md",
+    "docs/prompting-os/04-agent-skills.md",
+    "docs/prompting-os/05-image-prompting-engine.md",
+    "docs/prompting-os/06-evaluation-and-optimization.md",
+    "docs/prompting-os/07-source-map.md",
+    "docs/prompting-os/08-production-prompt-architecture.md",
+    "docs/prompting-os/09-security-and-governance.md",
+    "docs/prompting-os/10-evaluation-cookbook.md",
+    "docs/prompting-os/11-comprehensiveness-benchmark.md",
+    "docs/prompting-os/evals/prompt-quality-rubric.md",
+    "docs/prompting-os/templates/master-prompt-template.md",
+    "docs/prompting-os/visuals/prompting-os-architecture.svg",
     "docs/publication-policy.md",
     "docs/automation/repository-autopilot.md",
     "docs/automation/local-autopilot.md",
@@ -56,6 +72,8 @@ REQUIRED_FILES = [
     "tests/test_research_discovery.py",
     "scripts/build_release_package.py",
     "tests/test_build_release_package.py",
+    "scripts/create_prompting_os_package.py",
+    "tests/test_prompting_os_package.py",
     "scripts/safe_autofix.py",
     "scripts/repo_health_check.py",
 ]
@@ -88,7 +106,7 @@ SECRET_PATTERNS = [
     re.compile(r"sk-[A-Za-z0-9]{24,}"),
 ]
 
-TEXT_SUFFIXES = {".md", ".txt", ".py", ".ps1", ".yml", ".yaml", ".json", ".toml"}
+TEXT_SUFFIXES = {".md", ".txt", ".py", ".ps1", ".yml", ".yaml", ".json", ".toml", ".svg"}
 
 
 def should_skip(path: Path) -> bool:

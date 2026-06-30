@@ -51,6 +51,14 @@ This keeps the guide-writing path:
 scout -> curator prompt -> local Codex -> branch -> PR -> checks -> review -> merge
 ```
 
+For source-inspired prompting-guide work, use the same preview-first shape:
+
+```text
+source inventory -> pattern extraction -> public-safe synthesis -> anti-slop review -> local checks -> diff review -> changelog -> release notes
+```
+
+The automation may prepare source candidates and curator prompts, but a human must decide which source patterns become repository content. Do not let GitHub Actions bulk-import external prompt text, publish AI-written guide content, or convert archived downloads into docs without local review.
+
 ## Generated-File Pull Requests
 
 The autopilot branch is intentionally narrow. It may contain candidate metadata, inbox reports, and local curator prompts. It must not contain finished guide content.

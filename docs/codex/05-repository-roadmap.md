@@ -104,7 +104,7 @@ Completion criteria:
 
 ## Phase 4: Small AI Project Track
 
-Goal: add optional learning projects that fit limited Windows laptops.
+Goal: add optional learning projects that work in low-setup Windows environments without making hardware limits the public identity of the repository.
 
 Candidate projects:
 
@@ -149,7 +149,7 @@ Advanced automation requirements:
 
 | Item | Why not yet |
 | --- | --- |
-| Heavy Docker stack | Not aligned with laptop-friendly goal. |
+| Heavy Docker stack | Not aligned with the low-setup beginner path. |
 | Local model hosting | Too hardware-heavy for the baseline. |
 | Auto-merge AI workflow | Removes review from the teaching path. |
 | Broad dependency framework | Adds maintenance burden before need is proven. |
@@ -161,7 +161,7 @@ Before adding a roadmap item:
 
 - [ ] Does it serve the public guide purpose?
 - [ ] Is it safe for beginner learners?
-- [ ] Does it fit a limited Windows laptop?
+- [ ] Does it work in a low-setup Windows environment or clearly label heavier requirements?
 - [ ] Can it be validated locally?
 - [ ] Does it avoid secrets and private data?
 - [ ] Does it keep human review in the loop?

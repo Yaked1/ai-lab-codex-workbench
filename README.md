@@ -59,11 +59,37 @@ For a normal documentation or prompt update:
 | Skills documentation | Claude Code skills, Codex skills, MCP tool-use systems, and reusable prompt-guide patterns. | [docs/skills/README.md](docs/skills/README.md) |
 | Prompt templates | Goal-style work orders for documentation updates, repository cleanup, feature work, bug fixes, and PR review. | [prompts/codex/docs-update.goal.md](prompts/codex/docs-update.goal.md) |
 | Image-generation docs | Diffusion prompting, autoregressive image prompting, local/cloud tradeoffs, hardware tiers, and prompt patterns. | [docs/image-generation/README.md](docs/image-generation/README.md) |
-| Prompting OS | A modular framework for prompt kernels, model-family drivers, context engineering, skills, image prompting, and evaluation. | [docs/prompting-os/README.md](docs/prompting-os/README.md) |
+| Prompting OS | A modular framework for prompt kernels, model-family drivers, context engineering, skills, image prompting, production prompt architecture, security/governance, and evaluation. | [docs/prompting-os/README.md](docs/prompting-os/README.md) |
 | Automation docs | Local checks, research scout workflow, release packaging, release drafts, and strict automerge boundaries. | [docs/automation/repository-autopilot.md](docs/automation/repository-autopilot.md) |
 | Hermes Agent docs | Nous Research Hermes Agent setup, provider configuration, prompting, skills, memory, automations, and troubleshooting. | [docs/hermes/README.md](docs/hermes/README.md) |
 | Offline site | Plain HTML/CSS pages that can be opened locally without trackers, CDNs, analytics, or external assets. | [docs/site/index.html](docs/site/index.html) |
 | Release packaging | Deterministic public release ZIPs and manifests for selected documentation and prompt assets. | [docs/releases-and-packages.md](docs/releases-and-packages.md) |
+
+## Prompting Reference Stack
+
+This repo was shaped by a current scan of well-known public GitHub prompting
+projects, then rewritten as original public-safe guidance. Use the external
+projects for depth and this repo for a reviewable local workflow.
+
+| What you need | External pattern studied | Local place to use it |
+| --- | --- | --- |
+| Prompting fundamentals and technique taxonomy | DAIR.AI Prompt Engineering Guide and Learn Prompting | [Comprehensive prompt engineering guide](docs/guides/comprehensive-prompt-engineering-guide.md) |
+| Recipe-style, evidence-based examples | OpenAI Cookbook | [Prompt templates](prompts/codex/docs-update.goal.md) and validation commands |
+| Beginner lesson progression | Anthropic interactive tutorial and Microsoft Generative AI for Beginners | [Source-inspired prompting curriculum](docs/guides/source-inspired-prompting-curriculum.md) |
+| Reusable prompt and instruction assets | Awesome ChatGPT Prompts and GitHub Awesome Copilot | [Prompting OS](docs/prompting-os/README.md), [skills docs](docs/skills/README.md), and [prompts/](prompts/) |
+| Production safety and prompt-risk discipline | Brex prompt engineering guide and this repo's source policy | [Public repo safety](docs/workflows/public-repo-safety.md) and [prompt audit checklist](docs/guides/prompt-audit-checklist.md) |
+| Prompt evaluation and regression thinking | promptfoo and hands-on technique catalogs | [Prompt quality rubric](docs/prompting-os/evals/prompt-quality-rubric.md) |
+
+See the full source list in
+[Prompting references](docs/guides/prompting-references.md) and the practical
+source-to-repo map in
+[Source-inspired prompting curriculum](docs/guides/source-inspired-prompting-curriculum.md).
+
+The focused Prompting OS ZIP is designed to be useful offline, not a tiny index
+file. It includes long-form modules for production prompt architecture,
+security/governance, evaluation, and comprehensiveness benchmarking, plus a
+substantial master template and rubric. Package tests verify both ZIP mechanics
+and minimum Markdown depth.
 
 ## The Core Workflow
 
@@ -123,6 +149,8 @@ Do not claim these passed unless they actually ran. Final reports should disting
 ### Claude Code `/goal` style workflow
 
 If you use a `/goal` style workflow in Claude Code, define it as a user-created slash command in `.claude/commands/`; do not assume it is a built-in command in every tool. Keep the command as a reusable work order: objective, scope, safety boundaries, verification, and final report.
+
+For the local Claude Code curation flow, use the local autopilot helper with `-Mode local-claude`; the default Claude branch convention is `claude/curate-research-guides`.
 
 ## Prompt Templates
 

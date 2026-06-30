@@ -89,6 +89,40 @@ Wrote dist/package-manifest-v0.1.0.json
 
 The `dist/` folder is ignored by Git so local package artifacts do not get committed accidentally.
 
+## Focused Prompting OS Package
+
+The main workbench package includes the whole repository snapshot. The focused Prompting OS package includes only `docs/prompting-os/` so readers can download the consolidated prompting framework without the full repository.
+
+Build it from the repository root:
+
+```powershell
+python scripts/create_prompting_os_package.py --version v1
+```
+
+Default outputs:
+
+```text
+release/packages/prompting-os-v1.zip
+release/packages/prompting-os-v1-manifest.json
+```
+
+For validation-only runs, prefer a temporary ignored output directory:
+
+```powershell
+python scripts/create_prompting_os_package.py --version v1 --output-dir .\dist\prompting-os
+```
+
+The focused package builder is deterministic, writes a JSON manifest with file hashes, excludes caches, archives, private-looking files, `.env` files, and oversized files, and keeps manifest paths relative to the repository root.
+
+The focused package is not meant to be a thin README wrapper. It should contain
+long-form technical files that are useful offline: a prompt kernel, model-family
+drivers, context engineering, agent/skill patterns, image prompting, evaluation
+and optimization, source mapping, production prompt architecture, security and
+governance, an evaluation cookbook, a comprehensiveness benchmark, a master
+template, and a rubric. The unit tests check both package mechanics and minimum
+source depth so the ZIP remains substantial enough to study without returning
+to the repository.
+
 ## Manual GitHub Release Workflow
 
 The repository includes `.github/workflows/release-package.yml`.
@@ -117,6 +151,7 @@ Before publishing a release:
 - [ ] `python -m unittest discover -s tests` passes.
 - [ ] `python scripts/build_release_package.py --version VERSION` builds a zip and JSON manifest.
 - [ ] The generated JSON manifest looks reasonable.
+- [ ] The focused Prompting OS package contains substantial technical Markdown files, not only short notes.
 - [ ] No secrets, private links, private paths, or account-specific data are present.
 - [ ] External tool claims are conservative or marked for official-doc verification.
 - [ ] The release title, notes, tag, attached zip, and attached manifest are correct.

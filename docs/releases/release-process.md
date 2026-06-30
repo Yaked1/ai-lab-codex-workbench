@@ -113,6 +113,18 @@ Before triggering a release:
 - [ ] The manifest does not list private files, secrets, `.env` files, caches, or generated artifacts.
 - [ ] External product behavior, pricing, platform support, and model availability claims are conservative or marked for official-doc verification.
 - [ ] No npm, PyPI, Docker, binary package, or GitHub Packages publishing has been added without a separate explicit decision.
+- [ ] Source-inspired prompting content has a source map, original wording, anti-slop review, and no copied prompt dumps.
+- [ ] Automation pages still describe candidate/source preparation only; they do not imply unattended publication of AI-written guides.
+
+## Source-Inspired Release Review
+
+Before a release that includes new prompting curriculum, Prompting OS pages, automation loops, or template packs, reviewers should check the source-to-release path:
+
+```text
+source inventory -> pattern extraction -> original synthesis -> anti-slop pass -> local checks -> diff review -> changelog -> release notes -> package manifest
+```
+
+The release package may include original synthesis and source maps. It must not include raw downloaded ZIPs, copied prompt dumps, local archive paths, leaked system prompts, private files, or generated guide content that skipped human review.
 
 ## Known Constraints
 
