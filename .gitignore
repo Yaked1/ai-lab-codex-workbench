@@ -20,6 +20,8 @@ Thumbs.db
 *.7z
 *.tar
 *.tar.gz
+release/packages/*.json
+release/packages/*.sha256
 logs/
 outputs/
 .tmp/

@@ -2,114 +2,121 @@
 
 ## Target Tool
 
-OpenAI Codex.
+OpenAI Codex CLI or Codex-style coding-agent goal mode.
 
 ## Purpose
 
-Use this prompt when a documentation page, README section, workflow guide, tool guide, or public-safety checklist needs a focused improvement.
+Use this prompt when a README section, documentation page, workflow guide, tool guide, prompt guide, or public-safety checklist needs a focused public-ready improvement.
 
 ## Inputs To Fill
 
-| Input | Example |
-| --- | --- |
-| Topic | "Codex goal workflow" |
-| Files | `docs/codex/01-codex-goal-workflow.md` |
-| Audience | "Beginner Windows users with basic Git knowledge" |
-| Required sections | "Setup, examples, safety risks, verification" |
-| Claims to avoid or verify | "Exact pricing, model availability, platform support" |
+| Input | Description | Example |
+| --- | --- | --- |
+| `{topic}` | The documentation topic to improve. | `Codex goal workflow` |
+| `{audience}` | The reader and prior knowledge. | `Beginner contributors with basic Git knowledge` |
+| `{files_to_inspect}` | Files the agent must read before editing. | `README.md`, `docs/codex/00-start-here.md` |
+| `{allowed_scope}` | Files or sections that may change. | `README.md and CHANGELOG.md only` |
+| `{excluded_scope}` | Files or actions that must not change. | `.github/workflows/`, dependencies, secrets |
+| `{claims_to_verify}` | Fast-changing product claims to avoid or mark for manual verification. | `pricing, model availability, connector behavior` |
 
 ## Full Prompt
 
 ```text
 /goal
 Objective:
-Improve or add documentation for:
-[TOPIC]
+Improve the documentation for {topic} so it is clearer, more public-safe, easier to navigate, and useful to {audience}.
 
-Audience:
-[AUDIENCE]
-
-Files to inspect first:
-- AGENTS.md
-- README.md
-- [TARGET FILES]
+Mandatory first steps:
+1. Run git status.
+2. Read AGENTS.md fully.
+3. Inspect README.md and {files_to_inspect} before editing.
+4. Identify any pre-existing working-tree changes and treat them as user work.
 
 Included scope:
-- [FILES OR SECTIONS ALLOWED]
+- {allowed_scope}
+- Update CHANGELOG.md if the change is user-visible.
 
 Excluded scope:
-- Do not edit code unless documentation cannot be accurate without it.
-- Do not modify workflow YAML.
+- {excluded_scope}
+- Do not edit secrets, .env files, credentials, private links, private paths, browser profiles, or private data.
 - Do not add dependencies.
-- Do not touch secrets, .env files, private links, or private data.
-- Do not invent exact pricing, model availability, release timing, or unsupported product features.
+- Do not modify workflow YAML unless explicitly requested.
+- Do not invent exact pricing, model availability, benchmark numbers, release timing, or unsupported product behavior.
+- Do not publish copied prompt dumps or leaked prompt text.
+
+Safety boundaries:
+- Keep the diff reviewable and focused.
+- Preserve existing user work.
+- Use conservative language for fast-changing tools and mark {claims_to_verify} for official-doc verification.
+- Prefer Windows PowerShell examples where commands are needed.
+
+Verification steps:
+- python scripts/repo_health_check.py
+- python scripts/safe_autofix.py --check
+- python -m unittest discover -s tests
+- git diff --stat
+- git diff
 
 Success criteria:
-- Documentation is clear for beginners and still useful to advanced users.
-- Structure includes practical headings, tables, checklists, examples, and failure modes where useful.
-- Windows PowerShell commands are used where commands are needed.
-- Hardware limits are stated if relevant.
-- Fast-changing tool claims say to verify in official documentation.
+- The target docs have a clearer purpose, audience, navigation path, examples/checklists where useful, and explicit failure modes or safety notes.
 - Internal links are correct.
-- Local checks pass:
-  - python scripts/repo_health_check.py
-  - python scripts/safe_autofix.py --check
-  - python -m unittest discover -s tests
+- Public-safety rules are preserved.
+- The changelog records the visible change if appropriate.
+- Required checks pass, or failures are honestly reported with relevant output.
 
-Workflow:
-1. Run git status.
-2. Inspect relevant files before editing.
-3. Make the smallest complete documentation change.
-4. Update CHANGELOG.md if the change is user-visible.
-5. Run checks.
-6. Fix related failures.
-
-Final response:
-- Summary
-- Files changed
-- Commands run
-- Checks/tests run
-- Claims needing manual verification
-- Remaining risks
+Final report format:
+## Summary
+## Git state
+## Files changed
+## Commands run
+## Verification results
+## Claims needing manual verification
+## Remaining risks
 ```
 
 ## Short Version
 
 ```text
-Update [FILE] for [AUDIENCE]. Read AGENTS.md first, keep the diff focused, avoid unverified tool claims, run the three local checks, and report files changed, commands run, checks, manual-verification claims, and remaining risks.
+Improve {topic} docs for {audience}. Run git status, read AGENTS.md, inspect README and target files, edit only {allowed_scope}, avoid secrets/dependencies/workflows/unverified product claims, update changelog if user-visible, run the three local checks, inspect git diff, and report files, commands, check results, manual-verification claims, and risks.
 ```
 
-## Success Criteria
+## Included Scope
 
-- The target documentation is longer, clearer, and more practical.
-- The change is scoped to the requested files.
-- Public-safety rules are preserved.
-- External claims are conservative.
-- Local checks pass or failures are clearly reported.
+- The documentation files named in `{allowed_scope}`.
+- Supporting navigation links when needed.
+- CHANGELOG.md for user-visible documentation changes.
+
+## Excluded Scope
+
+- Secrets, credentials, private data, `.env` files, browser profiles, and private links.
+- Workflow YAML, dependencies, generated binaries, archives, screenshots, or broad refactors unless explicitly requested.
+- Unsupported or exact claims about fast-changing products.
 
 ## Safety Boundaries
 
-- Keep work inside this repository.
-- Do not expose secrets or private links.
-- Do not add dependencies.
-- Do not edit workflow YAML unless requested.
-- Do not convert a docs task into a broad refactor.
+- Treat pre-existing edits and untracked files as user work.
+- Do not delete or move files without explicit approval.
+- Do not quote leaked prompts or copied prompt dumps.
+- Do not claim tests passed unless run in the current session.
 
-## Verification
+## Verification Steps
 
 ```powershell
 python scripts/repo_health_check.py
 python scripts/safe_autofix.py --check
 python -m unittest discover -s tests
+git diff --stat
+git diff
 ```
 
 ## Final Report Format
 
 ```markdown
 ## Summary
+## Git state
 ## Files changed
 ## Commands run
-## Checks/tests
+## Verification results
 ## Claims needing manual verification
 ## Remaining risks
 ```
@@ -118,7 +125,8 @@ python -m unittest discover -s tests
 
 | Failure | What to do |
 | --- | --- |
+| Branch has unsafe divergence or unexpected changes | Stop and report the safe commands a human should run. |
 | Official tool docs are needed but not checked | Mark the claim for manual verification instead of guessing. |
-| Scope grows beyond requested files | Stop and ask or split into a new task. |
-| Local check fails | Fix the related cause or report it clearly. |
-| Prompt asks for exact pricing | Avoid exact pricing unless freshly verified and dated. |
+| Scope grows beyond the requested files | Stop and recommend a separate task. |
+| A local check fails | Fix related failures; report unrelated failures clearly. |
+| The prompt requests exact product details | Reword conservatively unless freshly verified and dated. |

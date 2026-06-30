@@ -101,6 +101,20 @@ Codex on `codex/curate-research-guides`:
 7. Run local checks.
 8. Open a pull request for human review.
 
+## Source-Inspired Prompting Guide Loop
+
+When using downloaded or archived prompting repositories as inspiration, keep the local loop explicit:
+
+1. Inventory source names and categories.
+2. Extract reusable patterns, not passages.
+3. Write original public-safe examples.
+4. Add or update navigation so readers can find the new material.
+5. Run an anti-slop pass for unsupported claims, hype, copied text, and private paths.
+6. Run local checks and inspect the diff.
+7. Update changelog and release notes when the change is user-visible.
+
+Do not paste local archive paths into public docs. The public page may name source families or upstream projects, but exact local filesystem locations belong only in maintainer notes or task context.
+
 ## Troubleshooting
 
 | Symptom | Likely cause | First response |

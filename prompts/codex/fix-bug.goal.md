@@ -2,117 +2,135 @@
 
 ## Target Tool
 
-OpenAI Codex.
+OpenAI Codex CLI or Codex-style coding-agent goal mode.
 
 ## Purpose
 
-Use this prompt when there is a specific reproducible bug and the safest fix is a small code, test, or documentation change.
+Use this prompt when there is a specific reproducible bug and the safest fix is a small code, test, documentation, or prompt-template change.
 
 ## Inputs To Fill
 
-| Input | Example |
-| --- | --- |
-| Bug | "`safe_autofix.py --check` misses files without final newlines" |
-| Reproduction | "Run command X and observe output Y" |
-| Expected behavior | "Command reports the file" |
-| Suspected files | `scripts/safe_autofix.py`, `tests/test_safe_autofix.py` |
-| Required checks | Repo health, safe autofix check, unit tests |
+| Input | Description | Example |
+| --- | --- | --- |
+| `{bug}` | The observed problem. | `safe_autofix.py --check misses missing final newlines` |
+| `{reproduction}` | Exact steps that demonstrate the bug. | `Run command X; observe output Y` |
+| `{expected}` | The correct behavior. | `Command reports the file and exits nonzero` |
+| `{actual}` | The current behavior. | `Command exits 0` |
+| `{suspected_files}` | Files/tests to inspect first. | `scripts/safe_autofix.py`, `tests/test_safe_autofix.py` |
+| `{checks}` | Required validation. | `focused unittest plus repo checks` |
 
 ## Full Prompt
 
 ```text
 /goal
 Objective:
-Fix the following bug with the smallest safe change:
-[BUG DESCRIPTION]
+Fix this bug with the smallest safe change: {bug}
 
 Reproduction:
-[STEPS TO REPRODUCE]
+{reproduction}
 
 Expected behavior:
-[EXPECTED RESULT]
+{expected}
 
 Actual behavior:
-[ACTUAL RESULT]
+{actual}
 
-Files to inspect first:
-- AGENTS.md
-- [SUSPECTED FILES]
+Mandatory first steps:
+1. Run git status.
+2. Read AGENTS.md fully.
+3. Inspect {suspected_files} before editing.
+4. Reproduce the bug if the reproduction is safe and available.
+5. Identify pre-existing modified or untracked files and preserve user work.
 
-Success criteria:
-- The bug is fixed.
-- Existing intended behavior is preserved.
-- A focused test is added or updated if practical.
-- No unrelated files changed.
-- Local checks pass:
-  - python scripts/repo_health_check.py
-  - python scripts/safe_autofix.py --check
-  - python -m unittest discover -s tests
+Included scope:
+- {suspected_files}
+- A focused regression test if practical.
+- Documentation or CHANGELOG.md only if user-visible behavior changes.
+
+Excluded scope:
+- Do not edit secrets, credentials, .env files, private links, private paths, browser profiles, or private data.
+- Do not delete files.
+- Do not install dependencies without explicit approval.
+- Do not modify workflow YAML unless the bug is in workflow behavior and the user explicitly requested it.
+- Do not refactor unrelated code.
+- Do not make exact external product claims.
 
 Safety boundaries:
-- Do not edit .env files, credentials, secrets, private links, or private data.
-- Do not delete files.
-- Do not install dependencies without approval.
-- Do not modify workflow YAML unless the bug is in a workflow and the user requested it.
-- Keep all changes inside this repository.
+- Explain the likely root cause briefly before or alongside the fix.
+- Preserve existing intended behavior.
+- Keep the diff narrow enough for one review.
+- Stop if the bug cannot be reproduced and the fix would be speculative.
 
-Workflow:
-1. Run git status.
-2. Inspect relevant files and tests before editing.
-3. Explain the likely cause briefly.
-4. Make the smallest fix.
-5. Add or update a focused test if practical.
-6. Run the focused test first, then the full local checks.
-7. Report any unverified assumptions.
+Verification steps:
+- Run the focused reproduction or focused test first.
+- python scripts/repo_health_check.py
+- python scripts/safe_autofix.py --check
+- python -m unittest discover -s tests
+- git diff --stat
+- git diff
 
-Final response:
-- Summary
-- Root cause
-- Files changed
-- Commands run
-- Tests/checks run
-- Remaining risks
+Success criteria:
+- The reproduction no longer fails, or the reason it could not be rerun is reported.
+- A focused test is added/updated when practical.
+- Existing intended behavior is preserved.
+- No unrelated files changed.
+- {checks} pass or failures are honestly reported.
+
+Final report format:
+## Summary
+## Git state
+## Root cause
+## Files changed
+## Commands run
+## Verification results
+## Remaining risks
 ```
 
 ## Short Version
 
 ```text
-Fix [BUG] with the smallest safe change. Read AGENTS.md, inspect suspected files and tests first, preserve intended behavior, add/update a focused test if practical, run checks, and report root cause, files changed, commands, tests, and risks.
+Fix {bug} with the smallest safe change. Run git status, read AGENTS.md, inspect {suspected_files}, reproduce if safe, preserve user work, add/update a focused test if practical, avoid secrets/dependencies/workflows/unrelated refactors, run checks, inspect git diff, and report root cause, files, commands, checks, and risks.
 ```
 
-## Success Criteria
+## Included Scope
 
-- Reproduction no longer fails.
-- Test coverage is added or the reason for not adding it is stated.
-- The fix is minimal.
-- Checks pass or failures are honestly reported.
+- Suspected implementation files.
+- Focused tests that prove the bug fix.
+- Minimal docs/changelog updates for user-visible behavior.
+
+## Excluded Scope
+
+- Broad refactors, dependencies, workflow YAML, unrelated cleanup, secrets, private data, and destructive git operations.
 
 ## Safety Boundaries
 
-- No dependency installation without approval.
-- No unrelated refactors.
-- No broad cleanup.
-- No secrets or private data.
-- No workflow YAML edits unless explicitly in scope.
+- Do not guess a fix when the bug cannot be understood.
+- Do not hide failing checks.
+- Do not broaden the task into nearby improvements.
+- Do not claim a regression test exists unless it was added or already present and run.
 
-## Verification
-
-Run the most focused relevant test first, then:
+## Verification Steps
 
 ```powershell
+python -m unittest tests.test_name.TestCase.test_method
 python scripts/repo_health_check.py
 python scripts/safe_autofix.py --check
 python -m unittest discover -s tests
+git diff --stat
+git diff
 ```
+
+Replace the focused unittest command with the actual relevant test.
 
 ## Final Report Format
 
 ```markdown
 ## Summary
+## Git state
 ## Root cause
 ## Files changed
 ## Commands run
-## Tests/checks
+## Verification results
 ## Remaining risks
 ```
 
@@ -121,6 +139,7 @@ python -m unittest discover -s tests
 | Failure | What to do |
 | --- | --- |
 | Bug cannot be reproduced | Report exact commands tried and ask for more detail. |
-| Fix requires dependency install | Stop and ask for approval. |
-| Fix touches unrelated code | Split the unrelated issue into a follow-up. |
-| Tests fail outside the touched area | Report separately instead of rewriting the project. |
+| Fix requires a dependency | Stop and ask for approval. |
+| Fix touches unrelated code | Split unrelated work into a follow-up. |
+| Tests fail outside the touched area | Report them separately instead of rewriting the project. |
+| Existing user changes conflict with the fix | Stop and ask how to proceed. |

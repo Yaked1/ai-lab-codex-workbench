@@ -2,108 +2,125 @@
 
 ## Target Tool
 
-OpenAI Codex.
+OpenAI Codex CLI or Codex-style coding-agent goal mode.
 
 ## Purpose
 
-Use this prompt for conservative cleanup that improves repository consistency without changing meaning, architecture, dependencies, or workflow behavior.
+Use this prompt for conservative repository cleanup that improves consistency, navigation, or validation without changing project meaning, architecture, dependencies, or workflow behavior.
 
 ## Inputs To Fill
 
-| Input | Example |
-| --- | --- |
-| Cleanup type | "Fix Markdown headings and broken internal links" |
-| Allowed files | `docs/`, `prompts/` |
-| Forbidden files | `.github/workflows/`, `.env` |
-| Validation | Safe autofix check and unit tests |
+| Input | Description | Example |
+| --- | --- | --- |
+| `{cleanup_goal}` | The exact cleanup objective. | `Fix Markdown navigation and obvious broken internal references` |
+| `{allowed_scope}` | Files or folders that may change. | `README.md`, `docs/guides/`, `prompts/codex/` |
+| `{excluded_scope}` | Files, folders, or actions that must not change. | `.github/workflows/`, dependencies, generated archives |
+| `{validation}` | Required checks. | `repo_health_check`, `safe_autofix`, `unittest` |
 
 ## Full Prompt
 
 ```text
 /goal
 Objective:
-Clean up repository formatting and structure safely without changing meaning.
+Perform this conservative repository cleanup: {cleanup_goal}
 
-Allowed changes:
-- Fix trailing whitespace.
-- Ensure final newlines.
-- Improve Markdown headings when the intent is obvious.
-- Update broken internal references if found.
-- Remove obvious empty placeholder sections only if they are clearly useless.
-- Update CHANGELOG.md if the cleanup is user-visible.
+Mandatory first steps:
+1. Run git status.
+2. Read AGENTS.md fully.
+3. Inspect {allowed_scope} before editing.
+4. Identify pre-existing modified or untracked files and preserve user work.
 
-Forbidden changes:
+Included scope:
+- {allowed_scope}
+- Deterministic whitespace/final-newline cleanup when reported by safe_autofix.
+- CHANGELOG.md if the cleanup is visible to readers.
+
+Excluded scope:
+- {excluded_scope}
 - Do not delete files.
-- Do not change project purpose.
 - Do not install dependencies.
-- Do not edit secrets, .env files, private links, or private data.
-- Do not rewrite large sections unnecessarily.
+- Do not edit secrets, .env files, private links, private paths, browser profiles, credentials, or private data.
 - Do not modify workflow YAML unless explicitly requested.
-- Do not introduce exact pricing, model, or feature claims.
+- Do not rewrite large sections just to make them sound different.
+- Do not introduce exact pricing, model, benchmark, or unsupported tool claims.
+
+Safety boundaries:
+- Cleanup must be predictable, reviewable, and tied to the stated objective.
+- Prefer safe_autofix.py for whitespace cleanup.
+- Do not mix broad editorial rewrites with deterministic cleanup.
+- Ask or stop if a file appears obsolete but deletion was not explicitly approved.
+
+Verification steps:
+- python scripts/safe_autofix.py --check
+- python scripts/repo_health_check.py
+- python -m unittest discover -s tests
+- git diff --stat
+- git diff
 
 Success criteria:
 - Repository meaning and behavior are preserved.
-- Diff is small and reviewable.
-- Local checks pass:
-  - python scripts/repo_health_check.py
-  - python scripts/safe_autofix.py --check
-  - python -m unittest discover -s tests
+- The diff is small enough to review.
+- No unrelated files change.
+- Public-safety rules still hold.
+- {validation} pass or failures are honestly reported.
 
-Workflow:
-1. Run git status.
-2. Read AGENTS.md.
-3. Inspect candidate files.
-4. Prefer safe_autofix.py for whitespace cleanup.
-5. Make only obvious manual cleanup.
-6. Run checks.
-7. Review git diff.
-
-Final response:
-- Summary
-- Files changed
-- Commands run
-- Tests/checks run
-- Remaining risks
+Final report format:
+## Summary
+## Git state
+## Files changed
+## Commands run
+## Verification results
+## Remaining risks
 ```
 
 ## Short Version
 
 ```text
-Clean up [AREA] without changing meaning. Keep edits small, do not delete files or add dependencies, run safe autofix/checks, review diff, and report files, commands, checks, and risks.
+Clean up {allowed_scope} for {cleanup_goal}. Run git status, read AGENTS.md, preserve existing user work, do not delete files/add dependencies/change workflows/touch secrets, prefer safe_autofix for whitespace, run required checks, inspect git diff, and report files, commands, checks, and risks.
 ```
 
-## Success Criteria
+## Included Scope
 
-- Cleanup is deterministic or obviously editorial.
-- No behavior changes unless explicitly requested.
-- Diff is easy to review.
-- Local checks pass.
+- Files and folders named in `{allowed_scope}`.
+- Obvious broken navigation or deterministic formatting issues.
+- CHANGELOG.md if readers will notice the cleanup.
+
+## Excluded Scope
+
+- File deletion, broad restructuring, dependency changes, workflow YAML, generated binary artifacts, and unrelated prose rewrites.
+- Secrets, credentials, private data, private paths, and private links.
 
 ## Safety Boundaries
 
-- No deletion.
-- No secrets.
-- No dependency changes.
-- No workflow YAML changes unless requested.
-- No broad rewrites disguised as cleanup.
+- Treat untracked files as user work unless explicitly told otherwise.
+- Do not use `git clean`, `git reset`, stash, rebase, or force-push.
+- Do not claim cleanup is safe until the diff is inspected.
 
-## Verification
+## Verification Steps
+
+```powershell
+python scripts/safe_autofix.py --check
+python scripts/repo_health_check.py
+python -m unittest discover -s tests
+git diff --stat
+git diff
+```
+
+If safe autofix reports formatting issues and the task allows it:
 
 ```powershell
 python scripts/safe_autofix.py --write
-python scripts/repo_health_check.py
 python scripts/safe_autofix.py --check
-python -m unittest discover -s tests
-git diff
 ```
 
 ## Final Report Format
 
 ```markdown
 ## Summary
+## Git state
 ## Files changed
 ## Commands run
-## Tests/checks
+## Verification results
 ## Remaining risks
 ```
 
@@ -111,7 +128,8 @@ git diff
 
 | Failure | What to do |
 | --- | --- |
-| Cleanup becomes a rewrite | Stop and split into a docs task. |
-| Unexpected files changed | Review and remove unrelated changes. |
-| A file should be deleted | Ask for explicit approval. |
-| Safe autofix changes many files | Review the full diff before committing. |
+| Cleanup becomes a rewrite | Stop and split into a documentation task. |
+| Unexpected files changed | Report them and avoid staging/committing until reviewed. |
+| A file seems safe to delete | Ask for explicit approval instead of deleting it. |
+| Safe autofix changes many files | Review the full diff before claiming success. |
+| Tests fail outside cleanup scope | Report the pre-existing or unrelated failure clearly. |

@@ -2,107 +2,125 @@
 
 ## Target Tool
 
-OpenAI Codex.
+OpenAI Codex CLI or Codex-style coding-agent goal mode.
 
 ## Purpose
 
-Use this prompt when adding a small feature to a lightweight documentation, script, test, or GitHub workflow teaching repository.
+Use this prompt when adding one small feature to a lightweight documentation, script, test, prompt-template, or workflow-teaching repository while keeping the change reviewable.
 
 ## Inputs To Fill
 
-| Input | Example |
-| --- | --- |
-| Feature | "Add a checklist to the merge report template" |
-| User-facing behavior | "Maintainers see a rollback section" |
-| Files likely touched | `docs/templates/merge-report.md` |
-| Out of scope | "No workflow YAML changes" |
-| Checks | Repo health, safe autofix, unit tests |
+| Input | Description | Example |
+| --- | --- | --- |
+| `{feature}` | The feature to add. | `Add a docs freshness checklist` |
+| `{user_value}` | What users can do after the feature exists. | `Maintainers can audit stale product claims` |
+| `{files_to_inspect}` | Files the agent should read first. | `README.md`, `scripts/repo_health_check.py` |
+| `{allowed_scope}` | Files or modules that may change. | `docs/`, `scripts/repo_health_check.py`, related tests |
+| `{excluded_scope}` | Explicitly forbidden files/actions. | `No workflow YAML or dependencies` |
+| `{checks}` | Required validation. | `repo health, safe autofix, unittest` |
 
 ## Full Prompt
 
 ```text
 /goal
 Objective:
-Implement this small feature:
-[FEATURE DESCRIPTION]
+Implement this small feature: {feature}
 
-User context:
-This project is a low-setup, cross-platform learning repository. Prefer lightweight Markdown docs, PowerShell commands, Python standard-library scripts, and GitHub Actions already present in the repo. Avoid Docker, WSL, heavy local models, and large dependencies unless explicitly approved.
+User value:
+{user_value}
 
-Files to inspect first:
-- AGENTS.md
-- README.md
-- [RELEVANT FILES]
+Mandatory first steps:
+1. Run git status.
+2. Read AGENTS.md fully.
+3. Inspect {files_to_inspect} before editing.
+4. Identify pre-existing modified or untracked files and preserve user work.
 
 Included scope:
-- [FILES OR MODULES ALLOWED]
+- {allowed_scope}
+- Tests or docs directly needed to prove the feature.
+- CHANGELOG.md if the feature is user-visible.
 
 Excluded scope:
-- Do not edit secrets, credentials, .env files, private links, or private data.
+- {excluded_scope}
+- Do not edit secrets, credentials, .env files, private links, private paths, browser profiles, or private data.
 - Do not delete files.
-- Do not install dependencies without approval.
-- Do not modify system settings.
+- Do not install dependencies without explicit approval.
 - Do not modify workflow YAML unless explicitly requested.
+- Do not modify system settings.
+- Do not add exact external product claims unless they are verified and dated.
+
+Safety boundaries:
+- Implement the smallest useful version.
+- Prefer Python standard library and existing project patterns.
+- Do not refactor unrelated code.
+- Keep public docs conservative about fast-changing tools.
+- Stop if branch divergence or existing changes make safe editing ambiguous.
+
+Verification steps:
+- Run a focused test or script check if one applies.
+- python scripts/repo_health_check.py
+- python scripts/safe_autofix.py --check
+- python -m unittest discover -s tests
+- git diff --stat
+- git diff
 
 Success criteria:
-- Feature is implemented in the smallest reasonable way.
-- README or docs are updated if user-facing behavior changes.
-- Tests/checks are added or updated when practical.
-- Local checks pass:
-  - python scripts/repo_health_check.py
-  - python scripts/safe_autofix.py --check
-  - python -m unittest discover -s tests
+- {feature} works or is documented clearly.
+- {user_value} is satisfied.
+- Related tests/docs are updated when practical.
 - No unrelated files changed.
+- {checks} pass or failures are honestly reported.
 
-Workflow:
-1. Run git status.
-2. Read AGENTS.md.
-3. Inspect relevant files.
-4. Make a brief plan.
-5. Implement the smallest useful change.
-6. Update docs and changelog if needed.
-7. Run checks.
-8. Fix related failures.
-9. Report results and remaining risks.
+Final report format:
+## Summary
+## Git state
+## Files changed
+## Commands run
+## Verification results
+## Remaining risks
 ```
 
 ## Short Version
 
 ```text
-Implement [FEATURE] with the smallest safe diff. Read AGENTS.md, inspect relevant files, avoid dependencies and workflow changes unless requested, update docs/tests when useful, run the three local checks, and report files, commands, checks, and risks.
+Implement {feature} with the smallest safe diff. Run git status, read AGENTS.md, inspect {files_to_inspect}, preserve existing work, edit only {allowed_scope}, avoid {excluded_scope}, update docs/tests/changelog when useful, run required checks, inspect git diff, and report files, commands, checks, and risks.
 ```
 
-## Success Criteria
+## Included Scope
 
-- Feature works or documentation clearly reflects the new behavior.
-- Tests or docs are updated when appropriate.
-- No unrelated files changed.
-- Local checks pass or failures are explained.
+- Files named in `{allowed_scope}`.
+- Focused tests, docs, and changelog entries needed to make the feature reviewable.
+
+## Excluded Scope
+
+- Secrets, private data, dependencies, workflow YAML, system settings, broad refactors, and unrelated cleanup.
+- Exact external product claims without official-doc verification.
 
 ## Safety Boundaries
 
-- No secrets or private data.
-- No deletion.
-- No unapproved dependencies.
-- No system settings.
-- No broad refactors.
-- No exact external product claims unless verified.
+- Do not use destructive git operations.
+- Do not overwrite untracked or modified user work.
+- Do not expand the feature into a platform redesign.
+- Do not claim behavior is verified unless a command or manual inspection proves it.
 
-## Verification
+## Verification Steps
 
 ```powershell
 python scripts/repo_health_check.py
 python scripts/safe_autofix.py --check
 python -m unittest discover -s tests
+git diff --stat
+git diff
 ```
 
 ## Final Report Format
 
 ```markdown
 ## Summary
+## Git state
 ## Files changed
 ## Commands run
-## Tests/checks
+## Verification results
 ## Remaining risks
 ```
 
@@ -110,7 +128,8 @@ python -m unittest discover -s tests
 
 | Failure | What to do |
 | --- | --- |
-| Feature is too broad | Split into smaller goals. |
-| Dependency seems necessary | Ask before adding it. |
-| Tests are impractical | Explain why and run available checks. |
-| Existing code is unclear | Inspect more context and keep the change conservative. |
+| Feature is too broad | Split it into smaller goals. |
+| A dependency seems necessary | Stop and ask for approval. |
+| Existing tests do not cover the area | Add a focused test if practical, otherwise explain the gap. |
+| Branch has unrelated changes | Preserve them and report the risk. |
+| Implementation requires workflow changes | Stop unless workflow edits were explicitly requested. |

@@ -8,6 +8,9 @@ Fixed:
 
 Changed:
 
+- Expanded the prompting reference stack with a 2026-06-30 GitHub scan of well-known public prompting repositories, mapped those patterns to local docs/templates/evaluation artifacts, and surfaced the source-inspired path from the README, Prompting OS source map, curriculum guide, and offline site.
+- Expanded the focused Prompting OS ZIP source with long technical modules for production prompt architecture, prompt security/governance, and prompt evaluation, upgraded the packaged master template and rubric, and added package-depth tests that require substantial Markdown payloads.
+- Added a public-safe Prompting OS comprehensiveness benchmark based on the local `system_prompts_leaks` clone's structure and size metrics, tightened package-depth targets, and removed machine-specific local archive paths from public audit docs.
 - Added `docs/guides/comprehensive-prompt-engineering-guide.md`, a release-bundled curriculum covering prompt anatomy, context engineering, reusable prompt functions, task patterns, agentic prompting, coding agents, tool-use safety, RAG, reasoning, evaluation, prompt security, compression, image prompting, repository prompt management, templates, and review rubrics.
 - Reworked the README into a sharper public landing page with a direct start-here table, fast path, core workflow, validation commands, prompt-template guide, safety rules, repository map, and linked archive/source-audit references instead of an inline archive manifest.
 - Reworked the README into a public landing page with a clearer start-here path, repository map, validation commands, prompt-template usage, Codex/Claude Code navigation, and explicit public-safety non-goals.
