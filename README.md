@@ -27,6 +27,7 @@ It is not a prompt dump, a model-access service, a benchmark leaderboard, or a s
 | Start using Codex on this repo | [docs/codex/00-start-here.md](docs/codex/00-start-here.md) |
 | Run a complete agent task | [docs/workflows/agent-task-lifecycle.md](docs/workflows/agent-task-lifecycle.md) |
 | Pick a ready-to-use prompt | [prompts/codex/](prompts/codex/) |
+| Learn prompt engineering deeply | [docs/guides/comprehensive-prompt-engineering-guide.md](docs/guides/comprehensive-prompt-engineering-guide.md) |
 | Learn prompt engineering patterns | [docs/guides/prompt-engineering-playbook.md](docs/guides/prompt-engineering-playbook.md) |
 | Learn agentic coding workflows | [docs/guides/agentic-coding-playbook.md](docs/guides/agentic-coding-playbook.md) |
 | Compare AI coding tools | [docs/tools/comparison-matrix.md](docs/tools/comparison-matrix.md) |
@@ -52,6 +53,7 @@ For a normal documentation or prompt update:
 | Area | What it provides | Entry point |
 | --- | --- | --- |
 | Codex workflow docs | Start guide, goal workflow, branch/PR flow, safe autofix policy, review checklist, and roadmap. | [docs/codex/00-start-here.md](docs/codex/00-start-here.md) |
+| Prompting And Agent Mastery | Comprehensive prompt engineering, prompt anatomy, context engineering, prompt audits, prompt compression, agent prompts, source-grounded prompting, evaluation, image prompting, and source-inspired curriculum. | [docs/guides/comprehensive-prompt-engineering-guide.md](docs/guides/comprehensive-prompt-engineering-guide.md) |
 | Prompting guides | Prompt anatomy, context engineering, prompt audits, prompt compression, agent prompts, and source-inspired curriculum. | [docs/guides/README.md](docs/guides/README.md) |
 | Tool guides | Practical notes for Codex, Claude Code, Cursor, Copilot, Aider, Windsurf, OpenCode, Kilo Code, MCP, and related tools. | [docs/tools/comparison-matrix.md](docs/tools/comparison-matrix.md) |
 | Skills documentation | Claude Code skills, Codex skills, MCP tool-use systems, and reusable prompt-guide patterns. | [docs/skills/README.md](docs/skills/README.md) |
@@ -118,6 +120,10 @@ git diff
 
 Do not claim these passed unless they actually ran. Final reports should distinguish completed checks from checks that were skipped, blocked, or failed.
 
+### Claude Code `/goal` style workflow
+
+If you use a `/goal` style workflow in Claude Code, define it as a user-created slash command in `.claude/commands/`; do not assume it is a built-in command in every tool. Keep the command as a reusable work order: objective, scope, safety boundaries, verification, and final report.
+
 ## Prompt Templates
 
 Prompt templates live in [prompts/codex/](prompts/codex/). They are designed as practical work orders rather than generic advice.
@@ -169,7 +175,7 @@ Use these deeper references when in doubt:
 AGENTS.md                         Local rules for AI coding agents
 README.md                         Public landing page
 docs/codex/                       Codex start guide, goal workflow, PR flow, review, and roadmap
-docs/guides/                      Prompt engineering, agentic coding, audits, references, and Windows workflows
+docs/guides/                      Comprehensive prompt engineering, agentic coding, audits, references, and Windows workflows
 docs/tools/                       Tool-specific guides and comparison matrix
 docs/skills/                      Claude Code, Codex, MCP, and prompt-guide skill documentation
 docs/image-generation/            Diffusion, autoregressive, local/cloud, hardware, and image-prompting notes
@@ -214,9 +220,14 @@ For new users:
 1. [AGENTS.md](AGENTS.md)
 2. [docs/codex/00-start-here.md](docs/codex/00-start-here.md)
 3. [docs/workflows/agent-task-lifecycle.md](docs/workflows/agent-task-lifecycle.md)
-4. [docs/guides/prompt-engineering-playbook.md](docs/guides/prompt-engineering-playbook.md)
-5. [docs/guides/agentic-coding-playbook.md](docs/guides/agentic-coding-playbook.md)
-6. [prompts/codex/docs-update.goal.md](prompts/codex/docs-update.goal.md)
+4. [docs/guides/comprehensive-prompt-engineering-guide.md](docs/guides/comprehensive-prompt-engineering-guide.md)
+5. [docs/guides/prompting-ai-coding-agents.md](docs/guides/prompting-ai-coding-agents.md)
+6. [docs/guides/prompt-engineering-playbook.md](docs/guides/prompt-engineering-playbook.md)
+7. [docs/guides/coding-agent-power-tips.md](docs/guides/coding-agent-power-tips.md)
+8. [docs/guides/prompting-references.md](docs/guides/prompting-references.md)
+9. [docs/guides/source-inspired-prompting-curriculum.md](docs/guides/source-inspired-prompting-curriculum.md)
+10. [docs/guides/agentic-coding-playbook.md](docs/guides/agentic-coding-playbook.md)
+11. [prompts/codex/docs-update.goal.md](prompts/codex/docs-update.goal.md)
 
 For maintainers:
 

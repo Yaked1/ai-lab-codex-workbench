@@ -14,9 +14,11 @@ if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
 GUIDES = (
+    "docs/guides/comprehensive-prompt-engineering-guide.md",
     "docs/guides/prompting-ai-coding-agents.md",
     "docs/guides/coding-agent-power-tips.md",
     "docs/guides/prompting-references.md",
+    "docs/guides/source-inspired-prompting-curriculum.md",
 )
 
 # Docs that may reference /goal as an example custom slash command.
@@ -57,6 +59,21 @@ class PromptingGuidesExistTests(unittest.TestCase):
 
 
 class PromptingGuidesContentTests(unittest.TestCase):
+    def test_comprehensive_guide_covers_prompt_engineering_system(self):
+        text = read("docs/guides/comprehensive-prompt-engineering-guide.md")
+        for needle in (
+            "Prompt Anatomy",
+            "Context Engineering",
+            "Reusable Prompt Functions",
+            "Agentic Prompting",
+            "Evaluation and Regression Testing",
+            "Prompt Security",
+            "Image Prompting",
+            "Prompt Management in Repositories",
+        ):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, text)
+
     def test_craft_guide_covers_core_techniques(self):
         text = read("docs/guides/prompting-ai-coding-agents.md")
         for needle in ("work order", "Decompose", "Verification", "context window", "Anti-Pattern"):

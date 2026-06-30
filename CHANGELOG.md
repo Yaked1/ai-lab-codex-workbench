@@ -8,6 +8,7 @@ Fixed:
 
 Changed:
 
+- Added `docs/guides/comprehensive-prompt-engineering-guide.md`, a release-bundled curriculum covering prompt anatomy, context engineering, reusable prompt functions, task patterns, agentic prompting, coding agents, tool-use safety, RAG, reasoning, evaluation, prompt security, compression, image prompting, repository prompt management, templates, and review rubrics.
 - Reworked the README into a sharper public landing page with a direct start-here table, fast path, core workflow, validation commands, prompt-template guide, safety rules, repository map, and linked archive/source-audit references instead of an inline archive manifest.
 - Reworked the README into a public landing page with a clearer start-here path, repository map, validation commands, prompt-template usage, Codex/Claude Code navigation, and explicit public-safety non-goals.
 - Added a `docs/guides/README.md` navigation page and expanded the Codex prompt templates into more operational work orders with included/excluded scope, safety boundaries, verification steps, final report formats, and failure cases.

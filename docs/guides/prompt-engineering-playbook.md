@@ -2,6 +2,8 @@
 
 Use this playbook to turn a loose request into a prompt that an AI coding agent can execute safely. It is written for public repositories, Windows-friendly workflows, and reviewable pull requests.
 
+For the full curriculum, start with [Comprehensive Prompt Engineering Guide](comprehensive-prompt-engineering-guide.md). Use this playbook as the shorter operational reference.
+
 The main rule: a prompt is a work order, not a wish. It should define the goal, scope, safety boundaries, verification steps, and final report.
 
 ## Beginner Path
