@@ -16,5 +16,15 @@ $Branch = "agent/$SafeName"
 git status --short
 if ($LASTEXITCODE -ne 0) { throw "git status failed" }
 
-git checkout -b $Branch
-Write-Host "Created branch: $Branch"
+$existing = git branch --list $Branch
+if ($LASTEXITCODE -ne 0) { throw "git branch lookup failed" }
+
+if ($existing) {
+  Write-Host "Branch '$Branch' already exists. Switching to it instead of creating a duplicate."
+  git checkout $Branch
+} else {
+  git checkout -b $Branch
+}
+if ($LASTEXITCODE -ne 0) { throw "git checkout failed for branch $Branch" }
+
+Write-Host "Using branch: $Branch"
