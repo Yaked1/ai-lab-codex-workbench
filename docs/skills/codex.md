@@ -13,28 +13,34 @@ clear.
 
 ## What "Skill" Means In This Repo's Codex Workflow
 
-This repository does not ship a native `SKILL.md` bundle for Codex. Instead,
-it relies on two repo-local conventions that function as the practical
-skill layer for Codex sessions here, and it is important not to blur them
-with an official product feature:
+This repository now ships a small `skills/` starter pack with native
+`SKILL.md` bundles, plus two repo-local conventions that function as the
+practical skill layer for Codex sessions here. Keep the packaging boundaries
+clear: the starter pack is ordinary repository content that can be copied or
+staged by the installer, while Codex's exact automatic skill-discovery rules
+must still be verified in official docs before publishing precise setup
+claims.
 
 | Convention | What it is | Where it lives | Official Codex feature? |
 | --- | --- | --- | --- |
 | `AGENTS.md` | Always-on repository rules Codex (and other agents) should read before any edit. | Repo root: [AGENTS.md](../../AGENTS.md) | Yes -- `AGENTS.md` is a recognized convention Codex looks for; verify exact discovery behavior in official docs. |
+| `skills/*/SKILL.md` | Starter reusable procedures for safe Codex work, bounded goal-running, creating new skills, and installing this pack. | [skills/](../../skills/) | Codex supports skills, but exact local discovery paths and auto-load behavior are official-doc verification items for each Codex surface. |
 | `.goal.md` prompt files | Repo-local, human-authored prompt templates that structure a Codex "goal mode" task end to end (objective, scope, safety, verification, report format). | [prompts/codex/*.goal.md](../../prompts/codex/) | No -- this is a repo convention, not a Codex product feature. The `.goal.md` suffix and folder location are choices this repository made, not something Codex requires. |
 | `.github/codex/prompts/*.md` | Prompt bodies used by this repo's own automation (for example the daily curator prompt) rather than by an interactive user. | [.github/codex/prompts/](../../.github/codex/prompts/) | No -- also repo-local, consumed by this repo's scripts/workflows, not a Codex product mechanism. |
 
 The common thread with a native `SKILL.md` bundle (see
 [claude-code.md](claude-code.md)) is real: both are "a documented,
 bounded procedure with a trigger, scope, and verification steps." The
-difference is packaging and authority. A `.goal.md` file in this repo is
-plain Markdown that a human pastes into a Codex session (or a maintainer
-script assembles into a prompt) -- it has no special loading mechanism of
-its own. Never describe `prompts/codex/*.goal.md` as something Codex
-auto-discovers or auto-runs; it is invoked because a person copies it in,
-the same way `/goal` in Claude Code is a user-authored custom command, not
-a built-in feature (see [claude-code.md](claude-code.md) for that
-distinction).
+difference is packaging and authority. A `skills/*/SKILL.md` file is a native
+skill-bundle shape, but this repository's installer only copies or stages the
+file; it does not prove that every Codex surface auto-discovers that target
+path. A `.goal.md` file in this repo is plain Markdown that a human pastes
+into a Codex session (or a maintainer script assembles into a prompt) -- it
+has no special loading mechanism of its own. Never describe
+`prompts/codex/*.goal.md` as something Codex auto-discovers or auto-runs; it
+is invoked because a person copies it in, the same way `/goal` in Claude Code
+is a user-authored custom command, not a built-in feature (see
+[claude-code.md](claude-code.md) for that distinction).
 
 ## Worked Example: This Repo's Own `.goal.md` Convention
 
@@ -75,12 +81,12 @@ a Codex skill safely in this repo" means in practice: writing one more
 `## Verification Steps` or `## Verification`, `## Success Criteria`,
 `## Final Report Format`, and `## Failure Cases`).
 
-If a future task needs a native Codex `SKILL.md` bundle rather than a
-`.goal.md` prompt file, keep the two conventions separate in the docs: a
-`SKILL.md` bundle is a product feature Codex may load automatically per
-its own discovery rules (verify current behavior before claiming specifics),
-while a `.goal.md` file in `prompts/codex/` is always manually pasted in by
-a person.
+For installable bundles, see [skills/README.md](../../skills/README.md) and
+[skills/INDEX.md](../../skills/INDEX.md). For a new task-specific prompt,
+use the `.goal.md` convention instead. Keep the two conventions separate in
+the docs: a `SKILL.md` bundle is a product feature Codex may load per its own
+discovery rules (verify current behavior before claiming specifics), while a
+`.goal.md` file in `prompts/codex/` is always manually pasted in by a person.
 
 ## Beginner Friendliness
 
@@ -96,6 +102,13 @@ current supported path is not verified, publish placeholders only:
 # Placeholder only. Verify the current Codex skill location first.
 New-Item -ItemType Directory -Path .\skills\docs-review -Force
 New-Item -ItemType File -Path .\skills\docs-review\SKILL.md -Force
+```
+
+For this repo's own installer-backed starter pack, list available bundles with:
+
+```powershell
+python scripts/install_skill.py --list
+.\scripts\install_skill.ps1 -List
 ```
 
 For this repo's own `.goal.md` convention, no special directory creation is

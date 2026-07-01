@@ -1,0 +1,28 @@
+{
+  "skills": [
+    {
+      "slug": "use-codex-safely",
+      "description": "Safe first-task workflow for OpenAI Codex sessions in this repository: read local rules, scope the task, run checks, open a reviewable PR.",
+      "category": "tools",
+      "source": ["docs/tools/codex.md", "docs/codex/00-start-here.md", "docs/codex/01-codex-goal-workflow.md", "AGENTS.md"]
+    },
+    {
+      "slug": "self-directed-goal-runner",
+      "description": "Turn a broad multi-step goal into a bounded, checklist-driven self-prompt and follow it to completion with hard stop conditions and an iteration cap.",
+      "category": "meta",
+      "source": ["docs/templates/task-spec.md", "AGENTS.md", "docs/skills/README.md"]
+    },
+    {
+      "slug": "create-a-new-skill",
+      "description": "Author a new skill bundle in this repository's skills/ package from a recurring task or an existing doc/prompt template.",
+      "category": "meta",
+      "source": ["docs/skills/README.md", "skills/README.md", "skills/use-codex-safely/SKILL.md"]
+    },
+    {
+      "slug": "install-this-skill-pack",
+      "description": "Give the exact command to install a skill from this repository into Claude Code, Codex, or another agent harness.",
+      "category": "meta",
+      "source": ["skills/README.md", "scripts/install_skill.ps1", "scripts/install_skill.py"]
+    }
+  ]
+}
