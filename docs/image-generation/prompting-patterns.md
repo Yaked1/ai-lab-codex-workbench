@@ -3,10 +3,10 @@
 Use these patterns as starting points. Always respect tool policies, licenses,
 private data boundaries, and source attribution. This guide focuses on
 worked, copy-paste prompt examples across subject, composition, style,
-lighting, materials, and constraints. For the structured plan-then-generate
-workflow (layout-first prompts, reason-then-generate, critique-then-revise),
-see [Reasoning-integrated image generation](reasoning-integrated-image-generation.md)
-instead of duplicating that pattern here.
+lighting, materials, and constraints. For plan-then-generate workflows
+(layout-first prompts, reason-then-generate, critique-then-revise), see
+[Reasoning-integrated image generation](reasoning-integrated-image-generation.md)
+instead.
 
 ## Base Prompt Template
 
@@ -48,18 +48,16 @@ across a real prompt.
 ```text
 Subject: a fictional reusable water bottle, cylindrical, matte navy body,
 brushed steel cap, no logo.
-Purpose: e-commerce product photography for a documentation example.
-Composition: three-quarter view, camera at product height, centered,
-neutral light-gray seamless background, square 1:1 aspect ratio.
+Composition: three-quarter view, centered, neutral light-gray seamless
+background, square 1:1 aspect ratio.
 Lighting: softbox key light upper-left, soft fill light right, subtle
-reflection on the steel cap only, no visible light stands or rigging.
-Style: photorealistic commercial product photography, sharp focus
-throughout, no motion blur, no lens flare.
+reflection on the steel cap only.
+Style: photorealistic commercial product photography, sharp focus, no
+motion blur, no lens flare.
 Materials: matte painted aluminum body, brushed steel cap with faint
 directional grain, no fingerprints, no dust.
-Constraints: no real brand names, no trademarked logos, no invented text on
-the label, no watermark or signature.
-Output: 1:1 aspect ratio, high resolution if supported.
+Constraints: no real brand names, no trademarked logos, no invented label
+text, no watermark or signature.
 Review: check cap material, background evenness, and absence of any
 invented logo or label text.
 ```
@@ -68,11 +66,11 @@ invented logo or label text.
 
 ```text
 Subject: a fictional adventurer character, mid-20s appearance, short curly
-brown hair, olive-green weatherproof jacket, brown leather satchel across
-the chest, no real-world brand marks on any clothing item.
-Composition: three-panel reference sheet, front view, side view, and
-three-quarter view, same pose scale in each panel, plain light-gray
-background, 3:1 wide aspect ratio for all three panels combined.
+brown hair, olive-green weatherproof jacket, brown leather satchel, no
+real-world brand marks on any clothing item.
+Composition: three-panel reference sheet, front/side/three-quarter views,
+same pose scale in each panel, plain light-gray background, 3:1 wide aspect
+ratio for all three panels combined.
 Lighting: flat, even studio lighting with minimal shadow, consistent across
 all three panels.
 Style: clean digital illustration, consistent line weight, moderate color
@@ -88,17 +86,17 @@ match across all three panels.
 ```text
 Subject: a simple wooden storage crate, rectangular, visible plank seams,
 metal corner brackets.
-Composition: orthographic front, side, and top views arranged left to
-right, consistent scale across all three, plain white background, small
-scale-reference cube shown once beside the front view.
+Composition: orthographic front, side, and top views left to right,
+consistent scale across all three, plain white background, small
+scale-reference cube beside the front view.
 Style: clean technical reference illustration, flat lighting, no cast
 shadows that would obscure edges.
-Materials: label callouts as plain text near each material: "wood plank,"
-"metal bracket," matte finish on wood, slightly reflective on metal.
+Materials: plain-text callouts near each material: "wood plank," "metal
+bracket"; matte finish on wood, slightly reflective on metal.
 Constraints: no brand stamps on the wood, no readable text other than the
 material callouts, no background clutter or props.
-Review: confirm all three views share the same scale and that callout text
-is spelled correctly.
+Review: confirm all three views share the same scale and callout text is
+spelled correctly.
 ```
 
 ## Style Control
@@ -145,24 +143,20 @@ final, specification-grade prompt:
 
 ```text
 Subject: a fictional small maintenance robot, boxy body, two articulated
-arms, single circular optical sensor at the front, no real brand marks.
-Purpose: documentation illustration for a blog post about municipal
-infrastructure robots.
+arms, single circular optical sensor, no real brand marks.
 Setting: a quiet city street at dusk, wet pavement, no visible people.
 Composition: three-quarter view, robot centered in the lower half of the
-frame, street receding into the background, 16:9 landscape aspect ratio.
-Lighting: warm streetlamp light from upper-right, cool blue ambient light
-from the dusk sky, soft reflections on wet pavement.
+frame, street receding into the background, 16:9 aspect ratio.
+Lighting: warm streetlamp light upper-right, cool blue ambient dusk light,
+soft reflections on wet pavement.
 Materials: matte gray-blue painted metal body, faint scuff marks, no rust,
-glass lens with a subtle reflection of the streetlamp.
-Style: photorealistic render, shallow depth of field, no lens flare, no
+glass lens with a subtle streetlamp reflection.
+Style: photorealistic render, shallow depth of field, no lens flare or
 motion blur.
 Constraints: no real brand logos, no readable text anywhere in the frame,
-no private people, no license plates, no storefront signage with invented
-brand names.
-Output: 16:9 aspect ratio, high resolution if supported.
-Review: confirm no invented brand text appears on the robot, street signage,
-or storefronts, and confirm the robot's proportions match the description.
+no private people, no license plates, no invented storefront signage.
+Review: confirm no invented brand text appears anywhere in the frame, and
+that the robot's proportions match the description.
 ```
 
 What changed and why it matters:
@@ -193,35 +187,24 @@ Negative prompts suppress recurring artifacts; they are not a substitute for
 fixing a vague positive prompt, and they are not a safety mechanism. Verify
 whether your tool has a dedicated negative-prompt field at all — some
 API-first tools do not expose one (see
-[diffusion-models.md](diffusion-models.md) for that distinction).
+[diffusion-models.md](diffusion-models.md)).
 
 | Problem category | Example negative terms | Better fix in the positive prompt |
 | --- | --- | --- |
-| Anatomy artifacts | extra fingers, extra limbs, distorted hands, malformed face | Name pose and hand visibility explicitly, e.g. "hands relaxed at sides, not holding an object." |
-| Unwanted text | watermark, signature, extra text, duplicated caption | State exactly what text should appear, or state "no readable text in the image" if none is needed. |
-| Brand and logo drift | brand logo, trademark symbol, storefront signage | Add "no real brand marks, generic unbranded packaging" to the positive prompt. |
-| Quality artifacts | low resolution, blurry, jpeg artifacts, oversaturated | Specify the intended style and sharpness directly, e.g. "sharp focus, natural color grading." |
-| Composition drift | cropped subject, off-center, cluttered background | Specify framing and background explicitly rather than relying on a negative term to fix layout. |
-| Unsafe or private content | private ID, QR code, license plate, real person likeness | Treat this as a hard constraint in the positive prompt and as a rejection criterion on review, not only a negative-prompt entry. |
-| Style contamination | painterly texture, cartoon style, sketch lines (when unwanted) | State the intended style directly; competing style cues in the positive prompt are a common cause of this. |
+| Anatomy artifacts | extra fingers, extra limbs, distorted hands, malformed face | Name pose and hand visibility explicitly, e.g. "hands relaxed at sides." |
+| Unwanted text | watermark, signature, extra text, duplicated caption | State exactly what text should appear, or "no readable text in the image." |
+| Brand and logo drift | brand logo, trademark symbol, storefront signage | Add "no real brand marks, generic unbranded packaging." |
+| Quality artifacts | low resolution, blurry, jpeg artifacts, oversaturated | Specify style and sharpness directly, e.g. "sharp focus, natural color grading." |
+| Composition drift | cropped subject, off-center, cluttered background | Specify framing and background explicitly instead of relying on negatives. |
+| Unsafe or private content | private ID, QR code, license plate, real person likeness | Treat as a hard positive-prompt constraint and a rejection criterion on review, not just a negative entry. |
+| Style contamination | painterly texture, cartoon style, unwanted sketch lines | State the intended style directly; competing style cues in the positive prompt usually cause this. |
 
-Negative prompting rules of thumb:
-
-- Keep it specific and short. A 40-term negative prompt usually helps less
-  than fixing the positive prompt.
-- If an artifact keeps appearing, treat it as a signal to revise the positive
-  description or reconsider the model/tool, not just to pile on negatives.
-- Negative prompts are not a safety mechanism. They reduce visual artifacts;
-  they do not reliably block unsafe or private content. Rely on the tool's
-  actual content policy for that.
-
-## Evaluation Checklist
-
-- [ ] Does the output match the subject and purpose?
-- [ ] Are private data and private likenesses absent?
-- [ ] Is text readable and exact?
-- [ ] Are licenses and source status documented?
-- [ ] Is the hardware/API requirement clear?
+Keep negative prompts specific and short — a 40-term list usually helps less
+than fixing the positive prompt. If an artifact keeps appearing, revise the
+positive description or reconsider the model/tool rather than piling on more
+negatives. Negative prompts are not a safety mechanism: they reduce visual
+artifacts, not unsafe or private content — rely on the tool's actual content
+policy for that.
 
 ## Prompt Review Rubric
 
@@ -269,34 +252,25 @@ and no private label. Focus on material, shape, lighting, and composition.
 
 ## Source And Reference Handling
 
-When a prompt uses references, record:
-
-- Who owns the reference.
-- Whether it is public or private.
-- Whether likeness rights or brand rights apply.
-- Whether the tool is allowed to process the reference.
-- Whether the generated output can be published.
-
-Do not use private screenshots, private people, school/work documents, account
-pages, or proprietary product assets in public examples.
+When a prompt uses references, record who owns it, whether it is public or
+private, whether likeness/brand rights apply, whether the tool may process
+it, and whether the output can be published. Do not use private screenshots,
+private people, school/work documents, account pages, or proprietary product
+assets in public examples.
 
 ## Failure Modes To Inspect
 
-- Extra fingers, distorted hands, or impossible anatomy.
-- Misspelled or extra text.
-- Invented logos, labels, signatures, or watermarks.
-- Private-looking names, IDs, QR codes, or dashboards.
-- Mismatched object details between revisions.
-- Background clutter that changes the meaning.
-- Style drift away from the requested public-safe visual language.
+Extra fingers or impossible anatomy, misspelled or extra text, invented
+logos/labels/signatures/watermarks, private-looking names/IDs/QR
+codes/dashboards, mismatched details between revisions, background clutter
+that changes meaning, and style drift away from the requested public-safe
+visual language.
 
 ## Where This Fits In The Folder
 
-- For the underlying reason diffusion prompts behave like a visual
-  specification rather than a conversation, see
-  [Diffusion models](diffusion-models.md).
-- For layout-first, plan-then-generate, and critique-then-revise prompt
-  structures aimed at diagrams and structured layouts, see
-  [Reasoning-integrated image generation](reasoning-integrated-image-generation.md).
-- For deciding whether a local tool is even worth trying before you write
-  any of these prompts, see [Local image generation](local-image-generation.md).
+See [Diffusion models](diffusion-models.md) for why prompts behave like a
+visual specification rather than a conversation, [Reasoning-integrated image
+generation](reasoning-integrated-image-generation.md) for layout-first and
+plan-then-generate structures, and [Local image
+generation](local-image-generation.md) for deciding whether a local tool is
+worth trying before writing any of these prompts.
