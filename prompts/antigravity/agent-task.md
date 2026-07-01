@@ -2,20 +2,31 @@
 
 ## Target Tool
 
-Google Antigravity.
+Google Antigravity, the agentic development platform surfaced as an
+IDE-integrated agent workspace with plan artifacts, task lists, and
+multi-agent orchestration. Product surfaces, agent modes, and artifact
+formats change quickly. Verify current official documentation before
+relying on any specific feature name, artifact type, or permission model
+described below; this template uses generic, conservative language on
+purpose.
 
 ## Purpose
 
-Use this template for a bounded Antigravity task. Product behavior changes quickly, so verify current official documentation before relying on a specific feature, artifact type, agent mode, or platform surface.
+Use this template for a bounded Antigravity task, run either as a single
+agent or as a small set of agents working on clearly separated files. It is
+written for documentation, prompt-template, and small script changes in
+this repository, where a reviewed plan should exist before any file is
+written.
 
 ## Inputs To Fill
 
-| Input | Example |
-| --- | --- |
-| Task | "Plan a documentation cleanup for docs/tools" |
-| Mode | "Plan first, edit only after approval" |
-| Files | `docs/tools/*.md` |
-| Verification | Local checks |
+| Input | Description | Example |
+| --- | --- | --- |
+| `{task}` | The specific, bounded task. | `Plan a documentation cleanup for docs/tools` |
+| `{mode}` | Plan-only, plan-then-edit, or small direct implementation. | `Plan first, edit only after approval` |
+| `{files}` | Files or globs the agent may touch. | `docs/tools/*.md` |
+| `{agent_count}` | How many agents/tasks are involved, to avoid overlap. | `One agent, one file` |
+| `{verification}` | Checks to run after any edit. | `repo health, safe autofix, unit tests` |
 
 ## Full Prompt
 
@@ -24,83 +35,125 @@ Target tool:
 Google Antigravity
 
 Goal:
-Create a reviewed plan or small implementation for:
-[TASK]
+Create a reviewed plan, and if approved, a small implementation, for:
+{task}
 
 Mode:
-[PLAN ONLY / PLAN THEN EDIT AFTER APPROVAL / SMALL IMPLEMENTATION]
+{mode}
+
+Agent scope:
+{agent_count}
+If more than one agent or task is involved, assign each one non-overlapping
+files so two agents never propose edits to the same file without a human
+merging them.
 
 Instructions:
-- Read AGENTS.md first.
-- Keep work inside this repository.
+- Read AGENTS.md first and follow its rules for this repository.
+- Keep all work inside this repository; do not reference or fetch content
+  from outside repositories or private systems.
 - Use one branch for one task.
-- Produce a plan artifact before editing if the task touches more than one file.
-- Prefer documentation or testable small changes for first runs.
-- List exact files before editing.
-- Keep external tool claims conservative and mark them for official-doc verification.
+- Produce a plan artifact (task list, file list, or outline) before editing
+  if the task touches more than one file.
+- List the exact files you intend to change before making any edit, using
+  paths relative to the repository root: {files}
+- Prefer documentation, prompt-template, or small testable script changes
+  for a first run with this template.
+- Keep external AI tool claims conservative; do not state exact pricing,
+  model availability, or platform support without a dated, official-doc
+  citation, and mark anything uncertain as "needs verification".
 
 Boundaries:
-- Do not expose secrets or private links.
-- Do not modify GitHub workflow files unless explicitly requested.
-- Do not add dependencies.
-- Do not run destructive automation.
-- Do not let parallel agents edit overlapping files without review.
+- Do not expose secrets, credentials, tokens, or private links in the plan,
+  the diff, or the final report.
+- Do not modify GitHub Actions workflow YAML unless explicitly requested.
+- Do not add dependencies or new packages.
+- Do not run destructive automation (no force-push, no recursive deletes,
+  no history rewriting).
+- Do not let parallel agents or tasks edit overlapping files without a
+  human reviewing and merging the result first.
+- Do not silently expand scope beyond {files}; if the task clearly needs
+  another file, stop and name it in the plan for approval first.
 
 Validation:
 - python scripts/repo_health_check.py
 - python scripts/safe_autofix.py --check
 - python -m unittest discover -s tests
+- git diff --check
 
 Final response:
 - Plan or implementation summary
-- Files changed
-- Commands/checks run
-- Claims needing manual verification
-- Remaining risks
+- Files changed (exact paths)
+- Commands/checks run and their results
+- Claims needing manual verification against official Antigravity docs
+- Remaining risks, including any file-ownership overlap risk
 ```
 
 ## Short Version
 
 ```text
-Use Antigravity to plan [TASK]. Read AGENTS.md, list files first, do not edit until approved, avoid secrets/dependencies/workflow changes, run checks after edits, and report verification gaps.
+Use Antigravity to plan {task}. Read AGENTS.md, list {files} before editing,
+do not edit until the plan is approved, keep agents on non-overlapping
+files, avoid secrets/dependencies/workflow changes, run the repo checks
+after any edit, and report files changed, commands run, verification gaps,
+and risks.
 ```
 
 ## Included Scope
 
-- Files, plans, issue text, or repository areas explicitly named by the human.
-- The requested task and adjacent documentation needed to keep links accurate.
-- Verification steps that are safe and relevant to the edited area.
+- Files, plan artifacts, or repository areas explicitly named in `{files}`.
+- The requested task in `{task}` and directly adjacent documentation needed
+  to keep cross-links and navigation accurate.
+- A written plan (file list, ordered steps, or task breakdown) produced
+  before any multi-file edit.
+- Local verification commands run after edits are applied.
 
 ## Excluded Scope
 
-- Secrets, `.env` files, credentials, private links, private paths, and browser
-  profiles.
-- Dependency installation, workflow YAML, generated archives, account actions,
-  and destructive commands unless explicitly approved.
-- Exact current product claims unless verified in official docs.
+- Any file outside `{files}` that was not explicitly approved after being
+  named in the plan.
+- Secrets, `.env` / `.env.*` files, credentials, private links, private
+  paths, browser profiles, and account-specific data.
+- Dependency installation, GitHub Actions workflow YAML, generated
+  archives, release publishing, and destructive automation, unless the task
+  explicitly asks for one of these.
+- Exact, dated claims about Antigravity's own pricing, plan tiers, model
+  routing, or availability, unless freshly verified against official docs
+  and dated in the report.
 
 ## Success Criteria
 
-- Plan or implementation is bounded.
-- File ownership is clear.
-- No overlapping unreviewed agent edits.
-- Local checks pass after edits.
-- Product-specific claims are marked for official verification.
+- The plan or implementation stays inside the bounds of `{task}` and
+  `{files}`.
+- File ownership between any concurrent agents or tasks is unambiguous, with
+  no two agents proposing edits to the same file unreviewed.
+- No secrets or private data appear in the plan, diff, or final report.
+- Local checks pass after edits, or failures are reported with output.
+- Any claim about Antigravity's own current features is marked for
+  official-doc verification rather than stated as fact.
 
 ## Safety Boundaries
 
-- No secrets or private links.
-- No destructive automation.
-- No broad parallel edits.
-- No unverified setup claims.
-- No workflow YAML changes unless requested.
+- Treat Antigravity's multi-agent or parallel-task features as a
+  concurrency risk: never approve two agents editing the same file without
+  a human merging the result.
+- No secrets, tokens, or private links in any plan artifact, chat log, or
+  report the agent produces.
+- No destructive automation: no force-push, no bulk deletion, no workflow
+  YAML edits unless explicitly requested.
+- No unverified setup, pricing, or platform-availability claims; use
+  "verify in official docs" language instead of asserting specifics.
+- Require a human-reviewed plan before any edit that spans more than one
+  file, even if the agent's mode allows direct implementation.
 
 ## Verification
 
 ```powershell
+git status
+git diff
 python scripts/repo_health_check.py
 python scripts/safe_autofix.py --check
 python -m unittest discover -s tests
+git diff --check
 ```
 
 ## Final Report Format
@@ -117,7 +170,8 @@ python -m unittest discover -s tests
 
 | Failure | What to do |
 | --- | --- |
-| Product behavior is unclear | Stop and verify official docs. |
-| Agents propose overlapping edits | Assign file ownership or use one agent. |
-| Task becomes broad | Split into smaller tasks. |
-| Checks cannot run | Report why and what remains unverified. |
+| Product behavior, feature name, or permission model is unclear or seems to have changed | Stop, do not guess, and verify against current official Antigravity docs before continuing. |
+| Multiple agents or tasks propose overlapping file edits | Assign explicit file ownership per agent, or fall back to a single agent for this task, and require human merge review. |
+| The task grows beyond the files named in `{files}` | Stop, write the additional files into the plan, and get explicit approval before editing them. |
+| A required check cannot run in the Antigravity environment | Run the same commands manually in PowerShell and report what could not be verified inside the tool. |
+| The agent's final report claims a check passed without showing output | Reject the report and require the actual command output before accepting the result. |

@@ -18,6 +18,112 @@ advanced and assume a capable GPU.
 | Advanced local GPU | Advanced | Requires VRAM, disk, model licenses, and troubleshooting. |
 | Cloud GPU | Advanced | Good for heavy runs; watch cost and data policy. |
 
+## Why Diffusion Prompting Is Not Chat Prompting
+
+A chat prompt asks a language model to reason and respond in words. A diffusion
+prompt asks a denoising process to steer, step by step, toward an image that
+matches a description. That difference changes how prompts should be written:
+
+| Chat prompting | Diffusion prompting |
+| --- | --- |
+| Instructions can be long, conversational, and sequential ("first do X, then Y"). | The model reads the whole prompt roughly as one set of visual cues, not a sequence of instructions. |
+| The model can ask clarifying questions or refuse. | The model renders its best interpretation every time; there is no clarifying turn inside a single generation. |
+| Negation works directly ("do not mention the weather"). | Negation in the *positive* prompt is unreliable — describing what you don't want can still visually cue it. Use a separate negative prompt field when the tool offers one. |
+| Word order mostly affects tone. | Word order and emphasis often affect how strongly a concept is rendered; early, clearly-weighted terms tend to dominate. |
+| One instruction, one topic, is fine. | Competing visual instructions (two styles, two subjects, conflicting lighting) tend to blend or produce artifacts instead of resolving cleanly. |
+| Follow-up messages carry full context. | Editing usually means a new generation (txt2img) or an image-conditioned pass (img2img); the model does not "remember" your last prompt unless the tool explicitly chains state. |
+
+The practical takeaway: write diffusion prompts as a **visual specification**,
+not a set of instructions to a reasoning agent. Say what should be visible, not
+what should be thought about.
+
+## Positive And Negative Prompts As A Pattern
+
+Most diffusion tools split intent into two channels:
+
+- **Positive prompt** — what should appear: subject, composition, lighting,
+  materials, style.
+- **Negative prompt** — what should be suppressed, when the tool supports a
+  dedicated negative-prompt field.
+
+Treat this as a *pattern* to expect, not a guarantee every tool implements it
+the same way. Some tools fold negative terms into a single field with a
+separator, some expose a distinct UI field, and some (especially many
+API-first products) do not expose negative prompting at all. Verify the
+current mechanism in each tool's own docs before relying on it.
+
+```text
+Positive prompt:
+Subject: [main object, scene, or character].
+Composition: [camera angle], [framing], [background], [aspect ratio].
+Visual details: [materials], [colors], [lighting], [texture].
+Style constraints: [photorealistic, editorial, 3D render, diagrammatic].
+Safety constraints: no private logos, no private people, no personal data.
+
+Negative prompt (only if the tool supports it):
+[specific artifacts to avoid, e.g. distorted hands, extra limbs, watermark, text]
+```
+
+Negative prompting rules of thumb:
+
+- Keep it specific and short. A 40-term negative prompt usually helps less
+  than fixing the positive prompt.
+- If an artifact keeps appearing, treat it as a signal to revise the positive
+  description or reconsider the model/tool, not just to pile on negatives.
+- Negative prompts are not a safety mechanism. They reduce visual artifacts;
+  they do not reliably block unsafe or private content. Rely on the tool's
+  actual content policy for that.
+
+## Weighting Syntax As A Convention, Not A Standard
+
+Many diffusion tools let you emphasize or de-emphasize a term, commonly using
+some form of parentheses, numeric weights, or repetition, for example a
+pattern shaped like `(term:1.3)` or `((term))` to increase emphasis. Treat
+this as **a pattern that recurs across tools**, not as a universal syntax:
+
+- The exact characters, whether weighting is supported at all, and the valid
+  numeric range are tool-specific and change between product versions.
+- A weighting string that works in one tool can be ignored, rendered as
+  literal text, or rejected by another tool.
+- Always verify the current weighting syntax in the specific tool's official
+  docs before publishing an example that depends on it.
+
+When in doubt, prefer plain, clear language ("a large red umbrella in the
+foreground") over relying on emphasis syntax to fix a prompt that is
+structurally vague.
+
+## Sampler, Steps, And Guidance Scale — Concepts To Verify Per Tool
+
+These three controls appear across many diffusion tools, but their exact
+names, ranges, and defaults vary and change over time. Treat the following as
+concepts to look up per tool, not fixed numbers to copy:
+
+| Concept | What it generally controls | Why you can't hardcode a value |
+| --- | --- | --- |
+| Sampler / scheduler | The denoising algorithm and step pattern used to go from noise to image. | Different samplers trade speed for quality differently, and available samplers vary by tool and model. |
+| Steps | How many denoising iterations run. | More steps can improve quality up to a point of diminishing (or negative) returns; the useful range depends on the sampler and model. |
+| Guidance scale (sometimes called CFG scale) | How strongly the model is pushed to match the prompt versus generating freely. | Too low can ignore the prompt; too high can over-saturate or distort the image. The useful range is model-specific. |
+
+If you are documenting a specific tool's defaults or ranges for these
+settings, mark that section "verify in official docs" rather than asserting a
+number that may already be outdated.
+
+## img2img Vs txt2img Framing
+
+- **txt2img** — the model starts from noise and is guided entirely by the text
+  prompt (and any weighting/negative prompt). Use this for first drafts and
+  for exploring a concept from scratch.
+- **img2img** — the model starts from an existing image plus a text prompt,
+  and denoises toward something that keeps some structure from the source
+  image while moving toward the prompt. Use this for style transfer, targeted
+  edits, or when you want to preserve composition while changing texture,
+  lighting, or style.
+
+A "denoising strength" or similar parameter usually controls how much of the
+source image survives in img2img: low values stay close to the source, high
+values behave closer to txt2img. Treat the exact parameter name and scale as
+tool-specific; verify before documenting an exact number.
+
 ## Negative Prompting
 
 Negative prompts are useful in some diffusion systems, but behavior varies by

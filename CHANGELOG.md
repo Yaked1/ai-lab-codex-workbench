@@ -10,6 +10,14 @@ Fixed:
 
 Changed:
 
+- Expanded all currently modified public documentation, prompt-template, tool,
+  automation, Hermes Agent, skills, and image-generation files into a more
+  comprehensive guide set with beginner workflows, safety boundaries, failure
+  modes, verification evidence, and conservative official-doc verification
+  notes. Added dedicated image-generation guides for transformer architecture
+  and reasoning-integrated autoregressive workflows, covering tokens,
+  embeddings, attention, spatial encodings, multimodal conditioning, diffusion
+  and autoregressive tradeoffs, planning, revision, and review checklists.
 - Added a `Quick Start (Windows PowerShell)` and `Setup Troubleshooting` section near the top of the README (right after the table of contents) so a first-time visitor can install, validate, and troubleshoot the repository without reading the full operating manual first: prerequisites table, clone-and-validate commands, what `local_check.ps1` actually verifies, and a troubleshooting table covering execution-policy blocks, missing/stale PATH tools, wrong working directory, `gh` authentication, the now-fixed existing-branch/existing-remote script errors, Windows line-ending churn, and an explicit note that this repository has no server, port, or tunnel to configure.
 - Expanded the prompting reference stack with a 2026-06-30 GitHub scan of well-known public prompting repositories, mapped those patterns to local docs/templates/evaluation artifacts, and surfaced the source-inspired path from the README, Prompting OS source map, curriculum guide, and offline site.
 - Reworked the README from a short landing page into a comprehensive public manual with workflow, Prompting OS, source policy, evaluation, image prompting, tool notes, automation, validation, maintainer guidance, failure modes, and reading paths.

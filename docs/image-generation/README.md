@@ -4,15 +4,39 @@ This folder teaches public-safe image prompting and workflow selection. GitHub
 Actions in this repository document and validate guides; they must not run
 complex image-generation models.
 
+Every guide in this folder assumes the same default: start browser/API-first,
+treat local generation as an optional advanced tier, and verify fast-changing
+product details (pricing, model names, exact hardware limits) in official
+docs before publishing them anywhere.
+
 ## Guide Map
 
-| Guide | Use it for |
+| Guide | One-line description | Use it for |
+| --- | --- | --- |
+| [Diffusion models](diffusion-models.md) | How denoising-based image models respond to prompts, and how that differs from chat prompting. | Understanding positive/negative prompts, weighting conventions, samplers, and img2img vs txt2img. |
+| [Autoregressive image models](autoregressive-image-models.md) | How token-by-token and multimodal image systems read ordered, structured prompts. | Layout-precise images, text-in-image tasks, and iterative conversational edits. |
+| [Transformer architecture](transformer-architecture.md) | How tokens, embeddings, attention, spatial encodings, multimodal conditioning, and decoding show up in image generation. | Explaining why structured prompts can help layout, text rendering, and revision workflows without overclaiming product internals. |
+| [Reasoning-integrated image generation](reasoning-integrated-image-generation.md) | How planning, critique, multimodal analysis, and generation can work together in modern image workflows. | Diagram-like images, short text labels, iterative edits, and output review against a written brief. |
+| [Prompting patterns](prompting-patterns.md) | A worked library of prompt templates and before/after revisions. | Copy-paste starting points for product shots, characters, posters, and 3D references. |
+| [Hardware requirements](hardware-requirements.md) | Generic hardware tiers, decision table, and troubleshooting table. | Deciding whether your machine can run local generation at all, and diagnosing failures. |
+| [Local image generation](local-image-generation.md) | Safety/setup checklist for running any local tool, plus when local is not worth it yet. | Beginners deciding whether to try local generation, and what to isolate if they do. |
+
+## Decision Guide: Where Do I Start?
+
+Answer these in order. Stop at the first row that matches you.
+
+| Your situation | Start here |
 | --- | --- |
-| [Autoregressive image models](autoregressive-image-models.md) | Browser/API image systems that generate images token-by-token or through multimodal model stacks. |
-| [Diffusion models](diffusion-models.md) | Local and cloud diffusion workflows, strengths, and warnings. |
-| [Local image generation](local-image-generation.md) | Separating lightweight experiments from advanced GPU setups. |
-| [Hardware requirements](hardware-requirements.md) | Realistic browser/API, CPU-only, entry GPU, advanced GPU, and cloud guidance. |
-| [Prompting patterns](prompting-patterns.md) | Prompt templates for text rendering, style, product shots, characters, and 3D references. |
+| You have no dedicated GPU, or you are not sure what GPU you have. | [Hardware requirements](hardware-requirements.md), then [prompting-patterns.md](prompting-patterns.md). Use browser/API tools exclusively. |
+| You just want to write better prompts, regardless of tool. | [Prompting patterns](prompting-patterns.md) first, then skim [diffusion-models.md](diffusion-models.md) and [autoregressive-image-models.md](autoregressive-image-models.md) to know which conventions apply to your tool. |
+| You are choosing between a diffusion tool and a multimodal/autoregressive tool. | Read [diffusion-models.md](diffusion-models.md) and [autoregressive-image-models.md](autoregressive-image-models.md) back to back; the "when to prefer" sections in each cover the same decision from both sides. |
+| You need to explain how modern image systems use transformers. | Read [Transformer architecture](transformer-architecture.md), then compare [Autoregressive image models](autoregressive-image-models.md) and [Diffusion models](diffusion-models.md). |
+| Your task needs planning, counts, text labels, or diagram-like review. | Use [Reasoning-integrated image generation](reasoning-integrated-image-generation.md), then adapt the [Prompting patterns](prompting-patterns.md) templates. |
+| You want to run something locally, "just to see." | [Local image generation](local-image-generation.md) first, specifically the "when local isn't worth it yet" section, before touching [hardware-requirements.md](hardware-requirements.md). |
+| You have verified you have an advanced GPU tier and understand model licenses. | [Hardware requirements](hardware-requirements.md) decision table, then [local-image-generation.md](local-image-generation.md) setup checklist. |
+
+If you only read one file in this folder, read `prompting-patterns.md` — the
+prompt quality gap is usually larger than the tool-choice gap.
 
 ## Workflow Categories
 
@@ -29,6 +53,8 @@ complex image-generation models.
 | --- | --- |
 | Autoregressive image models | Prefer official browser/API docs unless a local setup is verified. |
 | Diffusion models | Separate browser/API, lightweight local, advanced GPU, and cloud paths. |
+| Transformer-based components | Explain tokens, embeddings, attention, spatial encodings, and multimodal conditioning as concepts, not as guaranteed internals for every product. |
+| Reasoning-integrated autoregressive image systems | Use planning, entity inventories, layout checks, and revision prompts; still require manual review and official-doc verification. |
 | Hybrid systems | Treat mixed multimodal, retrieval, editing, or diffusion-plus-agent systems as advanced until the setup is verified. |
 | Browser/API image models | State API key, subscription, policy, and privacy requirements. |
 | Local image generation tools | Include install commands only when verified; otherwise use placeholders. |
