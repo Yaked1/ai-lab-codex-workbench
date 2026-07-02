@@ -10,6 +10,14 @@ Fixed:
 
 Changed:
 
+- Expanded all currently modified public documentation, prompt-template, tool,
+  automation, Hermes Agent, skills, and image-generation files into a more
+  comprehensive guide set with beginner workflows, safety boundaries, failure
+  modes, verification evidence, and conservative official-doc verification
+  notes. Added dedicated image-generation guides for transformer architecture
+  and reasoning-integrated autoregressive workflows, covering tokens,
+  embeddings, attention, spatial encodings, multimodal conditioning, diffusion
+  and autoregressive tradeoffs, planning, revision, and review checklists.
 - Added a `Quick Start (Windows PowerShell)` and `Setup Troubleshooting` section near the top of the README (right after the table of contents) so a first-time visitor can install, validate, and troubleshoot the repository without reading the full operating manual first: prerequisites table, clone-and-validate commands, what `local_check.ps1` actually verifies, and a troubleshooting table covering execution-policy blocks, missing/stale PATH tools, wrong working directory, `gh` authentication, the now-fixed existing-branch/existing-remote script errors, Windows line-ending churn, and an explicit note that this repository has no server, port, or tunnel to configure.
 - Expanded the prompting reference stack with a 2026-06-30 GitHub scan of well-known public prompting repositories, mapped those patterns to local docs/templates/evaluation artifacts, and surfaced the source-inspired path from the README, Prompting OS source map, curriculum guide, and offline site.
 - Reworked the README from a short landing page into a comprehensive public manual with workflow, Prompting OS, source policy, evaluation, image prompting, tool notes, automation, validation, maintainer guidance, failure modes, and reading paths.
@@ -29,6 +37,16 @@ Changed:
 
 Added:
 
+- Added a 100+ item installable `skills/` catalog with public-safe
+  `SKILL.md` bundles for repository docs and prompt templates, a manifest,
+  human-readable index, Python and PowerShell installers, a dedicated README
+  Skills section, and tests that keep the catalog, declared sources, bundle
+  shape, and all-skill install paths in sync.
+- Added exact skill installer targets for `codex-cli`, `codex-desktop`,
+  `claude-code-cli`, `claude-code-desktop`, and `hermes`, aligning Codex
+  installs with `.agents/skills`, Claude Code installs with `.claude/skills`,
+  and Hermes installs with `~/.hermes/skills` or reviewed
+  `.agent-skills/hermes` project staging.
 - Added deterministic Prompting OS package builder coverage: `scripts/create_prompting_os_package.py` now builds a versioned ZIP plus public-safe JSON manifest with fixed archive timestamps, SHA-256 hashes, cache/private/archive exclusions, configurable source/output directories, and unit tests in `tests/test_prompting_os_package.py`.
 - Added Prompting OS package build documentation to `docs/prompting-os/README.md` and `docs/releases-and-packages.md`, and made repository health checks require the Prompting OS docs, packaging script, and package tests.
 - Added a comprehensive prompting curriculum: `docs/guides/prompting-ai-coding-agents.md` (the craft of prompting agents), `docs/guides/coding-agent-power-tips.md` (per-agent tricks for Claude Code, Codex, Cursor, Copilot, Aider, Windsurf, and MCP), and `docs/guides/prompting-references.md` (famous public prompting repositories and vendor docs to learn from, with leaked-prompt safe-use rules). The guides ship in every release bundle.

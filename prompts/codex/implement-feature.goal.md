@@ -34,6 +34,10 @@ Mandatory first steps:
 2. Read AGENTS.md fully.
 3. Inspect {files_to_inspect} before editing.
 4. Identify pre-existing modified or untracked files and preserve user work.
+5. Check whether an existing script, helper, or pattern already does most of
+   this. Prefer extending it over writing something new.
+6. Write down the smallest version of {feature} that delivers {user_value},
+   and treat anything beyond that as a follow-up idea, not part of this task.
 
 Included scope:
 - {allowed_scope}
@@ -48,6 +52,8 @@ Excluded scope:
 - Do not modify workflow YAML unless explicitly requested.
 - Do not modify system settings.
 - Do not add exact external product claims unless they are verified and dated.
+- Do not add configuration flags, options, or abstractions for hypothetical
+  future use cases that were not requested.
 
 Safety boundaries:
 - Implement the smallest useful version.
@@ -55,12 +61,15 @@ Safety boundaries:
 - Do not refactor unrelated code.
 - Keep public docs conservative about fast-changing tools.
 - Stop if branch divergence or existing changes make safe editing ambiguous.
+- If the smallest correct implementation still needs a new dependency, stop
+  and ask instead of adding it.
 
 Verification steps:
 - Run a focused test or script check if one applies.
 - python scripts/repo_health_check.py
 - python scripts/safe_autofix.py --check
 - python -m unittest discover -s tests
+- git diff --check
 - git diff --stat
 - git diff
 
@@ -70,6 +79,76 @@ Success criteria:
 - Related tests/docs are updated when practical.
 - No unrelated files changed.
 - {checks} pass or failures are honestly reported.
+
+Final report format:
+## Summary
+## Git state
+## Files changed
+## Commands run
+## Verification results
+## Remaining risks
+```
+
+### Worked Example
+
+```text
+/goal
+Objective:
+Implement this small feature: Add a `--json` output flag to
+scripts/repo_health_check.py so CI can parse results programmatically.
+
+User value:
+Maintainers writing new automation can consume health check results as
+structured data instead of parsing printed text.
+
+Mandatory first steps:
+1. Run git status.
+2. Read AGENTS.md fully.
+3. Inspect scripts/repo_health_check.py and tests/test_repo_health_check.py
+   before editing.
+4. Identify pre-existing modified or untracked files and preserve user work.
+5. Check whether argparse already has an unused flag or output mode that
+   could be extended instead of adding a new code path.
+6. Smallest version: a `--json` flag that prints one JSON object with
+   `errors`, `warnings`, and `passed` keys, using only the standard library
+   `json` module. No new output formats beyond that.
+
+Included scope:
+- scripts/repo_health_check.py
+- tests/test_repo_health_check.py
+- CHANGELOG.md (user-visible CLI change)
+
+Excluded scope:
+- Do not touch other scripts in scripts/.
+- Do not edit secrets, credentials, .env files, private links, private
+  paths, browser profiles, or private data.
+- Do not delete files.
+- Do not install dependencies; use the standard library json module only.
+- Do not modify workflow YAML.
+- Do not add a `--yaml` or `--xml` flag; only `--json` was requested.
+
+Safety boundaries:
+- Implement only the `--json` flag and its test coverage.
+- Preserve the existing plain-text output as the default when `--json` is
+  not passed.
+- Stop if repo_health_check.py already has an in-progress uncommitted change
+  from the user.
+
+Verification steps:
+- python scripts/repo_health_check.py --json
+- python scripts/repo_health_check.py
+- python scripts/repo_health_check.py
+- python scripts/safe_autofix.py --check
+- python -m unittest discover -s tests
+- git diff --check
+- git diff --stat
+- git diff
+
+Success criteria:
+- `--json` produces valid, parseable JSON with the documented keys.
+- Default text output is unchanged.
+- A test covers both the JSON and default output paths.
+- All checks pass or failures are reported honestly.
 
 Final report format:
 ## Summary

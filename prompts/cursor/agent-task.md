@@ -2,20 +2,26 @@
 
 ## Target Tool
 
-Cursor Agent or Cursor Plan mode.
+Cursor Agent (in Agent mode) or Cursor's Plan mode, used from the Cursor IDE
+chat/agent panel. This template assumes the human can see and approve the
+proposed plan and diff inside the editor before anything is applied.
 
 ## Purpose
 
-Use this template for a focused IDE-based task where the user can inspect plans and diffs before accepting changes.
+Use this template for a focused IDE-based task where the user can inspect
+plans and diffs before accepting changes. It is built for small,
+well-scoped documentation, prompt-template, or script edits in this
+repository, not for open-ended refactors.
 
 ## Inputs To Fill
 
-| Input | Example |
-| --- | --- |
-| Task | "Expand docs/workflows/public-repo-safety.md" |
-| Mode | "Plan first, then edit after approval" |
-| Files | `docs/workflows/public-repo-safety.md` |
-| Checks | Repo health, safe autofix, unit tests |
+| Input | Description | Example |
+| --- | --- | --- |
+| `{task}` | The specific, one-sentence task. | `Expand docs/workflows/public-repo-safety.md with a checklist` |
+| `{mode}` | Plan-first or direct agent edit. | `Plan first, then edit after approval` |
+| `{files}` | Exact files or globs in scope. | `docs/workflows/public-repo-safety.md` |
+| `{checks}` | Local checks to run after edits. | `repo health, safe autofix, unit tests` |
+| `{context_files}` | Files Cursor should read before proposing anything. | `AGENTS.md`, `README.md` |
 
 ## Full Prompt
 
@@ -24,42 +30,51 @@ Target tool:
 Cursor
 
 Mode:
-[Plan first / Agent edit after approval]
+{mode}
 
 Goal:
 Make this focused change:
-[TASK]
+{task}
 
 Required context:
-- Read AGENTS.md.
-- Inspect the relevant files before editing.
-- Keep the change scoped to the requested files.
-- Prefer a plan first if the task touches more than one file.
+- Read AGENTS.md before proposing a plan.
+- Read {context_files} to match existing structure, tone, and heading style.
+- Inspect the relevant files in {files} before editing.
+- Keep the change scoped to {files}; do not expand scope mid-task.
+- If the task touches more than one file, produce a plan first and wait for
+  my approval before applying any edit.
 
 Boundaries:
-- Do not edit .env, credentials, browser profiles, private documents, private links, or unrelated folders.
-- Do not install dependencies.
-- Do not run destructive commands.
-- Do not modify workflow YAML unless explicitly requested.
-- Do not accept broad rewrites unless the task explicitly asks for them.
-- Do not make exact pricing, model, or platform claims unless verified.
+- Do not edit .env, .env.*, credentials, browser profiles, private
+  documents, private links, private paths, or any folder outside {files}.
+- Do not install dependencies or modify lock files.
+- Do not run destructive commands (no git reset --hard, no force-push, no
+  recursive deletes) without asking first.
+- Do not modify GitHub Actions workflow YAML unless explicitly requested.
+- Do not accept or apply broad, repository-wide rewrites unless the task
+  explicitly asks for them.
+- Do not state exact pricing, model, or platform claims for any AI tool
+  unless verified against official docs in this session; use conservative,
+  "verify in official docs" language instead.
 
 Success criteria:
-- The task is complete.
-- Diff is small and reviewable.
-- External claims are conservative.
-- Local checks pass or failures are reported.
+- The task described in {task} is fully complete.
+- The diff touches only {files} and is small and reviewable in the Cursor
+  diff view.
+- External tool claims are conservative and flagged where unverified.
+- Local checks pass, or failures are reported with their output.
 
-Validation if files changed:
+Validation if files changed (run in PowerShell):
 - python scripts/repo_health_check.py
 - python scripts/safe_autofix.py --check
 - python -m unittest discover -s tests
+- git diff --check
 
 Final response:
-- Summary
+- Summary of what changed and why
 - Files changed
 - Commands run
-- Checks run
+- Checks run and their result
 - Claims needing manual verification
 - Remaining risks
 ```
@@ -67,45 +82,63 @@ Final response:
 ## Short Version
 
 ```text
-Use Cursor to [TASK]. Read AGENTS.md, plan first, edit only [FILES], avoid secrets/dependencies/workflow changes, run checks, and report files, commands, verification gaps, and risks.
+Use Cursor ({mode}) to {task}. Read AGENTS.md, plan first if multi-file,
+edit only {files}, avoid secrets/dependencies/workflow changes, no invented
+tool claims, run the checks, and report files, commands, checks, claims to
+verify, and risks.
 ```
 
 ## Included Scope
 
-- Files or repository areas explicitly selected for the Cursor task.
-- Adjacent docs needed to preserve navigation and consistency.
-- Local checks named in repository docs or by the human.
+- Files or repository areas explicitly listed in `{files}`.
+- Adjacent docs needed to preserve navigation and cross-link consistency
+  (for example updating a table of contents entry when a heading changes).
+- A written plan artifact (Cursor's Plan mode output or an inline task
+  list) before any multi-file edit.
+- Local checks named in `{checks}` or in this repository's AGENTS.md, run
+  from the integrated terminal or PowerShell.
 
 ## Excluded Scope
 
+- Any file not listed in `{files}`, including files Cursor suggests adding
+  mid-task without being asked first.
 - Secrets, `.env` files, credentials, browser profiles, private links, and
   private machine paths.
-- Dependency installation, workflow YAML, generated archives, and destructive
-  commands unless explicitly approved.
-- Unsupported current product claims.
+- Dependency installation, GitHub Actions workflow YAML, generated
+  archives, and destructive commands, unless explicitly approved for this
+  task.
+- Unsupported or exact current product claims about any AI tool.
 
 ## Success Criteria
 
-- Plan is understandable.
-- Diff matches the approved scope.
-- No private data or secrets are added.
-- Checks pass after edits.
+- The plan (if produced) is understandable to a reviewer with no other
+  context.
+- The applied diff matches the approved scope exactly.
+- No private data, secrets, or credentials are added anywhere in the diff.
+- Local checks pass after edits, or failures are reported honestly.
 
 ## Safety Boundaries
 
-- No hidden broad rewrites.
-- No private files or browser profiles.
-- No unapproved dependencies.
-- No workflow YAML changes unless requested.
-- No exact external claims unless verified.
+- No hidden broad rewrites: reject any Cursor-proposed diff that touches
+  files outside `{files}` without a prior, explicit approval step.
+- No private files, browser profiles, or credentials in context or output.
+- No unapproved dependency additions or lock file changes.
+- No GitHub Actions workflow YAML changes unless the task explicitly
+  requests one.
+- No exact external tool claims (pricing, model access, platform support)
+  unless freshly verified and noted as such.
+- Cursor's Agent mode can call terminal commands; review each proposed
+  command before allowing it to run, especially anything destructive.
 
 ## Verification
 
 ```powershell
+git status
 git diff
 python scripts/repo_health_check.py
 python scripts/safe_autofix.py --check
 python -m unittest discover -s tests
+git diff --check
 ```
 
 ## Final Report Format
@@ -123,7 +156,8 @@ python -m unittest discover -s tests
 
 | Failure | What to do |
 | --- | --- |
-| Cursor proposes too many files | Reject and ask for narrower scope. |
-| Plan depends on unverified product facts | Mark claims for official-doc verification. |
-| Checks cannot run in IDE | Run them in PowerShell before merging. |
-| Diff includes unrelated edits | Revert those edits before PR. |
+| Cursor proposes edits to more files than `{files}` | Reject the plan or diff and ask for a narrower scope limited to the approved files. |
+| The plan depends on an unverified product fact (pricing, model support, platform availability) | Mark the claim for official-doc verification instead of accepting the wording as-is. |
+| Local checks cannot run inside the Cursor terminal panel | Open a separate PowerShell window and run the same commands before merging. |
+| The diff includes unrelated edits (formatting churn, unrelated files) | Revert those specific hunks before committing or opening a PR. |
+| Cursor's agent wants to run a destructive terminal command | Deny it, ask for the non-destructive alternative, and only proceed with explicit human confirmation. |

@@ -1,12 +1,28 @@
 # Hermes Agent Vs Codex Vs Claude Code
 
-This is a workflow-tool comparison, not a model comparison.
+This is a workflow-tool comparison, not a model comparison. It does not rank
+underlying model quality, benchmarks, or pricing; it compares how each tool
+behaves as an agent workflow surface inside this repository's safety rules.
+See [docs/tools/comparison-matrix.md](../tools/comparison-matrix.md) for the
+full multi-tool matrix this page extends, and [docs/tools/codex.md](../tools/codex.md)
+for the fuller Codex-specific reference this page stays consistent with.
 
 | Tool | Best fit in this repo | Review stance |
 | --- | --- | --- |
 | Hermes Agent | Public research organization, persistent local workflows, skills, memory, and automations after careful setup. | Treat as a powerful local/private agent. Keep memory and provider config out of Git. |
 | Codex | Repository edits, checks, prompt-driven changes, and PR preparation. | Use branch, checks, review, and merge. Manual curator only. |
 | Claude Code | Codebase explanation, skill-based workflows, documentation review, and multi-file agent work. | Verify current skill/setup behavior in official docs. |
+
+## Strengths And Weaknesses Side By Side
+
+| Dimension | Hermes Agent | Codex | Claude Code |
+| --- | --- | --- | --- |
+| Strength | Persistent memory and skills across many small personal tasks; scheduled/cron-style automations for private workflows. | Git-first editing loop tuned to branch, check, PR, review, merge; strong at goal-style multi-step repo tasks. | Strong multi-file codebase understanding, review, and critique; good second-opinion partner to Codex. |
+| Weakness | Persistent state (memory, provider config, logs) is the opposite of the clean, stateless diff a public repo edit needs; not Git-first. | Vague prompts can produce overly broad diffs; still needs a human to verify the summary against the real `git diff`. | Verify current skill/subagent/setup behavior in official docs before teaching it; not designed as the repo's primary automation publisher either. |
+| Best-fit task in this repo | Organizing public research candidates, drafting a private outline, personal scheduled reminders. | Editing one docs file or script, running the three local checks, preparing a PR. | Reviewing a diff or doc for clarity/safety issues without editing; explaining an unfamiliar part of the repo. |
+| Weak-fit task in this repo | Any task whose output must become a reviewable, committed diff. | Broad "fix anything" requests with no named scope; unattended production operations. | Being treated as the tool that publishes generated content automatically. |
+| Safety posture | Highest persistent-state risk: memory, OAuth, logs, and provider keys accumulate locally and must never enter Git. | Command execution and file edits mean diffs can drift outside scope if the prompt is vague; mitigated by branch/PR/checks discipline. | Lower persistent-state risk day to day, but skill and project-context behavior should still be verified before broad trust. |
+| Windows suitability | Verify current desktop/CLI Windows support in official Hermes Agent docs; treat as medium until checked. | Good; this repo's PowerShell-first workflow (`git status`, the three check scripts) is the reference path. | Good; verify current Windows setup steps in official docs before teaching exact commands. |
 
 ## Key Differences
 

@@ -2,59 +2,77 @@
 
 ## Target Tool
 
-Windsurf or current vendor-supported IDE agent surface.
+Windsurf's Cascade agent (or the current vendor-supported IDE agent surface
+if the product has since been rebranded or replaced). Used from the
+Windsurf IDE's agent chat panel, where the agent can read, propose, and
+apply file edits directly in the editor. Product features and surface
+names change quickly; verify current official documentation before
+teaching exact UI steps.
 
 ## Purpose
 
-Use this template for a small IDE-agent task where current product documentation should be verified before teaching exact UI steps.
+Use this template for a small IDE-agent task where the agent explains the
+relevant files first, proposes a plan, and only edits after approval. Built
+for documentation, prompt-template, or small script changes in this
+repository.
 
 ## Inputs To Fill
 
-| Input | Example |
-| --- | --- |
-| Task | "Explain docs/tools and improve one page" |
-| Files | `docs/tools/windsurf.md` |
-| Mode | "Explain first, edit after approval" |
-| Checks | Repo health, safe autofix, unit tests |
+| Input | Description | Example |
+| --- | --- | --- |
+| `{task}` | The specific, focused task. | `Explain docs/tools and improve one page` |
+| `{files}` | Exact files or globs in scope. | `docs/tools/windsurf.md` |
+| `{mode}` | Explain-first or direct edit. | `Explain first, edit after approval` |
+| `{checks}` | Local checks to run after edits. | `repo health, safe autofix, unit tests` |
+| `{context_files}` | Files to read for house style before editing. | `AGENTS.md`, `README.md` |
 
 ## Full Prompt
 
 ```text
 Target tool:
-Windsurf
+Windsurf (Cascade agent)
 
 Goal:
-[FOCUSED TASK]
+{task}
 
 First step:
-Explain the relevant folder or files before editing. Propose a short plan and wait for approval before applying changes.
+Explain the relevant folder or files ({files}) before editing. Read
+{context_files} to match existing structure and tone. Propose a short plan
+and wait for explicit approval before applying any changes.
 
 Boundaries:
-- Read AGENTS.md.
-- Keep edits inside this repository.
-- Do not edit secrets, .env files, credentials, browser profiles, private links, or unrelated files.
-- Do not install dependencies.
-- Do not run destructive commands.
-- Do not modify workflow YAML unless explicitly requested.
-- Do not accept or apply large generated diffs without review.
-- Do not make exact pricing, model, ownership, or platform claims unless verified in official docs.
+- Read AGENTS.md before proposing a plan.
+- Keep edits inside this repository; do not reference external repositories
+  or private systems.
+- Do not edit .env, .env.*, credentials, browser profiles, private links,
+  private paths, or any file outside {files}.
+- Do not install dependencies or modify lock files.
+- Do not run destructive commands (no git reset --hard, no force-push, no
+  recursive deletes) without explicit confirmation.
+- Do not modify GitHub Actions workflow YAML unless explicitly requested.
+- Do not accept or apply large generated diffs without review; if the
+  proposed diff is large, ask for it to be split into smaller steps.
+- Do not state exact pricing, model, ownership, or platform claims for any
+  AI tool unless verified in official docs; use conservative wording
+  otherwise.
 
 Success criteria:
-- Relevant files are explained.
-- Plan is clear before edits.
-- Diff is focused.
-- Local checks pass or failures are reported.
+- The relevant files in {files} are explained accurately before any edit.
+- A clear, numbered plan exists before edits are applied.
+- The diff is focused and matches the approved plan.
+- Local checks pass, or failures are reported with their output.
 
-Validation:
+Validation (PowerShell):
 - python scripts/repo_health_check.py
 - python scripts/safe_autofix.py --check
 - python -m unittest discover -s tests
+- git diff --check
 
 Final response:
-- Summary
+- Summary of what changed and why
 - Files changed
 - Commands run
-- Checks run
+- Checks run and their result
 - Tool claims needing manual verification
 - Remaining risks
 ```
@@ -62,46 +80,64 @@ Final response:
 ## Short Version
 
 ```text
-Use Windsurf to [TASK]. Explain files first, wait for approval, edit only [FILES], avoid secrets/dependencies/workflow changes, run checks, and report verification gaps and risks.
+Use Windsurf ({mode}) to {task}. Explain {files} first, wait for approval,
+edit only those files, avoid secrets/dependencies/workflow changes, reject
+oversized diffs, run the checks, and report files, commands, checks, claims
+to verify, and risks.
 ```
 
 ## Included Scope
 
-- Files or repository areas explicitly selected for the Windsurf task.
-- The requested task and directly related docs or tests needed for consistency.
-- Safe checks named by repository docs or the human.
+- Files or repository areas explicitly selected in `{files}`.
+- The requested task in `{task}` plus directly related docs or tests needed
+  for cross-link and terminology consistency.
+- A written explanation of the relevant files and a short plan, produced
+  before any edit.
+- Safe local checks named in `{checks}` or in this repository's AGENTS.md.
 
 ## Excluded Scope
 
-- Secrets, `.env` files, credentials, browser profiles, private links, and
-  private machine paths.
-- Dependency installation, workflow YAML, generated archives, and destructive
-  commands unless explicitly approved.
-- Exact current product claims unless verified in official docs.
+- Any file outside `{files}` that was not named and approved in the plan.
+- Secrets, `.env` / `.env.*` files, credentials, browser profiles, private
+  links, and private machine paths.
+- Dependency installation, GitHub Actions workflow YAML, generated
+  archives, and destructive commands, unless explicitly approved for this
+  task.
+- Exact current product claims (pricing, ownership, platform support) for
+  Windsurf or any other AI tool, unless freshly verified and dated.
+- Large, unreviewed generated diffs applied in one step without a prior
+  explanation and plan.
 
 ## Success Criteria
 
-- Explanation precedes editing.
-- Diff is visible and reviewed.
-- No private data appears.
-- Checks pass after edits.
-- Product claims are conservative.
+- Explanation of the relevant files precedes any editing.
+- The applied diff is visible, reviewed, and matches the approved plan.
+- No private data, secrets, or credentials appear anywhere in the diff.
+- Local checks pass after edits, or failures are reported honestly.
+- Any product claim about an AI tool is conservative and marked for
+  verification where relevant.
 
 ## Safety Boundaries
 
-- No private files or browser profiles.
-- No broad generated diffs.
-- No dependency installation.
-- No workflow YAML changes unless requested.
-- No exact product claims without verification.
+- No private files or browser profiles in context or output.
+- No broad, unreviewed generated diffs; require an explanation and plan
+  before any multi-file change is applied.
+- No dependency installation or lock file changes.
+- No GitHub Actions workflow YAML changes unless explicitly requested.
+- No exact product claims (pricing, ownership, platform availability)
+  without verification against official docs.
+- If Cascade proposes running a terminal command, review it before allowing
+  execution, especially anything destructive.
 
 ## Verification
 
 ```powershell
+git status
 git diff
 python scripts/repo_health_check.py
 python scripts/safe_autofix.py --check
 python -m unittest discover -s tests
+git diff --check
 ```
 
 ## Final Report Format
@@ -119,7 +155,8 @@ python -m unittest discover -s tests
 
 | Failure | What to do |
 | --- | --- |
-| Product docs changed | Verify official docs and update wording. |
-| Diff is too large | Reject and ask for smaller scope. |
-| Checks cannot be run in IDE | Run them in PowerShell before merging. |
-| Private data appears | Stop, remove it, and follow security policy. |
+| Product docs, feature names, or the agent's surface have changed since this template was written | Verify current official Windsurf docs and update the wording before teaching exact steps. |
+| The proposed diff is too large to review in one pass | Reject it and ask for the change to be split into smaller, sequential steps. |
+| Local checks cannot be run from inside the Windsurf IDE terminal | Open a separate PowerShell window and run the same commands before merging. |
+| Private data or a secret-looking string appears in the explanation or diff | Stop immediately, remove it, and follow this repository's security policy (rotate any exposed credential). |
+| The agent's explanation of the relevant files is inaccurate or incomplete | Ask for a corrected explanation before approving any plan based on it. |

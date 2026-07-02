@@ -114,3 +114,134 @@ If private or unsafe material is found after publication:
 
 Do not replace an incident response with vague wording. Name the class of issue
 and the corrective action while avoiding repetition of the sensitive material.
+
+## Pre-Publish Checklist, Deepened
+
+The checklist in Pre-Publication Review above is the minimum bar. This section
+expands each item with why it exists and a concrete, fast way to verify it, so
+a reviewer with five minutes can actually check the box instead of assuming it.
+
+### No token-like strings, private paths, private account IDs, or private logs
+
+**Why:** a single leaked token or machine path in a public repository can be
+scraped within minutes of merge. Public repos are indexed continuously; there
+is no quiet grace period to fix it after the fact. Private paths and account
+IDs are lower severity than a live token but still leak information about a
+person's machine, employer, or account structure that they did not choose to
+publish.
+
+**Quick verification:**
+
+```powershell
+git diff --staged | Select-String -Pattern "sk-|ghp_|AKIA|api[_-]?key|password\s*=|Bearer\s"
+git diff --staged | Select-String -Pattern "C:\\Users\\[A-Za-z0-9_.-]+"
+```
+
+Treat any hit as a stop-and-check, not a false-positive to wave through. A
+placeholder like `C:\Users\example\project` is fine; a real Windows or WSL
+username pulled from an actual command output is not.
+
+### External claims are either evergreen or marked for official-doc verification
+
+**Why:** pricing, rate limits, model availability, and plan tiers change on
+a schedule this repository does not control. A specific dollar figure or
+"currently supports X" statement written today can be false within weeks,
+and a beginner reader has no way to know the guide is stale.
+
+**Quick verification:** search the changed files for digits next to currency
+symbols, the words "currently," "now supports," "as of today," or a bare
+model name presented as available without a link. Anything matching should
+either be rewritten as a general workflow description or moved under a
+"verify in official docs" note.
+
+```powershell
+git diff --staged | Select-String -Pattern "\$\d|currently (supports|available)|as of today"
+```
+
+### Source/license status is documented where source material shaped the guide
+
+**Why:** without a source note, a reader (or a future maintainer) cannot tell
+whether a section is original guidance or adapted from someone else's
+material, and cannot check whether that material's license permits the reuse.
+This is also what makes the leak-derived structural-only rule enforceable:
+if the source isn't named, nobody can audit whether the boundary was respected.
+
+**Quick verification:** for any section that references an external
+repository, paper, or prompt collection, confirm a link and a label
+(official / community / academic / leak-derived) appear nearby, using the
+labels defined in this document's Source Labels table.
+
+### Automation remains bounded, preview-first, and human-reviewed
+
+**Why:** this repository's core safety promise is that nothing publishes
+itself. If a doc implies a workflow runs unattended end-to-end — scout finds
+something, an LLM writes it up, and it merges without a human — that doc is
+teaching an unsafe pattern even if no code in this repo actually does that.
+
+**Quick verification:** read every sentence describing an automated job and
+confirm it stops at "opens an issue," "writes a candidate file," or "prepares
+a local prompt," never at "publishes," "merges," or "creates a release."
+Cross-check against `AGENTS.md`'s Research Automation Rules, which is the
+source of truth for what automation may and may not do.
+
+### Beginner recommendations do not assume heavy GPU, local training, or complex provider setup by default
+
+**Why:** the audience for this repository includes people on laptops without
+a discrete GPU. A guide that defaults to "spin up vLLM" or "fine-tune a 7B
+model locally" as step one silently excludes most of the intended audience
+and sets an unrealistic baseline expectation.
+
+**Quick verification:** for any beginner-facing section, confirm the first
+recommended path is a browser/API tool or a lightweight local option, with
+heavier GPU workflows introduced later and clearly labeled as optional/advanced.
+
+### The content teaches safe workflow habits instead of bypassing review
+
+**Why:** this is the meta-check. A guide can pass every other item and still
+fail this one if its overall shape teaches a reader to skip branches, skip
+review, or treat a human-in-the-loop step as optional friction to route
+around.
+
+**Quick verification:** read the guide's command sequence end to end and
+confirm it still includes branch creation, local checks, and a pull request
+step. If a shortcut path is documented, confirm it is explicitly labeled as
+a deliberate exception with a stated reason, not presented as the default.
+
+## Worked Example: A Document That Would Fail Review
+
+Consider a hypothetical draft guide titled "Fast-track: publishing a
+prompting guide in one command." It contains this passage:
+
+> Run `python scripts/generate_guide.py --topic prompting --auto-merge` and
+> the scout will pull the top 10 sources, have Codex draft the guide, and
+> push it straight to `main`. This costs about $0.02 per guide on the
+> current GPT-5.5 API pricing and takes under a minute. No need to open a
+> PR for small guides like this.
+
+This fails review on at least four independent grounds, any one of which
+would be enough to block it:
+
+1. **Automation boundary violation.** It describes an auto-merge path that
+   writes AI-generated guide content directly to `main` with no human
+   review step. This directly contradicts the Automation Boundary section
+   above and the Research Automation Rules in `AGENTS.md`, which require
+   local Codex curation followed by branch, PR, checks, and human review.
+2. **Unverified exact pricing claim.** "$0.02 per guide on the current
+   GPT-5.5 API pricing" is a specific dollar figure tied to a fast-changing
+   provider price sheet. It is exactly the kind of claim that belongs under
+   "Claims Needing Official-Doc Verification," not stated as settled fact.
+3. **Implies API-key LLM usage in an automated path.** The passage implies
+   an unattended script is calling a paid model API. This repository's rule
+   set forbids adding API-key LLM execution to automation; any model calls
+   must go through a local, human-driven Codex or Claude Code session.
+4. **Discourages the reviewable-diff workflow.** "No need to open a PR for
+   small guides like this" actively undermines the branch/PR/review
+   practice this repository exists to teach. Even if the other three issues
+   were fixed, this line alone would need to be removed.
+
+A corrected version would describe the real workflow: the scout writes
+candidate metadata, the curator prep step manually prepares a local prompt,
+a maintainer runs that prompt through a local Codex or Claude Code session,
+and the result goes through a normal branch, pull request, checks, and
+review cycle before merge — with any pricing claim linked and marked for
+official-doc verification instead of stated as a fixed number.

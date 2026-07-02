@@ -84,6 +84,8 @@ REQUIRED_FILES = [
     "docs/research/source-policy.md",
     "docs/skills/README.md",
     "docs/image-generation/README.md",
+    "docs/image-generation/transformer-architecture.md",
+    "docs/image-generation/reasoning-integrated-image-generation.md",
     "docs/hermes/README.md",
     "data/research/sources.yml",
     "data/research/candidates.json",
