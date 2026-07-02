@@ -140,3 +140,29 @@ When a skill is added or removed, update this index and
 [`manifest.json`](manifest.json) in the same change. The test suite checks
 that every manifest entry has a matching folder and that every listed source
 path exists.
+<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
+## Research-Grade Review Addendum
+
+This file is part of the repository's **installable agent skill** surface. During broad
+maintenance, reviewers should treat `skills/INDEX.md` as a contract-bearing artifact
+rather than passive prose. The file should keep a clear audience, explicit
+scope, concrete operating steps, public-safety boundaries, and verification
+evidence that a maintainer can inspect without trusting an agent summary.
+
+Research-grade review questions for this file:
+
+- Does `INDEX` state what decision, workflow, or reusable behavior it supports?
+- Are included scope, excluded scope, and unsafe actions clear enough for an
+  agent or contributor to follow?
+- Are examples public-safe, repository-relative, and free of private data?
+- Are fast-changing product or platform claims phrased conservatively or marked
+  for official-doc verification?
+- Does the file point to the next artifact a reader should inspect: a command,
+  template, test, manifest, package, or deeper guide?
+- Could a reviewer cite this file in a PR review and know what evidence proves
+  the work is complete?
+
+Keep future edits focused on stronger evidence, clearer failure modes, better
+navigation, and safer automation boundaries. Do not add length unless the new
+material makes the repository easier to operate, teach, audit, or recover.
+<!-- RESEARCH-GRADE-EXPANSION:END -->

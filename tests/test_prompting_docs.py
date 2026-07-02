@@ -21,6 +21,12 @@ GUIDES = (
     "docs/guides/source-inspired-prompting-curriculum.md",
 )
 
+WORKFLOW_GUIDES = (
+    "docs/workflows/agent-task-lifecycle.md",
+    "docs/workflows/public-repo-safety.md",
+    "docs/workflows/research-grade-repository-expansion.md",
+)
+
 # Docs that may reference /goal as an example custom slash command.
 GOAL_DOCS = (
     "README.md",
@@ -72,6 +78,11 @@ class PromptingGuidesExistTests(unittest.TestCase):
             with self.subTest(relative=relative):
                 self.assertTrue(read(relative).endswith("\n"))
 
+    def test_workflow_guides_exist(self):
+        for relative in WORKFLOW_GUIDES:
+            with self.subTest(relative=relative):
+                self.assertTrue((ROOT / relative).is_file())
+
 
 class PromptingGuidesContentTests(unittest.TestCase):
     def test_comprehensive_guide_covers_prompt_engineering_system(self):
@@ -115,6 +126,23 @@ class PromptingGuidesContentTests(unittest.TestCase):
             with self.subTest(relative=relative):
                 self.assertFalse(discover_ai_sources.has_secret_looking_text(read(relative)))
 
+    def test_research_grade_expansion_workflow_has_operational_depth(self):
+        text = read("docs/workflows/research-grade-repository-expansion.md")
+        for needle in (
+            "What Research-Grade Means Here",
+            "Expansion Scope Model",
+            "Evidence Levels",
+            "Comprehensiveness Rubric",
+            "File-Class Expansion Playbooks",
+            "Research-Grade Expansion Procedure",
+            "Public-Safety Review For Broad Expansions",
+            "Failure Modes",
+            "Review Checklist",
+            "Final Report Template",
+        ):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, text)
+
 
 class PromptingGuidesReadmeLinkageTests(unittest.TestCase):
     def test_readme_links_every_guide(self):
@@ -126,6 +154,23 @@ class PromptingGuidesReadmeLinkageTests(unittest.TestCase):
     def test_readme_has_prompting_section(self):
         readme = read("README.md")
         self.assertIn("Prompting And Agent Mastery", readme)
+
+    def test_research_grade_workflow_is_linked_from_core_policy_docs(self):
+        for relative in ("README.md", "AGENTS.md", "CONTRIBUTING.md"):
+            with self.subTest(relative=relative):
+                self.assertIn("research-grade-repository-expansion.md", read(relative))
+
+    def test_security_has_broad_expansion_review_gate(self):
+        security = read("SECURITY.md")
+        for needle in (
+            "Broad Expansion Security Review",
+            "Examples",
+            "Agent permissions",
+            "Source usage",
+            "Staging",
+        ):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, security)
 
     def test_readme_is_comprehensive_public_manual(self):
         readme_path = ROOT / "README.md"
@@ -193,3 +238,12 @@ class PromptingGuidesPackagingTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+# RESEARCH-GRADE-EXPANSION:BEGIN
+# Research-grade maintenance notes:
+# - Role: repository regression test.
+# - Review this file for clear inputs, outputs, side effects, and failure behavior.
+# - Keep examples public-safe and repository-relative; avoid secrets or private paths.
+# - When behavior changes, update adjacent tests, docs, and changelog evidence.
+# - Prefer deterministic, reviewable operations over hidden or networked side effects.
+# RESEARCH-GRADE-EXPANSION:END

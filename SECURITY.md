@@ -100,8 +100,64 @@ Before public release or external teaching:
 
 See [docs/workflows/public-repo-safety.md](docs/workflows/public-repo-safety.md) for the full guide.
 
+## Broad Expansion Security Review
+
+Large documentation and prompt-expansion passes deserve a security review even
+when they do not change runtime code. They often add examples, command blocks,
+source references, agent permissions, workflow descriptions, and staging
+instructions, which are common places for unsafe details to slip in.
+
+Before staging a broad expansion, review:
+
+| Area | Security question | Safer outcome |
+| --- | --- | --- |
+| Examples | Do any examples look like real keys, tokens, account IDs, emails, or private URLs? | Use placeholders such as `YOUR_TOKEN_HERE` and generic repository-relative paths. |
+| Commands | Do commands print environment variables, read browser profiles, or operate outside the repo? | Keep commands scoped to the repository and validation tools. |
+| Agent permissions | Does the text encourage agents to read private folders, change system settings, or run destructive commands? | State ask-first or forbidden boundaries. |
+| External claims | Are fast-changing setup, pricing, model, or platform details stated as permanent? | Mark them for official-doc verification. |
+| Source usage | Is local archive, leaked prompt, or license-unclear material copied into public docs? | Use structural lessons only and write original guidance. |
+| Staging | Could unrelated dirty work be staged with the expansion? | Inspect `git status` before and after staging. |
+
+For research-grade documentation work, security evidence should appear in the
+final report or PR body. A useful statement is:
+
+```text
+Security review:
+- Repository health check passed.
+- No generated artifacts were added.
+- Commands stay inside the repository.
+- External product claims are conservative or marked for verification.
+- Staged paths match the requested scope.
+```
+
 ## Reporting a Problem
 
 Open a GitHub issue if you find a public-safety problem, unsafe automation behavior, or documentation that encourages risky agent use.
 
 Do not paste secrets into an issue. If a secret was committed, rotate it outside this repository first, then report the cleanup need without revealing the secret value.
+<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
+## Research-Grade Review Addendum
+
+This file is part of the repository's **top-level repository policy document** surface. During broad
+maintenance, reviewers should treat `SECURITY.md` as a contract-bearing artifact
+rather than passive prose. The file should keep a clear audience, explicit
+scope, concrete operating steps, public-safety boundaries, and verification
+evidence that a maintainer can inspect without trusting an agent summary.
+
+Research-grade review questions for this file:
+
+- Does `SECURITY` state what decision, workflow, or reusable behavior it supports?
+- Are included scope, excluded scope, and unsafe actions clear enough for an
+  agent or contributor to follow?
+- Are examples public-safe, repository-relative, and free of private data?
+- Are fast-changing product or platform claims phrased conservatively or marked
+  for official-doc verification?
+- Does the file point to the next artifact a reader should inspect: a command,
+  template, test, manifest, package, or deeper guide?
+- Could a reviewer cite this file in a PR review and know what evidence proves
+  the work is complete?
+
+Keep future edits focused on stronger evidence, clearer failure modes, better
+navigation, and safer automation boundaries. Do not add length unless the new
+material makes the repository easier to operate, teach, audit, or recover.
+<!-- RESEARCH-GRADE-EXPANSION:END -->

@@ -44,3 +44,12 @@ jobs:
           fi
           gh pr checks "$PR_NUMBER" --watch --required
           gh pr merge "$PR_NUMBER" --$MERGE_METHOD --delete-branch
+
+# RESEARCH-GRADE-EXPANSION:BEGIN
+# Research-grade maintenance notes:
+# - Role: GitHub Actions workflow.
+# - Review this file for clear inputs, outputs, side effects, and failure behavior.
+# - Keep examples public-safe and repository-relative; avoid secrets or private paths.
+# - When behavior changes, update adjacent tests, docs, and changelog evidence.
+# - Prefer deterministic, reviewable operations over hidden or networked side effects.
+# RESEARCH-GRADE-EXPANSION:END
