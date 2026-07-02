@@ -1,0 +1,1013 @@
+{
+  "skills": [
+    {
+      "slug": "use-codex-safely",
+      "description": "Safe first-task workflow for OpenAI Codex sessions in this repository: read local rules, scope the task, run checks, open a reviewable PR.",
+      "category": "tools",
+      "source": [
+        "docs/tools/codex.md",
+        "docs/codex/00-start-here.md",
+        "docs/codex/01-codex-goal-workflow.md",
+        "AGENTS.md"
+      ]
+    },
+    {
+      "slug": "self-directed-goal-runner",
+      "description": "Turn a broad multi-step goal into a bounded, checklist-driven self-prompt and follow it to completion with hard stop conditions and an iteration cap.",
+      "category": "meta",
+      "source": [
+        "docs/templates/task-spec.md",
+        "AGENTS.md",
+        "docs/skills/README.md"
+      ]
+    },
+    {
+      "slug": "create-a-new-skill",
+      "description": "Author a new prompting skill bundle in this repository's skills/ package from a recurring task or an existing doc/prompt template.",
+      "category": "meta",
+      "source": [
+        "docs/skills/README.md",
+        "skills/README.md",
+        "skills/use-codex-safely/SKILL.md"
+      ]
+    },
+    {
+      "slug": "install-this-skill-pack",
+      "description": "Give the exact command to install a skill from this repository into Codex, Claude Code, Hermes, or another agent harness.",
+      "category": "meta",
+      "source": [
+        "skills/README.md",
+        "scripts/install_skill.ps1",
+        "scripts/install_skill.py"
+      ]
+    },
+    {
+      "slug": "guide-archive-audit",
+      "description": "Use the Archive Audit: GitHub_Downloads guide from docs/archive-audit.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/archive-audit.md"
+      ]
+    },
+    {
+      "slug": "guide-archive-catalog",
+      "description": "Use the Archived GitHub Downloads Catalog guide from docs/archive-catalog.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/archive-catalog.md"
+      ]
+    },
+    {
+      "slug": "guide-automation-local-autopilot",
+      "description": "Use the Local Autopilot guide from docs/automation/local-autopilot.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/automation/local-autopilot.md"
+      ]
+    },
+    {
+      "slug": "guide-automation-release-draft-policy",
+      "description": "Use the Release Draft Policy guide from docs/automation/release-draft-policy.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/automation/release-draft-policy.md"
+      ]
+    },
+    {
+      "slug": "guide-automation-repository-autopilot",
+      "description": "Use the Repository Autopilot guide from docs/automation/repository-autopilot.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/automation/repository-autopilot.md"
+      ]
+    },
+    {
+      "slug": "guide-automation-safe-automerge-policy",
+      "description": "Use the Safe Automerge Policy guide from docs/automation/safe-automerge-policy.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/automation/safe-automerge-policy.md"
+      ]
+    },
+    {
+      "slug": "guide-codex-00-start-here",
+      "description": "Use the Start Here guide from docs/codex/00-start-here.md as a bounded, public-safe workflow.",
+      "category": "codex-workflow",
+      "source": [
+        "docs/codex/00-start-here.md"
+      ]
+    },
+    {
+      "slug": "guide-codex-01-codex-goal-workflow",
+      "description": "Use the Codex Goal Workflow guide from docs/codex/01-codex-goal-workflow.md as a bounded, public-safe workflow.",
+      "category": "codex-workflow",
+      "source": [
+        "docs/codex/01-codex-goal-workflow.md"
+      ]
+    },
+    {
+      "slug": "guide-codex-02-git-branch-pr-merge-workflow",
+      "description": "Use the Git Branch, Pull Request, and Merge Workflow guide from docs/codex/02-git-branch-pr-merge-workflow.md as a bounded, public-safe workflow.",
+      "category": "codex-workflow",
+      "source": [
+        "docs/codex/02-git-branch-pr-merge-workflow.md"
+      ]
+    },
+    {
+      "slug": "guide-codex-03-safe-autofix-policy",
+      "description": "Use the Safe Autofix Policy guide from docs/codex/03-safe-autofix-policy.md as a bounded, public-safe workflow.",
+      "category": "codex-workflow",
+      "source": [
+        "docs/codex/03-safe-autofix-policy.md"
+      ]
+    },
+    {
+      "slug": "guide-codex-04-review-checklist",
+      "description": "Use the Review Checklist guide from docs/codex/04-review-checklist.md as a bounded, public-safe workflow.",
+      "category": "codex-workflow",
+      "source": [
+        "docs/codex/04-review-checklist.md"
+      ]
+    },
+    {
+      "slug": "guide-codex-05-repository-roadmap",
+      "description": "Use the Repository Roadmap guide from docs/codex/05-repository-roadmap.md as a bounded, public-safe workflow.",
+      "category": "codex-workflow",
+      "source": [
+        "docs/codex/05-repository-roadmap.md"
+      ]
+    },
+    {
+      "slug": "guide-guides-readme",
+      "description": "Use the Guides guide from docs/guides/README.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/guides/README.md"
+      ]
+    },
+    {
+      "slug": "guide-guides-agentic-coding-playbook",
+      "description": "Use the Agentic Coding Playbook guide from docs/guides/agentic-coding-playbook.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/guides/agentic-coding-playbook.md"
+      ]
+    },
+    {
+      "slug": "guide-guides-coding-agent-power-tips",
+      "description": "Use the Coding Agent Power Tips guide from docs/guides/coding-agent-power-tips.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/guides/coding-agent-power-tips.md"
+      ]
+    },
+    {
+      "slug": "guide-guides-comprehensive-prompt-engineering-guide",
+      "description": "Use the Comprehensive Prompt Engineering Guide guide from docs/guides/comprehensive-prompt-engineering-guide.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/guides/comprehensive-prompt-engineering-guide.md"
+      ]
+    },
+    {
+      "slug": "guide-guides-prompt-audit-checklist",
+      "description": "Use the Prompt Audit Checklist guide from docs/guides/prompt-audit-checklist.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/guides/prompt-audit-checklist.md"
+      ]
+    },
+    {
+      "slug": "guide-guides-prompt-engineering-playbook",
+      "description": "Use the Prompt Engineering Playbook guide from docs/guides/prompt-engineering-playbook.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/guides/prompt-engineering-playbook.md"
+      ]
+    },
+    {
+      "slug": "guide-guides-prompting-ai-coding-agents",
+      "description": "Use the Prompting AI Coding Agents guide from docs/guides/prompting-ai-coding-agents.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/guides/prompting-ai-coding-agents.md"
+      ]
+    },
+    {
+      "slug": "guide-guides-prompting-references",
+      "description": "Use the Prompting References guide from docs/guides/prompting-references.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/guides/prompting-references.md"
+      ]
+    },
+    {
+      "slug": "guide-guides-skills-and-prompt-guides",
+      "description": "Use the Skills And Prompt Guides guide from docs/guides/skills-and-prompt-guides.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/guides/skills-and-prompt-guides.md"
+      ]
+    },
+    {
+      "slug": "guide-guides-source-inspired-prompting-curriculum",
+      "description": "Use the Source-Inspired Prompting Curriculum guide from docs/guides/source-inspired-prompting-curriculum.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/guides/source-inspired-prompting-curriculum.md"
+      ]
+    },
+    {
+      "slug": "guide-guides-windows-setup-commands",
+      "description": "Use the Windows Setup Commands guide from docs/guides/windows-setup-commands.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/guides/windows-setup-commands.md"
+      ]
+    },
+    {
+      "slug": "guide-hermes-readme",
+      "description": "Use the Hermes Agent Guides guide from docs/hermes/README.md as a bounded, public-safe workflow.",
+      "category": "hermes",
+      "source": [
+        "docs/hermes/README.md"
+      ]
+    },
+    {
+      "slug": "guide-hermes-hermes-agent-vs-codex-vs-claude-code",
+      "description": "Use the Hermes Agent Vs Codex Vs Claude Code guide from docs/hermes/hermes-agent-vs-codex-vs-claude-code.md as a bounded, public-safe workflow.",
+      "category": "hermes",
+      "source": [
+        "docs/hermes/hermes-agent-vs-codex-vs-claude-code.md"
+      ]
+    },
+    {
+      "slug": "guide-hermes-hermes-agent",
+      "description": "Use the Nous Research Hermes Agent guide from docs/hermes/hermes-agent.md as a bounded, public-safe workflow.",
+      "category": "hermes",
+      "source": [
+        "docs/hermes/hermes-agent.md"
+      ]
+    },
+    {
+      "slug": "guide-hermes-local-agent-setup",
+      "description": "Use the Hermes Agent Local Setup guide from docs/hermes/local-agent-setup.md as a bounded, public-safe workflow.",
+      "category": "hermes",
+      "source": [
+        "docs/hermes/local-agent-setup.md"
+      ]
+    },
+    {
+      "slug": "guide-hermes-prompting-hermes-agent",
+      "description": "Use the Prompting Hermes Agent guide from docs/hermes/prompting-hermes-agent.md as a bounded, public-safe workflow.",
+      "category": "hermes",
+      "source": [
+        "docs/hermes/prompting-hermes-agent.md"
+      ]
+    },
+    {
+      "slug": "guide-hermes-provider-configuration",
+      "description": "Use the Hermes Agent Provider Configuration guide from docs/hermes/provider-configuration.md as a bounded, public-safe workflow.",
+      "category": "hermes",
+      "source": [
+        "docs/hermes/provider-configuration.md"
+      ]
+    },
+    {
+      "slug": "guide-hermes-public-repo-safety",
+      "description": "Use the Hermes Agent Public Repository Safety guide from docs/hermes/public-repo-safety.md as a bounded, public-safe workflow.",
+      "category": "hermes",
+      "source": [
+        "docs/hermes/public-repo-safety.md"
+      ]
+    },
+    {
+      "slug": "guide-hermes-skills-memory-automations",
+      "description": "Use the Hermes Agent Skills, Memory, And Automations guide from docs/hermes/skills-memory-automations.md as a bounded, public-safe workflow.",
+      "category": "hermes",
+      "source": [
+        "docs/hermes/skills-memory-automations.md"
+      ]
+    },
+    {
+      "slug": "guide-hermes-troubleshooting",
+      "description": "Use the Hermes Agent Troubleshooting guide from docs/hermes/troubleshooting.md as a bounded, public-safe workflow.",
+      "category": "hermes",
+      "source": [
+        "docs/hermes/troubleshooting.md"
+      ]
+    },
+    {
+      "slug": "guide-image-generation-readme",
+      "description": "Use the Image Generation Guides guide from docs/image-generation/README.md as a bounded, public-safe workflow.",
+      "category": "image-generation",
+      "source": [
+        "docs/image-generation/README.md"
+      ]
+    },
+    {
+      "slug": "guide-image-generation-autoregressive-image-models",
+      "description": "Use the Autoregressive Image Models guide from docs/image-generation/autoregressive-image-models.md as a bounded, public-safe workflow.",
+      "category": "image-generation",
+      "source": [
+        "docs/image-generation/autoregressive-image-models.md"
+      ]
+    },
+    {
+      "slug": "guide-image-generation-diffusion-models",
+      "description": "Use the Diffusion Models guide from docs/image-generation/diffusion-models.md as a bounded, public-safe workflow.",
+      "category": "image-generation",
+      "source": [
+        "docs/image-generation/diffusion-models.md"
+      ]
+    },
+    {
+      "slug": "guide-image-generation-hardware-requirements",
+      "description": "Use the Image Generation Hardware Requirements guide from docs/image-generation/hardware-requirements.md as a bounded, public-safe workflow.",
+      "category": "image-generation",
+      "source": [
+        "docs/image-generation/hardware-requirements.md"
+      ]
+    },
+    {
+      "slug": "guide-image-generation-local-image-generation",
+      "description": "Use the Local Image Generation guide from docs/image-generation/local-image-generation.md as a bounded, public-safe workflow.",
+      "category": "image-generation",
+      "source": [
+        "docs/image-generation/local-image-generation.md"
+      ]
+    },
+    {
+      "slug": "guide-image-generation-prompting-patterns",
+      "description": "Use the Image Prompting Patterns guide from docs/image-generation/prompting-patterns.md as a bounded, public-safe workflow.",
+      "category": "image-generation",
+      "source": [
+        "docs/image-generation/prompting-patterns.md"
+      ]
+    },
+    {
+      "slug": "guide-image-generation-reasoning-integrated-image-generation",
+      "description": "Use the Reasoning-Integrated Image Generation guide from docs/image-generation/reasoning-integrated-image-generation.md as a bounded, public-safe workflow.",
+      "category": "image-generation",
+      "source": [
+        "docs/image-generation/reasoning-integrated-image-generation.md"
+      ]
+    },
+    {
+      "slug": "guide-image-generation-transformer-architecture",
+      "description": "Use the Transformer Architecture In Image Generation guide from docs/image-generation/transformer-architecture.md as a bounded, public-safe workflow.",
+      "category": "image-generation",
+      "source": [
+        "docs/image-generation/transformer-architecture.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-01-kernel",
+      "description": "Use the Prompting OS Kernel guide from docs/prompting-os/01-kernel.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/01-kernel.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-02-model-family-drivers",
+      "description": "Use the Model Family Drivers guide from docs/prompting-os/02-model-family-drivers.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/02-model-family-drivers.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-03-context-engineering",
+      "description": "Use the Context Engineering and RAG guide from docs/prompting-os/03-context-engineering.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/03-context-engineering.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-04-agent-skills",
+      "description": "Use the Agent and Skill System guide from docs/prompting-os/04-agent-skills.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/04-agent-skills.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-05-image-prompting-engine",
+      "description": "Use the Image Prompting Engine guide from docs/prompting-os/05-image-prompting-engine.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/05-image-prompting-engine.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-06-evaluation-and-optimization",
+      "description": "Use the Evaluation and Optimization guide from docs/prompting-os/06-evaluation-and-optimization.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/06-evaluation-and-optimization.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-07-source-map",
+      "description": "Use the Source Map and Synthesis guide from docs/prompting-os/07-source-map.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/07-source-map.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-08-production-prompt-architecture",
+      "description": "Use the Production Prompt Architecture guide from docs/prompting-os/08-production-prompt-architecture.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/08-production-prompt-architecture.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-09-security-and-governance",
+      "description": "Use the Prompt Security and Governance guide from docs/prompting-os/09-security-and-governance.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/09-security-and-governance.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-10-evaluation-cookbook",
+      "description": "Use the Prompt Evaluation Cookbook guide from docs/prompting-os/10-evaluation-cookbook.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/10-evaluation-cookbook.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-11-comprehensiveness-benchmark",
+      "description": "Use the Comprehensiveness Benchmark guide from docs/prompting-os/11-comprehensiveness-benchmark.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/11-comprehensiveness-benchmark.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-12-prompt-pattern-library",
+      "description": "Use the Prompt Pattern Library guide from docs/prompting-os/12-prompt-pattern-library.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/12-prompt-pattern-library.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-13-agent-operations-manual",
+      "description": "Use the Agent Operations Manual guide from docs/prompting-os/13-agent-operations-manual.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/13-agent-operations-manual.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-14-rag-and-tool-use-field-guide",
+      "description": "Use the RAG And Tool Use Field Guide guide from docs/prompting-os/14-rag-and-tool-use-field-guide.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/14-rag-and-tool-use-field-guide.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-15-maintenance-and-release-manual",
+      "description": "Use the Maintenance And Release Manual guide from docs/prompting-os/15-maintenance-and-release-manual.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/15-maintenance-and-release-manual.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-16-comprehensive-examples",
+      "description": "Use the Comprehensive Examples guide from docs/prompting-os/16-comprehensive-examples.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/16-comprehensive-examples.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-17-curriculum-and-workshops",
+      "description": "Use the Curriculum And Workshops guide from docs/prompting-os/17-curriculum-and-workshops.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/17-curriculum-and-workshops.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-18-troubleshooting-and-debugging",
+      "description": "Use the Troubleshooting And Debugging guide from docs/prompting-os/18-troubleshooting-and-debugging.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/18-troubleshooting-and-debugging.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-19-model-specific-adaptation",
+      "description": "Use the Model-Specific Adaptation guide from docs/prompting-os/19-model-specific-adaptation.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/19-model-specific-adaptation.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-20-prompt-library-governance",
+      "description": "Use the Prompt Library Governance guide from docs/prompting-os/20-prompt-library-governance.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/20-prompt-library-governance.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-21-checklists-and-templates",
+      "description": "Use the Checklists And Templates guide from docs/prompting-os/21-checklists-and-templates.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/21-checklists-and-templates.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-22-risk-register",
+      "description": "Use the Risk Register guide from docs/prompting-os/22-risk-register.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/22-risk-register.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-23-quality-assurance-matrix",
+      "description": "Use the Quality Assurance Matrix guide from docs/prompting-os/23-quality-assurance-matrix.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/23-quality-assurance-matrix.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-24-archive-corpus-source-map",
+      "description": "Use the Archive Corpus Source Map guide from docs/prompting-os/24-archive-corpus-source-map.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/24-archive-corpus-source-map.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-25-repository-expansion-playbook",
+      "description": "Use the Repository Expansion Playbook guide from docs/prompting-os/25-repository-expansion-playbook.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/25-repository-expansion-playbook.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-26-offline-package-reader-guide",
+      "description": "Use the Offline Package Reader Guide guide from docs/prompting-os/26-offline-package-reader-guide.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/26-offline-package-reader-guide.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-27-prompt-evaluation-datasets",
+      "description": "Use the Prompt Evaluation Datasets guide from docs/prompting-os/27-prompt-evaluation-datasets.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/27-prompt-evaluation-datasets.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-28-tool-permission-model",
+      "description": "Use the Tool Permission Model guide from docs/prompting-os/28-tool-permission-model.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/28-tool-permission-model.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-29-source-grounded-writing-lab",
+      "description": "Use the Source-Grounded Writing Lab guide from docs/prompting-os/29-source-grounded-writing-lab.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/29-source-grounded-writing-lab.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-30-agent-review-and-red-team",
+      "description": "Use the Agent Review And Red Team guide from docs/prompting-os/30-agent-review-and-red-team.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/30-agent-review-and-red-team.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-31-workbench-maintainer-runbook",
+      "description": "Use the Workbench Maintainer Runbook guide from docs/prompting-os/31-workbench-maintainer-runbook.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/31-workbench-maintainer-runbook.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-32-completion-evidence-manual",
+      "description": "Use the Completion Evidence Manual guide from docs/prompting-os/32-completion-evidence-manual.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/32-completion-evidence-manual.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-33-prompt-library-indexing",
+      "description": "Use the Prompt Library Indexing guide from docs/prompting-os/33-prompt-library-indexing.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/33-prompt-library-indexing.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-34-static-site-and-release-docs",
+      "description": "Use the Static Site And Release Docs guide from docs/prompting-os/34-static-site-and-release-docs.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/34-static-site-and-release-docs.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-35-workshop-assessment-bank",
+      "description": "Use the Workshop Assessment Bank guide from docs/prompting-os/35-workshop-assessment-bank.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/35-workshop-assessment-bank.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-36-prompt-metrics-and-telemetry",
+      "description": "Use the Prompt Metrics And Telemetry guide from docs/prompting-os/36-prompt-metrics-and-telemetry.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/36-prompt-metrics-and-telemetry.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-37-failure-mode-catalog",
+      "description": "Use the Failure Mode Catalog guide from docs/prompting-os/37-failure-mode-catalog.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/37-failure-mode-catalog.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-readme",
+      "description": "Use the Prompting OS guide from docs/prompting-os/README.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/README.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-evals-prompt-quality-rubric",
+      "description": "Use the Prompt Quality Rubric guide from docs/prompting-os/evals/prompt-quality-rubric.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/evals/prompt-quality-rubric.md"
+      ]
+    },
+    {
+      "slug": "guide-prompting-os-templates-master-prompt-template",
+      "description": "Use the Master Prompt Template guide from docs/prompting-os/templates/master-prompt-template.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/prompting-os/templates/master-prompt-template.md"
+      ]
+    },
+    {
+      "slug": "guide-publication-policy",
+      "description": "Use the Publication Policy guide from docs/publication-policy.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/publication-policy.md"
+      ]
+    },
+    {
+      "slug": "guide-releases-and-packages",
+      "description": "Use the Releases And Packages guide from docs/releases-and-packages.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/releases-and-packages.md"
+      ]
+    },
+    {
+      "slug": "guide-releases-release-process",
+      "description": "Use the Release Process guide from docs/releases/release-process.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/releases/release-process.md"
+      ]
+    },
+    {
+      "slug": "guide-releases-v0-1-0",
+      "description": "Use the AI Agent Coding Workbench v0.1.0 guide from docs/releases/v0.1.0.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/releases/v0.1.0.md"
+      ]
+    },
+    {
+      "slug": "guide-research-curated-curator-prompt-2026-06-29",
+      "description": "Use the Local Codex Curator Prompt - 2026-06-29 guide from docs/research/curated/curator-prompt-2026-06-29.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/research/curated/curator-prompt-2026-06-29.md"
+      ]
+    },
+    {
+      "slug": "guide-research-inbox-2026-06-29",
+      "description": "Use the Daily AI Skills And Prompt Guide Candidates - 2026-06-29 guide from docs/research/inbox/2026-06-29.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/research/inbox/2026-06-29.md"
+      ]
+    },
+    {
+      "slug": "guide-research-inbox-2026-07-01",
+      "description": "Use the Daily AI Skills And Prompt Guide Candidates - 2026-07-01 guide from docs/research/inbox/2026-07-01.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/research/inbox/2026-07-01.md"
+      ]
+    },
+    {
+      "slug": "guide-research-source-policy",
+      "description": "Use the Research Source Policy guide from docs/research/source-policy.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/research/source-policy.md"
+      ]
+    },
+    {
+      "slug": "guide-skills-readme",
+      "description": "Use the AI Skills And Prompt Guides guide from docs/skills/README.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/skills/README.md"
+      ]
+    },
+    {
+      "slug": "guide-skills-claude-code",
+      "description": "Use the Claude Code Skills guide from docs/skills/claude-code.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/skills/claude-code.md"
+      ]
+    },
+    {
+      "slug": "guide-skills-codex",
+      "description": "Use the Codex Skills guide from docs/skills/codex.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/skills/codex.md"
+      ]
+    },
+    {
+      "slug": "guide-skills-mcp",
+      "description": "Use the MCP Tool-Use Systems guide from docs/skills/mcp.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/skills/mcp.md"
+      ]
+    },
+    {
+      "slug": "guide-skills-prompt-guides",
+      "description": "Use the Prompt Guides guide from docs/skills/prompt-guides.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/skills/prompt-guides.md"
+      ]
+    },
+    {
+      "slug": "guide-templates-merge-report",
+      "description": "Use the Merge Report guide from docs/templates/merge-report.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/templates/merge-report.md"
+      ]
+    },
+    {
+      "slug": "guide-templates-release-notes",
+      "description": "Use the Release Notes Template guide from docs/templates/release-notes.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/templates/release-notes.md"
+      ]
+    },
+    {
+      "slug": "guide-templates-task-spec",
+      "description": "Use the Task Spec guide from docs/templates/task-spec.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/templates/task-spec.md"
+      ]
+    },
+    {
+      "slug": "guide-tools-aider",
+      "description": "Use the Aider guide from docs/tools/aider.md as a bounded, public-safe workflow.",
+      "category": "tools",
+      "source": [
+        "docs/tools/aider.md"
+      ]
+    },
+    {
+      "slug": "guide-tools-antigravity",
+      "description": "Use the Google Antigravity guide from docs/tools/antigravity.md as a bounded, public-safe workflow.",
+      "category": "tools",
+      "source": [
+        "docs/tools/antigravity.md"
+      ]
+    },
+    {
+      "slug": "guide-tools-claude-code",
+      "description": "Use the Claude Code guide from docs/tools/claude-code.md as a bounded, public-safe workflow.",
+      "category": "tools",
+      "source": [
+        "docs/tools/claude-code.md"
+      ]
+    },
+    {
+      "slug": "guide-tools-codex",
+      "description": "Use the OpenAI Codex guide from docs/tools/codex.md as a bounded, public-safe workflow.",
+      "category": "tools",
+      "source": [
+        "docs/tools/codex.md"
+      ]
+    },
+    {
+      "slug": "guide-tools-comparison-matrix",
+      "description": "Use the AI Coding Tool Comparison Matrix guide from docs/tools/comparison-matrix.md as a bounded, public-safe workflow.",
+      "category": "tools",
+      "source": [
+        "docs/tools/comparison-matrix.md"
+      ]
+    },
+    {
+      "slug": "guide-tools-cursor",
+      "description": "Use the Cursor guide from docs/tools/cursor.md as a bounded, public-safe workflow.",
+      "category": "tools",
+      "source": [
+        "docs/tools/cursor.md"
+      ]
+    },
+    {
+      "slug": "guide-tools-github-copilot",
+      "description": "Use the GitHub Copilot and Copilot Coding Agent guide from docs/tools/github-copilot.md as a bounded, public-safe workflow.",
+      "category": "tools",
+      "source": [
+        "docs/tools/github-copilot.md"
+      ]
+    },
+    {
+      "slug": "guide-tools-kilo-code",
+      "description": "Use the Kilo Code guide from docs/tools/kilo-code.md as a bounded, public-safe workflow.",
+      "category": "tools",
+      "source": [
+        "docs/tools/kilo-code.md"
+      ]
+    },
+    {
+      "slug": "guide-tools-mcp",
+      "description": "Use the MCP Servers guide from docs/tools/mcp.md as a bounded, public-safe workflow.",
+      "category": "tools",
+      "source": [
+        "docs/tools/mcp.md"
+      ]
+    },
+    {
+      "slug": "guide-tools-opencode",
+      "description": "Use the OpenCode guide from docs/tools/opencode.md as a bounded, public-safe workflow.",
+      "category": "tools",
+      "source": [
+        "docs/tools/opencode.md"
+      ]
+    },
+    {
+      "slug": "guide-tools-windsurf",
+      "description": "Use the Windsurf guide from docs/tools/windsurf.md as a bounded, public-safe workflow.",
+      "category": "tools",
+      "source": [
+        "docs/tools/windsurf.md"
+      ]
+    },
+    {
+      "slug": "guide-workflows-agent-task-lifecycle",
+      "description": "Use the Agent Task Lifecycle guide from docs/workflows/agent-task-lifecycle.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/workflows/agent-task-lifecycle.md"
+      ]
+    },
+    {
+      "slug": "guide-workflows-public-repo-safety",
+      "description": "Use the Public Repository Safety guide from docs/workflows/public-repo-safety.md as a bounded, public-safe workflow.",
+      "category": "guides",
+      "source": [
+        "docs/workflows/public-repo-safety.md"
+      ]
+    },
+    {
+      "slug": "prompt-aider-agent-task",
+      "description": "Adapt the Aider Agent Task Template prompt template from prompts/aider/agent-task.md with scope, safety, and verification intact.",
+      "category": "prompts",
+      "source": [
+        "prompts/aider/agent-task.md"
+      ]
+    },
+    {
+      "slug": "prompt-antigravity-agent-task",
+      "description": "Adapt the Google Antigravity Agent Task Template prompt template from prompts/antigravity/agent-task.md with scope, safety, and verification intact.",
+      "category": "prompts",
+      "source": [
+        "prompts/antigravity/agent-task.md"
+      ]
+    },
+    {
+      "slug": "prompt-claude-code-review-docs-goal",
+      "description": "Adapt the Claude Code Goal: Review Documentation prompt template from prompts/claude-code/review-docs.goal.md with scope, safety, and verification intact.",
+      "category": "prompts",
+      "source": [
+        "prompts/claude-code/review-docs.goal.md"
+      ]
+    },
+    {
+      "slug": "prompt-codex-docs-update-goal",
+      "description": "Adapt the Codex Prompt: Documentation Update prompt template from prompts/codex/docs-update.goal.md with scope, safety, and verification intact.",
+      "category": "prompts",
+      "source": [
+        "prompts/codex/docs-update.goal.md"
+      ]
+    },
+    {
+      "slug": "prompt-codex-fix-bug-goal",
+      "description": "Adapt the Codex Prompt: Fix Bug prompt template from prompts/codex/fix-bug.goal.md with scope, safety, and verification intact.",
+      "category": "prompts",
+      "source": [
+        "prompts/codex/fix-bug.goal.md"
+      ]
+    },
+    {
+      "slug": "prompt-codex-implement-feature-goal",
+      "description": "Adapt the Codex Prompt: Implement Feature prompt template from prompts/codex/implement-feature.goal.md with scope, safety, and verification intact.",
+      "category": "prompts",
+      "source": [
+        "prompts/codex/implement-feature.goal.md"
+      ]
+    },
+    {
+      "slug": "prompt-codex-repository-cleanup-goal",
+      "description": "Adapt the Codex Prompt: Repository Cleanup prompt template from prompts/codex/repository-cleanup.goal.md with scope, safety, and verification intact.",
+      "category": "prompts",
+      "source": [
+        "prompts/codex/repository-cleanup.goal.md"
+      ]
+    },
+    {
+      "slug": "prompt-codex-review-pr-goal",
+      "description": "Adapt the Codex Prompt: Review Pull Request prompt template from prompts/codex/review-pr.goal.md with scope, safety, and verification intact.",
+      "category": "prompts",
+      "source": [
+        "prompts/codex/review-pr.goal.md"
+      ]
+    },
+    {
+      "slug": "prompt-cursor-agent-task",
+      "description": "Adapt the Cursor Agent Task Template prompt template from prompts/cursor/agent-task.md with scope, safety, and verification intact.",
+      "category": "prompts",
+      "source": [
+        "prompts/cursor/agent-task.md"
+      ]
+    },
+    {
+      "slug": "prompt-github-copilot-agent-task",
+      "description": "Adapt the GitHub Copilot Agent Task Template prompt template from prompts/github-copilot/agent-task.md with scope, safety, and verification intact.",
+      "category": "prompts",
+      "source": [
+        "prompts/github-copilot/agent-task.md"
+      ]
+    },
+    {
+      "slug": "prompt-opencode-agent-task",
+      "description": "Adapt the OpenCode Agent Task Template prompt template from prompts/opencode/agent-task.md with scope, safety, and verification intact.",
+      "category": "prompts",
+      "source": [
+        "prompts/opencode/agent-task.md"
+      ]
+    },
+    {
+      "slug": "prompt-windsurf-agent-task",
+      "description": "Adapt the Windsurf Agent Task Template prompt template from prompts/windsurf/agent-task.md with scope, safety, and verification intact.",
+      "category": "prompts",
+      "source": [
+        "prompts/windsurf/agent-task.md"
+      ]
+    }
+  ]
+}

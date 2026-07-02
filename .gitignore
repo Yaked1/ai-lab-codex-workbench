@@ -28,3 +28,12 @@ outputs/
 .idea/
 .vscode/
 .omc/
+
+# Local skill-install targets created by scripts/install_skill.ps1 and
+# scripts/install_skill.py. These are per-machine harness state, not
+# repository content -- the source of truth is skills/.
+.claude/skills/
+.codex/skills/
+.agents/skills/
+.hermes/skills/
+.agent-skills/

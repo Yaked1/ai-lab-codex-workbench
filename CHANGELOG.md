@@ -37,6 +37,16 @@ Changed:
 
 Added:
 
+- Added a 100+ item installable `skills/` catalog with public-safe
+  `SKILL.md` bundles for repository docs and prompt templates, a manifest,
+  human-readable index, Python and PowerShell installers, a dedicated README
+  Skills section, and tests that keep the catalog, declared sources, bundle
+  shape, and all-skill install paths in sync.
+- Added exact skill installer targets for `codex-cli`, `codex-desktop`,
+  `claude-code-cli`, `claude-code-desktop`, and `hermes`, aligning Codex
+  installs with `.agents/skills`, Claude Code installs with `.claude/skills`,
+  and Hermes installs with `~/.hermes/skills` or reviewed
+  `.agent-skills/hermes` project staging.
 - Added deterministic Prompting OS package builder coverage: `scripts/create_prompting_os_package.py` now builds a versioned ZIP plus public-safe JSON manifest with fixed archive timestamps, SHA-256 hashes, cache/private/archive exclusions, configurable source/output directories, and unit tests in `tests/test_prompting_os_package.py`.
 - Added Prompting OS package build documentation to `docs/prompting-os/README.md` and `docs/releases-and-packages.md`, and made repository health checks require the Prompting OS docs, packaging script, and package tests.
 - Added a comprehensive prompting curriculum: `docs/guides/prompting-ai-coding-agents.md` (the craft of prompting agents), `docs/guides/coding-agent-power-tips.md` (per-agent tricks for Claude Code, Codex, Cursor, Copilot, Aider, Windsurf, and MCP), and `docs/guides/prompting-references.md` (famous public prompting repositories and vendor docs to learn from, with leaked-prompt safe-use rules). The guides ship in every release bundle.

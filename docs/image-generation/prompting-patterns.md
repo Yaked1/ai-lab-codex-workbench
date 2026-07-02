@@ -46,57 +46,27 @@ across a real prompt.
 ## Marketing Or Product Shots
 
 ```text
-Subject: a fictional reusable water bottle, cylindrical, matte navy body,
-brushed steel cap, no logo.
-Composition: three-quarter view, centered, neutral light-gray seamless
-background, square 1:1 aspect ratio.
-Lighting: softbox key light upper-left, soft fill light right, subtle
-reflection on the steel cap only.
-Style: photorealistic commercial product photography, sharp focus, no
-motion blur, no lens flare.
-Materials: matte painted aluminum body, brushed steel cap with faint
-directional grain, no fingerprints, no dust.
-Constraints: no real brand names, no trademarked logos, no invented label
-text, no watermark or signature.
-Review: check cap material, background evenness, and absence of any
-invented logo or label text.
+Studio product shot of [product], three-quarter view, neutral background,
+softbox lighting, realistic materials, crisp edges, no brand marks unless
+provided and licensed, no extra labels.
 ```
 
 ## Character Consistency
 
 ```text
-Subject: a fictional adventurer character, mid-20s appearance, short curly
-brown hair, olive-green weatherproof jacket, brown leather satchel, no
-real-world brand marks on any clothing item.
-Composition: three-panel reference sheet, front/side/three-quarter views,
-same pose scale in each panel, plain light-gray background, 3:1 wide aspect
-ratio for all three panels combined.
-Lighting: flat, even studio lighting with minimal shadow, consistent across
-all three panels.
-Style: clean digital illustration, consistent line weight, moderate color
-saturation, no painterly texture.
-Constraints: no real person's likeness, no celebrity resemblance, no real
-brand logos, no visible readable text on clothing or satchel.
-Review: confirm hair color, jacket color, satchel position, and proportions
-match across all three panels.
+Character reference sheet for [character description].
+Show front, side, and three-quarter views, same pose scale in each panel.
+Keep clothing, colors, face shape, and accessories consistent across panels.
+No real person likeness unless permission is explicit.
 ```
 
 ## 3D Asset Reference Prompting
 
 ```text
-Subject: a simple wooden storage crate, rectangular, visible plank seams,
-metal corner brackets.
-Composition: orthographic front, side, and top views left to right,
-consistent scale across all three, plain white background, small
-scale-reference cube beside the front view.
-Style: clean technical reference illustration, flat lighting, no cast
-shadows that would obscure edges.
-Materials: plain-text callouts near each material: "wood plank," "metal
-bracket"; matte finish on wood, slightly reflective on metal.
-Constraints: no brand stamps on the wood, no readable text other than the
-material callouts, no background clutter or props.
-Review: confirm all three views share the same scale and callout text is
-spelled correctly.
+Create a 3D asset reference for [object].
+Orthographic front, side, and top views, consistent scale across all three.
+Show simple material callouts as plain text and a scale-reference cue.
+Avoid decorative background clutter and readable text beyond the callouts.
 ```
 
 ## Style Control
@@ -229,10 +199,9 @@ Do not add: extra text, logos, signatures, watermarks, private faces, account
 details, or unsafe content.
 ```
 
-Worked example: preserve the navy water bottle from the product-shot example
-above, three-quarter view and softbox lighting unchanged, and change only the
-cap material from steel to matte black plastic — do not add extra text,
-logos, signatures, or watermarks.
+Worked example: preserve the matte ceramic mug from the Subject row above,
+same pose and lighting, and change only its color from white to dark green —
+do not add extra text, logos, signatures, or watermarks.
 
 Text correction:
 

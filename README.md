@@ -25,6 +25,7 @@ repeatable, and public-safe.
 - [Who This Is For](#who-this-is-for)
 - [Start Here](#start-here)
 - [Repository Map](#repository-map)
+- [Skills](#skills)
 - [Prompting And Agent Mastery](#prompting-and-agent-mastery)
 - [Prompting OS](#prompting-os)
 - [Core Workflow](#core-workflow)
@@ -176,6 +177,7 @@ good enough for repeatable work.
 | Learn prompt engineering | [docs/guides/comprehensive-prompt-engineering-guide.md](docs/guides/comprehensive-prompt-engineering-guide.md) | [docs/guides/prompt-engineering-playbook.md](docs/guides/prompt-engineering-playbook.md) |
 | Prompt coding agents well | [docs/guides/prompting-ai-coding-agents.md](docs/guides/prompting-ai-coding-agents.md) | [docs/guides/coding-agent-power-tips.md](docs/guides/coding-agent-power-tips.md) |
 | Audit prompts | [docs/guides/prompt-audit-checklist.md](docs/guides/prompt-audit-checklist.md) | [docs/prompting-os/evals/prompt-quality-rubric.md](docs/prompting-os/evals/prompt-quality-rubric.md) |
+| Install 100+ skills | [skills/README.md](skills/README.md) | `python scripts/install_skill.py --list` |
 | Build reusable prompt systems | [docs/prompting-os/README.md](docs/prompting-os/README.md) | [docs/prompting-os/templates/master-prompt-template.md](docs/prompting-os/templates/master-prompt-template.md) |
 | Work with image prompts | [docs/image-generation/README.md](docs/image-generation/README.md) | [docs/image-generation/transformer-architecture.md](docs/image-generation/transformer-architecture.md), [docs/prompting-os/05-image-prompting-engine.md](docs/prompting-os/05-image-prompting-engine.md) |
 | Compare coding tools | [docs/tools/comparison-matrix.md](docs/tools/comparison-matrix.md) | [docs/guides/coding-agent-power-tips.md](docs/guides/coding-agent-power-tips.md) |
@@ -191,11 +193,61 @@ good enough for repeatable work.
 | Prompt templates | Goal-style work orders for documentation updates, cleanup, feature work, bug fixes, and PR review. | [prompts/codex/docs-update.goal.md](prompts/codex/docs-update.goal.md) |
 | Tool guides | Practical notes for Codex, Claude Code, Cursor, Copilot, Aider, Windsurf, OpenCode, Kilo Code, MCP, and related tools. | [docs/tools/comparison-matrix.md](docs/tools/comparison-matrix.md) |
 | Skills documentation | Claude Code skills, Codex skills, MCP tool-use systems, and reusable prompt-guide patterns. | [docs/skills/README.md](docs/skills/README.md) |
+| Installable skills catalog | 100+ `SKILL.md` bundles plus Python and PowerShell installers for Claude Code, Codex, and staged harness-specific files. | [skills/README.md](skills/README.md) |
 | Image-generation docs | Diffusion prompting, autoregressive and reasoning-integrated image prompting, transformer architecture concepts, local/cloud tradeoffs, hardware tiers, and prompt patterns. | [docs/image-generation/README.md](docs/image-generation/README.md) |
 | Automation docs | Local checks, research scout workflow, release packaging, release drafts, and strict automerge boundaries. | [docs/automation/repository-autopilot.md](docs/automation/repository-autopilot.md) |
 | Hermes Agent docs | Nous Research Hermes Agent setup, provider configuration, prompting, skills, memory, automations, and troubleshooting. | [docs/hermes/README.md](docs/hermes/README.md) |
 | Offline site | Plain HTML/CSS pages that can be opened locally without trackers, CDNs, analytics, or external assets. | [docs/site/index.html](docs/site/index.html) |
 | Release packaging | Deterministic public release ZIPs and manifests for selected documentation and prompt assets. | [docs/releases-and-packages.md](docs/releases-and-packages.md) |
+
+## Skills
+
+The [skills/](skills/) folder turns this repository's public docs and prompt
+templates into 100+ installable `SKILL.md` bundles for AI-agent workflows.
+Each skill is a thin wrapper around a real source file: it names when to use
+the source, what is in scope, what is forbidden, how to verify the result, and
+what to report back.
+
+Use the catalog like this:
+
+```powershell
+python scripts/install_skill.py --list
+python scripts/install_skill.py --skill use-codex-safely --harness codex-cli
+python scripts/install_skill.py --skill use-codex-safely --harness claude-code-cli
+python scripts/install_skill.py --all --harness codex-cli
+```
+
+PowerShell users can run the native installer:
+
+```powershell
+.\scripts\install_skill.ps1 -List
+.\scripts\install_skill.ps1 -All -Harness codex-cli
+.\scripts\install_skill.ps1 -All -Harness claude-code-cli
+.\scripts\install_skill.ps1 -All -Harness hermes -Scope user
+```
+
+The installer supports the exact target surfaces this repository can defend
+from current docs:
+
+- `codex-cli`, `codex-desktop`, and `codex` write real `SKILL.md` bundles to
+  `.agents/skills/<slug>/` by default, or `~/.agents/skills/<slug>/` with
+  `--scope user` / `-Scope user`.
+- `claude-code-cli`, `claude-code-desktop`, and `claude-code` write real
+  `SKILL.md` bundles to `.claude/skills/<slug>/` by default, or
+  `~/.claude/skills/<slug>/` with user scope.
+- `hermes` writes real user-scope skills to `~/.hermes/skills/<slug>/` with
+  `--scope user` / `-Scope user`; project scope stages the same folder shape
+  under `.agent-skills/hermes/<slug>/` for Hermes `skills.external_dirs`.
+- Tools without a native skill folder get concrete staged instruction files
+  under `.agent-skills/<harness>/` so the same skill bodies can be pasted into
+  that tool's rules or custom-instructions mechanism.
+
+The catalog also includes `create-a-new-skill` and
+`self-directed-goal-runner`, so an agent can author another prompting skill,
+write a bounded self-prompt under `.tmp/self-prompts/`, and follow it with
+stop conditions. The test suite checks that every manifest entry has a matching
+`SKILL.md`, every declared source exists, and every skill can be installed
+through the Python installer into temporary native or staged targets.
 
 ## Prompting And Agent Mastery
 

@@ -1,7 +1,8 @@
 # Codex Skills
 
-Source status: official-doc anchored. Verify current behavior in OpenAI Codex
-skills documentation before publishing exact setup claims:
+Source status: official-doc anchored. Current path and surface claims were
+checked against OpenAI Codex skills documentation on 2026-07-02; re-check the
+same page before future product-specific edits:
 <https://developers.openai.com/codex/skills>
 
 ## What It Is
@@ -13,28 +14,33 @@ clear.
 
 ## What "Skill" Means In This Repo's Codex Workflow
 
-This repository does not ship a native `SKILL.md` bundle for Codex. Instead,
-it relies on two repo-local conventions that function as the practical
-skill layer for Codex sessions here, and it is important not to blur them
-with an official product feature:
+This repository now ships a 100+ item `skills/` catalog with native
+`SKILL.md` bundles, plus two repo-local conventions that function as the
+practical skill layer for Codex sessions here. Keep the packaging boundaries
+clear: the skill catalog is ordinary repository content that can be copied by
+the installer, while product behavior should be re-checked in official docs
+before future setup claims are broadened.
 
 | Convention | What it is | Where it lives | Official Codex feature? |
 | --- | --- | --- | --- |
 | `AGENTS.md` | Always-on repository rules Codex (and other agents) should read before any edit. | Repo root: [AGENTS.md](../../AGENTS.md) | Yes -- `AGENTS.md` is a recognized convention Codex looks for; verify exact discovery behavior in official docs. |
+| `skills/*/SKILL.md` | Installable procedures for the repository's docs, prompt templates, safe Codex work, bounded goal-running, skill creation, and skill installation. | [skills/](../../skills/), installed to `.agents/skills/<slug>/SKILL.md` or `~/.agents/skills/<slug>/SKILL.md` | Yes -- OpenAI docs describe `.agents/skills` repo/user locations and say skills are available in Codex CLI, IDE extension, and Codex app. |
 | `.goal.md` prompt files | Repo-local, human-authored prompt templates that structure a Codex "goal mode" task end to end (objective, scope, safety, verification, report format). | [prompts/codex/*.goal.md](../../prompts/codex/) | No -- this is a repo convention, not a Codex product feature. The `.goal.md` suffix and folder location are choices this repository made, not something Codex requires. |
 | `.github/codex/prompts/*.md` | Prompt bodies used by this repo's own automation (for example the daily curator prompt) rather than by an interactive user. | [.github/codex/prompts/](../../.github/codex/prompts/) | No -- also repo-local, consumed by this repo's scripts/workflows, not a Codex product mechanism. |
 
 The common thread with a native `SKILL.md` bundle (see
 [claude-code.md](claude-code.md)) is real: both are "a documented,
 bounded procedure with a trigger, scope, and verification steps." The
-difference is packaging and authority. A `.goal.md` file in this repo is
-plain Markdown that a human pastes into a Codex session (or a maintainer
-script assembles into a prompt) -- it has no special loading mechanism of
-its own. Never describe `prompts/codex/*.goal.md` as something Codex
-auto-discovers or auto-runs; it is invoked because a person copies it in,
-the same way `/goal` in Claude Code is a user-authored custom command, not
-a built-in feature (see [claude-code.md](claude-code.md) for that
-distinction).
+difference is packaging and authority. A `skills/*/SKILL.md` file is a native
+skill-bundle shape that the installer copies into Codex's documented
+`.agents/skills` location. A `.goal.md` file in this repo is plain Markdown
+that a human pastes into a Codex session (or a maintainer script assembles
+into a prompt) -- it
+has no special loading mechanism of its own. Never describe
+`prompts/codex/*.goal.md` as something Codex auto-discovers or auto-runs; it
+is invoked because a person copies it in, the same way `/goal` in Claude Code
+is a user-authored custom command, not a built-in feature (see
+[claude-code.md](claude-code.md) for that distinction).
 
 ## Worked Example: This Repo's Own `.goal.md` Convention
 
@@ -75,12 +81,12 @@ a Codex skill safely in this repo" means in practice: writing one more
 `## Verification Steps` or `## Verification`, `## Success Criteria`,
 `## Final Report Format`, and `## Failure Cases`).
 
-If a future task needs a native Codex `SKILL.md` bundle rather than a
-`.goal.md` prompt file, keep the two conventions separate in the docs: a
-`SKILL.md` bundle is a product feature Codex may load automatically per
-its own discovery rules (verify current behavior before claiming specifics),
-while a `.goal.md` file in `prompts/codex/` is always manually pasted in by
-a person.
+For installable bundles, see [skills/README.md](../../skills/README.md) and
+[skills/INDEX.md](../../skills/INDEX.md). For a new task-specific prompt,
+use the `.goal.md` convention instead. Keep the two conventions separate in
+the docs: a `SKILL.md` bundle is a product feature Codex can load per its own
+discovery rules (re-check current docs before broadening claims), while a
+`.goal.md` file in `prompts/codex/` is always manually pasted in by a person.
 
 ## Beginner Friendliness
 
@@ -89,14 +95,29 @@ PR review before creating write-capable skills.
 
 ## Installation
 
-Use the official Codex skills documentation as the source of truth. If the
-current supported path is not verified, publish placeholders only:
+Use the repository installer to copy a concrete `SKILL.md` bundle from
+[skills/](../../skills/) into the local Codex skill path:
 
 ```powershell
-# Placeholder only. Verify the current Codex skill location first.
-New-Item -ItemType Directory -Path .\skills\docs-review -Force
-New-Item -ItemType File -Path .\skills\docs-review\SKILL.md -Force
+python scripts/install_skill.py --list
+python scripts/install_skill.py --skill use-codex-safely --harness codex-cli
+python scripts/install_skill.py --all --harness codex-cli
+python scripts/install_skill.py --all --harness codex-desktop
 ```
+
+PowerShell users can run the equivalent native script:
+
+```powershell
+.\scripts\install_skill.ps1 -List
+.\scripts\install_skill.ps1 -Skill use-codex-safely -Harness codex-cli
+.\scripts\install_skill.ps1 -All -Harness codex-cli
+.\scripts\install_skill.ps1 -All -Harness codex-desktop
+```
+
+The installer writes actual files under `.agents/skills/<slug>/SKILL.md` for
+project scope, or `~/.agents/skills/<slug>/SKILL.md` with `--scope user` /
+`-Scope user`. Use the `codex` harness name as a shorter alias if you do not
+need to distinguish CLI from app in command examples.
 
 For this repo's own `.goal.md` convention, no special directory creation is
 needed -- it is just a new Markdown file:
@@ -179,7 +200,7 @@ before the full suite runs.
 
 | Symptom | Likely cause | Response |
 | --- | --- | --- |
-| Skill or goal file not picked up | For a native `SKILL.md`, the file is outside Codex's current skill discovery path (verify in official docs). For a `.goal.md` file in this repo, it was never pasted into the session -- there is no auto-discovery for repo-local prompt files. | Confirm the correct official skill path for `SKILL.md` bundles; for `.goal.md` files, paste the prompt body into the session explicitly, since that is the entire mechanism. |
+| Skill or goal file not picked up | For a native `SKILL.md`, the file is outside Codex's `.agents/skills` discovery path or the Codex session has not refreshed. For a `.goal.md` file in this repo, it was never pasted into the session -- there is no auto-discovery for repo-local prompt files. | Move the bundle under `.agents/skills/<slug>/SKILL.md` or `~/.agents/skills/<slug>/SKILL.md` and restart or refresh Codex if needed; for `.goal.md` files, paste the prompt body into the session explicitly, since that is the entire mechanism. |
 | Wrong skill triggered | Trigger wording overlaps with another skill's description, or two `.goal.md` files cover near-identical objectives. | Narrow the trigger language; check `prompts/codex/` for an existing overlapping template before adding a new one. |
 | Codex edits files outside the intended `.goal.md` scope | The `## Included Scope` / `## Excluded Scope` sections were vague or missing specific paths. | Rewrite scope sections with explicit file paths, following `docs-update.goal.md` as the template. |
 | Prompt guide or goal file followed inconsistently across sessions | The prompt lacks an explicit "mandatory first steps" ordering, so different sessions read files in a different order and drift. | Add numbered mandatory first steps (git status, read AGENTS.md, read target files) as `docs-update.goal.md` does. |
@@ -203,8 +224,8 @@ auto-loaded.
 
 ## Checklist: Writing A New Skill Or Goal File Safely In This Repo
 
-- [ ] Decide which convention fits: a native `SKILL.md` bundle (official
-      Codex feature, verify current discovery rules) or a `.goal.md` prompt
+- [ ] Decide which convention fits: a native `SKILL.md` bundle under
+      `.agents/skills` (official Codex feature) or a `.goal.md` prompt
       file (repo-local, manually pasted, no auto-loading).
 - [ ] Read `AGENTS.md` in full before drafting.
 - [ ] Name the trigger: what recurring task does this cover, and what should
@@ -292,8 +313,8 @@ as settled fact without a fresh check against
 <https://developers.openai.com/codex/skills> or the relevant Codex product
 docs:
 
-- Exact `SKILL.md` folder locations and discovery rules for a given Codex
-  surface (CLI, IDE extension, web, cloud).
+- Whether `SKILL.md` folder locations and discovery rules have changed for a
+  given Codex surface (CLI, IDE extension, app, web, cloud).
 - Whether Codex auto-loads skills versus requiring explicit invocation.
 - Plan tier, subscription, or pricing requirements for any Codex surface.
 - Model availability or default model behavior inside Codex sessions.

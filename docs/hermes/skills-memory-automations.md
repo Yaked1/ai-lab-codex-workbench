@@ -39,6 +39,40 @@ hermes skills install official/creative/hyperframes
 
 Do not generalize one skill's install command to every skill.
 
+### Using this repository's skill catalog with Hermes
+
+This repository's [skills/](../../skills/) folder already uses the Hermes
+tap-compatible shape: each skill is a directory containing `SKILL.md`.
+There are three practical install routes:
+
+```powershell
+# Direct local user install through this repository's installer.
+python scripts/install_skill.py --skill use-codex-safely --harness hermes --scope user
+
+# PowerShell equivalent.
+.\scripts\install_skill.ps1 -Skill use-codex-safely -Harness hermes -Scope user
+
+# After the branch is public, Hermes can install one skill directly from GitHub.
+hermes skills install Yaked1/ai-lab-codex-workbench/skills/use-codex-safely
+```
+
+For a project-local dry run or reviewed staging pass, omit `-Scope user` /
+`--scope user`. The installer writes `.agent-skills/hermes/<slug>/SKILL.md`.
+To let Hermes read that staged directory, add it to `skills.external_dirs` in
+`~/.hermes/config.yaml` after review:
+
+```yaml
+skills:
+  external_dirs:
+    - C:/path/to/ai-lab-codex-workbench/.agent-skills/hermes
+```
+
+The staged files are complete `SKILL.md` bundles, not placeholders. They still
+inherit the same public-repo safety rules as the rest of this repository: no
+private paths, no secrets, no direct push to `main`, and no Hermes language
+model, quantization, GGUF, Ollama, vLLM, or SGLang coverage in Hermes Agent
+skills.
+
 ## Memory
 
 Hermes Agent memory is persistent context. Official memory docs list:

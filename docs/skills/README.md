@@ -22,15 +22,16 @@ straight up front avoids describing behavior a tool does not actually have.
 | Tool | Native skill concept | Reuse mechanism this repo relies on | Where it lives |
 | --- | --- | --- | --- |
 | Claude Code | Skills (instruction bundles with `SKILL.md`, optional scripts/references) that Claude loads when relevant. | Skills, plus user-defined custom slash commands under `.claude/commands/` (custom commands are **not** a built-in feature -- you author them). | `SKILL.md` bundles; `.claude/commands/*.md` for custom commands. |
-| Codex | Skills (task-specific instruction/resource bundles) plus `AGENTS.md` for always-on repo rules. | Skills for repeatable procedures; `AGENTS.md` for standing constraints every session should read. | `SKILL.md` bundles; `AGENTS.md` at repo root; `.github/codex/prompts/` in this repo for reusable prompt files. |
+| Codex | Skills (task-specific instruction/resource bundles) plus `AGENTS.md` for always-on repo rules. | Skills for repeatable procedures; `AGENTS.md` for standing constraints every session should read. | `.agents/skills/<slug>/SKILL.md`; `AGENTS.md` at repo root; `.github/codex/prompts/` in this repo for reusable prompt files. |
+| Hermes Agent | Skills (`SKILL.md` bundles), external skill directories, bundles, and hub/tap installs. | Local skills, GitHub/tap/direct-URL installs, or an external directory such as `.agent-skills/hermes` configured in `skills.external_dirs`. | `~/.hermes/skills/<slug>/SKILL.md` for local user skills; `skills/<slug>/SKILL.md` in a GitHub tap; `.agent-skills/hermes/<slug>/SKILL.md` for this repo's project staging path. |
 | MCP clients (any tool) | No "skill" concept -- MCP is a protocol for exposing tools, resources, and prompts to a client. | A connected MCP server's tools/resources act like an extension, but reuse and packaging depend on the client, not MCP itself. | Client-specific MCP config; server-specific docs. |
 | Tools without a native skill system | None. | This repo's own prompt guides and prompt templates, used as a manually-pasted skill-equivalent. | [prompt-guides.md](prompt-guides.md), `prompts/` at repo root. |
 
 The common thread: a skill is a reusable, documented procedure with a clear
 trigger, clear boundaries, and a way to verify it worked. Whether the tool
-has a native mechanism for that (Claude Code, Codex) or not (most other
-tools, and MCP itself) changes only how you package it, not the underlying
-discipline in the "Quality Bar" section below.
+has a native mechanism for that (Claude Code, Codex, Hermes Agent) or not
+(most other tools, and MCP itself) changes only how you package it, not the
+underlying discipline in the "Quality Bar" section below.
 
 ## Source And Status Handling
 
