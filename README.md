@@ -95,7 +95,7 @@ That one script runs the same three checks described in
    secret-shaped strings or missing final newlines crept in.
 2. `python scripts/safe_autofix.py --check` — confirms text files use
    consistent line endings and trailing whitespace.
-3. `python -m unittest discover -s tests` — runs the full test suite (60+
+3. `python -m unittest discover -s tests` — runs the full test suite (80+
    tests as of this writing).
 
 If all three pass, the repository is correctly installed and working on your
