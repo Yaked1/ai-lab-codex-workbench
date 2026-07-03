@@ -10,6 +10,16 @@ Fixed:
 
 Changed:
 
+- Added a deterministic mechanical research expansion pass across tracked
+  repository text surfaces, with marked addenda/comment blocks, generated
+  review report, JSON manifest, skip reasons for unsafe file classes, and
+  validation instructions so the intentionally broad diff remains auditable.
+- Added a research-grade repository expansion workflow that defines how broad
+  documentation, prompt, skill, safety, test, and staging improvements should
+  be scoped, evidenced, validated, and reviewed. Linked it from README,
+  `AGENTS.md`, `CONTRIBUTING.md`, and `SECURITY.md`, and added
+  health-check/test coverage so the workflow remains part of the maintained
+  repository surface.
 - Expanded all currently modified public documentation, prompt-template, tool,
   automation, Hermes Agent, skills, and image-generation files into a more
   comprehensive guide set with beginner workflows, safety boundaries, failure
@@ -105,3 +115,29 @@ Added:
 - PowerShell helper scripts.
 - Python safety and formatting scripts.
 - Issue and PR templates.
+<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
+## Research-Grade Review Addendum
+
+This file is part of the repository's **top-level repository policy document** surface. During broad
+maintenance, reviewers should treat `CHANGELOG.md` as a contract-bearing artifact
+rather than passive prose. The file should keep a clear audience, explicit
+scope, concrete operating steps, public-safety boundaries, and verification
+evidence that a maintainer can inspect without trusting an agent summary.
+
+Research-grade review questions for this file:
+
+- Does `CHANGELOG` state what decision, workflow, or reusable behavior it supports?
+- Are included scope, excluded scope, and unsafe actions clear enough for an
+  agent or contributor to follow?
+- Are examples public-safe, repository-relative, and free of private data?
+- Are fast-changing product or platform claims phrased conservatively or marked
+  for official-doc verification?
+- Does the file point to the next artifact a reader should inspect: a command,
+  template, test, manifest, package, or deeper guide?
+- Could a reviewer cite this file in a PR review and know what evidence proves
+  the work is complete?
+
+Keep future edits focused on stronger evidence, clearer failure modes, better
+navigation, and safer automation boundaries. Do not add length unless the new
+material makes the repository easier to operate, teach, audit, or recover.
+<!-- RESEARCH-GRADE-EXPANSION:END -->

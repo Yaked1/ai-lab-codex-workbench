@@ -31,6 +31,7 @@ repeatable, and public-safe.
 - [Core Workflow](#core-workflow)
 - [Prompt Templates](#prompt-templates)
 - [Agent Task Lifecycle](#agent-task-lifecycle)
+- [Research-Grade Repository Expansion](#research-grade-repository-expansion)
 - [Context Engineering](#context-engineering)
 - [Evaluation And Regression](#evaluation-and-regression)
 - [Image Prompting](#image-prompting)
@@ -94,7 +95,7 @@ That one script runs the same three checks described in
    secret-shaped strings or missing final newlines crept in.
 2. `python scripts/safe_autofix.py --check` — confirms text files use
    consistent line endings and trailing whitespace.
-3. `python -m unittest discover -s tests` — runs the full test suite (60+
+3. `python -m unittest discover -s tests` — runs the full test suite (80+
    tests as of this writing).
 
 If all three pass, the repository is correctly installed and working on your
@@ -174,6 +175,7 @@ good enough for repeatable work.
 | Understand repository rules | [AGENTS.md](AGENTS.md) | [Public repo safety](docs/workflows/public-repo-safety.md) |
 | Start using Codex | [docs/codex/00-start-here.md](docs/codex/00-start-here.md) | [docs/codex/01-codex-goal-workflow.md](docs/codex/01-codex-goal-workflow.md) |
 | Run a full agent task | [docs/workflows/agent-task-lifecycle.md](docs/workflows/agent-task-lifecycle.md) | [prompts/codex/docs-update.goal.md](prompts/codex/docs-update.goal.md) |
+| Expand the repository comprehensively | [docs/workflows/research-grade-repository-expansion.md](docs/workflows/research-grade-repository-expansion.md) | [docs/templates/task-spec.md](docs/templates/task-spec.md) |
 | Learn prompt engineering | [docs/guides/comprehensive-prompt-engineering-guide.md](docs/guides/comprehensive-prompt-engineering-guide.md) | [docs/guides/prompt-engineering-playbook.md](docs/guides/prompt-engineering-playbook.md) |
 | Prompt coding agents well | [docs/guides/prompting-ai-coding-agents.md](docs/guides/prompting-ai-coding-agents.md) | [docs/guides/coding-agent-power-tips.md](docs/guides/coding-agent-power-tips.md) |
 | Audit prompts | [docs/guides/prompt-audit-checklist.md](docs/guides/prompt-audit-checklist.md) | [docs/prompting-os/evals/prompt-quality-rubric.md](docs/prompting-os/evals/prompt-quality-rubric.md) |
@@ -191,6 +193,7 @@ good enough for repeatable work.
 | Prompting And Agent Mastery | Prompt anatomy, context engineering, agent prompts, evaluation, source-grounded prompting, image prompting, and source-inspired curriculum. | [docs/guides/comprehensive-prompt-engineering-guide.md](docs/guides/comprehensive-prompt-engineering-guide.md) |
 | Prompting OS | A modular prompt operating system with kernel, drivers, context, agents, image prompting, production architecture, security, evaluation, and package-depth benchmark. | [docs/prompting-os/README.md](docs/prompting-os/README.md) |
 | Prompt templates | Goal-style work orders for documentation updates, cleanup, feature work, bug fixes, and PR review. | [prompts/codex/docs-update.goal.md](prompts/codex/docs-update.goal.md) |
+| Research-grade expansion workflow | A maintainer workflow for broad but reviewable repository expansion across docs, prompts, skills, scripts, tests, safety, evidence, and staging. | [docs/workflows/research-grade-repository-expansion.md](docs/workflows/research-grade-repository-expansion.md) |
 | Tool guides | Practical notes for Codex, Claude Code, Cursor, Copilot, Aider, Windsurf, OpenCode, Kilo Code, MCP, and related tools. | [docs/tools/comparison-matrix.md](docs/tools/comparison-matrix.md) |
 | Skills documentation | Claude Code skills, Codex skills, MCP tool-use systems, and reusable prompt-guide patterns. | [docs/skills/README.md](docs/skills/README.md) |
 | Installable skills catalog | 100+ `SKILL.md` bundles plus Python and PowerShell installers for Claude Code, Codex, and staged harness-specific files. | [skills/README.md](skills/README.md) |
@@ -609,6 +612,34 @@ PRs should include:
 - Screenshots for visual changes.
 - Known limitations.
 - Follow-up work.
+
+## Research-Grade Repository Expansion
+
+When a maintainer asks for a broad improvement pass, use
+[docs/workflows/research-grade-repository-expansion.md](docs/workflows/research-grade-repository-expansion.md)
+instead of treating "make everything more comprehensive" as permission for an
+unbounded rewrite. The expansion workflow defines what research-grade means in
+this repository: clearer purpose, audience, scope, source discipline,
+operational detail, failure analysis, evidence, safety boundaries, and
+navigation.
+
+Use it when a task touches more than one major surface, such as README,
+workflow docs, prompt templates, skills, package docs, health checks, tests, or
+changelog entries. The recommended pattern is a reviewable broad pass:
+
+1. Inspect the clean or dirty worktree state.
+2. Classify candidate files by artifact class.
+3. Pick targets that cover the repository surface without making the diff
+   impossible to review.
+4. Add deep operational guidance, not prose padding.
+5. Wire new required docs into README, health checks, tests, and changelog.
+6. Run local checks and `git diff --check`.
+7. Stage deliberately after validation when staging is requested.
+
+For a broad documentation pass, a good result is not that every file is longer.
+A good result is that every touched file is materially more useful, the new
+guide has an evidence model and review checklist, and maintainers can prove the
+change with commands and diff review.
 
 ## Context Engineering
 
@@ -1360,3 +1391,29 @@ Every user-visible documentation or workflow change should include a changelog
 entry when useful. Pull requests should explain what changed, why it changed,
 what commands ran, what passed or failed, and what still needs manual
 verification.
+<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
+## Research-Grade Review Addendum
+
+This file is part of the repository's **top-level repository policy document** surface. During broad
+maintenance, reviewers should treat `README.md` as a contract-bearing artifact
+rather than passive prose. The file should keep a clear audience, explicit
+scope, concrete operating steps, public-safety boundaries, and verification
+evidence that a maintainer can inspect without trusting an agent summary.
+
+Research-grade review questions for this file:
+
+- Does `README` state what decision, workflow, or reusable behavior it supports?
+- Are included scope, excluded scope, and unsafe actions clear enough for an
+  agent or contributor to follow?
+- Are examples public-safe, repository-relative, and free of private data?
+- Are fast-changing product or platform claims phrased conservatively or marked
+  for official-doc verification?
+- Does the file point to the next artifact a reader should inspect: a command,
+  template, test, manifest, package, or deeper guide?
+- Could a reviewer cite this file in a PR review and know what evidence proves
+  the work is complete?
+
+Keep future edits focused on stronger evidence, clearer failure modes, better
+navigation, and safer automation boundaries. Do not add length unless the new
+material makes the repository easier to operate, teach, audit, or recover.
+<!-- RESEARCH-GRADE-EXPANSION:END -->

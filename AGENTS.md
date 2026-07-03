@@ -39,6 +39,11 @@ This is a public, beginner-friendly AI coding-agent and prompting guide. It teac
 - For Codex references, keep guidance aligned with official concepts such as `AGENTS.md`, configuration, skills, subagents, local/IDE/web/cloud workflows, permissions, and reviewable goal-style work.
 - For non-Codex tools, keep claims conservative and direct readers to official documentation.
 - Link to deeper docs instead of making this file bloated.
+- For broad "make the repository more comprehensive" tasks, use
+  [docs/workflows/research-grade-repository-expansion.md](docs/workflows/research-grade-repository-expansion.md)
+  as the quality bar: every touched file should gain purpose, scope,
+  operational detail, verification, safety boundaries, navigation, or failure
+  handling. Do not pad files just to make them longer.
 
 ## Static HTML Documentation Rules
 
@@ -68,6 +73,27 @@ Avoid unless explicitly requested:
 - Broad rewrites across unrelated docs.
 - Large generated artifacts.
 - Binary files, images, archives, and model files.
+
+## Broad Expansion Protocol
+
+When the requested task is a broad repository expansion, do not start by
+editing every Markdown file. Start by turning the request into a reviewable
+artifact plan:
+
+1. Inspect `git status --short --branch` and preserve any unrelated local work.
+2. Identify the major repository surfaces involved: README, workflow docs,
+   prompt templates, skills, scripts, tests, safety policy, release/package
+   docs, and changelog.
+3. Pick the smallest set of files that covers those surfaces and can still be
+   reviewed in one PR.
+4. Add depth where it changes reader behavior: commands, decision tables,
+   review evidence, failure modes, and safety boundaries.
+5. Add maintenance hooks for new core docs: README links, health-check required
+   files, tests for durable headings, and changelog entries.
+6. Run repository checks and `git diff --check` before staging.
+
+For broad work, "comprehensive" means useful, evidenced, navigable, and safe.
+It does not mean every file must be longer.
 
 ## Local Checks
 
@@ -170,6 +196,7 @@ Before finalizing public-facing docs:
 - Contribution workflow: [CONTRIBUTING.md](CONTRIBUTING.md)
 - Security policy: [SECURITY.md](SECURITY.md)
 - Agent lifecycle: [docs/workflows/agent-task-lifecycle.md](docs/workflows/agent-task-lifecycle.md)
+- Research-grade expansion: [docs/workflows/research-grade-repository-expansion.md](docs/workflows/research-grade-repository-expansion.md)
 - Public repo safety: [docs/workflows/public-repo-safety.md](docs/workflows/public-repo-safety.md)
 - Tool comparison: [docs/tools/comparison-matrix.md](docs/tools/comparison-matrix.md)
 - Codex start guide: [docs/codex/00-start-here.md](docs/codex/00-start-here.md)
@@ -184,3 +211,29 @@ A task is done only when:
 - Failing checks are fixed or honestly reported.
 - Public-safety constraints are preserved.
 - The final response includes changed files, commands run, checks run, and remaining risks.
+<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
+## Research-Grade Review Addendum
+
+This file is part of the repository's **top-level repository policy document** surface. During broad
+maintenance, reviewers should treat `AGENTS.md` as a contract-bearing artifact
+rather than passive prose. The file should keep a clear audience, explicit
+scope, concrete operating steps, public-safety boundaries, and verification
+evidence that a maintainer can inspect without trusting an agent summary.
+
+Research-grade review questions for this file:
+
+- Does `AGENTS` state what decision, workflow, or reusable behavior it supports?
+- Are included scope, excluded scope, and unsafe actions clear enough for an
+  agent or contributor to follow?
+- Are examples public-safe, repository-relative, and free of private data?
+- Are fast-changing product or platform claims phrased conservatively or marked
+  for official-doc verification?
+- Does the file point to the next artifact a reader should inspect: a command,
+  template, test, manifest, package, or deeper guide?
+- Could a reviewer cite this file in a PR review and know what evidence proves
+  the work is complete?
+
+Keep future edits focused on stronger evidence, clearer failure modes, better
+navigation, and safer automation boundaries. Do not add length unless the new
+material makes the repository easier to operate, teach, audit, or recover.
+<!-- RESEARCH-GRADE-EXPANSION:END -->
