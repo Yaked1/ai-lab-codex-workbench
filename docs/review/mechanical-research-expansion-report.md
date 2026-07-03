@@ -17,20 +17,6 @@ The current-pass modified count is expected to fall to zero on
 idempotent reruns. Use the marker-coverage count, skipped-file list,
 and staged `git diff --stat` to audit the full broad rewrite.
 
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This report is itself part of the review evidence for the mechanical
-rewrite. It should let a maintainer understand the broad diff without
-opening every file first: what transformation ran, which files were
-modified, which files were skipped, how to search the inserted markers,
-and which validation commands must pass before staging or merging.
-
-Reviewers should compare this report with the JSON manifest, `git diff
---stat`, and the validation output. If those artifacts disagree, treat
-the task as incomplete until the mismatch is explained.
-<!-- RESEARCH-GRADE-EXPANSION:END -->
-
 ## Review Strategy
 
 - Markdown files receive a visible research-grade review addendum.
