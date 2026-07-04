@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "local_autopilot.ps1"
 README = ROOT / "README.md"
+LOCAL_AUTOPILOT_DOC = ROOT / "docs" / "automation" / "local-autopilot.md"
 WORKFLOWS = ROOT / ".github" / "workflows"
 
 # Owner-specific hardware framing that must not appear in the public README.
@@ -106,12 +107,13 @@ class ReadmePublicFramingTests(unittest.TestCase):
             with self.subTest(term=term):
                 self.assertNotIn(term, self.text)
 
-    def test_readme_documents_local_claude_mode(self):
-        self.assertIn("-Mode local-claude", self.text)
+    def test_local_autopilot_doc_documents_local_claude_mode(self):
+        self.assertIn("-Mode local-claude", read(LOCAL_AUTOPILOT_DOC))
 
-    def test_readme_documents_claude_code_local_workflow(self):
-        self.assertIn("claude/curate-research-guides", self.text)
-        self.assertIn("Claude Code", self.text)
+    def test_local_autopilot_doc_documents_claude_code_local_workflow(self):
+        text = read(LOCAL_AUTOPILOT_DOC)
+        self.assertIn("claude/curate-research-guides", text)
+        self.assertIn("Claude Code", text)
 
 
 class DeploymentAndDocsExistenceTests(unittest.TestCase):
