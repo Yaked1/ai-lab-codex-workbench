@@ -427,14 +427,6 @@ code {
   }
 }
 
-/* RESEARCH-GRADE-EXPANSION:BEGIN
-Research-grade maintenance notes:
-- Role: offline static-site asset.
-- Keep the static site offline-safe: no remote fonts, trackers, analytics, CDNs, or external scripts.
-- CSS changes should preserve readable navigation, contrast, responsive layout, and local-only assets.
-- Pair visual changes with manual browser inspection or a clear review note.
-RESEARCH-GRADE-EXPANSION:END */
-
 .research-grade-addendum {
   border-top: 1px solid #d8dee8;
   margin-top: 2rem;

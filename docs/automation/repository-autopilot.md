@@ -235,29 +235,3 @@ five scored candidates). This is read-only and safe to run at any time.
 | Candidates file is missing or invalid JSON | The scout has not run yet, or a manual edit broke the JSON. | Run the scout workflow again, or fix the JSON and re-validate with `python scripts/repo_autopilot_status.py`. |
 | Curator prompt folder is empty | `curator-prompt-prep.yml` has not been run. | Trigger it manually, then rerun `local_autopilot.ps1 -Mode prompt`. |
 | PR contains both generated files and guide edits | A local agent branch mixed autopilot output with manual edits. | Split into two PRs: one generated-only, one reviewed normally. |
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **repository support file** surface. During broad
-maintenance, reviewers should treat `docs/automation/repository-autopilot.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `repository autopilot` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

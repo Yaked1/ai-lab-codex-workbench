@@ -197,29 +197,3 @@ unattended job has already run with the wrong settings.
 | Works locally, fails in a scheduled job | Scheduled job runs under a different user/session context that does not see the same environment variables. | Pin credentials explicitly for the scheduled job per official docs, or confirm the job inherits the correct environment before enabling it unattended. |
 | Key appears to work but responses look wrong or truncated | Provider/model mismatch, or a quota/rate limit is silently degrading output. | Verify the configured model name and current quota status in the provider's own dashboard; do not assume Hermes Agent's default model matches what you intended. |
 | Secret visible in terminal output or logs | A command echoed the key, or verbose/debug logging captured it. | Stop the job, rotate the credential immediately, and redact or delete the log before it is shared or committed. |
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Hermes Agent guide** surface. During broad
-maintenance, reviewers should treat `docs/hermes/provider-configuration.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `provider configuration` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

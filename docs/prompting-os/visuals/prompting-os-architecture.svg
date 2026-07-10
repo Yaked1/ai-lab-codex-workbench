@@ -22,11 +22,4 @@
   <line x1="450" y1="280" x2="450" y2="360" stroke="#334155" stroke-width="2"/>
   <line x1="735" y1="280" x2="735" y2="360" stroke="#334155" stroke-width="2"/>
 
-  <!-- RESEARCH-GRADE-EXPANSION:BEGIN
-  Research-grade maintenance notes:
-  - Role: Prompting OS module.
-  - Keep this diagram source-controlled, text-reviewable, and free of embedded remote assets.
-  - Update adjacent docs when visual concepts, labels, or architecture boundaries change.
-  RESEARCH-GRADE-EXPANSION:END -->
-
 </svg>
