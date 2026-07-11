@@ -8,6 +8,13 @@ evidence.
 
 ## Candidate visuals
 
+![Artificial Analysis benchmark comparison used by the model guides](../assets/model-guides/aa-benchmark-comparison.svg)
+
+[![Play Introducing Claude Fable 5 by Anthropic](https://i.ytimg.com/vi/Y9Wz2PV404E/maxresdefault.jpg)](https://www.youtube.com/watch?v=Y9Wz2PV404E)
+
+*The chart renders directly above. Click the video image to watch the official
+Anthropic introduction.*
+
 - Original comparison chart for Artificial Analysis benchmark scores.
 - Original interface and availability map based on official product sources.
 - Original live audio and translation architecture diagram.

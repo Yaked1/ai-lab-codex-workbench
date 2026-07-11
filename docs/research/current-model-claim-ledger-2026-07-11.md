@@ -11,6 +11,11 @@ The visual is independently drawn from the checked values below. It is not a
 copy of an Artificial Analysis chart. Full asset provenance and reuse decisions
 are recorded in the [media ledger](model-media-provenance-2026-07-11.md).
 
+[![Play the IBM Technology GPT-5.6 Sol explainer](https://i.ytimg.com/vi/tV5zXS78HzU/maxresdefault.jpg)](https://www.youtube.com/watch?v=tV5zXS78HzU)
+
+*Third-party explainer. Click the image to watch. Claims in the ledger continue
+to rely on the cited primary and independent sources, not this video.*
+
 ## Confirmed
 
 - GPT-5.6 launched generally on 2026-07-09 as Sol, Terra, and Luna. Standard

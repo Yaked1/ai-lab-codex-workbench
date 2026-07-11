@@ -169,6 +169,13 @@ small evaluation set with pass thresholds and known failure cases. See the
 
 ## Current Model Guides
 
+![Artificial Analysis benchmark snapshot for Fable, Sol, Terra, and Luna](docs/assets/model-guides/aa-benchmark-comparison.svg)
+
+[![Play Introducing Claude Fable 5 by Anthropic](https://i.ytimg.com/vi/Y9Wz2PV404E/maxresdefault.jpg)](https://www.youtube.com/watch?v=Y9Wz2PV404E)
+
+*Official Anthropic video. Click the image to watch. The chart above is this
+repository's independently drawn view of cited Artificial Analysis data.*
+
 The dated [model and interface guide](docs/guides/current-models-and-interfaces.md)
 covers:
 

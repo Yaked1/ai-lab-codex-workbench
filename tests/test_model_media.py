@@ -68,6 +68,24 @@ class ModelMediaTests(unittest.TestCase):
                 self.assertIn(f"]({watch_url})", content, relative_path)
                 self.assertIn(f"]({thumbnail})", content, relative_path)
 
+    def test_every_reader_facing_model_file_has_image_and_video(self) -> None:
+        expected_files = {
+            "README.md",
+            "docs/PLANS/current.md",
+            "docs/PLANS/model-media-notes.md",
+            "docs/guides/current-models-and-interfaces.md",
+            "docs/guides/fable-vs-sol.md",
+            "docs/guides/live-audio-and-translation.md",
+            "docs/research/current-model-claim-ledger-2026-07-11.md",
+            "docs/research/model-media-provenance-2026-07-11.md",
+        }
+
+        for relative_path in expected_files:
+            content = (REPO_ROOT / relative_path).read_text(encoding="utf-8")
+            self.assertIn("![", content, relative_path)
+            self.assertIn("https://i.ytimg.com/vi/", content, relative_path)
+            self.assertIn("https://www.youtube.com/watch?v=", content, relative_path)
+
 
 if __name__ == "__main__":
     unittest.main()

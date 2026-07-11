@@ -10,6 +10,13 @@ load thumbnails from YouTube and open the corresponding watch pages; no video
 binary or thumbnail is stored in Git. The repository does not rehost
 Artificial Analysis charts, vendor launch graphics, or X screenshots.
 
+![Availability map whose provenance is recorded below](../assets/model-guides/availability-map.svg)
+
+[![Play the independent Every hands-on video about Fable 5](https://i.ytimg.com/vi/GrdEid8H6H4/maxresdefault.jpg)](https://www.youtube.com/watch?v=GrdEid8H6H4)
+
+*Visible-media example covered by this ledger. Click the image to watch; the
+video is third-party qualitative context.*
+
 ## Local assets
 
 | Asset | Derivation | Source tier | Reuse status |
