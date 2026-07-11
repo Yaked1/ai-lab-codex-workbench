@@ -13,16 +13,16 @@ cd $env:USERPROFILE\Documents\AI-Lab\ai-lab-codex-workbench-main
 codex --sandbox workspace-write
 ```
 
-If you need the current configured model explicitly:
+If you need a current daily-work model explicitly:
 
 ```powershell
-codex --model gpt-5.5 -c model_reasoning_effort='"high"' --sandbox workspace-write
+codex --model gpt-5.6-terra -c model_reasoning_effort='"medium"' --sandbox workspace-write
 ```
 
-Use `xhigh` only when the task genuinely needs extra reasoning:
+Use Sol at higher effort only when the task genuinely needs deeper reasoning:
 
 ```powershell
-codex --model gpt-5.5 -c model_reasoning_effort='"xhigh"' --sandbox workspace-write
+codex --model gpt-5.6-sol -c model_reasoning_effort='"high"' --sandbox workspace-write
 ```
 
 ## Start From Documents Safely
@@ -40,14 +40,20 @@ Do not run broad cleanup from `Documents`. If a cleanup task starts from
 
 ## Usage Discipline
 
-- GPT-5.5 medium: mechanical edits, scripts, formatting, obvious fixes.
-- GPT-5.5 high: normal repo work, bounded cleanup, tests, moderate debugging.
-- GPT-5.5 xhigh: setup orchestration, architecture, hard debugging, final
+- GPT-5.6 Luna low/medium: small edits, extraction, and quick summaries.
+- GPT-5.6 Terra medium/high: normal repo work, tests, and bounded cleanup.
+- GPT-5.6 Sol high/xhigh: hard debugging, architecture, synthesis, and final
   high-stakes review.
-- Do not use xhigh for bulk file edits or repeated test retries.
+- Use `max` for difficult single-agent reasoning and `ultra` only for work that
+  can split into independent streams with an integration check.
+- Do not use high-cost modes for bulk file edits or repeated test retries.
 - Avoid broad autonomous cleanup and repeated full-repo reads.
 - Prefer durable docs and prompt templates over re-explaining the same workflow
   in chat.
+
+See [model routing](model-routing.md) for the dated routing table and
+[current models](guides/current-models-and-interfaces.md) for interface-specific
+availability.
 
 ## Goal Mode
 

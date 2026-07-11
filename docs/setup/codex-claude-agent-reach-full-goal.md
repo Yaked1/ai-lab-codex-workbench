@@ -18,27 +18,30 @@ unless the user explicitly approves it.
 
 ## Codex Model Routing
 
-- Preserve `%USERPROFILE%\.codex\config.toml` settings when already present:
-  `model = "gpt-5.5"` and `model_reasoning_effort = "xhigh"`.
+- Preserve valid `%USERPROFILE%\.codex\config.toml` settings when already
+  present. Verify model IDs with `codex.cmd debug models` before changing them;
+  do not overwrite a working user preference merely to match this guide.
 - Do not add `[features.rollout_budget]`; this machine's local Codex parser
   rejected it.
-- Use GPT-5.5 xhigh only for setup orchestration, architecture, hard debugging,
-  and final high-stakes review.
-- Use GPT-5.5 high or medium for later normal repo work.
-- Do not use xhigh for bulk file edits.
+- Use GPT-5.6 Terra medium/high for normal repo work.
+- Use GPT-5.6 Sol high/xhigh for setup orchestration, architecture, hard
+  debugging, and final high-stakes review.
+- Use `max` for deep single-agent reasoning and `ultra` only for independent
+  workstreams with a merge check.
+- Do not use high-cost modes for bulk file edits.
 
 Recommended launch from the repo:
 
 ```powershell
 cd $env:USERPROFILE\Documents\AI-Lab\ai-lab-codex-workbench-main
-codex --model gpt-5.5 -c model_reasoning_effort='"high"' --sandbox workspace-write
+codex --model gpt-5.6-terra -c model_reasoning_effort='"medium"' --sandbox workspace-write
 ```
 
 Recommended launch from `Documents`:
 
 ```powershell
 cd $env:USERPROFILE\Documents
-codex -C .\AI-Lab\ai-lab-codex-workbench-main --model gpt-5.5 -c model_reasoning_effort='"high"' --sandbox workspace-write
+codex -C .\AI-Lab\ai-lab-codex-workbench-main --model gpt-5.6-terra -c model_reasoning_effort='"medium"' --sandbox workspace-write
 ```
 
 Use `workspace-write` for normal repo work when supported. Avoid
@@ -47,14 +50,16 @@ Never use bypass-permissions flags for normal work.
 
 ## Claude Code Model Routing
 
-- Fable 5 high: planning, architecture, test redesign, orchestration, final
-  judgment.
-- Fable 5 xhigh or ultracode: rare large multi-phase tasks with measurable
-  finish lines.
+- Fable 5 high: difficult knowledge work, coding, test redesign, and review.
+- Fable 5 xhigh: long-horizon coding and agent work.
+- Fable 5 max: deep single-agent analysis.
+- Fable 5 Ultracode: delegated Claude Code work with explicit ownership and
+  integration checks; it is an orchestration mode built on xhigh.
 - Sonnet 5 medium: deterministic edits, scripts, test fixes, formatting.
 - Opus 4.8 high: independent reviewer only when genuine uncertainty remains.
 
-Verify current model availability in Claude Code before relying on these names.
+Verify current model and effort availability in Claude Code before relying on
+these names.
 Do not use Opus for normal mechanical cleanup.
 
 ## Agent-Reach Safe Installation

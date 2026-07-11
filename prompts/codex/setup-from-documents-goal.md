@@ -40,8 +40,8 @@ approved.
 
 Required work:
 - Inspect Codex, Claude Code, Git, Python, pipx, config, and repo state.
-- Preserve Codex `model = "gpt-5.5"` and `model_reasoning_effort = "xhigh"`
-  if already configured.
+- Preserve existing valid Codex model and effort preferences unless the setup
+  goal explicitly requests a change. Verify IDs with `codex.cmd debug models`.
 - Do not add `[features.rollout_budget]`; this local Codex parser rejected it.
 - Keep normal repo work on high or medium reasoning after setup.
 - Create or update only the setup docs and prompt templates named in
@@ -74,7 +74,7 @@ Final report:
 make a goal with this:
 From {documents_root}, set up the existing repo at {target_repo} by following
 {setup_doc}. Do not clone, delete, or touch unrelated Documents files. Preserve
-GPT-5.5 xhigh config, do not add `[features.rollout_budget]`, install
+valid Codex model preferences, do not add `[features.rollout_budget]`, install
 Agent-Reach only through safe mode if feasible, run `agent-reach doctor`, run
 repo verification including `git diff --check`, and report evidence plus risks.
 ```

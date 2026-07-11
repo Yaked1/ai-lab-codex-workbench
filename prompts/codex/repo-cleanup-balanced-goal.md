@@ -27,12 +27,13 @@ Perform this balanced cleanup for the existing AI Lab repository:
 {cleanup_goal}
 
 Model routing:
-- Use Sonnet 5 medium or another cheaper deterministic model for scriptable
-  mechanical work when available.
-- Use GPT-5.5 high or Fable 5 high for normal repo work, test redesign, and
-  judgment.
-- Use GPT-5.5 xhigh or Fable 5 xhigh only for hard architecture, failed
-  verification, or final high-stakes review.
+- Use a script, not a language model, for deterministic mechanical work.
+- Use GPT-5.6 Terra medium/high or Fable 5 high for normal repo work, test
+  redesign, and judgment.
+- Use GPT-5.6 Sol high/xhigh or Fable 5 xhigh/max only for hard architecture,
+  failed verification, or final high-stakes review.
+- Use Ultra or Ultracode only when the task has independent workstreams and an
+  explicit integration check.
 - Do not use Opus for normal mechanical cleanup.
 - No model should edit hundreds of files manually when a safe script can make
   the deterministic change.
@@ -81,11 +82,12 @@ Final report:
 ## Short Version
 
 ```text
-Clean up {allowed_scope} for {cleanup_goal}. Use cheaper deterministic models
-for scriptable work, GPT-5.5/Fable high for judgment, xhigh only for hard
-architecture or final review, no manual hundreds-file edits, no deletion outside
-an explicit list, internet only for current docs/tool verification, run {checks}
-and `git diff --check`, then report files, commands, checks, and risks.
+Clean up {allowed_scope} for {cleanup_goal}. Use scripts for deterministic work,
+Terra medium/high or Fable high for normal judgment, and Sol or Fable higher
+effort only after evidence of difficulty. Use multi-agent modes only for
+independent workstreams. Do not manually edit hundreds of files or delete
+outside an explicit list. Verify current claims, run {checks} and
+`git diff --check`, then report files, commands, checks, and risks.
 ```
 
 ## Included Scope

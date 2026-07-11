@@ -1,5 +1,8 @@
 # OpenAI Codex
 
+> For the dated GPT-5.6 Sol, Terra, Luna, `max`, and `ultra` map, see
+> [Current models, interfaces, and effort controls](../guides/current-models-and-interfaces.md).
+
 ## What It Is
 
 OpenAI Codex is a coding-agent workflow for reading a repository, editing files, running commands, explaining changes, and preparing work for review. In this repository, Codex is the reference workflow because the project is built around `AGENTS.md`, goal-style prompts, branch discipline, checks, PR review, and public-safety rules.

@@ -172,22 +172,25 @@ class PromptingGuidesReadmeLinkageTests(unittest.TestCase):
             with self.subTest(needle=needle):
                 self.assertIn(needle, security)
 
-    def test_readme_is_comprehensive_public_manual(self):
+    def test_readme_is_focused_public_entry_point(self):
         readme_path = ROOT / "README.md"
         readme = read("README.md")
-        self.assertGreaterEqual(readme_path.stat().st_size, 50_000)
+        self.assertGreaterEqual(readme_path.stat().st_size, 10_000)
+        self.assertLessEqual(readme_path.stat().st_size, 25_000)
         for needle in (
-            "Table Of Contents",
+            "Start Here",
+            "Quick Start",
+            "Prompting And Agent Mastery",
             "Prompting OS",
-            "Core Workflow",
-            "Context Engineering",
-            "Evaluation And Regression",
-            "Automation And Release Packages",
-            "Public Safety Rules",
-            "Maintainer Playbook",
-            "Repository Operating Manual",
-            "Package Evidence Model",
-            "Evidence Quick Reference",
+            "Coding-agent workflow",
+            "Source-grounded writing",
+            "Evaluation",
+            "Current Model Guides",
+            "Repository Map",
+            "Automation",
+            "Public Safety",
+            "Troubleshooting",
+            "Contributing",
         ):
             with self.subTest(needle=needle):
                 self.assertIn(needle, readme)

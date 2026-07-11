@@ -1,5 +1,9 @@
 # Claude Code
 
+> For the dated Fable 5 effort, Cowork, Claude Code desktop, pricing, and
+> Ultracode map, see
+> [Current models, interfaces, and effort controls](../guides/current-models-and-interfaces.md).
+
 ## What It Is
 
 Claude Code is an agentic coding tool for understanding codebases, editing files, running commands, and reviewing development work across supported surfaces. In this repository it is best treated as a documentation reviewer, codebase explainer, and second-opinion reviewer before merge.
