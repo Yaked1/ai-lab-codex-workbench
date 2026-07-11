@@ -4,7 +4,7 @@ Checked: 2026-07-11
 
 ## Answer
 
-The repository uses three original SVGs derived from verified sources and
+The repository uses six original SVGs derived from verified sources and
 visible, clickable YouTube preview cards for public videos. The preview cards
 load thumbnails from YouTube and open the corresponding embedded player on
 this repository's GitHub Pages site; no video binary or thumbnail is stored in
@@ -25,6 +25,9 @@ video is third-party qualitative context.*
 | `availability-map.svg` | Original summary of documented product surfaces. | Official vendor sources | Repository-created layout and text. |
 | `aa-benchmark-comparison.svg` | Original bars using Intelligence Index v4.1 values Fable 60, Sol 59, Terra 55, Luna 51 and Coding Agent Index values Sol 80, Terra 77, Luna 75. | Independent | Repository-created chart; data attributed to Artificial Analysis. |
 | `live-architecture.svg` | Original conceptual comparison of GPT-Live and Gemini Live Translate flows. | Official vendor sources | Repository-created diagram; not an implementation schematic. |
+| `gpt-5-6-effort-surfaces.svg` | Original interface and effort map. | Official OpenAI sources plus a dated local Codex catalog query | Repository-created layout and text. |
+| `aa-frontier-benchmark-2026-07-11.svg` | Original bars for the dated Intelligence and Coding Agent Index snapshot. | Independent and official launch data | Every coding score retains its harness and fallback label. |
+| `multimodal-model-map-2026.svg` | Original taxonomy of current audio, image, and video systems. | Official vendor sources | Undisclosed architectures remain marked as such. |
 
 ## Linked visual and video media
 
@@ -41,6 +44,13 @@ video is third-party qualitative context.*
 | [Fable 5 hands-on](https://www.youtube.com/watch?v=GrdEid8H6H4) | Every, 2026-06-09 | Third-party qualitative context | Visible remote YouTube thumbnail; not benchmark evidence. |
 | [GPT-5.6 Sol explainer](https://www.youtube.com/watch?v=tV5zXS78HzU) | IBM Technology, 2026-07-03 | Third-party preview context | Visible remote YouTube thumbnail; verify launch facts elsewhere. |
 | [GPT-5.6 launch-day discussion](https://www.youtube.com/watch?v=QjuuTHJKxWI) | ThursdAI, 2026-07-09 | Community reaction and GPT-Live discussion | Visible remote YouTube thumbnail; not factual authority. |
+| [GPT-5.6 family test](https://www.youtube.com/watch?v=xDXX2M5DrO0) | AICodeKing | Third-party hands-on context | Embedded with a visible thumbnail; not access or pricing authority. |
+| [Gemini 3.5 Flash coding test](https://www.youtube.com/watch?v=TdN-YdFLWvY) | Bijan Bowen | Third-party coding context | Embedded; official Google docs define model controls. |
+| [Grok 4.5 coding test](https://www.youtube.com/watch?v=5J6HCDEkg64) | ForrestKnight | Third-party coding context | Embedded; SpaceXAI and Artificial Analysis support factual claims. |
+| [Muse Spark 1.1 test](https://www.youtube.com/watch?v=XCYYDhG9zKw) | Bijan Bowen | Third-party hands-on context | Embedded; Meta and Artificial Analysis support factual claims. |
+| [Image-model comparison](https://www.youtube.com/watch?v=FDhx79PU5KQ) | Code And Create | Qualitative image comparison | Embedded; readers should inspect prompts and outputs. |
+| [Introducing ChatGPT Images 2.0](https://www.youtube.com/watch?v=sWkGomJ3TLI) | OpenAI | Official product demonstration | Embedded; not evidence of an undisclosed architecture. |
+| [ChatGPT Voice powered by GPT-Live](https://www.youtube.com/watch?v=EAN5Cj347PY) | OpenAI | Official product demonstration | Embedded; architecture claims remain tied to the launch post. |
 
 ## Uncertainties
 
@@ -51,6 +61,8 @@ video is third-party qualitative context.*
   site, so the viewer does not navigate to YouTube.
 - Live benchmark pages can change. The local chart therefore carries a checked
   date and benchmark version.
+- All eleven selected videos were public and reported
+  `playable_in_embed=True` in `yt-dlp` on the checked date.
 - This ledger records a conservative documentation decision, not legal advice.
 
 ## Sources

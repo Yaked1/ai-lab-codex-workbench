@@ -49,8 +49,13 @@ to rely on the cited primary and independent sources, not this video.*
 
 - Artificial Analysis scores Fable Max 60 and Sol Max 59 on its Intelligence
   Index v4.1.
-- Artificial Analysis scores Sol Max in Codex 80 and Fable Max with fallback in
-  Claude Code 77 on its Coding Agent Index v1.1.
+- The broader Intelligence snapshot includes Opus 4.8 Max 55.7, Terra Max 55,
+  Grok 4.5 High 54, Luna Max 51.2, Muse Spark 1.1 xhigh 51, and Gemini 3.5
+  Flash High 50.2.
+- Artificial Analysis scores Sol Max in Codex 80, Terra Max in Codex 77,
+  Fable Max with fallback in Claude Code 77, Grok 4.5 in Grok Build 76, Luna
+  Max in Codex 75, and Opus 4.8 Max in Claude Code 73 on its Coding Agent
+  Index.
 - Arena's 2026-07-10 text snapshot gives Fable the stronger blind chat
   preference result, but it does not measure repository completion.
 
@@ -71,4 +76,5 @@ to rely on the cited primary and independent sources, not this video.*
 - [Current models and interfaces](../guides/current-models-and-interfaces.md)
 - [Fable 5 versus GPT-5.6 Sol](../guides/fable-vs-sol.md)
 - [Live audio and translation](../guides/live-audio-and-translation.md)
+- [Frontier models and multimodal systems](../guides/frontier-models-and-multimodal-systems-2026.md)
 - [Model media provenance](model-media-provenance-2026-07-11.md)

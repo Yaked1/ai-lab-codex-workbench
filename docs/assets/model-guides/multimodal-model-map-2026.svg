@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820" role="img" aria-labelledby="title desc">
+  <title id="title">Current live audio, image, and video model map</title>
+  <desc id="desc">A conceptual map groups GPT-Live, Gemini Live Translate, GPT Image 2, the Nano Banana family, Seedream 5.0 Pro, and Gemini Omni Flash by their documented purpose and evidence status.</desc>
+  <rect width="1400" height="820" rx="30" fill="#08111f"/>
+  <text x="65" y="68" fill="#f8fafc" font-family="Segoe UI, sans-serif" font-size="36" font-weight="700">Multimodal systems solve different jobs</text>
+  <text x="65" y="106" fill="#9fb0c7" font-family="Segoe UI, sans-serif" font-size="19">Capabilities checked 2026-07-11. Similar marketing language does not imply a shared architecture.</text>
+  <g font-family="Segoe UI, sans-serif">
+    <rect x="55" y="145" width="410" height="585" rx="22" fill="#12213c" stroke="#60a5fa" stroke-width="2"/>
+    <text x="85" y="190" fill="#bfdbfe" font-size="27" font-weight="700">Live audio</text>
+    <rect x="85" y="225" width="350" height="175" rx="16" fill="#172554"/>
+    <text x="108" y="264" fill="#dbeafe" font-size="22" font-weight="700">GPT-Live-1</text>
+    <text x="108" y="300" fill="#e5edf8" font-size="18">Continuous full-duplex conversation</text>
+    <text x="108" y="332" fill="#e5edf8" font-size="18">Can delegate deeper work</text>
+    <text x="108" y="364" fill="#9fb0c7" font-size="16">Architecture: vendor-described</text>
+    <rect x="85" y="425" width="350" height="220" rx="16" fill="#0f3a3a"/>
+    <text x="108" y="464" fill="#99f6e4" font-size="22" font-weight="700">Gemini 3.5 Live Translate</text>
+    <text x="108" y="500" fill="#e5edf8" font-size="18">Audio-only speech translation</text>
+    <text x="108" y="532" fill="#e5edf8" font-size="18">70+ languages, public preview</text>
+    <text x="108" y="564" fill="#e5edf8" font-size="18">No tools, search, or thinking</text>
+    <text x="108" y="604" fill="#9fb0c7" font-size="16">API path documented by Google</text>
+
+    <rect x="495" y="145" width="410" height="585" rx="22" fill="#29183f" stroke="#c084fc" stroke-width="2"/>
+    <text x="525" y="190" fill="#e9d5ff" font-size="27" font-weight="700">Image generation</text>
+    <rect x="525" y="225" width="350" height="125" rx="16" fill="#3b1f5d"/>
+    <text x="548" y="262" fill="#f3e8ff" font-size="22" font-weight="700">GPT Image 2</text>
+    <text x="548" y="296" fill="#e5edf8" font-size="18">Generation and editing</text>
+    <text x="548" y="326" fill="#9fb0c7" font-size="15">Internal architecture not published</text>
+    <rect x="525" y="370" width="350" height="190" rx="16" fill="#3b2608"/>
+    <text x="548" y="407" fill="#fde68a" font-size="22" font-weight="700">Nano Banana family</text>
+    <text x="548" y="442" fill="#e5edf8" font-size="17">2 Lite: Gemini 3.1 Flash Lite Image</text>
+    <text x="548" y="474" fill="#e5edf8" font-size="17">2: Gemini 3.1 Flash Image</text>
+    <text x="548" y="506" fill="#e5edf8" font-size="17">Pro: Gemini 3 Pro Image</text>
+    <text x="548" y="538" fill="#9fb0c7" font-size="15">Thinking and search vary by model</text>
+    <rect x="525" y="580" width="350" height="105" rx="16" fill="#3a1c20"/>
+    <text x="548" y="618" fill="#fecdd3" font-size="22" font-weight="700">Seedream 5.0 Pro</text>
+    <text x="548" y="652" fill="#e5edf8" font-size="17">Dreamina product surface confirmed</text>
+    <text x="548" y="677" fill="#9fb0c7" font-size="14">Limited English technical disclosure</text>
+
+    <rect x="935" y="145" width="410" height="585" rx="22" fill="#133221" stroke="#4ade80" stroke-width="2"/>
+    <text x="965" y="190" fill="#bbf7d0" font-size="27" font-weight="700">Generative video</text>
+    <rect x="965" y="225" width="350" height="245" rx="16" fill="#14532d"/>
+    <text x="988" y="265" fill="#dcfce7" font-size="22" font-weight="700">Gemini Omni Flash</text>
+    <text x="988" y="303" fill="#e5edf8" font-size="18">Multimodal inputs to video output</text>
+    <text x="988" y="337" fill="#e5edf8" font-size="18">Conversational video editing</text>
+    <text x="988" y="371" fill="#e5edf8" font-size="18">Consumer rollout plus API preview</text>
+    <text x="988" y="418" fill="#9fb0c7" font-size="16">Google says image and text output</text>
+    <text x="988" y="444" fill="#9fb0c7" font-size="16">will follow over time.</text>
+    <rect x="965" y="495" width="350" height="145" rx="16" fill="#163b2b"/>
+    <text x="988" y="535" fill="#bbf7d0" font-size="21" font-weight="700">Do not collapse the categories</text>
+    <text x="988" y="570" fill="#e5edf8" font-size="17">A voice model, translator, image</text>
+    <text x="988" y="600" fill="#e5edf8" font-size="17">model, and video world model have</text>
+    <text x="988" y="630" fill="#e5edf8" font-size="17">different inputs, latency, and risks.</text>
+  </g>
+  <text x="65" y="780" fill="#9fb0c7" font-family="Segoe UI, sans-serif" font-size="16">Original conceptual map derived from official OpenAI, Google, and ByteDance product documentation.</text>
+</svg>

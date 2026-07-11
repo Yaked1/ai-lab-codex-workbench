@@ -1,5 +1,9 @@
 # Current Models, Interfaces, and Effort Controls
 
+For the longer plan-by-plan essay, expanded Artificial Analysis comparison,
+and current audio, image, and video model map, read
+[Frontier Models and Multimodal Systems in 2026](frontier-models-and-multimodal-systems-2026.md).
+
 Checked: 2026-07-11
 
 This guide separates model names, interface labels, and API parameters. Those

@@ -1,60 +1,59 @@
-# Current Plan: Embedded Video Playback
+# Current Plan: Frontier Models and Multimodal Systems
 
 ## Goal
 
-Let readers watch the selected model videos on this repository's GitHub Pages
-site instead of navigating to YouTube, without copying video binaries into Git.
+Publish a source-checked long-form guide to GPT-5.6, Claude Fable 5, Grok 4.5,
+Gemini 3.5, current image models, and live-audio systems, with original charts
+and watchable embedded videos.
 
-![Availability map for the models covered by the embedded players](../assets/model-guides/availability-map.svg)
+![Current Artificial Analysis benchmark snapshot](../assets/model-guides/aa-frontier-benchmark-2026-07-11.svg)
 
-[![Open the embedded GPT-5.6 and GPT-Live launch discussion](https://i.ytimg.com/vi/QjuuTHJKxWI/maxresdefault.jpg)](https://yaked1.github.io/ai-lab-codex-workbench/site/model-media.html#launch-discussion)
+[![Watch the GPT-5.6, GPT-Live, Grok 4.5, and Muse Spark launch discussion](https://i.ytimg.com/vi/QjuuTHJKxWI/maxresdefault.jpg)](https://yaked1.github.io/ai-lab-codex-workbench/site/model-media.html#launch-discussion)
 
-*The thumbnail now opens an embedded player on this repository's GitHub Pages
-site rather than a YouTube watch page.*
+## Measurable Outcome
+
+- One dated guide distinguishes confirmed facts, vendor claims, independent
+  benchmarks, local interface evidence, and unresolved claims.
+- GPT-5.6 interface and effort tables cover Chat, Work, Codex, and API without
+  presenting account-specific observations as universal access.
+- Original figures show the effort surface, current benchmark snapshot, and
+  multimodal model map.
+- The GitHub Pages gallery includes verified, embeddable videos for the major
+  model groups covered by the guide.
+- Deterministic tests cover asset links, accessibility metadata, source
+  sections, model-name corrections, gallery anchors, and iframe sources.
 
 ## Phases
 
-- [x] Phase 1: Verify GitHub Markdown and GitHub Pages capabilities.
-- [x] Phase 2: Build an in-repository embedded-video page.
-- [x] Phase 3: Point every video card to its matching embedded player.
-- [x] Phase 4: Validate player surfaces, run checks, commit, and push.
+- [x] Inspect the current guides, media gallery, source ledgers, and branch.
+- [x] Verify official OpenAI, Anthropic, SpaceXAI, Google, Meta, and ByteDance
+  sources plus Artificial Analysis results.
+- [x] Write the long-form guide and original figures.
+- [x] Expand the embedded gallery and repository navigation.
+- [x] Add regression coverage for the new assets, guide, and gallery entries.
+- [ ] Run the repository command suite and create the requested commit on
+  `main`.
 
-## Platform finding
+## Key Corrections
 
-GitHub's official documentation says embedded YouTube video HTML cannot render
-inside repository Markdown. GitHub Flavored Markdown also filters `<iframe>`.
-The repository already publishes `docs/` through GitHub Pages, where normal
-HTML iframe players are supported.
+- Current Codex labels use `low`, not `light`.
+- Nano Banana 2 is Gemini 3.1 Flash Image. Gemini 3 Pro Image is Nano Banana
+  Pro.
+- Artificial Analysis names its agentic coding composite the Coding Agent
+  Index, not the Codex Index.
+- Artificial Analysis tested GPT-5.6 Sol at `max`; `ultra` is a separate
+  multi-agent product mode.
+- OpenAI does not publicly document GPT Image 2 as a fully autoregressive
+  architecture. That architecture claim remains unconfirmed.
 
-## Implementation
+## Existing Local Change
 
-- `docs/site/model-media.html` contains four privacy-enhanced YouTube embeds.
-- Each Markdown thumbnail links to an anchor on that GitHub Pages player page.
-- The browser stays on `yaked1.github.io`; playback still streams from YouTube.
-- Players do not autoplay and video files are not stored in the repository.
-
-## Sources
-
-- [GitHub Docs: working with non-code files](https://docs.github.com/en/repositories/working-with-files/using-files/working-with-non-code-files)
-- [GitHub Flavored Markdown: disallowed raw HTML](https://github.github.com/gfm/#disallowed-raw-html-extension-)
-- [GitHub Pages quickstart](https://docs.github.com/en/pages/quickstart)
+The earlier `CLAUDE.md` edit remains present. It is included in the requested
+all-changes staging scope rather than silently discarded or rewritten.
 
 ## Status
 
-Complete. Four privacy-enhanced iframe players, their accessible titles,
-fullscreen flags, source IDs, Markdown destinations, and player anchors pass
-deterministic tests. All 89 repository tests and standard checks pass. Live
-browser automation could not launch because Playwright is not installed and
-the bundled browser-tool call was rejected after the account reached its Codex
-usage limit; no dependency was added or restriction bypassed.
-
-## Verification
-
-- Four `youtube-nocookie.com` iframe sources present.
-- Four accessible iframe titles and fullscreen controls present.
-- Ten visible video cards point to GitHub Pages, with zero direct YouTube card
-  destinations.
-- `python scripts/repo_health_check.py`: passed.
-- `python scripts/safe_autofix.py --check`: passed.
-- `python -m unittest discover -s tests`: 89 tests passed.
-- `git diff --check`: passed.
+The writing, figures, navigation, gallery expansion, provenance updates, and
+regression-test edits are complete. Command verification and Git staging remain
+blocked until the CodexPro command runner can spawn a shell executable; file
+inspection and source verification continue to be recorded separately.

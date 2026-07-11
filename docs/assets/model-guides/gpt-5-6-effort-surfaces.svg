@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" viewBox="0 0 1400 860" role="img" aria-labelledby="title desc">
+  <title id="title">GPT-5.6 models and effort controls by product surface</title>
+  <desc id="desc">A source-checked map separates standard ChatGPT, Work and Codex, the local Codex catalog, and the API. It shows confirmed model families, effort labels, and plan limits checked July 11, 2026.</desc>
+  <rect width="1400" height="860" rx="30" fill="#08111f"/>
+  <text x="65" y="70" fill="#f8fafc" font-family="Segoe UI, sans-serif" font-size="36" font-weight="700">GPT-5.6 effort controls are product controls</text>
+  <text x="65" y="108" fill="#9fb0c7" font-family="Segoe UI, sans-serif" font-size="19">Sources checked 2026-07-11. Access still depends on plan, rollout, workspace policy, and client version.</text>
+  <g font-family="Segoe UI, sans-serif">
+    <rect x="65" y="145" width="1270" height="125" rx="18" fill="#14213d" stroke="#60a5fa" stroke-width="2"/>
+    <text x="95" y="184" fill="#bfdbfe" font-size="25" font-weight="700">Standard ChatGPT conversations</text>
+    <text x="95" y="222" fill="#e5edf8" font-size="20">Plus: Sol Medium, High</text>
+    <text x="545" y="222" fill="#e5edf8" font-size="20">Pro 5x and Pro 20x: Sol Medium, High, Extra High, Sol Pro</text>
+    <text x="95" y="251" fill="#9fb0c7" font-size="17">The two Pro tiers differ in usage allowance, not model capability. Terra and Luna are not selectable here.</text>
+
+    <rect x="65" y="292" width="1270" height="135" rx="18" fill="#102b2a" stroke="#2dd4bf" stroke-width="2"/>
+    <text x="95" y="332" fill="#99f6e4" font-size="25" font-weight="700">ChatGPT Work and Codex product availability</text>
+    <text x="95" y="370" fill="#e5edf8" font-size="20">Eligible paid plans: Sol, Terra, Luna plus per-model effort</text>
+    <text x="745" y="370" fill="#e5edf8" font-size="20">Max: users with GPT-5.6 access</text>
+    <text x="95" y="402" fill="#e5edf8" font-size="20">Work Ultra: Pro and Enterprise</text>
+    <text x="745" y="402" fill="#e5edf8" font-size="20">Codex Ultra: Plus and higher</text>
+
+    <rect x="65" y="449" width="1270" height="170" rx="18" fill="#2b1747" stroke="#c084fc" stroke-width="2"/>
+    <text x="95" y="489" fill="#e9d5ff" font-size="25" font-weight="700">Local Codex 0.144.0 catalog snapshot</text>
+    <text x="95" y="530" fill="#f4e8ff" font-size="21" font-weight="700">Sol</text>
+    <text x="185" y="530" fill="#e5edf8" font-size="20">low   medium   high   xhigh   max   ultra</text>
+    <text x="95" y="568" fill="#ccfbf1" font-size="21" font-weight="700">Terra</text>
+    <text x="185" y="568" fill="#e5edf8" font-size="20">low   medium   high   xhigh   max   ultra</text>
+    <text x="95" y="606" fill="#fde68a" font-size="21" font-weight="700">Luna</text>
+    <text x="185" y="606" fill="#e5edf8" font-size="20">low   medium   high   xhigh   max</text>
+    <text x="915" y="568" fill="#9fb0c7" font-size="17">Current label: low, not light</text>
+
+    <rect x="65" y="641" width="1270" height="145" rx="18" fill="#3b2608" stroke="#fbbf24" stroke-width="2"/>
+    <text x="95" y="681" fill="#fde68a" font-size="25" font-weight="700">OpenAI API</text>
+    <text x="95" y="721" fill="#fff7d6" font-size="20">Sol, Terra, Luna: none   low   medium   high   xhigh   max</text>
+    <text x="95" y="757" fill="#c9b98a" font-size="17">Ultra is not an API reasoning value. Multi-agent beta is a separate Responses API capability.</text>
+  </g>
+  <text x="65" y="824" fill="#9fb0c7" font-family="Segoe UI, sans-serif" font-size="16">Original figure. Sources: OpenAI launch post, Help Center, developer model catalog, and a local Codex catalog query.</text>
+</svg>
