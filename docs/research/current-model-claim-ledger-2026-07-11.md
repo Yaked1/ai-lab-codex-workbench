@@ -78,3 +78,4 @@ to rely on the cited primary and independent sources, not this video.*
 - [Live audio and translation](../guides/live-audio-and-translation.md)
 - [Frontier models and multimodal systems](../guides/frontier-models-and-multimodal-systems-2026.md)
 - [Model media provenance](model-media-provenance-2026-07-11.md)
+- [Video research pack](video-research-pack-2026-07-11.md)

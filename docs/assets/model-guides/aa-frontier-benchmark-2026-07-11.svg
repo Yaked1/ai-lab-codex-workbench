@@ -27,12 +27,12 @@
     <text x="745" y="184" fill="#dbeafe" font-size="25" font-weight="700">Coding Agent Index</text>
     <text x="745" y="214" fill="#9fb0c7" font-size="16">DeepSWE, Terminal-Bench v2, SWE-Atlas-QnA</text>
     <g font-size="17" fill="#e5edf8">
-      <text x="745" y="277">Sol Max, Codex</text><rect x="950" y="258" width="360" height="24" rx="6" fill="#3b82f6"/><text x="1318" y="277" text-anchor="end">80</text>
-      <text x="745" y="337">Terra Max, Codex</text><rect x="950" y="318" width="347" height="24" rx="6" fill="#14b8a6"/><text x="1318" y="337" text-anchor="end">77</text>
-      <text x="745" y="397">Fable Max + fallback, Claude Code</text><rect x="950" y="378" width="347" height="24" rx="6" fill="#a855f7"/><text x="1318" y="397" text-anchor="end">77</text>
-      <text x="745" y="457">Grok 4.5 High, Grok Build</text><rect x="950" y="438" width="342" height="24" rx="6" fill="#22c55e"/><text x="1318" y="457" text-anchor="end">76</text>
-      <text x="745" y="517">Luna Max, Codex</text><rect x="950" y="498" width="338" height="24" rx="6" fill="#f59e0b"/><text x="1318" y="517" text-anchor="end">75</text>
-      <text x="745" y="577">Opus 4.8 Max, Claude Code</text><rect x="950" y="558" width="329" height="24" rx="6" fill="#c084fc"/><text x="1318" y="577" text-anchor="end">73</text>
+      <text x="745" y="267">Sol Max</text><text x="745" y="288" fill="#9fb0c7" font-size="14">Codex</text><rect x="1030" y="258" width="280" height="24" rx="6" fill="#3b82f6"/><text x="1318" y="277" text-anchor="end">80</text>
+      <text x="745" y="327">Terra Max</text><text x="745" y="348" fill="#9fb0c7" font-size="14">Codex</text><rect x="1030" y="318" width="270" height="24" rx="6" fill="#14b8a6"/><text x="1318" y="337" text-anchor="end">77</text>
+      <text x="745" y="387">Fable Max + fallback</text><text x="745" y="408" fill="#9fb0c7" font-size="14">Claude Code</text><rect x="1030" y="378" width="270" height="24" rx="6" fill="#a855f7"/><text x="1318" y="397" text-anchor="end">77</text>
+      <text x="745" y="447">Grok 4.5 High</text><text x="745" y="468" fill="#9fb0c7" font-size="14">Grok Build</text><rect x="1030" y="438" width="266" height="24" rx="6" fill="#22c55e"/><text x="1318" y="457" text-anchor="end">76</text>
+      <text x="745" y="507">Luna Max</text><text x="745" y="528" fill="#9fb0c7" font-size="14">Codex</text><rect x="1030" y="498" width="263" height="24" rx="6" fill="#f59e0b"/><text x="1318" y="517" text-anchor="end">75</text>
+      <text x="745" y="567">Opus 4.8 Max</text><text x="745" y="588" fill="#9fb0c7" font-size="14">Claude Code</text><rect x="1030" y="558" width="256" height="24" rx="6" fill="#c084fc"/><text x="1318" y="577" text-anchor="end">73</text>
     </g>
     <text x="745" y="642" fill="#9fb0c7" font-size="15">Harness behavior, permissions, caching, and orchestration</text>
     <text x="745" y="666" fill="#9fb0c7" font-size="15">are part of these results. This is not a model-only test.</text>

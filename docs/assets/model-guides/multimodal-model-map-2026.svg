@@ -40,11 +40,12 @@
     <text x="965" y="190" fill="#bbf7d0" font-size="27" font-weight="700">Generative video</text>
     <rect x="965" y="225" width="350" height="245" rx="16" fill="#14532d"/>
     <text x="988" y="265" fill="#dcfce7" font-size="22" font-weight="700">Gemini Omni Flash</text>
-    <text x="988" y="303" fill="#e5edf8" font-size="18">Multimodal inputs to video output</text>
+    <text x="988" y="303" fill="#e5edf8" font-size="18">Text, image, video to video + audio</text>
     <text x="988" y="337" fill="#e5edf8" font-size="18">Conversational video editing</text>
-    <text x="988" y="371" fill="#e5edf8" font-size="18">Consumer rollout plus API preview</text>
-    <text x="988" y="418" fill="#9fb0c7" font-size="16">Google says image and text output</text>
-    <text x="988" y="444" fill="#9fb0c7" font-size="16">will follow over time.</text>
+    <text x="988" y="371" fill="#e5edf8" font-size="18">gemini-omni-flash-preview</text>
+    <text x="988" y="402" fill="#9fb0c7" font-size="16">Output: 3-10s, 720p, 24 FPS</text>
+    <text x="988" y="429" fill="#9fb0c7" font-size="16">Google says image and text output</text>
+    <text x="988" y="454" fill="#9fb0c7" font-size="16">will follow over time.</text>
     <rect x="965" y="495" width="350" height="145" rx="16" fill="#163b2b"/>
     <text x="988" y="535" fill="#bbf7d0" font-size="21" font-weight="700">Do not collapse the categories</text>
     <text x="988" y="570" fill="#e5edf8" font-size="17">A voice model, translator, image</text>

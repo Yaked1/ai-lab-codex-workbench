@@ -21,7 +21,9 @@ Claim labels used here:
 ![Source-derived map of current model families and documented product surfaces](../assets/model-guides/availability-map.svg)
 
 The map is an original summary of the official sources below, not a screenshot
-of any vendor interface. See the [media provenance ledger](../research/model-media-provenance-2026-07-11.md)
+of any vendor interface. See the
+[media provenance ledger](../research/model-media-provenance-2026-07-11.md)
+and [video research pack](../research/video-research-pack-2026-07-11.md)
 for source and reuse details.
 
 ## Quick Corrections

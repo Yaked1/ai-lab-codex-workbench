@@ -77,6 +77,10 @@ All selected videos were public and `playable_in_embed=True` in `yt-dlp` on
 | `sWkGomJ3TLI` | OpenAI | Official ChatGPT Images 2.0 demo |
 | `EAN5Cj347PY` | OpenAI | Official GPT-Live demo |
 
+The image-model video `FDhx79PU5KQ` is not a Gemini Omni Flash demo. Topics
+without a verified individual video are recorded as discovery searches in the
+[video research pack](../research/video-research-pack-2026-07-11.md).
+
 ## Research Tool Notes
 
 - `agent-reach doctor --json` found web access available and YouTube through

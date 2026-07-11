@@ -22,6 +22,8 @@ and watchable embedded videos.
   model groups covered by the guide.
 - Deterministic tests cover asset links, accessibility metadata, source
   sections, model-name corrections, gallery anchors, and iframe sources.
+- A dated video research pack covers every requested release with either
+  verified metadata or an explicitly non-evidentiary discovery search.
 
 ## Phases
 
@@ -31,8 +33,8 @@ and watchable embedded videos.
 - [x] Write the long-form guide and original figures.
 - [x] Expand the embedded gallery and repository navigation.
 - [x] Add regression coverage for the new assets, guide, and gallery entries.
-- [ ] Run the repository command suite and create the requested commit on
-  `main`.
+- [x] Run the repository command suite and inspect every result.
+- [x] Create the requested commit on `main`.
 
 ## Key Corrections
 
@@ -46,14 +48,23 @@ and watchable embedded videos.
 - OpenAI does not publicly document GPT Image 2 as a fully autoregressive
   architecture. That architecture claim remains unconfirmed.
 
-## Existing Local Change
+## Existing Repository State
 
-The earlier `CLAUDE.md` edit remains present. It is included in the requested
-all-changes staging scope rather than silently discarded or rewritten.
+The earlier `CLAUDE.md` edit is already part of commit `cd09d15`; it is not an
+unstaged file in this continuation. All new changes from this pass remain in
+the requested all-changes staging scope.
 
 ## Status
 
-The writing, figures, navigation, gallery expansion, provenance updates, and
-regression-test edits are complete. Command verification and Git staging remain
-blocked until the CodexPro command runner can spawn a shell executable; file
-inspection and source verification continue to be recorded separately.
+Essay expansion, media classification, video research, figures, navigation,
+provenance, and regression tests are complete. Verification on 2026-07-12:
+
+- `python scripts/repo_health_check.py`: passed.
+- `python scripts/safe_autofix.py --check`: no changes needed.
+- `python -m unittest discover -s tests`: 94 tests passed.
+- `git diff --check`: passed; Git only reported line-ending conversion notices.
+- Focused model-media suite: 11 tests passed.
+- Six SVG files parsed as XML and include non-empty titles and descriptions.
+- Eleven gallery iframes use privacy-enhanced YouTube sources, lazy loading,
+  descriptive titles, fullscreen support, and unique HTML anchors.
+- The expected GitHub Pages media URL returned HTTP 200.

@@ -10,6 +10,9 @@ load thumbnails from YouTube and open the corresponding embedded player on
 this repository's GitHub Pages site; no video binary or thumbnail is stored in
 Git. The repository does not rehost
 Artificial Analysis charts, vendor launch graphics, or X screenshots.
+The [video research pack](video-research-pack-2026-07-11.md) records exact
+metadata for verified videos and keeps unverified YouTube discovery searches in
+a separate evidence class.
 
 ![Availability map whose provenance is recorded below](../assets/model-guides/availability-map.svg)
 
@@ -31,6 +34,9 @@ video is third-party qualitative context.*
 
 ## Linked visual and video media
 
+The table separates official vendor media from independent tests and community
+discussion. None of the qualitative videos is used as benchmark evidence.
+
 | Media | Publisher | Evidence use | Reuse decision |
 | --- | --- | --- | --- |
 | [GPT-5.6 launch](https://openai.com/index/gpt-5-6/) | OpenAI, 2026-07-09 | Official availability, product visuals, vendor benchmarks | Link to the page; do not copy its artwork. |
@@ -44,13 +50,24 @@ video is third-party qualitative context.*
 | [Fable 5 hands-on](https://www.youtube.com/watch?v=GrdEid8H6H4) | Every, 2026-06-09 | Third-party qualitative context | Visible remote YouTube thumbnail; not benchmark evidence. |
 | [GPT-5.6 Sol explainer](https://www.youtube.com/watch?v=tV5zXS78HzU) | IBM Technology, 2026-07-03 | Third-party preview context | Visible remote YouTube thumbnail; verify launch facts elsewhere. |
 | [GPT-5.6 launch-day discussion](https://www.youtube.com/watch?v=QjuuTHJKxWI) | ThursdAI, 2026-07-09 | Community reaction and GPT-Live discussion | Visible remote YouTube thumbnail; not factual authority. |
-| [GPT-5.6 family test](https://www.youtube.com/watch?v=xDXX2M5DrO0) | AICodeKing | Third-party hands-on context | Embedded with a visible thumbnail; not access or pricing authority. |
-| [Gemini 3.5 Flash coding test](https://www.youtube.com/watch?v=TdN-YdFLWvY) | Bijan Bowen | Third-party coding context | Embedded; official Google docs define model controls. |
-| [Grok 4.5 coding test](https://www.youtube.com/watch?v=5J6HCDEkg64) | ForrestKnight | Third-party coding context | Embedded; SpaceXAI and Artificial Analysis support factual claims. |
-| [Muse Spark 1.1 test](https://www.youtube.com/watch?v=XCYYDhG9zKw) | Bijan Bowen | Third-party hands-on context | Embedded; Meta and Artificial Analysis support factual claims. |
-| [Image-model comparison](https://www.youtube.com/watch?v=FDhx79PU5KQ) | Code And Create | Qualitative image comparison | Embedded; readers should inspect prompts and outputs. |
-| [Introducing ChatGPT Images 2.0](https://www.youtube.com/watch?v=sWkGomJ3TLI) | OpenAI | Official product demonstration | Embedded; not evidence of an undisclosed architecture. |
-| [ChatGPT Voice powered by GPT-Live](https://www.youtube.com/watch?v=EAN5Cj347PY) | OpenAI | Official product demonstration | Embedded; architecture claims remain tied to the launch post. |
+| [GPT-5.6 family test](https://www.youtube.com/watch?v=xDXX2M5DrO0) | AICodeKing, 2026-07-09 | Third-party hands-on context | Embedded with a visible thumbnail; not access or pricing authority. |
+| [Gemini 3.5 Flash coding test](https://www.youtube.com/watch?v=TdN-YdFLWvY) | Bijan Bowen, 2026-05-19 | Third-party coding context | Embedded; official Google docs define model controls. |
+| [Grok 4.5 coding test](https://www.youtube.com/watch?v=5J6HCDEkg64) | ForrestKnight, 2026-07-10 | Third-party coding context | Embedded; SpaceXAI and Artificial Analysis support factual claims. |
+| [Muse Spark 1.1 test](https://www.youtube.com/watch?v=XCYYDhG9zKw) | Bijan Bowen, 2026-07-11 | Third-party hands-on context | Embedded; Meta and Artificial Analysis support factual claims. |
+| [Image-model comparison](https://www.youtube.com/watch?v=FDhx79PU5KQ) | Code And Create, 2026-04-22 | Qualitative image comparison only | Embedded; not associated with Gemini Omni Flash or generative video. |
+| [Introducing ChatGPT Images 2.0](https://www.youtube.com/watch?v=sWkGomJ3TLI) | OpenAI, 2026-04-21 | Official product demonstration | Embedded; not evidence of an undisclosed architecture. |
+| [ChatGPT Voice powered by GPT-Live](https://www.youtube.com/watch?v=EAN5Cj347PY) | OpenAI, 2026-07-08 | Official product demonstration | Embedded; architecture claims remain tied to the launch post. |
+
+## Discovery searches and replaceable references
+
+YouTube search links in the
+[video research pack](video-research-pack-2026-07-11.md) are discovery aids,
+not citations. They cover releases without a verified individual video,
+including Gemini Omni Flash, Sol Ultra, GPT-Live-1 Mini, and several interface
+walkthroughs. A candidate remains unverified until its title, channel, upload
+date, model identity, visible effort, and embeddability are checked. Search
+links can be replaced by verified individual videos later without changing any
+factual claim in the guides.
 
 ## Uncertainties
 

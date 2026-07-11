@@ -202,6 +202,9 @@ The [frontier models and multimodal systems essay](docs/guides/frontier-models-a
 adds plan-by-plan GPT-5.6 controls, effort guidance for all three tiers,
 Artificial Analysis comparisons, Fable's July 12 cutoff, Grok and Muse, and a
 source-checked map of current audio, image, and video model families.
+Its [video research pack](docs/research/video-research-pack-2026-07-11.md)
+separates verified embedded videos from discovery searches that are not factual
+evidence.
 
 Each guide now includes an original, attributed visual and links to watchable
 official demos where available. The

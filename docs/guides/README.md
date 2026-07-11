@@ -4,6 +4,7 @@
 
 - [Current models, interfaces, and effort controls](current-models-and-interfaces.md)
 - [Frontier models and multimodal systems in 2026](frontier-models-and-multimodal-systems-2026.md)
+- [Frontier-model video research pack](../research/video-research-pack-2026-07-11.md)
 - [Claude Fable 5 Max vs GPT-5.6 Sol](fable-vs-sol.md)
 - [Live audio and translation models](live-audio-and-translation.md)
 
