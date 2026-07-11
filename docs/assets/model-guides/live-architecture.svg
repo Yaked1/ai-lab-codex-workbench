@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Live audio and translation architecture</title>
+  <desc id="desc">A conceptual diagram contrasts continuous full-duplex GPT-Live with Gemini audio-to-audio translation.</desc>
+  <rect width="1200" height="630" rx="28" fill="#07111f"/>
+  <text x="60" y="70" fill="#f8fafc" font-family="Segoe UI, sans-serif" font-size="34" font-weight="700">Two live-audio paths, two different jobs</text>
+  <g font-family="Segoe UI, sans-serif">
+    <rect x="60" y="125" width="1080" height="190" rx="22" fill="#172554" stroke="#60a5fa"/>
+    <text x="90" y="170" fill="#bfdbfe" font-size="27" font-weight="700">GPT-Live: continuous full-duplex conversation</text>
+    <rect x="90" y="205" width="190" height="65" rx="14" fill="#1e3a8a"/><text x="133" y="246" fill="#fff" font-size="20">User audio</text>
+    <text x="300" y="247" fill="#93c5fd" font-size="30">⇄</text>
+    <rect x="350" y="205" width="300" height="65" rx="14" fill="#1d4ed8"/><text x="414" y="246" fill="#fff" font-size="20">Live interaction model</text>
+    <text x="670" y="247" fill="#93c5fd" font-size="30">⇄</text>
+    <rect x="720" y="205" width="190" height="65" rx="14" fill="#1e3a8a"/><text x="756" y="246" fill="#fff" font-size="20">Voice reply</text>
+    <path d="M500 275 C500 305 920 305 920 275" fill="none" stroke="#fbbf24" stroke-width="3"/>
+    <text x="925" y="286" fill="#fde68a" font-size="18">optional delegation</text>
+    <rect x="60" y="345" width="1080" height="190" rx="22" fill="#052e2b" stroke="#2dd4bf"/>
+    <text x="90" y="390" fill="#99f6e4" font-size="27" font-weight="700">Gemini Live Translate: constrained audio-to-audio translation</text>
+    <rect x="90" y="425" width="220" height="65" rx="14" fill="#134e4a"/><text x="126" y="466" fill="#fff" font-size="20">Source-language audio</text>
+    <text x="330" y="467" fill="#5eead4" font-size="30">→</text>
+    <rect x="380" y="425" width="300" height="65" rx="14" fill="#0f766e"/><text x="444" y="466" fill="#fff" font-size="20">Translation model</text>
+    <text x="700" y="467" fill="#5eead4" font-size="30">→</text>
+    <rect x="750" y="425" width="300" height="65" rx="14" fill="#134e4a"/><text x="789" y="466" fill="#fff" font-size="20">Target audio + transcript</text>
+    <text x="90" y="520" fill="#94a3b8" font-size="17">No tools, search grounding, function calling, or thinking in the translation path.</text>
+  </g>
+  <text x="60" y="590" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="16">Conceptual diagram derived from official OpenAI and Google documentation; not a vendor implementation schematic.</text>
+</svg>

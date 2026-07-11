@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Model availability map checked July 11, 2026</title>
+  <desc id="desc">A source-derived map connecting current model families to their documented product surfaces.</desc>
+  <rect width="1200" height="630" rx="28" fill="#0b1020"/>
+  <text x="60" y="70" fill="#f8fafc" font-family="Segoe UI, sans-serif" font-size="34" font-weight="700">Model availability map</text>
+  <text x="60" y="105" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="18">Official sources checked 2026-07-11 · access still depends on plan, region, policy, and rollout</text>
+  <g font-family="Segoe UI, sans-serif">
+    <rect x="60" y="145" width="1080" height="95" rx="18" fill="#172554" stroke="#60a5fa"/>
+    <text x="88" y="183" fill="#bfdbfe" font-size="25" font-weight="700">GPT-5.6 Sol · Terra · Luna</text>
+    <text x="88" y="218" fill="#e2e8f0" font-size="20">Standard ChatGPT: Sol  •  ChatGPT Work: all tiers  •  Codex: plan-dependent  •  API: all tiers</text>
+    <rect x="60" y="260" width="1080" height="95" rx="18" fill="#2e1065" stroke="#c084fc"/>
+    <text x="88" y="298" fill="#e9d5ff" font-size="25" font-weight="700">Claude Fable 5</text>
+    <text x="88" y="333" fill="#e2e8f0" font-size="20">Claude chat and Desktop  •  Cowork desktop/web rollout  •  Claude Code  •  API</text>
+    <rect x="60" y="375" width="1080" height="95" rx="18" fill="#052e2b" stroke="#2dd4bf"/>
+    <text x="88" y="413" fill="#99f6e4" font-size="25" font-weight="700">Grok 4.5</text>
+    <text x="88" y="448" fill="#e2e8f0" font-size="20">Grok Build default  •  xAI API  •  regional availability may vary</text>
+    <rect x="60" y="490" width="1080" height="95" rx="18" fill="#422006" stroke="#fbbf24"/>
+    <text x="88" y="528" fill="#fde68a" font-size="25" font-weight="700">Gemini 3.5 Flash and Live Translate</text>
+    <text x="88" y="563" fill="#e2e8f0" font-size="20">Gemini app/API  •  Live Translate preview in Live API and AI Studio  •  staged app rollout</text>
+  </g>
+</svg>

@@ -1,5 +1,11 @@
 # Guides
 
+## Current model and interface guides
+
+- [Current models, interfaces, and effort controls](current-models-and-interfaces.md)
+- [Claude Fable 5 Max vs GPT-5.6 Sol](fable-vs-sol.md)
+- [Live audio and translation models](live-audio-and-translation.md)
+
 This folder contains the broad learning guides that sit between the repository landing page and the tool-specific docs. Use it when you want to improve prompting, agent task design, skill design, public-safe source use, or Windows-friendly command habits before choosing a specific coding agent.
 
 ## Recommended reading order

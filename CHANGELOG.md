@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-07-11
+
+- Added source-verified GPT-5.6, Fable 5, Grok 4.5, Gemini 3.5 Flash, GPT-Live,
+  and live-translation guidance with dated availability and effort mappings.
+- Added an evidence-tiered Fable 5 Max versus GPT-5.6 Sol comparison that keeps
+  Sol Max benchmark results separate from Sol Ultra orchestration.
+- Replaced stale model routing and shortened the README into a focused entry
+  point for the deeper guides.
+
 ## Unreleased
 
 Fixed:
