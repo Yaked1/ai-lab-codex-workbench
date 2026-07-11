@@ -49,7 +49,7 @@ voice prompt with a long written-work rubric.
 
 ### Watch: GPT-Live in the GPT-5.6 launch discussion
 
-[![Play the ThursdAI GPT-5.6 and GPT-Live launch discussion](https://i.ytimg.com/vi/QjuuTHJKxWI/maxresdefault.jpg)](https://www.youtube.com/watch?v=QjuuTHJKxWI)
+[![Play the ThursdAI GPT-5.6 and GPT-Live launch discussion](https://i.ytimg.com/vi/QjuuTHJKxWI/maxresdefault.jpg)](https://yaked1.github.io/ai-lab-codex-workbench/site/model-media.html#launch-discussion)
 
 *Community launch-day discussion by ThursdAI. Click the image to watch. It is
 context, not the authority for architecture or availability claims.*

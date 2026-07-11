@@ -6,13 +6,14 @@ Checked: 2026-07-11
 
 The repository uses three original SVGs derived from verified sources and
 visible, clickable YouTube preview cards for public videos. The preview cards
-load thumbnails from YouTube and open the corresponding watch pages; no video
-binary or thumbnail is stored in Git. The repository does not rehost
+load thumbnails from YouTube and open the corresponding embedded player on
+this repository's GitHub Pages site; no video binary or thumbnail is stored in
+Git. The repository does not rehost
 Artificial Analysis charts, vendor launch graphics, or X screenshots.
 
 ![Availability map whose provenance is recorded below](../assets/model-guides/availability-map.svg)
 
-[![Play the independent Every hands-on video about Fable 5](https://i.ytimg.com/vi/GrdEid8H6H4/maxresdefault.jpg)](https://www.youtube.com/watch?v=GrdEid8H6H4)
+[![Play the independent Every hands-on video about Fable 5](https://i.ytimg.com/vi/GrdEid8H6H4/maxresdefault.jpg)](https://yaked1.github.io/ai-lab-codex-workbench/site/model-media.html#fable-hands-on)
 
 *Visible-media example covered by this ledger. Click the image to watch; the
 video is third-party qualitative context.*
@@ -46,7 +47,8 @@ video is third-party qualitative context.*
 - A public web page or video is not automatically licensed for redistribution.
 - X and YouTube content can be removed, region-blocked, or made non-embeddable.
 - GitHub does not provide inline YouTube playback in repository Markdown. A
-  thumbnail click opens the video on YouTube.
+  thumbnail click opens the embedded player on this repository's GitHub Pages
+  site, so the viewer does not navigate to YouTube.
 - Live benchmark pages can change. The local chart therefore carries a checked
   date and benchmark version.
 - This ledger records a conservative documentation decision, not legal advice.

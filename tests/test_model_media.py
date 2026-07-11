@@ -50,23 +50,28 @@ class ModelMediaTests(unittest.TestCase):
     def test_guides_render_clickable_video_thumbnails(self) -> None:
         expected_cards = {
             "docs/guides/current-models-and-interfaces.md": {
-                "Y9Wz2PV404E",
-                "tV5zXS78HzU",
+                "Y9Wz2PV404E": "fable-official",
+                "tV5zXS78HzU": "gpt-sol-explainer",
             },
             "docs/guides/fable-vs-sol.md": {
-                "Y9Wz2PV404E",
-                "GrdEid8H6H4",
+                "Y9Wz2PV404E": "fable-official",
+                "GrdEid8H6H4": "fable-hands-on",
             },
-            "docs/guides/live-audio-and-translation.md": {"QjuuTHJKxWI"},
+            "docs/guides/live-audio-and-translation.md": {
+                "QjuuTHJKxWI": "launch-discussion"
+            },
         }
 
-        for relative_path, video_ids in expected_cards.items():
+        page_url = (
+            "https://yaked1.github.io/ai-lab-codex-workbench/"
+            "site/model-media.html"
+        )
+        for relative_path, cards in expected_cards.items():
             content = (REPO_ROOT / relative_path).read_text(encoding="utf-8")
-            for video_id in video_ids:
+            for video_id, anchor in cards.items():
                 thumbnail = f"https://i.ytimg.com/vi/{video_id}/maxresdefault.jpg"
-                watch_url = f"https://www.youtube.com/watch?v={video_id}"
-                self.assertIn(f"]({watch_url})", content, relative_path)
                 self.assertIn(f"]({thumbnail})", content, relative_path)
+                self.assertIn(f"]({page_url}#{anchor})", content, relative_path)
 
     def test_every_reader_facing_model_file_has_image_and_video(self) -> None:
         expected_files = {
@@ -84,7 +89,29 @@ class ModelMediaTests(unittest.TestCase):
             content = (REPO_ROOT / relative_path).read_text(encoding="utf-8")
             self.assertIn("![", content, relative_path)
             self.assertIn("https://i.ytimg.com/vi/", content, relative_path)
-            self.assertIn("https://www.youtube.com/watch?v=", content, relative_path)
+            self.assertIn(
+                "https://yaked1.github.io/ai-lab-codex-workbench/site/model-media.html#",
+                content,
+                relative_path,
+            )
+
+    def test_embedded_media_page_uses_privacy_enhanced_players(self) -> None:
+        page = (REPO_ROOT / "docs" / "site" / "model-media.html").read_text(
+            encoding="utf-8"
+        )
+        expected_ids = {
+            "Y9Wz2PV404E",
+            "GrdEid8H6H4",
+            "tV5zXS78HzU",
+            "QjuuTHJKxWI",
+        }
+
+        self.assertEqual(4, page.count("<iframe"))
+        self.assertEqual(4, page.count("allowfullscreen"))
+        for video_id in expected_ids:
+            self.assertIn(
+                f"https://www.youtube-nocookie.com/embed/{video_id}", page
+            )
 
 
 if __name__ == "__main__":

@@ -101,7 +101,7 @@ explicit cache breakpoints and a 30-minute minimum cache life.
 
 ### Watch: a GPT-5.6 Sol explainer
 
-[![Play GPT-5.6 Sol, FIFA AI, and Wall Street's AI nerves by IBM Technology](https://i.ytimg.com/vi/tV5zXS78HzU/maxresdefault.jpg)](https://www.youtube.com/watch?v=tV5zXS78HzU)
+[![Play GPT-5.6 Sol, FIFA AI, and Wall Street's AI nerves by IBM Technology](https://i.ytimg.com/vi/tV5zXS78HzU/maxresdefault.jpg)](https://yaked1.github.io/ai-lab-codex-workbench/site/model-media.html#gpt-sol-explainer)
 
 *Third-party explainer by IBM Technology. Click the image to watch. Use the
 official OpenAI sources below for availability and benchmark claims.*
@@ -158,7 +158,7 @@ not always one unchanged checkpoint.
 
 ### Watch: Introducing Claude Fable 5
 
-[![Play Introducing Claude Fable 5 by Anthropic](https://i.ytimg.com/vi/Y9Wz2PV404E/maxresdefault.jpg)](https://www.youtube.com/watch?v=Y9Wz2PV404E)
+[![Play Introducing Claude Fable 5 by Anthropic](https://i.ytimg.com/vi/Y9Wz2PV404E/maxresdefault.jpg)](https://yaked1.github.io/ai-lab-codex-workbench/site/model-media.html#fable-official)
 
 *Official Anthropic launch video. Click the image to watch; capability claims
 inside the video remain vendor claims.*
