@@ -23,6 +23,11 @@ it does not reproduce Artificial Analysis artwork. The Intelligence panel uses
 Index v4.1 values. The Coding Agent panel omits Fable because the cited July 9
 article does not publish an exact aggregate Fable score in its text.
 
+[![Play Introducing Claude Fable 5 by Anthropic](https://i.ytimg.com/vi/Y9Wz2PV404E/maxresdefault.jpg)](https://www.youtube.com/watch?v=Y9Wz2PV404E)
+
+*Official Anthropic launch video. Click the image to watch. It provides product
+context; the independent comparison below uses separately cited evaluations.*
+
 ## Comparison
 
 | Area | Best current evidence | Interpretation |
@@ -102,12 +107,13 @@ as leads only. They are self-selected, configuration-dependent, easy to game,
 and unsuitable for a “user happiness” score. Arena's blind preference data is
 the more defensible, though still limited, proxy used above.
 
-Two useful watchable perspectives are Anthropic's official
-[Introducing Claude Fable 5](https://www.youtube.com/watch?v=Y9Wz2PV404E)
-and Every's independent hands-on video,
-[We Tested Anthropic's Fable 5 for a Week](https://www.youtube.com/watch?v=GrdEid8H6H4).
-The first is a vendor presentation; the second is qualitative community
-evidence. Neither replaces the benchmark methods cited below.
+### Watch: an independent hands-on perspective
+
+[![Play We Tested Anthropic's Fable 5 for a Week by Every](https://i.ytimg.com/vi/GrdEid8H6H4/maxresdefault.jpg)](https://www.youtube.com/watch?v=GrdEid8H6H4)
+
+*Third-party hands-on video by Every. Click the image to watch. It is
+qualitative community evidence and does not replace the benchmark methods
+cited below.*
 
 The research also found a relevant public X post from
 [GitHub on Fable 5 availability in Copilot](https://x.com/github/status/2064402372961484864).

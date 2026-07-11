@@ -33,3 +33,15 @@ evidence.
 - Do not copy third-party charts or X screenshots without clear reuse rights.
 - Keep every local visual paired with a provenance record.
 - Use videos as explanatory material, not as sole evidence for factual claims.
+
+## Visible-media correction
+
+- Plain video links do not satisfy the reader experience requested here.
+- GitHub-compatible video cards use a rendered YouTube thumbnail inside a
+  link to the watch page.
+- The card caption must identify the publisher and evidence tier.
+- Verified public YouTube cards:
+  - `Y9Wz2PV404E`: Anthropic, Introducing Claude Fable 5.
+  - `GrdEid8H6H4`: Every, We Tested Anthropic's Fable 5 for a Week.
+  - `tV5zXS78HzU`: IBM Technology, GPT-5.6 Sol explainer.
+  - `QjuuTHJKxWI`: ThursdAI, GPT-5.6 and GPT-Live launch discussion.

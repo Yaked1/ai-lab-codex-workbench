@@ -47,6 +47,27 @@ class ModelMediaTests(unittest.TestCase):
         self.assertIn("Artificial Analysis Terms of Use", ledger)
         self.assertIn("screenshot permission not found", ledger)
 
+    def test_guides_render_clickable_video_thumbnails(self) -> None:
+        expected_cards = {
+            "docs/guides/current-models-and-interfaces.md": {
+                "Y9Wz2PV404E",
+                "tV5zXS78HzU",
+            },
+            "docs/guides/fable-vs-sol.md": {
+                "Y9Wz2PV404E",
+                "GrdEid8H6H4",
+            },
+            "docs/guides/live-audio-and-translation.md": {"QjuuTHJKxWI"},
+        }
+
+        for relative_path, video_ids in expected_cards.items():
+            content = (REPO_ROOT / relative_path).read_text(encoding="utf-8")
+            for video_id in video_ids:
+                thumbnail = f"https://i.ytimg.com/vi/{video_id}/maxresdefault.jpg"
+                watch_url = f"https://www.youtube.com/watch?v={video_id}"
+                self.assertIn(f"]({watch_url})", content, relative_path)
+                self.assertIn(f"]({thumbnail})", content, relative_path)
+
 
 if __name__ == "__main__":
     unittest.main()
