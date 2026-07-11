@@ -5,6 +5,12 @@ Checked: 2026-07-11
 This is the research ledger behind the current model guides. The public guides
 contain full links, method notes, and interface-specific caveats.
 
+![Original benchmark snapshot derived from Artificial Analysis data](../assets/model-guides/aa-benchmark-comparison.svg)
+
+The visual is independently drawn from the checked values below. It is not a
+copy of an Artificial Analysis chart. Full asset provenance and reuse decisions
+are recorded in the [media ledger](model-media-provenance-2026-07-11.md).
+
 ## Confirmed
 
 - GPT-5.6 launched generally on 2026-07-09 as Sol, Terra, and Luna. Standard
@@ -60,3 +66,4 @@ contain full links, method notes, and interface-specific caveats.
 - [Current models and interfaces](../guides/current-models-and-interfaces.md)
 - [Fable 5 versus GPT-5.6 Sol](../guides/fable-vs-sol.md)
 - [Live audio and translation](../guides/live-audio-and-translation.md)
+- [Model media provenance](model-media-provenance-2026-07-11.md)

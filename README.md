@@ -190,6 +190,12 @@ The [live audio guide](docs/guides/live-audio-and-translation.md) explains
 GPT-Live-1's vendor-described full-duplex design and Gemini 3.5 Live
 Translate's product and API paths.
 
+Each guide now includes an original, attributed visual and links to watchable
+official demos where available. The
+[media provenance ledger](docs/research/model-media-provenance-2026-07-11.md)
+explains why third-party benchmark charts and X screenshots are linked rather
+than copied.
+
 These files are dated snapshots. Check the linked primary sources before
 making a purchase, deployment, or account-access decision.
 

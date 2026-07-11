@@ -14,6 +14,12 @@ Claim labels used here:
 - **INDEPENDENT**: reported by a third party with a published method.
 - **UNVERIFIED**: the available sources do not support the exact claim.
 
+![Source-derived map of current model families and documented product surfaces](../assets/model-guides/availability-map.svg)
+
+The map is an original summary of the official sources below, not a screenshot
+of any vendor interface. See the [media provenance ledger](../research/model-media-provenance-2026-07-11.md)
+for source and reuse details.
+
 ## Quick Corrections
 
 | Requested wording | Verified wording as of 2026-07-11 |
@@ -198,6 +204,20 @@ models.
 - Google does not publish an exact Standard/Extended to API-effort mapping.
 - Grok's exact numeric long-context rates need confirmation in the live xAI
   console or an official pricing table that renders the tier.
+
+## Watch and explore
+
+- [OpenAI's GPT-5.6 launch page](https://openai.com/index/gpt-5-6/) includes
+  official product and benchmark visuals.
+- [Anthropic's Fable 5 launch page](https://www.anthropic.com/news/claude-fable-5-mythos-5)
+  includes on-page demos, and the official
+  [Introducing Claude Fable 5 video](https://www.youtube.com/watch?v=Y9Wz2PV404E)
+  is watchable on YouTube.
+- [SpaceXAI's Grok 4.5 launch page](https://x.ai/news/grok-4-5) includes
+  official charts and demonstrations.
+- Community context: [IBM Technology on the GPT-5.6 Sol preview](https://www.youtube.com/watch?v=tV5zXS78HzU)
+  and [ThursdAI's GPT-5.6 launch-day discussion](https://youtu.be/QjuuTHJKxWI).
+  These videos are explanatory material, not evidence for availability or scores.
 
 ## Sources
 

@@ -16,6 +16,13 @@ Artificial Analysis tested Sol **Max**, while OpenAI describes Sol **Ultra** as
 a Codex/Work mode coordinating four agents by default. Relabeling Max results
 as Ultra would be false.
 
+![Original chart of current Artificial Analysis intelligence and coding-agent scores](../assets/model-guides/aa-benchmark-comparison.svg)
+
+This repository created the chart from published Artificial Analysis values;
+it does not reproduce Artificial Analysis artwork. The Intelligence panel uses
+Index v4.1 values. The Coding Agent panel omits Fable because the cited July 9
+article does not publish an exact aggregate Fable score in its text.
+
 ## Comparison
 
 | Area | Best current evidence | Interpretation |
@@ -94,6 +101,18 @@ while others preferred Fable's autonomy or judgment. These posts were treated
 as leads only. They are self-selected, configuration-dependent, easy to game,
 and unsuitable for a “user happiness” score. Arena's blind preference data is
 the more defensible, though still limited, proxy used above.
+
+Two useful watchable perspectives are Anthropic's official
+[Introducing Claude Fable 5](https://www.youtube.com/watch?v=Y9Wz2PV404E)
+and Every's independent hands-on video,
+[We Tested Anthropic's Fable 5 for a Week](https://www.youtube.com/watch?v=GrdEid8H6H4).
+The first is a vendor presentation; the second is qualitative community
+evidence. Neither replaces the benchmark methods cited below.
+
+The research also found a relevant public X post from
+[GitHub on Fable 5 availability in Copilot](https://x.com/github/status/2064402372961484864).
+The repository links to the post instead of copying its screenshot because no
+clear redistribution permission was found.
 
 ## Uncertainties
 

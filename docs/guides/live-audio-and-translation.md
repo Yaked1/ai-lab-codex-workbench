@@ -2,6 +2,10 @@
 
 Checked: 2026-07-11
 
+![Conceptual comparison of GPT-Live and Gemini Live Translate data flows](../assets/model-guides/live-architecture.svg)
+
+This is a source-derived conceptual diagram, not an implementation schematic.
+
 ## GPT-Live-1
 
 OpenAI launched GPT-Live-1 and GPT-Live-1 mini on 2026-07-08. GPT-Live-1 is
@@ -90,6 +94,19 @@ Google documents possible voice drift, language-detection errors with heavy
 accents or similar languages, artifacts from background audio, and audio-only
 translation input. “Near real-time” and quality claims are vendor claims, not
 independent guarantees for every language pair.
+
+## Watch the official demonstrations
+
+- [OpenAI: Introducing GPT-Live](https://openai.com/index/introducing-gpt-live/)
+  contains official, watchable audio demonstrations of continuous interaction.
+- [Google: Gemini 3.5 Live Translate](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-live-3-5-translate/)
+  contains official videos covering translation, listening mode, and a Google
+  Meet preview.
+- [Google DeepMind's public X demo](https://x.com/GoogleDeepMind/status/2064366509216928102)
+  is linked as an official social artifact. Its screenshot is not copied
+  because no clear republication license was found.
+- The [Google Gemini Live Translate sample](https://github.com/google-gemini/gemini-live-api-examples/tree/main/gemini-live-translate-livekit)
+  provides an implementation-oriented companion to the videos.
 
 ## Sources
 

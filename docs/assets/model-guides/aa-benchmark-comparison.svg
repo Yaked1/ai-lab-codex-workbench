@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">Artificial Analysis benchmark comparison</title>
+  <desc id="desc">Original bar charts show Intelligence Index v4.1 scores Fable 60, Sol 59, Terra 55, Luna 51 and Coding Agent Index scores Sol 80, Terra 77, Luna 75.</desc>
+  <rect width="1200" height="680" rx="28" fill="#0f172a"/>
+  <text x="60" y="62" fill="#f8fafc" font-family="Segoe UI, sans-serif" font-size="34" font-weight="700">Artificial Analysis benchmark snapshot</text>
+  <text x="60" y="96" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="18">Independent scores · source pages checked 2026-07-11 · higher is better</text>
+  <g font-family="Segoe UI, sans-serif">
+    <text x="60" y="150" fill="#e2e8f0" font-size="24" font-weight="700">Intelligence Index v4.1</text>
+    <g font-size="19" fill="#e2e8f0">
+      <text x="60" y="201">Fable Max</text><rect x="200" y="180" width="600" height="28" rx="7" fill="#a855f7"/><text x="815" y="201">60</text>
+      <text x="60" y="246">Sol Max</text><rect x="200" y="225" width="590" height="28" rx="7" fill="#3b82f6"/><text x="805" y="246">59</text>
+      <text x="60" y="291">Terra Max</text><rect x="200" y="270" width="550" height="28" rx="7" fill="#14b8a6"/><text x="765" y="291">55</text>
+      <text x="60" y="336">Luna Max</text><rect x="200" y="315" width="510" height="28" rx="7" fill="#f59e0b"/><text x="725" y="336">51</text>
+    </g>
+    <text x="60" y="410" fill="#e2e8f0" font-size="24" font-weight="700">Coding Agent Index</text>
+    <g font-size="19" fill="#e2e8f0">
+      <text x="60" y="461">Sol Max</text><rect x="200" y="440" width="800" height="28" rx="7" fill="#3b82f6"/><text x="1015" y="461">80</text>
+      <text x="60" y="506">Terra Max</text><rect x="200" y="485" width="770" height="28" rx="7" fill="#14b8a6"/><text x="985" y="506">77</text>
+      <text x="60" y="551">Luna Max</text><rect x="200" y="530" width="750" height="28" rx="7" fill="#f59e0b"/><text x="965" y="551">75</text>
+    </g>
+  </g>
+  <text x="60" y="620" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="16">Original chart by this repository. Data: Artificial Analysis, “GPT-5.6 has landed” and current model pages.</text>
+  <text x="60" y="648" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="16">Fable has no exact Coding Agent Index aggregate in the cited July 9 article, so it is omitted from that panel.</text>
+</svg>

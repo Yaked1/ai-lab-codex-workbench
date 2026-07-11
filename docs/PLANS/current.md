@@ -1,51 +1,50 @@
-# Current Plan: 2026 Model and Interface Update
+# Current Plan: Model Media and Benchmark Visuals
 
 ## Goal
 
-Publish a source-verified, public-safe update covering current model names,
-interfaces, effort controls, pricing, prompting guidance, and a careful
-Claude-versus-Codex comparison, then verify and commit the requested files.
+Add verified, durable media to the repository's important model benchmark and
+availability guides without treating marketing images or social posts as
+independent evidence.
 
 ## Phases
 
-- [x] Inspect repository state, instructions, and existing work.
-- [x] Verify official product, availability, interface, and pricing claims.
-- [x] Verify independent benchmark evidence and document uncertainty.
-- [x] Write focused guides, shorten and rebalance the README, and remove superseded claims.
-- [x] Run repository checks, review the diff, and prepare the commit on `main`.
+- [x] Phase 1: Inspect repository state, rules, target guides, and media policy.
+- [x] Phase 2: Research official visuals, benchmark data, X posts, and videos.
+- [x] Phase 3: Create attributed local visuals and add watchable media links.
+- [x] Phase 4: Verify provenance, links, tests, diff, and commit readiness.
+
+## Key questions
+
+1. Which media can be redistributed or embedded in a public GitHub repository?
+2. Which benchmark values can support an original, correctly labeled chart?
+3. Which videos add useful explanation without becoming evidence for claims?
 
 ## Decisions
 
-- The user-provided GPT-5.6 announcement was verified against OpenAI's official
-  2026-07-09 release before use.
-- X and other community posts are treated as leads or sentiment samples only.
-- Sol Max benchmark results are not relabeled as Sol Ultra results.
-- The pre-existing unstaged `CLAUDE.md` edit is preserved and excluded from the
-  task commit.
-- Available subagents were used for bounded research, but no model identity or
-  effort was claimed because the subagent API did not expose those selectors.
+- Prefer original local SVG diagrams derived from verified data over copied
+  benchmark screenshots.
+- Link to X posts instead of redistributing screenshots unless reuse permission
+  is explicit.
+- Use official vendor videos where available and label third-party videos.
+- Preserve the pre-existing unstaged `CLAUDE.md` edit.
 
 ## Errors and resolutions
 
-- `rg.exe` could not launch in this PowerShell session. Searches used
+- `rg.exe` could not launch in this PowerShell session. Repository searches use
   `Get-ChildItem` and `Select-String`.
-- `memanto recall` reported no active MEMANTO agent. Repository and Codex
-  memory files remained available.
-- `codex debug models` invoked a blocked PowerShell wrapper. `codex.cmd debug
-  models` succeeded.
-- The first full test run failed eight README contract tests after the README
-  was shortened. Required operational markers were restored, and the stale
-  50KB minimum-size test was replaced with a 10KB to 25KB focused-entry-point
-  contract. The focused and full suites then passed.
-
-## Verification
-
-- `python scripts/repo_health_check.py`: passed.
-- `python scripts/safe_autofix.py --check`: passed.
-- `python -m unittest discover -s tests`: 83 tests passed.
-- `git diff --check`: passed for task files.
+- A large patch failed because curly quotes were rendered with the wrong
+  encoding. It was reapplied with stable Markdown heading anchors.
 
 ## Status
 
-Complete. The task-related file set is ready for the requested commit on
-`main`; the unrelated `CLAUDE.md` edit remains unstaged.
+Complete. The source links, local SVG structure, provenance ledger, full test
+suite, repository health check, safe-format check, and diff whitespace check
+passed. The unrelated `CLAUDE.md` edit remains outside the task file set.
+
+## Verification
+
+- `python -m unittest tests.test_model_media`: 3 tests passed.
+- `python scripts/repo_health_check.py`: passed.
+- `python scripts/safe_autofix.py --check`: passed.
+- `python -m unittest discover -s tests`: 86 tests passed.
+- `git diff --check`: passed.
