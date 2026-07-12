@@ -2817,11 +2817,75 @@ and configuration are available.
 
 #### Open-source and deployment caution
 
-DeepSeek's release says the weights are available. It does not let this guide
-infer a license from the word open-sourced, claim a particular local hardware
-requirement, or promise parity between hosted API and a self-hosted checkpoint.
-Before local deployment, confirm the exact repository, license, precision,
-runtime, safety controls, quantization, and test result for the selected build.
+DeepSeek publishes both base and instruction checkpoints through its official
+Hugging Face organization. The [V4-Pro model card](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro)
+and [V4-Pro base configuration](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-Base/blob/main/config.json)
+provide enough implementation detail to distinguish a weight release from the
+hosted service. The table below is **confirmed from those artifacts as checked
+2026-07-12**. Flash values come from the same official V4 model card; fields not
+published for Flash are left unknown rather than copied from Pro.
+
+| Architecture field | V4-Pro | V4-Flash |
+| --- | --- | --- |
+| Model class | Sparse decoder-only MoE (`DeepseekV4ForCausalLM`) | Sparse decoder-only MoE |
+| Total / activated parameters | 1.6T / 49B per token | 284B / 13B per token |
+| Context | 1,048,576 tokens | 1,048,576 tokens |
+| Transformer layers | 61 | Not stated in the checked model card |
+| Hidden width | 7,168 | Not stated in the checked model card |
+| Attention | Hybrid Compressed Sparse Attention (CSA) and Heavily Compressed Attention (HCA) | Same V4 family design; exact Flash config should be checked separately |
+| Attention configuration | 128 query heads, one KV head, 512 head dimension; 64 index heads of dimension 128 selecting top 1,024 positions | Not stated in the checked model card |
+| MoE routing | 384 routed experts plus one shared expert; six routed experts active per token | Active-parameter count published; expert topology not copied from Pro |
+| MoE feed-forward width | 3,072 | Not stated in the checked model card |
+| Positional/context scaling | 65,536 original sequence length, factor-16 extension to 1M, RoPE theta 10,000 | 1M supported; exact scaling config not stated here |
+| Vocabulary | 129,280 | Not stated in the checked model card |
+| Released precision | Base: FP8 mixed; instruction: expert weights FP4 and most other weights FP8 | Same published base/instruction precision policy |
+| Checked Hugging Face repository footprint | 865 GB across 64 Safetensors shards | 160 GB across 46 Safetensors shards |
+
+The hybrid attention is not a marketing synonym for ordinary grouped-query
+attention. DeepSeek says CSA and HCA reduce the V4-Pro single-token inference
+FLOPs at 1M context to 27% of V3.2 and reduce KV-cache use to 10%. These are
+**vendor measurements**, not independently reproduced numbers. The configuration
+also exposes Manifold-Constrained Hyper-Connections (`hc_mult=4`, 20 Sinkhorn
+iterations), three hash layers, query and output LoRA ranks, and a 128-token
+window. Those details matter to runtime authors but do not imply that generic
+Transformers or a legacy DeepSeek-V3 server can load the model correctly.
+
+#### Released precision, checkpoint scale, and community quantizations
+
+The official instruction checkpoint is already mixed low precision: expert
+parameters are FP4 while most remaining tensors are FP8. Calling every smaller
+conversion simply "4-bit" hides which tensors were requantized, which stayed at
+higher precision, and what calibration method was used. Record the exact repo,
+revision, tensor formats, runtime, kernel support, and context used. The official
+model page links a Hugging Face quantization tree, but those downstream GGUF,
+AWQ, or other conversions are community artifacts unless DeepSeek publishes
+them in its own organization. Treat their size and quality claims separately.
+
+A 1.6T-total-parameter sparse model does not fit on hardware as if it were a
+49B dense model. The active count approximates per-token compute, while all
+experts still require storage and an expert-parallel loading strategy. Likewise,
+the 284B Flash checkpoint is not a typical single-GPU 13B model. Capacity plans
+must include stored weights, non-expert tensors, KV cache, router/expert-parallel
+communication, batch size, output length, runtime workspace, and safety/service
+overhead. DeepSeek's release does not provide one universal minimum GPU count,
+so this guide does not invent one.
+
+#### Vendor benchmark snapshot and interpretation
+
+DeepSeek's official card reports base-model results with the shot count and
+metric. V4-Pro-Base reports 90.1 on five-shot MMLU, 73.5 on five-shot MMLU-Pro,
+76.8 pass@1 on zero-shot HumanEval, 64.5 on four-shot MATH, and 51.5 on one-shot
+LongBench-V2. Flash-Base reports 88.7, 68.3, 69.5, 57.4, and 44.7 respectively.
+These are useful **vendor-reported results**, but they are not a single rank:
+Pro does not lead Flash on every listed task, and none of these base-model rows
+measure the hosted agent loop, tool schema, or Max reasoning mode.
+
+Before local deployment, confirm the exact license file for the selected
+checkpoint, pin the repository revision, validate the serving implementation
+against the reference output, and rerun task-specific evaluations at the chosen
+precision. Hosted API and local-weight results should remain separate because
+system prompts, post-training, sampler settings, kernels, safety layers, and
+model revisions can differ.
 
 ### GLM-5.2: Long-Horizon Claims Need Long-Horizon Evidence
 
@@ -2841,6 +2905,59 @@ as **unknown** rather than extrapolating from an older GLM release or a reseller
 price page. A user considering a purchase should check the product surface on
 the day of use and note whether quota, subscription, API, or self-hosted costs
 are being compared.
+
+#### Weight architecture and checkpoint footprint
+
+The official [GLM-5.2 model repository](https://huggingface.co/zai-org/GLM-5.2)
+is MIT-licensed and identifies the model as `GlmMoeDsaForCausalLM`. Its
+[configuration](https://huggingface.co/zai-org/GLM-5.2/blob/main/config.json)
+turns the release's high-level sparse-attention claims into concrete deployment
+facts. These values are from the repository revision checked 2026-07-12:
+
+| Field | Published value |
+| --- | --- |
+| Architecture | Decoder-only sparse MoE with DeepSeek-style sparse attention (`glm_moe_dsa`) |
+| Stored checkpoint | Approximately 1.51 TB across 282 Safetensors shards in the checked repository |
+| Layers | 78 transformer layers; first three use dense MLPs, remaining layers use sparse MoE MLPs |
+| Hidden / dense FFN width | 6,144 / 12,288 |
+| MoE topology | 256 routed experts plus one shared expert; eight routed experts selected per token |
+| Expert FFN width | 2,048 |
+| Attention heads | 64 query and 64 KV heads; 192 base head dimension, 256 QK/value dimensions after split components |
+| Sparse indexer | 32 index heads, 128-dimensional index heads, top-2,048 selection, index refreshed every four layers |
+| Context | 1,048,576 positions |
+| Position encoding | Interleaved RoPE, theta 8,000,000 |
+| Vocabulary | 154,880 tokens; embeddings are not tied |
+| Released dtype | BF16 tensors; router computation declared FP32 |
+| Runtime paths documented by model owner | Transformers, vLLM, SGLang, and Docker Model Runner |
+
+The config's layer lists show the architectural rhythm more precisely than the
+phrase "sparse attention." The first three indexers are full. Later sparse
+layers share one indexer for groups of four, with periodic full indexers. Z.ai
+calls this IndexShare and reports a 2.9x reduction in per-token FLOPs at 1M
+context. The configuration also contains one next-token-prediction draft layer;
+the model card says the revised speculative-decoding layer improves accepted
+draft length by up to 20%. Both efficiency figures are **vendor claims** and
+depend on its implementation and workload.
+
+The published 1.51 TB repository size is storage evidence, not an accelerator
+memory recommendation. Self-hosting requires tensor and expert parallelism,
+high-throughput interconnects, runtime workspace, and additional KV-cache memory.
+Eight active routed experts reduce compute relative to evaluating all 256, but
+all expert weights still need storage and an availability strategy. Community
+quantizations linked by Hugging Face may reduce storage, but their calibration,
+kernel compatibility, long-context quality, and benchmark retention must be
+evaluated per artifact. Z.ai's official repository does not make every community
+conversion an official GLM-5.2 release.
+
+#### Vendor benchmark snapshot
+
+The official model card reports GLM-5.2 at 40.5 on Humanity's Last Exam without
+tools, 54.7 with tools, 20.9 on CritPt, and 99.2 on AIME 2026. These rows mix
+different task types and sometimes tools; they are not interchangeable quality
+percentages. The comparison table marks some competitor values with asterisks,
+so a downstream summary must retain the card's footnotes, evaluator, prompting,
+tool access, and token budget. Until a benchmark maintainer or independent lab
+reproduces the exact GLM setup, these remain **vendor-reported results**.
 
 #### Meaning of long-horizon work
 
@@ -2894,6 +3011,75 @@ card](https://docs.mistral.ai/models/model-cards/mistral-small-4-0-26-03) lists
 $0.15/$0.60 pricing. These values describe documented service options, not a
 guarantee that either model will be available with identical limits in every
 region, account, or deployment runtime.
+
+#### Mistral Small 4 weight architecture
+
+The official [Mistral Small 4 weight card](https://huggingface.co/mistralai/Mistral-Small-4-119B-2603)
+and [configuration](https://huggingface.co/mistralai/Mistral-Small-4-119B-2603/blob/main/config.json)
+disclose substantially more than the API card. Small 4 is a multimodal sparse
+MoE, not a dense 119B transformer. Its 119B stored parameters and 6.5B active
+parameters describe different resource questions: the first drives checkpoint
+storage and weight memory, while the second better approximates compute per
+token.
+
+| Field | Mistral Small 4 119B A6B |
+| --- | --- |
+| Text backbone | `mistral4`, 36 layers, hidden size 4,096 |
+| MoE topology | 128 routed experts plus one shared expert; top four routed experts per token |
+| Dense / expert FFN width | 12,288 / 2,048 |
+| Attention | 32 query heads and 32 KV heads, 128-dimensional heads; Q-LoRA rank 1,024 and KV-LoRA rank 256 |
+| Position encoding | YaRN factor 128 from an 8,192-token original window; RoPE theta 10,000 |
+| Configured maximum | 1,048,576 positions in the weight config; product/model card advertises 256K supported context |
+| Vocabulary | 131,072, untied embeddings |
+| Vision tower | 24 layers, width 1,024, 16 heads, 14-pixel patches, image size up to 1,540 |
+| Distributed checkpoint | Seven approximately 20 GB consolidated shards; Hugging Face tree reports roughly 242 GB total |
+| Official precision paths | FP8 checkpoint and a separate NVFP4 checkpoint |
+| License | Apache 2.0 for the checked weight repository |
+
+The 1M `max_position_embeddings` value is a configuration ceiling, not evidence
+that Mistral supports or evaluates every task at 1M. The owner-facing model card
+states 256K, and the reference vLLM command uses `--max-model-len 262144`.
+Deployment guidance should therefore use 256K unless a newer Mistral source
+documents a validated higher limit. This is an example of why reading only
+`config.json` can overstate a product contract.
+
+Small 4 combines Instruct, reasoning, and Devstral-style agent behavior in one
+checkpoint. The card exposes `reasoning_effort="none"` and `"high"`, a Mistral
+reasoning parser, automatic tool choice, and function calls. It also publishes
+an Eagle speculative-decoding head. Mistral reports 40% lower end-to-end time in
+a latency-optimized setup and three times the requests per second in a
+throughput-optimized setup versus Small 3; these are **vendor measurements**
+whose hardware, batching, prompt lengths, and acceptance rate must accompany any
+reuse.
+
+#### Quantization and serving choices
+
+The official FP8 repository is roughly 242 GB. Mistral's separate NVFP4 release
+is the owner-published four-bit path and is intended to reduce memory use and
+increase throughput, but the collection warns to expect lower long-context
+performance. That warning should be part of an evaluation, not a footnote.
+Hugging Face also lists community GGUF conversions for llama.cpp and LM Studio;
+their quantization recipes and accuracy are not automatically endorsed by
+Mistral. Record the converter, quantization type, tensor exceptions, file size,
+runtime commit, and representative benchmark delta.
+
+Mistral recommends vLLM for production serving and documents tensor parallelism,
+Flash Attention with MLA, tool-call and reasoning parsers, batch-token limits,
+and GPU-memory utilization. SGLang, Transformers, llama.cpp, and LM Studio are
+also listed. Runtime support is version-sensitive: the card required a current
+vLLM plus `mistral_common` 1.11.0 or later and, for Transformers at publication,
+the development branch. A successful load is not enough; verify image input,
+reasoning mode, tool-call JSON, 256K retrieval, throughput, and output quality.
+
+#### What remains undisclosed for Medium 3.5
+
+The checked Medium 3.5 API card establishes an open-weight label, context,
+license class, modalities, and price, but it does not expose an official weight
+configuration with total parameters, active parameters, layer count, expert
+count, attention topology, tokenizer size, or owner-published quantization in
+the sources reviewed here. Those fields remain **unknown**. Do not transfer
+Small 4's 119B A6B architecture to Medium 3.5 merely because both are current
+Mistral releases.
 
 Choose between them with a matched workload, not their names. Define a fixed
 repository task, source-analysis task, or structured-output task; keep the
@@ -4139,6 +4325,12 @@ decoding. Evaluate EAGLE separately because speculative decoding should preserve
 output distribution in principle but can expose implementation bugs or context
 caps in practice.
 
+The checked first-party Hugging Face tree reports **267 GB** because it contains
+two equivalent three-shard naming layouts in the same repository. Each listed
+weight layout is approximately 134 GB (about 50 + 50 + 34 GB). A downloader
+should follow the model's index and runtime instructions rather than assuming
+the repository total is the minimum unique weight payload.
+
 ### Mistral Small 4: 119B-A6.5B MoE With First-Party NVFP4
 
 The [Mistral Small 4 model card](https://huggingface.co/mistralai/Mistral-Small-4-119B-2603),
@@ -4189,6 +4381,11 @@ Leanstral 1.5 uses the Mistral Small 4 architectural family: 119B total,
 approximately 6.5B active, 128 experts with 4 routed experts active, 256K
 context, and multimodal input. Its differentiator is specialized post-training
 and agent tooling for Lean 4, not a wholly separate backbone.
+
+The checked first-party repository is **121 GB**, split across seven consolidated
+Safetensors shards, and is Apache 2.0 licensed. That owner-published footprint
+is a download/storage fact, not a complete VRAM estimate; add cache, runtime,
+tooling, and compiler-process memory.
 
 The compiler is the authoritative evaluator. Report:
 
@@ -4284,6 +4481,37 @@ serving support must be verified in the exact runtime version. A model loading
 successfully is not proof that the fastest or numerically correct attention
 kernel was selected.
 
+#### Effective parameters, official quantizations, and memory
+
+Google explains that E2B and E4B use **Per-Layer Embeddings (PLE)**. Each decoder
+layer receives its own small lookup embedding for every token. Those tables add
+stored weights without adding the same matrix-multiplication cost as widening
+every transformer block, which is why an "effective" parameter label is not the
+same thing as checkpoint size. The 26B A4B has a different efficiency mechanism:
+it is an MoE that loads the full 26B expert bank while selecting eight of 128
+experts and activating about 4B parameters per token.
+
+Google's checked memory table includes 20% loading overhead but excludes KV
+cache and the rest of the application:
+
+| Variant | BF16 | SFP8 | Q4_0 | Mobile | Mobile text-only |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| E2B | 11.4 GB | 5.7 GB | 2.9 GB | 1.1 GB | 0.84 GB |
+| E4B | 17.9 GB | 8.9 GB | 4.5 GB | 2.5 GB | 2.2 GB |
+| 12B | 26.7 GB | 13.4 GB | 6.7 GB | Not listed | Not listed |
+| 26B A4B | 57.7 GB | 28.8 GB | 14.4 GB | Not listed | Not listed |
+| 31B | 69.9 GB | 34.9 GB | 17.5 GB | Not listed | Not listed |
+
+The family has first-party quantization-aware-trained releases. Google documents
+`-qat-q4_0-gguf` for llama.cpp and LM Studio, `-qat-w4a16-ct` Compressed Tensors
+for vLLM/SGLang, `-qat-q4_0-unquantized` plus a matching `-assistant` drafter for
+custom conversion and speculative decoding, and mobile builds for E2B/E4B.
+Official Q4_0 GGUF and unquantized QAT artifacts cover all five sizes; the
+checked W4A16 collection covers E2B, E4B, 12B, and 31B. Community AWQ, GPTQ,
+MLX, EXL2, or alternative GGUF builds remain separate artifacts whose group
+size, calibration set, excluded tensors, runtime, and benchmark retention must
+be recorded.
+
 #### Multimodal encoders
 
 Gemma 4 variants include vision components and some variants include audio.
@@ -4332,6 +4560,7 @@ report:
 | Generation | Iterative denoising over token blocks rather than only left-to-right next-token decoding |
 | License | Apache 2.0 |
 | Modal input | Text, image, and video input to text output |
+| Checked instruction-checkpoint footprint | 51.7 GB across 11 Safetensors shards |
 
 The canvas is the unit over which masked/noisy tokens can be refined in
 parallel. Speed depends on number of denoising steps, canvas utilization,
