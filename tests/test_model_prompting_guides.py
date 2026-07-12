@@ -40,6 +40,44 @@ CORE_NEEDLES = (
     "Verification",
 )
 
+SHARED_FILES = {
+    "README.md",
+    "surface-and-effort-map.md",
+    "sources-and-observations.md",
+    "effort-evaluation-playbook.md",
+}
+
+PRECISION_HEADINGS = (
+    "## Precision Execution Contract",
+    "### Model and version identity",
+    "### Surface, plan, effort, and harness matrix",
+    "### Tool and permission boundary",
+    "### Pricing, limits, and benchmark context",
+    "### Production prompt template",
+    "### Evaluation rubric",
+    "### Auto-fail conditions",
+    "### Failure protocol",
+    "### Run record",
+)
+
+PRECISION_FIELDS = (
+    "Model ID:",
+    "Release / availability:",
+    "Plan:",
+    "Surface:",
+    "Harness / client version:",
+    "Effort / thinking:",
+    "Tools enabled:",
+    "Permission boundary:",
+    "Objective:",
+    "Context:",
+    "Constraints:",
+    "Output contract:",
+    "Verification:",
+    "Stop conditions:",
+    "Retry / escalation:",
+)
+
 
 def read(path: Path) -> str:
     return path.read_text(encoding="utf-8")
@@ -61,6 +99,40 @@ class ModelPromptingPackTests(unittest.TestCase):
             with self.subTest(name=name):
                 for needle in CORE_NEEDLES:
                     self.assertIn(needle, text, f"{name} missing {needle}")
+
+    def test_every_model_guide_has_precision_contract(self):
+        for name in REQUIRED_FILES:
+            if name in SHARED_FILES:
+                continue
+            text = read(PACK / name)
+            with self.subTest(name=name):
+                for heading in PRECISION_HEADINGS:
+                    self.assertIn(heading, text, f"{name} missing {heading}")
+                for field in PRECISION_FIELDS:
+                    self.assertIn(field, text, f"{name} missing {field}")
+
+    def test_every_model_guide_has_reference_manual_depth(self):
+        word_pattern = __import__("re").compile(r"\b[\w.-]+\b", __import__("re").UNICODE)
+        for name in REQUIRED_FILES:
+            if name in SHARED_FILES:
+                continue
+            words = word_pattern.findall(read(PACK / name))
+            with self.subTest(name=name):
+                self.assertGreaterEqual(
+                    len(words),
+                    1000,
+                    f"{name} has only {len(words)} words; expected an operating manual",
+                )
+
+    def test_precision_contract_identifies_unknowns_and_evidence(self):
+        for name in REQUIRED_FILES:
+            if name in SHARED_FILES:
+                continue
+            text = read(PACK / name)
+            with self.subTest(name=name):
+                self.assertIn("Unknown or unverified:", text)
+                self.assertIn("Evidence class:", text)
+                self.assertIn("Auto-fail", text)
 
     def test_surface_map_covers_user_effort_facts(self):
         text = read(PACK / "surface-and-effort-map.md")
@@ -97,6 +169,33 @@ class ModelPromptingPackTests(unittest.TestCase):
         ):
             with self.subTest(needle=needle):
                 self.assertIn(needle, text)
+
+    def test_sol_precision_addendum_records_current_surface_identity(self):
+        surface = read(PACK / "surface-and-effort-map.md")
+        for needle in (
+            "0.145.0-alpha.4",
+            "ChatGPT Desktop Work",
+            "ChatGPT Desktop Codex",
+            "Plus | Medium, High",
+            "Pro, Business, Enterprise | Medium, High, Extra High, Sol Pro",
+            "no `ultra` reasoning value",
+            "1.05M-token context window",
+            "Sol **$5/$30**",
+            "Agents Last Exam | 52.7 | 50.4 | 50.3",
+        ):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, surface)
+
+        sol = read(PACK / "gpt-5-6-sol-prompting.md")
+        for needle in (
+            "installed 0.144.0, stable 0.144.1, alpha 0.145.0-alpha.4",
+            "Sol Pro path",
+            "API: none through max, never ultra",
+            "universal Business Work Ultra eligibility",
+            "Vendor launch chart: Agents Last Exam 52.7",
+        ):
+            with self.subTest(sol_needle=needle):
+                self.assertIn(needle, sol)
 
     def test_luna_has_no_ultra_menu(self):
         text = read(PACK / "gpt-5-6-luna-prompting.md")

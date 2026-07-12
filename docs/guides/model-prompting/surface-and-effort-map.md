@@ -272,3 +272,81 @@ instructions.
 Recheck live product documentation before relying on a changed model picker,
 price, context limit, tool, or preview status. Keep any local observation labeled
 as local evidence rather than a universal capability claim.
+
+## Precision Addendum: GPT-5.6 Sol by Surface
+
+Checked npm tags: stable **0.144.1** and alpha **0.145.0-alpha.4** on
+2026-07-12. The installed `codex-cli 0.144.0` meets the documented minimum but
+is one stable patch behind. This table is the minimum specificity for a
+reproducible Sol run. `Pro` in Chat is a model path, not the same control as
+`xhigh`, `max`, or `ultra`.
+
+| Surface | Eligible plan in cited documentation | Exact Sol choices | Harness identity and consequence |
+| --- | --- | --- | --- |
+| ChatGPT Chat web | Plus | Medium, High | Conversation and uploaded-file harness; no repository terminal implied |
+| ChatGPT Chat web | Pro, Business, Enterprise | Medium, High, Extra High, Sol Pro | Sol Pro is the separate top-quality Chat option; workspace policy still applies |
+| ChatGPT Work web | Plus, Pro, Business, Enterprise | Sol with per-task effort; dated picker showed Low, Medium, High, Extra High, Max | Artifact and plugin/app harness; exact picker is rollout-sensitive |
+| ChatGPT Work web Ultra | Pro, Enterprise officially; Business observed on one workspace | Ultra | Parallel workflow; do not generalize the Business observation |
+| ChatGPT Desktop Work | Eligible paid plan | Light, Medium, High, Extra High, Max, Ultra where eligible | Work examples plus Plugins; Light is the desktop label for Low |
+| ChatGPT Desktop Codex | Eligible paid plan | Light, Medium, High, Extra High, Max, Ultra where eligible | Repository-oriented examples and local execution controls |
+| Codex CLI `0.144.0` checked | Authenticated eligible account | Low, Medium, High, Extra High, Max, Ultra | Local repository agent; record sandbox, approvals, network, and tool state |
+| OpenAI API | API project with billing and access | `none`, `low`, `medium`, `high`, `xhigh`, `max` | Application-owned tools and schemas; no `ultra` reasoning value |
+
+The new Desktop app exposes Work and Codex from the upper-left product
+selector. Both can show the same effort vocabulary, but they are different
+harnesses. Work is organized around knowledge work and Plugins. Codex is
+organized around coding-agent tasks. A copied prompt must update its tools and
+permissions even when model and effort are unchanged.
+
+### Dated API envelope
+
+OpenAI's model pages list a 1.05M-token context window and 128K maximum output
+for Sol, Terra, and Luna. Published standard input/output prices per million
+tokens are Sol **$5/$30**, Terra **$2.50/$15**, and Luna **$1/$6**; cached input
+is listed at one tenth of standard input. Long-context multipliers can change
+the Sol cost, so retain actual usage rather than only the model name. Recheck
+the price page before budgeting production traffic.
+
+The API lists tools such as web search, file search, image generation, code
+interpreter, hosted shell, apply patch, skills, computer use, MCP, and tool
+search where an endpoint and account support them. A capability listing does
+not enable a tool. The caller must configure it and define schemas, approvals,
+write scope, and network boundaries.
+
+### Dated vendor benchmark context
+
+| Published suite | Sol | Terra | Luna | Safe interpretation |
+| --- | ---: | ---: | ---: | --- |
+| Agents Last Exam | 52.7 | 50.4 | 50.3 | Sol leads narrowly in the vendor agent evaluation |
+| GDPval-AA v2 | 1747.8 | 1593.0 | 1591.8 | Sol has more headroom on the vendor professional-work aggregate |
+| Management consulting | 43.2 | 37.2 | 35.4 | Workload result, not a general intelligence scale |
+| Big Finance | 53 | 51 | 36 | Terra is close to Sol; Luna trails on this dated finance suite |
+| AA Intelligence | 58.9 | 55.0 | 51.2 | Tier gaps vary by task, so route from measured failures |
+
+Keep the chart's model, effort, tools, and harness with any copied score. These
+vendor results do not prove that Sol at one product effort beats another tier
+at an unreported effort.
+
+### Surface preflight contract
+
+```text
+Vendor and exact model ID:
+Release state and checked date:
+Subscription plan / API project:
+Organization policy or admin restriction:
+Surface and workflow mode:
+Harness / client version:
+Visible effort label:
+Underlying API or config value:
+Context and output limits:
+Tools, plugins, apps, or MCP servers enabled:
+Read/write/network permissions:
+Approval points and forbidden actions:
+Pricing, credits, weekly limits, or quota:
+Fallback indicator and final model identity:
+Evidence source for each volatile field:
+```
+
+If a picker conflicts with a help page, record both with date and scope. Use
+the picker for the current run and the official page for the public eligibility
+claim. Do not turn one account observation into a plan-wide promise.

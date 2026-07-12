@@ -1,102 +1,129 @@
-# Current Plan: 2026 Frontier Model and Multimodal Coverage
+# Current Plan: Precision Model Prompting Guide Expansion
 
 ## Goal
 
-Expand every model section in the primary frontier guide into a source-backed
-technical dossier covering architecture, performance, benchmarks, deployment,
-evaluation, and limitations. Open-weight entries must include the exact layers,
-attention and expert topology, parameter counts, precision, quantization,
-checkpoint footprint, runtime, and hardware evidence published by model owners.
+Expand every guide in `docs/guides/model-prompting/` into a precise operating
+manual. A reader must be able to identify the exact model, release state,
+subscription plan, product surface, client or API harness, effort or thinking
+mode, tool set, permission boundary, prompt contract, validation method, and
+failure path before running a task.
+
+The guide pack must separate three kinds of statements:
+
+1. current vendor-documented product facts;
+2. dated local or account observations;
+3. recommendations that require evaluation on the reader's workload.
 
 ![GPT-5.6 effort controls by product surface](../assets/model-guides/gpt-5-6-effort-surfaces.svg)
 
 [![Watch a hands-on test of GPT-5.6 Sol, Terra, and Luna](https://i.ytimg.com/vi/xDXX2M5DrO0/maxresdefault.jpg)](https://yaked1.github.io/ai-lab-codex-workbench/site/model-media.html#gpt-5-6-family-test)
 
-*Third-party workflow context. Official documentation remains the authority for
-model access, effort menus, and prices.*
+*Third-party workflow context. Official documentation remains the authority
+for model access, effort menus, versions, and prices.*
 
 ## Scope
 
-- Every GPT, Claude, Grok, Meta, Gemini, live-audio, image, video, specialist,
-  open-weight, and robotics section in the primary guide.
-- The guide's shared benchmark, quantization, deployment, uncertainty, and
-  source-reference sections.
+- All GPT-5.6 Sol, Terra, and Luna guides.
+- All Claude Fable, Opus, and Sonnet guides.
+- Grok, Gemini, Muse, DeepSeek, GLM, Mistral, live-audio, image, video,
+  translation, open-model, media, and robotics guides.
+- The pack index, surface and effort map, evidence ledger, and effort
+  evaluation playbook.
+- Regression tests that prevent future guides from collapsing into short
+  product summaries.
 
-## Measurable Outcome
+## Per-Guide Acceptance Contract
 
-- Every audited model has a substantive, category-appropriate dossier rather
-  than a one-row listing.
-- The primary guide gives every model practical task fit, architecture disclosure
-  status, integration boundary, evaluation method, published benchmark context,
-  cost considerations, deployment implications, and failure modes.
-- Every open-weight model records exact configuration fields and first-party
-  quantizations where available; absent fields remain explicitly unknown.
-- Research and citations remain first-party, dated, and explicit about gaps.
-- Regression tests enforce guide depth, key taxonomy, and uncertainty rules.
+Every model or system guide must include:
+
+- exact public model name and API model identifier when one is documented;
+- dated release, preview, promotional, or availability state;
+- plan and organization-policy boundary for consumer products;
+- exact surface and harness, including client version when it changes access;
+- visible effort label and underlying API value, without treating them as
+  interchangeable when the product does not;
+- tool availability, required setup, permission boundary, and forbidden
+  actions;
+- context, output, latency, quota, pricing, or billing facts when published;
+- architecture and benchmark context only when supported, with vendor and
+  independent results clearly separated;
+- model-specific task fit, weak fits, and routing thresholds;
+- a production prompt containing objective, context, constraints, output
+  contract, verification, stop conditions, and retry or escalation rules;
+- a weighted evaluation rubric, auto-fail conditions, failure protocol, and
+  reproducible run record;
+- explicit unknowns for undisclosed architecture, unverified pickers, absent
+  prices, unavailable products, and plan-dependent rollouts.
+
+## Shared-Guide Acceptance Contract
+
+- The index routes by task, model, surface, and evidence need.
+- The surface map records ChatGPT Chat, Work web, Desktop Work, Desktop Codex,
+  Codex CLI, API, Claude, Grok, Gemini, live, image, video, and specialist
+  surfaces without merging their controls.
+- GPT-5.6 Sol coverage records the checked Codex CLI version, current stable and
+  alpha package versions, Chat plan matrix, Work and Codex effort menus,
+  Desktop Light versus CLI Low wording, API effort values, and Ultra versus Sol
+  Pro semantics.
+- The evidence ledger maps volatile claims to a source, evidence tier, checked
+  date, scope, and recheck trigger.
+- The evaluation playbook defines frozen prompts, repeated trials, weighted
+  rubrics, confidence reporting, successful-task cost, orchestration cost, and
+  promotion or rollback rules.
+
+## Verification Gates
+
+- [x] Every indexed file exists and ends with a newline.
+- [x] Every model guide contains the precision contract headings and fields.
+- [x] Every model guide is at least 1,000 words, while grouped or flagship
+  guides may be longer when their surface count requires it.
+- [x] Model-specific boundaries remain intact, including Luna without Ultra,
+  Sol Pro as a separate model path, Fable's dated promotion, Muse Video as
+  unavailable, and translation-only limitations.
+- [x] Source links and volatile claims pass the repository's documentation
+  checks.
+- [x] Unit tests, repository health check, safe autofix check, and diff check
+  pass.
+- [x] The final diff is reviewed, committed, and pushed to the established
+  remote without force.
 
 ## Phases
 
-- [x] Inspect the current guide, pack, source ledger, and repository state.
-- [x] Re-verify the official sources needed for expanded factual detail.
-- [x] Establish announcement-style dossiers for every named model and variant.
-- [x] Establish the cross-model architecture and deployment reference.
-- [x] Deepen DeepSeek V4, GLM-5.2, Mistral Small 4, and Gemma 4 from first-party configurations.
-- [x] Audit remaining open/specialist model architecture, quantization, and checkpoint fields.
-- [x] Audit every closed/media/live/robotics dossier for performance, benchmark, and unknown-field depth.
-- [x] Add broad dossier-schema and open-model architecture regression tests.
-- [x] Run final repository validation and review the complete diff.
-- [x] Commit and push the final audited expansion.
-
-## Key Questions
-
-1. What additional information is documented well enough to explain safely?
-2. Which operational facts should remain unavailable or preview-only?
-3. How can readers reproduce an evaluation without conflating specialist and
-   general-purpose model measures?
+- [x] Audit all guide files, existing tests, surface tables, and source rules.
+- [x] Verify the current GPT-5.6 Sol product, API, CLI, plan, and effort facts.
+- [x] Add shared precision standards and claim-level evidence rules.
+- [x] Expand every model and system guide with its exact operating contract.
+- [x] Add structural and content regression tests.
+- [x] Run all repository checks and review the final diff.
+- [x] Commit and push the accepted change set.
 
 ## Decisions
 
-- Use detailed subsections where the first-party source establishes facts; use
-  explicit unknowns where it does not.
-- Retain the existing categories, rather than forcing OCR, TTS, proof, and
-  embodied reasoning into a frontier generalist ranking.
-- Preserve Gemini 3.5 Pro as watchlist-only and Robostral Navigate as announced
-  with limited public technical detail.
+- Use exact dated facts where first-party sources or the local catalog support
+  them. Do not infer an effort menu from another surface.
+- Treat model, effort, harness, tools, and permissions as one run identity.
+- Treat Ultra and Ultracode as orchestration modes, not API reasoning values.
+- Treat Sol Pro as a separate highest-quality Chat path, not a renamed effort.
+- Keep vendor benchmark charts labeled as vendor results and require local
+  workload evaluation before routing decisions.
+- Never invent architecture, pricing, plan access, or availability for systems
+  whose owners have not published it.
 
-## Checkpoint Notes
+## Current Evidence Snapshot
 
-- Commits `4bd2ba7` and `5ef44b5` established the large dossier corpus now on
-  `origin/main`; the current pass audits and deepens it rather than replacing it.
-- The guide currently exceeds 38,000 words and contains more than 40 structured
-  announcement dossiers. Length is not completion evidence; field coverage and
-  claim support remain the acceptance criteria.
-- The first current-pass additions record DeepSeek V4 Pro topology and mixed
-  precision, GLM-5.2 IndexShare/MoE configuration, Mistral Small 4 checkpoint and
-  NVFP4 details, and Gemma 4 PLE/QAT/memory evidence.
-
-## Errors Encountered
-
-- Initial parallel output truncated several guide bodies. Resolved by reading
-  the files in smaller batches.
-- The first `agent-reach doctor --json` output was omitted by the command batch.
-  Resolved by running it separately; web access is available through Jina
-  Reader and GitHub is available without authenticated extended features.
-- PowerShell could not launch `rg.exe` in this session. The consistency scan
-  used `Select-String` instead.
-- `safe_autofix.py --check` requested deterministic wrapping in the new source
-  ledger. `--write` applied only that formatting change and the diff was
-  reviewed.
-- The direct Anthropic promotional-access support page was unavailable through
-  the web reader, but the user supplied the current official wording and linked
-  Claude Code terms: Fable access and the 50% Claude Code weekly-limit increase
-  run through July 19, 2026 at 11:59:59 PM PT.
-- The first inline Python section counter used a raw regular expression inside
-  an f-string expression and failed with a syntax error. Moving the expression
-  to a compiled variable fixed the audit.
-- A Gemma patch initially targeted text that had moved after the two large guide
-  expansion commits. The existing family dossier was preserved and extended at
-  its current location instead.
+- Installed Codex CLI: `0.144.0`.
+- Current npm stable checked on 2026-07-12: `0.144.1`.
+- Current npm alpha checked on 2026-07-12: `0.145.0-alpha.4`.
+- Local Codex catalog: Sol and Terra expose Low through Ultra; Luna exposes Low
+  through Max and no Ultra.
+- Official ChatGPT help: Plus Chat exposes Sol Medium and High; Pro, Business,
+  and Enterprise expose Medium, High, Extra High, and the separate Sol Pro
+  path.
+- Official launch: Work Ultra is documented for Pro and Enterprise; Codex Ultra
+  for Plus and higher. A Business Work Ultra picker remains a dated workspace
+  observation, not a universal plan promise.
 
 ## Status
 
-The full field audit, repository validation, commit, and push are complete.
+The guide expansion, regression gates, final review, commit, and push are
+complete.

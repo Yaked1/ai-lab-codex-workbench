@@ -125,3 +125,63 @@ and rights review; formal proofs need compiler acceptance; media needs original
 output inspection; robotics needs simulation, independent safety controls, and
 supervised transfer tests. A general chat benchmark cannot substitute for these
 task-specific gates.
+
+## Precision Standard for Every Run
+
+Do not record a run as only `GPT-5.6 Sol High` or `Claude Fable 5 Max`.
+Capability comes from the complete execution tuple:
+
+```text
+model + dated release state + plan + surface + harness version
++ effort/thinking + context + tools + permissions + prompt revision
++ output limit + validator + retry policy
+```
+
+Two runs using the same model can behave differently when one has repository
+tools and the other is ordinary chat, one can launch agents and the other
+cannot, or one workspace administrator has disabled an app. Every guide now
+uses this minimum preflight record:
+
+```text
+Model ID:                    [exact picker name and API ID, if published]
+Release / availability:     [stable | preview | promotion | announced]
+Plan:                        [Free | Plus | Pro | Business | Enterprise | API]
+Surface:                     [Chat | Work | Desktop Work | Desktop Codex | CLI | API]
+Harness / client version:    [product and version; "web rollout" if unversioned]
+Effort / thinking:           [visible label and API/config value]
+Tools enabled:               [exact tools, apps, plugins, MCP servers, or none]
+Permission boundary:         [read/write/network/approval limits]
+Unknown or unverified:       [picker, price, architecture, quota, or none]
+Evidence class:              [Official | Local evidence | Independent | Interpretation]
+```
+
+The production prompt then specifies objective, context, constraints, output
+contract, verification, stop conditions, and retry or escalation. If any field
+would change the permitted actions or billing path and is unknown, stop at
+preflight and resolve it before execution.
+
+## Task-First Routing
+
+| Workload | Start with | Move up when | Do not substitute |
+| --- | --- | --- | --- |
+| Fast classification, extraction, or bounded transforms | Luna, Gemini Flash low/medium, or a documented specialist | Schema or factual checks fail after one prompt repair | Higher effort for missing inputs |
+| Normal coding, document work, or multi-step analysis | Terra Medium, Sonnet, Grok Medium, Gemini Flash medium | Regression tests, traceability, or acceptance rubric fail | A benchmark headline for a local task eval |
+| Hard debugging, architecture, synthesis, or final review | Sol High/Extra High, Fable High/xhigh, Opus high/xhigh | A frozen lower-effort run misses a reasoning-sensitive gate | Ultra when work cannot be split |
+| Parallel repository or research streams | Sol/Terra Ultra or Claude Ultracode | Streams are independent with frozen interfaces | Ultra as a synonym for deeper single-agent thinking |
+| Live conversation | GPT-Live-1 or Mini by plan and latency target | Background reasoning or tool delegation is required | Text-model effort labels for audio turn taking |
+| Translation-only audio | Gemini Live Translate | The task is strictly speech translation | General assistant instructions or tool calls |
+| Image or video production | Exact media model named in its guide | Reference fidelity, edit precision, or resolution gate fails | Text benchmark rankings |
+| Formal proof, OCR, TTS, robotics | Exact specialist system | Domain validator requires a different system | Generalist prose quality as proof |
+
+## Prompt and Evaluation Minimum
+
+Every production template has five required blocks: objective, context,
+constraints, output contract, and verification. Every serious run also has a
+weighted rubric, auto-fail conditions, and a failure protocol. An attractive
+answer receives no credit if it violates scope, uses an unapproved tool,
+misstates the active model, fabricates a source, or skips a mandatory check.
+
+Use no more than two prompt-repair passes before changing the model or effort.
+Pass one repairs missing constraints or output shape. Pass two adds only the
+evidence needed to repair the observed failure. After that, report the blocker
+or run a declared routing experiment. Silent fallback is never acceptable.
