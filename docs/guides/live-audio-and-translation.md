@@ -47,6 +47,13 @@ State interruption behavior, desired speaking length, language, when to use
 tools, and how to recover from a misheard name or number. Do not overload the
 voice prompt with a long written-work rubric.
 
+### Watch: GPT-Live in the GPT-5.6 launch discussion
+
+[![Play the ThursdAI GPT-5.6 and GPT-Live launch discussion](https://i.ytimg.com/vi/QjuuTHJKxWI/maxresdefault.jpg)](https://yaked1.github.io/ai-lab-codex-workbench/site/model-media.html#launch-discussion)
+
+*Community launch-day discussion by ThursdAI. Click the image to watch. It is
+context, not the authority for architecture or availability claims.*
+
 ## Gemini 3.5 Live Translate
 
 Gemini 3.5 Live Translate is a low-latency audio-to-audio translation model.
@@ -95,7 +102,7 @@ accents or similar languages, artifacts from background audio, and audio-only
 translation input. “Near real-time” and quality claims are vendor claims, not
 independent guarantees for every language pair.
 
-## Watch the official demonstrations
+## More official demonstrations
 
 - [OpenAI: Introducing GPT-Live](https://openai.com/index/introducing-gpt-live/)
   contains official, watchable audio demonstrations of continuous interaction.

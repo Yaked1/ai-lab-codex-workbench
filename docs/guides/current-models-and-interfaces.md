@@ -1,5 +1,9 @@
 # Current Models, Interfaces, and Effort Controls
 
+For the longer plan-by-plan essay, expanded Artificial Analysis comparison,
+and current audio, image, and video model map, read
+[Frontier Models and Multimodal Systems in 2026](frontier-models-and-multimodal-systems-2026.md).
+
 Checked: 2026-07-11
 
 This guide separates model names, interface labels, and API parameters. Those
@@ -17,7 +21,9 @@ Claim labels used here:
 ![Source-derived map of current model families and documented product surfaces](../assets/model-guides/availability-map.svg)
 
 The map is an original summary of the official sources below, not a screenshot
-of any vendor interface. See the [media provenance ledger](../research/model-media-provenance-2026-07-11.md)
+of any vendor interface. See the
+[media provenance ledger](../research/model-media-provenance-2026-07-11.md)
+and [video research pack](../research/video-research-pack-2026-07-11.md)
 for source and reuse details.
 
 ## Quick Corrections
@@ -99,6 +105,13 @@ pricing for the full request. Cache writes cost 1.25x uncached input, while
 cache reads receive the 90% cached-input discount. OpenAI also documents
 explicit cache breakpoints and a 30-minute minimum cache life.
 
+### Watch: a GPT-5.6 Sol explainer
+
+[![Play GPT-5.6 Sol, FIFA AI, and Wall Street's AI nerves by IBM Technology](https://i.ytimg.com/vi/tV5zXS78HzU/maxresdefault.jpg)](https://yaked1.github.io/ai-lab-codex-workbench/site/model-media.html#gpt-sol-explainer)
+
+*Third-party explainer by IBM Technology. Click the image to watch. Use the
+official OpenAI sources below for availability and benchmark claims.*
+
 ## Claude Fable 5
 
 Claude Fable 5 is the official model name; the API model ID is
@@ -148,6 +161,13 @@ Fable 5 includes conservative cyber, biology, and chemistry safeguards. In
 most Claude applications, flagged requests can route to Opus 4.8. This matters
 when interpreting both cost and benchmark results: a routed Fable product is
 not always one unchanged checkpoint.
+
+### Watch: Introducing Claude Fable 5
+
+[![Play Introducing Claude Fable 5 by Anthropic](https://i.ytimg.com/vi/Y9Wz2PV404E/maxresdefault.jpg)](https://yaked1.github.io/ai-lab-codex-workbench/site/model-media.html#fable-official)
+
+*Official Anthropic launch video. Click the image to watch; capability claims
+inside the video remain vendor claims.*
 
 ## Grok 4.5 in Grok Build
 
@@ -204,20 +224,6 @@ models.
 - Google does not publish an exact Standard/Extended to API-effort mapping.
 - Grok's exact numeric long-context rates need confirmation in the live xAI
   console or an official pricing table that renders the tier.
-
-## Watch and explore
-
-- [OpenAI's GPT-5.6 launch page](https://openai.com/index/gpt-5-6/) includes
-  official product and benchmark visuals.
-- [Anthropic's Fable 5 launch page](https://www.anthropic.com/news/claude-fable-5-mythos-5)
-  includes on-page demos, and the official
-  [Introducing Claude Fable 5 video](https://www.youtube.com/watch?v=Y9Wz2PV404E)
-  is watchable on YouTube.
-- [SpaceXAI's Grok 4.5 launch page](https://x.ai/news/grok-4-5) includes
-  official charts and demonstrations.
-- Community context: [IBM Technology on the GPT-5.6 Sol preview](https://www.youtube.com/watch?v=tV5zXS78HzU)
-  and [ThursdAI's GPT-5.6 launch-day discussion](https://youtu.be/QjuuTHJKxWI).
-  These videos are explanatory material, not evidence for availability or scores.
 
 ## Sources
 

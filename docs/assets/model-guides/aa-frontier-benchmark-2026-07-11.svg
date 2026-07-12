@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-labelledby="title desc">
+  <title id="title">Artificial Analysis frontier model benchmark snapshot</title>
+  <desc id="desc">Two original bar charts show the Intelligence Index v4.1 launch snapshot and the Coding Agent Index. Every bar includes its effort and, for coding, its agent harness or fallback status.</desc>
+  <rect width="1400" height="900" rx="30" fill="#0a1220"/>
+  <text x="65" y="68" fill="#f8fafc" font-family="Segoe UI, sans-serif" font-size="36" font-weight="700">Artificial Analysis frontier snapshot</text>
+  <text x="65" y="106" fill="#9fb0c7" font-family="Segoe UI, sans-serif" font-size="19">Checked 2026-07-11. Higher is better. Scores are not claims about every workload.</text>
+  <g font-family="Segoe UI, sans-serif">
+    <rect x="55" y="140" width="630" height="675" rx="22" fill="#111d33" stroke="#334155"/>
+    <text x="85" y="184" fill="#dbeafe" font-size="25" font-weight="700">Intelligence Index v4.1</text>
+    <text x="85" y="214" fill="#9fb0c7" font-size="16">Launch/current snapshot, rounded only where noted</text>
+    <g font-size="17" fill="#e5edf8">
+      <text x="85" y="267">Fable 5 Max + fallback</text><rect x="280" y="248" width="359" height="24" rx="6" fill="#a855f7"/><text x="646" y="267" text-anchor="end">59.9</text>
+      <text x="85" y="317">GPT-5.6 Sol Max</text><rect x="280" y="298" width="353" height="24" rx="6" fill="#3b82f6"/><text x="646" y="317" text-anchor="end">58.9</text>
+      <text x="85" y="367">Claude Opus 4.8 Max</text><rect x="280" y="348" width="334" height="24" rx="6" fill="#c084fc"/><text x="646" y="367" text-anchor="end">55.7</text>
+      <text x="85" y="417">GPT-5.6 Terra Max</text><rect x="280" y="398" width="330" height="24" rx="6" fill="#14b8a6"/><text x="646" y="417" text-anchor="end">55.0</text>
+      <text x="85" y="467">Grok 4.5 High</text><rect x="280" y="448" width="324" height="24" rx="6" fill="#22c55e"/><text x="646" y="467" text-anchor="end">54.0</text>
+      <text x="85" y="517">GPT-5.6 Luna Max</text><rect x="280" y="498" width="307" height="24" rx="6" fill="#f59e0b"/><text x="646" y="517" text-anchor="end">51.2</text>
+      <text x="85" y="567">Muse Spark 1.1 xhigh</text><rect x="280" y="548" width="306" height="24" rx="6" fill="#fb7185"/><text x="646" y="567" text-anchor="end">51.0</text>
+      <text x="85" y="617">Gemini 3.5 Flash High</text><rect x="280" y="598" width="301" height="24" rx="6" fill="#eab308"/><text x="646" y="617" text-anchor="end">50.2</text>
+    </g>
+    <text x="85" y="670" fill="#9fb0c7" font-size="15">Composite includes agentic work, coding, science,</text>
+    <text x="85" y="694" fill="#9fb0c7" font-size="15">knowledge, physics, long context, and hallucination metrics.</text>
+    <text x="85" y="742" fill="#9fb0c7" font-size="15">Fable includes the production Opus 4.8 fallback.</text>
+    <text x="85" y="766" fill="#9fb0c7" font-size="15">Muse and Grok values come from their AA model/article pages.</text>
+
+    <rect x="715" y="140" width="630" height="675" rx="22" fill="#111d33" stroke="#334155"/>
+    <text x="745" y="184" fill="#dbeafe" font-size="25" font-weight="700">Coding Agent Index</text>
+    <text x="745" y="214" fill="#9fb0c7" font-size="16">DeepSWE, Terminal-Bench v2, SWE-Atlas-QnA</text>
+    <g font-size="17" fill="#e5edf8">
+      <text x="745" y="267">Sol Max</text><text x="745" y="288" fill="#9fb0c7" font-size="14">Codex</text><rect x="1030" y="258" width="280" height="24" rx="6" fill="#3b82f6"/><text x="1318" y="277" text-anchor="end">80</text>
+      <text x="745" y="327">Terra Max</text><text x="745" y="348" fill="#9fb0c7" font-size="14">Codex</text><rect x="1030" y="318" width="270" height="24" rx="6" fill="#14b8a6"/><text x="1318" y="337" text-anchor="end">77</text>
+      <text x="745" y="387">Fable Max + fallback</text><text x="745" y="408" fill="#9fb0c7" font-size="14">Claude Code</text><rect x="1030" y="378" width="270" height="24" rx="6" fill="#a855f7"/><text x="1318" y="397" text-anchor="end">77</text>
+      <text x="745" y="447">Grok 4.5 High</text><text x="745" y="468" fill="#9fb0c7" font-size="14">Grok Build</text><rect x="1030" y="438" width="266" height="24" rx="6" fill="#22c55e"/><text x="1318" y="457" text-anchor="end">76</text>
+      <text x="745" y="507">Luna Max</text><text x="745" y="528" fill="#9fb0c7" font-size="14">Codex</text><rect x="1030" y="498" width="263" height="24" rx="6" fill="#f59e0b"/><text x="1318" y="517" text-anchor="end">75</text>
+      <text x="745" y="567">Opus 4.8 Max</text><text x="745" y="588" fill="#9fb0c7" font-size="14">Claude Code</text><rect x="1030" y="558" width="256" height="24" rx="6" fill="#c084fc"/><text x="1318" y="577" text-anchor="end">73</text>
+    </g>
+    <text x="745" y="642" fill="#9fb0c7" font-size="15">Harness behavior, permissions, caching, and orchestration</text>
+    <text x="745" y="666" fill="#9fb0c7" font-size="15">are part of these results. This is not a model-only test.</text>
+    <text x="745" y="714" fill="#9fb0c7" font-size="15">Artificial Analysis tested Sol Max, not Sol Ultra.</text>
+    <text x="745" y="738" fill="#9fb0c7" font-size="15">Equal scores can hide different cost, time, and subtest profiles.</text>
+  </g>
+  <text x="65" y="858" fill="#9fb0c7" font-family="Segoe UI, sans-serif" font-size="16">Original chart. Data: Artificial Analysis model pages and July 8-9 articles; OpenAI launch table supplies decimal Intelligence values.</text>
+</svg>

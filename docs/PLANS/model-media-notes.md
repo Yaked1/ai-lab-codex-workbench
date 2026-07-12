@@ -8,6 +8,13 @@ evidence.
 
 ## Candidate visuals
 
+![Artificial Analysis benchmark comparison used by the model guides](../assets/model-guides/aa-benchmark-comparison.svg)
+
+[![Play Introducing Claude Fable 5 by Anthropic](https://i.ytimg.com/vi/Y9Wz2PV404E/maxresdefault.jpg)](https://yaked1.github.io/ai-lab-codex-workbench/site/model-media.html#fable-official)
+
+*The chart renders directly above. Click the video image to watch the official
+Anthropic introduction inside the repository's GitHub Pages player.*
+
 - Original comparison chart for Artificial Analysis benchmark scores.
 - Original interface and availability map based on official product sources.
 - Original live audio and translation architecture diagram.
@@ -33,3 +40,24 @@ evidence.
 - Do not copy third-party charts or X screenshots without clear reuse rights.
 - Keep every local visual paired with a provenance record.
 - Use videos as explanatory material, not as sole evidence for factual claims.
+
+## Visible-media correction
+
+- Plain video links do not satisfy the reader experience requested here.
+- GitHub-compatible video cards use a rendered YouTube thumbnail inside a
+  link to the watch page.
+- The card caption must identify the publisher and evidence tier.
+- Verified public YouTube cards:
+  - `Y9Wz2PV404E`: Anthropic, Introducing Claude Fable 5.
+  - `GrdEid8H6H4`: Every, We Tested Anthropic's Fable 5 for a Week.
+  - `tV5zXS78HzU`: IBM Technology, GPT-5.6 Sol explainer.
+  - `QjuuTHJKxWI`: ThursdAI, GPT-5.6 and GPT-Live launch discussion.
+
+## Embedded-player correction
+
+- GitHub repository Markdown filters YouTube iframes, so playback cannot occur
+  inside a `github.com/.../blob/...md` view.
+- The repository's existing GitHub Pages site can host privacy-enhanced iframe
+  players at `site/model-media.html`.
+- Thumbnail destinations now use GitHub Pages anchors rather than YouTube watch
+  URLs, keeping the viewer on the repository-owned site during playback.
