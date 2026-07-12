@@ -80,5 +80,5 @@ model access, effort menus, and prices.*
 
 ## Status
 
-Expanded-dossier work is validated and committed; push to the established remote
-is the final pending operation.
+Expanded-dossier work is validated, committed, and pushed to the established
+remote.
