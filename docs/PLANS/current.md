@@ -2,10 +2,10 @@
 
 ## Goal
 
-Audit the requested 2026 frontier, specialist, media, and embodied-reasoning
-systems against current official sources. Expand the dated frontier essay and
-prompting pack only for documented public surfaces, with a clear watchlist for
-officially announced but unavailable systems.
+Expand every model section in the primary frontier guide into materially deeper,
+task-oriented reference material. Preserve source boundaries: the added detail
+must explain documented controls, evaluation methods, integration limits, and
+failure modes without filling unknowns with plausible guesses.
 
 ![GPT-5.6 effort controls by product surface](../assets/model-guides/gpt-5-6-effort-surfaces.svg)
 
@@ -16,59 +16,50 @@ model access, effort menus, and prices.*
 
 ## Scope
 
-- Claude Sonnet 5; DeepSeek V4 Pro and Flash; GLM-5.2.
-- Mistral Medium 3.5, Small 4, OCR 4, Voxtral TTS, Leanstral 1.5, and
-  Robostral Navigate.
-- Gemma 4, DiffusionGemma, Veo 3.1 Lite, Lyria 3, Gemini Robotics-ER 1.6,
-  and Gemini 3.5 Pro's release status.
+- Every GPT, Claude, Grok, Meta, Gemini, live-audio, image, video, specialist,
+  open-weight, and robotics section in the primary guide.
+- Every file in `docs/guides/model-prompting/`, while keeping its index and
+  source ledger coherent with the expanded primary guide.
 
 ## Measurable Outcome
 
-- Every audit target has a documented outcome: released, preview, announced,
-  or unconfirmed.
-- Every new factual claim links to a visited official source and carries a
-  checked date or a stated uncertainty.
-- New prompting guides are indexed and contain task fit, tool boundaries,
-  verification, failure modes, cost framing, and unsuitable uses.
-- Regression tests protect the new guide set, taxonomy, watchlist, and links.
+- Every audited model has a substantive, category-appropriate dossier rather
+  than a one-row listing.
+- The primary guide and prompting pack give every model practical task fit,
+  integration boundary, evaluation method, cost considerations where published,
+  prompt patterns, and failure modes.
+- Research and citations remain first-party, dated, and explicit about gaps.
+- Regression tests enforce guide depth, key taxonomy, and uncertainty rules.
 
 ## Phases
 
-- [x] Inspect the branch, existing essay, prompting pack, tests, and repository
-  instructions.
-- [x] Research every requested audit target through official sources.
-- [x] Add source-conscious taxonomy, audit outcomes, and prompting guidance.
-- [x] Update indexes and regression tests.
-- [x] Run focused and full validation, review the diff, and commit on `main`.
+- [x] Inspect the current guide, pack, source ledger, and repository state.
+- [x] Re-verify the official sources needed for expanded factual detail.
+- [x] Expand every model dossier and prompting guide with operational depth.
+- [x] Strengthen depth and classification regression tests.
+- [x] Validate the reviewed documentation change.
+- [x] Commit and push the reviewed documentation change.
 
 ## Key Questions
 
-1. Which named systems have a documented public API or product surface?
-2. Which specialist systems require different evaluation criteria from general
-   language models?
-3. Which facts are absent or conflict across official sources and must remain
-   unknown?
+1. What additional information is documented well enough to explain safely?
+2. Which operational facts should remain unavailable or preview-only?
+3. How can readers reproduce an evaluation without conflating specialist and
+   general-purpose model measures?
 
 ## Decisions
 
-- Preserve existing verified 2026 coverage and add grouped guides where models
-  share an operational category.
-- Use first-party sources for all release, identifier, availability, pricing,
-  license, and capability claims. Do not add numerical benchmarks without an
-  independent method.
-- Keep Gemini 3.5 Pro on a watchlist because Google currently says only
-  "coming soon" and provides no usable model identifier or access instructions.
-- Keep Robostral Navigate out of production guidance because the official
-  announcement is not paired with a documented public model surface.
+- Use detailed subsections where the first-party source establishes facts; use
+  explicit unknowns where it does not.
+- Retain the existing categories, rather than forcing OCR, TTS, proof, and
+  embodied reasoning into a frontier generalist ranking.
+- Preserve Gemini 3.5 Pro as watchlist-only and Robostral Navigate as announced
+  with limited public technical detail.
 
 ## Checkpoint Notes
 
-- Official-source sweep completed 2026-07-12. New release and access facts are
-  linked in the frontier guide; no independent benchmark values were added.
-- Gemini 3.5 Pro remains an official coming-soon watchlist entry. Robostral
-  Navigate remains announced with limited public technical information.
-- Focused prompting-guide tests, repository health, formatting check, full
-  unit suite, and `git diff --check` passed before staging.
+- Previous source sweep establishes the starting source set. This expansion will
+  re-open the load-bearing primary sources before adding detail.
 
 ## Errors Encountered
 
@@ -82,8 +73,12 @@ model access, effort menus, and prices.*
 - `safe_autofix.py --check` requested deterministic wrapping in the new source
   ledger. `--write` applied only that formatting change and the diff was
   reviewed.
+- The direct Anthropic promotional-access support page was unavailable through
+  the web reader, but the user supplied the current official wording and linked
+  Claude Code terms: Fable access and the 50% Claude Code weekly-limit increase
+  run through July 19, 2026 at 11:59:59 PM PT.
 
 ## Status
 
-Documentation expansion is complete and validated. Commit only the listed
-frontier-guide, prompting-guide, index, test, and plan changes; do not push.
+Expanded-dossier work is validated and committed; push to the established remote
+is the final pending operation.

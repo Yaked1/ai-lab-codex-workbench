@@ -70,8 +70,10 @@ Confirmed:
 - Anthropic recommends Opus `xhigh` for coding/agentic work and at least `high`
   for other intelligence-sensitive work. Large `max_tokens` budgets are needed
   for `xhigh` and `max` agentic runs.
-- Fable promotional access ends July 12, 2026 at 11:59:59 PM PT. Fable remains
-  available through usage credits where allowed; API billing is separate.
+- Anthropic's Fable promotional-access terms state that the promotion ends July
+  19, 2026 at 11:59:59 PM PT. The linked Claude Code weekly-limits promotion
+  states that its 50% increase also extends through that date. This is a dated
+  promotional condition and should be rechecked before billing decisions.
 
 Claude web `Extra` and exact Code/Desktop picker labels are recorded as dated
 surface observations where the API page only documents `xhigh`.
@@ -151,3 +153,18 @@ generation and editing controls, not an inferred architecture.
 - [ ] Ultra, Ultracode, and API effort remain separate
 - [ ] Preview and unavailable products are not presented as shipping defaults
 - [ ] Benchmark model, effort, fallback, and harness stay together
+
+## Expanded-Dossier Source Rules
+
+The expanded prompting pages must not add a product fact unless the linked
+primary source establishes that exact fact. When a guide gives operational
+advice, it should say whether that advice is an interpretation of documented
+controls or a local evaluation procedure. A model card, launch chart, or product
+demo can establish a vendor claim; it does not establish an independent result.
+
+For every serious comparison, retain a small evidence packet: source URL and
+date, model identifier, product surface, effort/thinking configuration, context
+and tool setup, prompt version, observed outputs, validation result, cost/latency
+measurement, and human correction. Keep preview and announced systems separate
+from stable production surfaces. If two official sources conflict, record both
+and choose neither without a newer authoritative resolution.

@@ -313,7 +313,9 @@ class ModelMediaTests(unittest.TestCase):
         )
         self.assertIn("fully autoregressive", essay)
         self.assertIn("**unconfirmed**", essay)
-        self.assertIn("July 12, 2026 at 11:59:59 PM Pacific Time", essay)
+        self.assertIn("July 19, 2026 at 11:59:59 PM", essay)
+        self.assertIn("50% increase to Claude Code weekly usage limits", essay)
+        self.assertIn("promotional condition", essay)
 
 
 if __name__ == "__main__":

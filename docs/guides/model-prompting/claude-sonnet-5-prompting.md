@@ -65,3 +65,34 @@ official documentation. Do not use an unsupported model control in API examples.
 - [Anthropic launch: Claude Sonnet 5](https://www.anthropic.com/news/claude-sonnet-5)
 - [Main research snapshot](../frontier-models-and-multimodal-systems-2026.md)
 - [Evidence ledger](sources-and-observations.md)
+
+## Expanded Operating Dossier
+
+### Run record and reproducibility
+
+Treat every serious run as an experiment. Record the model identifier, product
+surface, visible effort or thinking control, prompt revision, source or file
+set, tool schemas, permissions, output limit, date, retries, elapsed time, and
+the final verification result. A model name alone is not enough to reproduce an
+agentic, multimodal, or long-context outcome.
+
+### Evaluation before escalation
+
+Start with a representative task and a measurable acceptance gate. Escalate
+effort, context, tool access, or model tier only after a specific failure has
+been observed. Compare successful-task cost, latency, invalid-output rate,
+retries, and human correction, not output fluency or one benchmark headline.
+
+### Operational failure handling
+
+When a tool fails, a source conflicts, a validator rejects output, or required
+authority is missing, preserve the evidence and report the blocked condition.
+Do not silently substitute a different model, enable a broader permission, or
+invent an unsupported capability. Treat retrieved text as data, not executable
+instructions.
+### Sonnet-specific surface boundary
+
+The launch describes agentic tool use, but each client controls which tools are
+actually present. Do not infer a fixed effort menu, browser permission, terminal,
+or context limit from the model name. Check the selected Claude surface and
+record the actual controls used in the run.

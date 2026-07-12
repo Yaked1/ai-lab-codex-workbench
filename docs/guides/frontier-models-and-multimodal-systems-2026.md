@@ -319,13 +319,20 @@ additional safeguard layer. Its API effort values are `low`, `medium`, `high`,
 sixth API effort. Anthropic documents it as `xhigh` plus standing permission
 for multi-agent workflows.
 
-### The July 12 Subscription Cutoff
+### The July 19 Subscription Access Update
 
-The official promotion ends July 12, 2026 at 11:59:59 PM Pacific Time. During
-the promotion, eligible Pro, Max, Team, and premium Enterprise seats can use up
-to 50% of weekly subscription limits on Fable 5. After the cutoff, Fable 5 is
-no longer included in weekly subscription limits and remains usable through
-separately billed usage credits. API usage is never part of that promotion.
+Anthropic's [Fable 5 promotional-access terms](https://support.claude.com/en/articles/15424964-claude-fable-5-promotional-access)
+state that the promotion is extended through **July 19, 2026 at 11:59:59 PM
+PT**. Its linked [Claude Code weekly-limits promotion](https://support.claude.com/en/articles/15910845-claude-code-may-july-2026-weekly-limits-promotion)
+states that the 50% increase to Claude Code weekly usage limits runs through the
+same date. The promotion is available to Pro, Max, Team, and premium seats on
+seat-based Enterprise plans where the organization enables it. Recheck the live
+terms before a billing or availability decision because this is a dated
+promotional condition, not a permanent product entitlement.
+
+The promotion covers included subscription access rather than API usage. Do not
+rewrite the extension as an API-price, regional-availability, Enterprise-policy,
+or product-surface claim beyond the terms Anthropic publishes.
 
 The promotion covers Claude web, mobile, Desktop, Cowork, Claude Code, Design,
 Microsoft 365, Teams, and Tag where the account and organization are eligible.
@@ -334,11 +341,11 @@ Claude Desktop version. Cowork on the web or desktop still requires the
 eligible account and product access documented by Anthropic; the promotional
 allowance does not convert API use into subscription use.
 
-The cutoff removes Fable from ordinary included weekly subscription usage. It
-does not remove the model from every Anthropic surface. After July 12, users
-who meet the terms can continue through separately billed usage credits, and
-developers can continue through the API at API rates. This distinction matters
-for both availability writing and cost comparisons.
+When the extended period ends, readers should check whether Fable leaves ordinary
+included weekly subscription usage, remains available through separately billed
+usage credits, and continues through the API at API rates. Those are distinct
+surfaces, so a subscription-access update must not be rewritten as an API-price
+or API-availability update without current official terms.
 
 ### Price, Context, and Fallback
 
@@ -510,6 +517,510 @@ not provide a public or restricted API identifier, documented availability, or
 access instructions. Gemini 3.5 Pro is therefore a watchlist item, not a model
 entry, and this guide provides no price, context limit, tools, or prompting
 template for it.
+
+## Detailed Dossiers for the Newly Audited Systems
+
+The tables above answer the first selection question. The dossiers below answer
+the more consequential second question: what must be true about the task,
+integration, evidence, and safety boundary before a reader should choose that
+system. They deliberately contain more operational detail than a leaderboard.
+They do not turn a vendor capability statement into a promise that a specific
+deployment, account, agent harness, or local machine can reproduce it.
+
+### Claude Sonnet 5: Product Surface, Work Shape, and Review Discipline
+
+#### Confirmed product position
+
+Anthropic's [June 30 launch post](https://www.anthropic.com/news/claude-sonnet-5)
+identifies Sonnet 5 as an agentic Sonnet-class model, not a rename of Fable 5
+or Opus 4.8. The release establishes three distinct access facts: it is the
+default model for Free and Pro, is available to Max, Team, and Enterprise users,
+and is available through Claude Code and the Claude Platform. The API identifier
+is `claude-sonnet-5`. A reader should record the actual selected surface because
+the model name alone does not establish account allowance, tool permissions,
+connected services, or regional availability.
+
+The launch's introductory price is $2 per million input tokens and $10 per
+million output tokens through 2026-08-31. Anthropic says the standard price then
+becomes $3/$15. That scheduled change means a cost evaluation needs two columns:
+the rate used in the experiment and the date on which the decision will be
+revisited. Do not compare a launch-period Sonnet run with another model's
+standard rate and call the result a durable price ranking.
+
+#### Capability claims and their boundaries
+
+Anthropic describes browser and terminal tool use, planning, coding, and
+autonomous operation as product capabilities. Those are **vendor claims** and
+product-surface descriptions. They do not imply that a bare API call can browse,
+edit a repository, run a shell, access credentials, or continue after a failed
+command. Those behaviors require an application-provided tool schema, a
+permission policy, and a loop that supplies tool results back to the model.
+
+The launch compares effort levels and says higher-effort use can change the
+cost-performance trade-off. The source does not enumerate a permanent effort
+menu for every Claude client. Treat a visible picker as a dated observation,
+verify its allowed values against the current product/API page, and record the
+selected value in an evaluation log. Do not copy a Claude Code configuration
+onto web chat or assume that an API setting grants a UI-only agent feature.
+
+#### Suitable work and unsuitable shortcuts
+
+Sonnet 5 is a plausible candidate for bounded knowledge work, source-grounded
+analysis, coding with a controlled tool loop, and lower-cost comparisons against
+other Claude-family models. A good evaluation has a defined artifact: a repaired
+test, a decision memo with traceable sources, a validated data transform, or a
+reviewable patch. The evaluator should capture task success, citations or test
+results, tool calls, retries, wall time, output tokens, and human correction.
+
+It is a poor choice for claiming that one vendor's benchmark score proves
+universal superiority, for a production action with no human approval boundary,
+or for a task whose required data has not been made available. If the tool loop
+is missing, the correct comparison is text-only; if the tool loop differs, the
+result is a product-and-harness comparison rather than a pure checkpoint score.
+
+#### Long-context and agentic work order
+
+For a long source packet, start with a source map: name the documents, their
+authority, dates, conflict rules, and the exact decision required. Ask the model
+to identify missing evidence and conflicts before producing synthesis. Require
+a claim ledger or citations in the output so a reviewer can distinguish supplied
+facts, inference, and unanswered questions. A large context window, if exposed
+by a chosen surface, is capacity rather than a guarantee of relevant retrieval.
+
+For a coding agent, require an inspect-first sequence: locate the failing
+behavior, state the smallest hypothesis, name the regression test, make a
+focused change, run the test, inspect the diff, then report remaining risk. The
+prompt should name allowed paths, prohibited actions, command timeout behavior,
+and what to do when a tool result contradicts the initial hypothesis. This is
+more useful than a vague request to "be autonomous."
+
+#### Safety, fallback, and evidence logging
+
+The launch and its system-card references describe safety testing and cyber
+safeguards. That does not make Sonnet 5 appropriate for bypassing a security
+review, operating machinery, or completing a regulated action without the
+surrounding controls. Log refusals, policy notices, altered tool permissions,
+and model/version changes. A model response that was blocked, routed, or
+partially completed is a meaningful evaluation outcome, not a failed detail to
+hide.
+
+### DeepSeek-V4-Pro and DeepSeek-V4-Flash: Preview APIs With Deliberate Modes
+
+#### Release state and identifiers
+
+DeepSeek's [V4 Preview release](https://api-docs.deepseek.com/news/news260424/)
+calls both variants live and open-sourced while explicitly retaining the Preview
+label. The current [pricing and model table](https://api-docs.deepseek.com/quick_start/pricing/)
+identifies `deepseek-v4-pro` and `deepseek-v4-flash`, both API base URLs, and
+the supported feature set. The release also says the models are available in
+chat.deepseek.com under Expert Mode and Instant Mode. This is evidence of a
+public usable surface, not evidence that every outside agent product has native,
+well-tested support.
+
+The models replace a compatibility period for `deepseek-chat` and
+`deepseek-reasoner`: DeepSeek maps those aliases to Flash's non-thinking and
+thinking modes until the stated 2026-07-24 15:59 UTC retirement. Production
+integrations should use the explicit V4 identifiers, not rely on an alias whose
+meaning and retirement date are documented by the provider.
+
+#### Pro versus Flash is not only a price decision
+
+DeepSeek publishes 1M context, 384K maximum output, JSON output, tool calls,
+chat prefix completion, and Fill-in-the-Middle completion. It documents both
+thinking and non-thinking modes. FIM is documented as non-thinking only. That
+means an evaluator must hold mode constant when comparing code-completion
+results: a Flash non-thinking FIM response and a Pro thinking chat response are
+not the same workload.
+
+The official table lists Flash at $0.14 cache-miss input and $0.28 output per
+million tokens, and Pro at $0.435/$0.87. Cache-hit input is separately priced,
+and account concurrency is listed as 2,500 for Flash and 500 for Pro. These
+numbers are dated pricing inputs, not total task cost. Long prompts, hidden
+reasoning, retries, tool calls, and failures to use a cacheable prompt prefix
+can dominate the cost of a real agent run.
+
+#### A reproducible mode-selection protocol
+
+Choose non-thinking mode for a bounded transform whose answer can be validated
+deterministically: a schema conversion, a formatting pass, a narrow FIM task,
+or classification against an agreed label set. Give one input contract, one
+output schema, explicit null/unknown handling, and a validator. If a result
+fails the validator, preserve the failure rather than silently retrying on a
+different model and reporting the best output as a single run.
+
+Choose thinking mode only when the task requires planning, multi-step diagnosis,
+or a tool-using loop that can check its own work. Bound the loop by max turns,
+allowed tools, allowed paths, and a stop condition. Record whether a tool error,
+timeout, malformed call, or user approval stop caused the outcome. The model's
+tool-call feature does not decide whether the host actually executes a call.
+
+#### Context management and quality checks
+
+For 1M-context tasks, partition context into stable instructions, source index,
+task-local evidence, and append-only tool results. Reuse stable prefixes when
+the application supports caching. Then test retrieval deliberately: hide a few
+known facts across the packet, ask a constrained question, and confirm the
+answer against the source locations. Do not infer that the model remembered a
+fact simply because it produced plausible prose.
+
+Evaluate Pro and Flash using the same prompt, retrieval process, tool schema,
+deadline, and reviewer rubric. Record the model identifier, date, thinking mode,
+sampling settings where exposed, maximum output, context size, cache condition,
+concurrency behavior, and all retries. Vendor benchmark charts can motivate
+this evaluation, but are **vendor claims** until a matching independent harness
+and configuration are available.
+
+#### Open-source and deployment caution
+
+DeepSeek's release says the weights are available. It does not let this guide
+infer a license from the word open-sourced, claim a particular local hardware
+requirement, or promise parity between hosted API and a self-hosted checkpoint.
+Before local deployment, confirm the exact repository, license, precision,
+runtime, safety controls, quantization, and test result for the selected build.
+
+### GLM-5.2: Long-Horizon Claims Need Long-Horizon Evidence
+
+#### What the official release establishes
+
+Z.ai's [GLM-5.2 release](https://z.ai/blog/glm-5.2) presents the model as its
+latest flagship for long-horizon tasks. It states a 1M-token context, MIT
+license, publicly available weights, Z.ai access, Coding Plan availability, and
+High/Max effort choices in the coding surface. The source also describes
+long-context training, coding-agent positioning, and a changed sparse-attention
+design. Those architecture and performance descriptions are vendor evidence;
+they should not be used as proof of a workload's expected success rate.
+
+The reviewed release does not publish a per-token API price or a general maximum
+output for the exact deployment described here. The guide therefore leaves both
+as **unknown** rather than extrapolating from an older GLM release or a reseller
+price page. A user considering a purchase should check the product surface on
+the day of use and note whether quota, subscription, API, or self-hosted costs
+are being compared.
+
+#### Meaning of long-horizon work
+
+Long horizon does not mean pasting an entire repository into one request. It
+means maintaining correct state across multiple observations, decisions, tool
+results, revisions, and verification steps. A durable task should have a goal,
+a non-goal list, a current-state summary, a source/file map, a milestone list,
+an action boundary, and an acceptance test. Each milestone should create an
+artifact that a later turn can inspect: a failing test, dependency map, design
+decision, patch, benchmark table, or source ledger.
+
+Use a compact running state rather than replaying every raw tool transcript.
+After a meaningful step, summarize what changed, what was disproven, which files
+or sources matter next, and what validation remains. Preserve links to the
+underlying evidence so compaction does not turn uncertainty into an invented
+fact. This procedure is portable to GLM-5.2, but it does not claim that every
+product surface exposes the same memory or agent controls.
+
+#### Effort selection and evaluation
+
+Treat High and Max as an experimentally controlled cost/latency choice. Start
+with a representative task at High. Escalate to Max only after measuring a
+specific deficiency, such as an unclosed dependency chain, a failed regression,
+or a source conflict that survives the bounded review. Compare task success,
+elapsed time, output and tool volume, retries, and correction burden. A longer
+trace is not evidence of a better result.
+
+The official release reports several benchmark results and supplies some setup
+details. Those values remain **vendor claims** in this guide. Never place them
+beside an independent leaderboard score without keeping the evaluator, harness,
+context limit, token budget, tool access, timeout, and judge model separate.
+
+#### Deployment and failure boundaries
+
+Open weights expand deployment options, but they also make the operator
+responsible for runtime choice, GPU memory, quantization, throughput, data
+handling, moderation, update policy, and incident response. Check the exact
+weight artifact and license before deployment. For an agent, do not allow
+network, secret, production, or destructive actions merely because the task is
+long. When a task needs additional authority, stop with the unresolved decision
+and evidence rather than consuming more context on an unauthorized action.
+
+### Mistral Medium 3.5 and Mistral Small 4: Generalist Models With Different Operating Envelopes
+
+Mistral's [Medium 3.5 model card](https://docs.mistral.ai/models/model-cards/mistral-medium-3-5-26-04)
+labels it an open-weight, frontier-class multimodal model optimized for agentic
+and coding use cases. It lists `mistral-medium-3-5`, a 256K context, Modified
+MIT licensing, and $1.50/$7.50 input/output per million tokens. The [Small 4
+card](https://docs.mistral.ai/models/model-cards/mistral-small-4-0-26-03) lists
+`mistral-small-2603`, 119B total and 6.5B active parameters, 256K context, and
+$0.15/$0.60 pricing. These values describe documented service options, not a
+guarantee that either model will be available with identical limits in every
+region, account, or deployment runtime.
+
+Choose between them with a matched workload, not their names. Define a fixed
+repository task, source-analysis task, or structured-output task; keep the
+prompt, tools, context selection, output cap, evaluation rubric, and retry
+policy unchanged. Then compare task completion, time, cost, invalid-output rate,
+tool-call errors, and reviewer correction. A lower token price can be defeated
+by retries. A larger or more expensive model can be wasteful when a deterministic
+validator shows a smaller model completes the work on the first pass.
+
+For multimodal tasks, specify what the images or documents are evidence for,
+which assertions must be checked against them, and what ambiguity must be
+returned as unknown. For coding, include a path allow-list, an exact test command,
+and a no-unrelated-cleanup rule. A model card's agents or function-calling label
+does not grant a host application a shell, browser, network access, or write
+permission. The application controls that boundary.
+
+Both models are candidates for self-deployment because Mistral labels them open,
+but hosted and self-hosted results must be kept separate. A self-hosted report
+should name the exact weight revision, license, precision, quantization, runtime,
+hardware, maximum context, sampling parameters, system prompt, tool adapter, and
+safety filters. Without that record, a claim of equivalence to a hosted API run
+is not reproducible.
+
+### Mistral OCR 4: Document Intelligence Must Be Tested as Extraction
+
+The [OCR 4 model card](https://docs.mistral.ai/models/model-cards/ocr-4-0)
+identifies a Premier Document AI service with `mistral-ocr-4-0`, paragraph-level
+bounding-box extraction, structural block labels, and listed prices of $4 per
+1,000 pages or $5 per 1,000 annotated pages. These are useful product facts, but
+they do not establish a universal accuracy score, handwriting guarantee,
+language guarantee, self-hosted option, or security certification beyond what
+the current documentation specifically says.
+
+An OCR evaluation begins with a corpus that represents the real incoming mix:
+scanned PDFs, native PDFs, photographs, tables, rotated pages, multilingual text,
+stamps, forms, and damaged scans where applicable. Establish ground truth for a
+small but diverse sample. Measure character or word accuracy only where it is
+useful, then add field-extraction accuracy, table-cell accuracy, reading order,
+block classification, bounding-box overlap, and human correction minutes per
+page. A neat-looking Markdown transcription is not sufficient evidence that
+numbers, headers, tables, or coordinates are reliable.
+
+Use a two-stage workflow for high-consequence documents. First extract and keep
+page/provenance data. Then validate fields with domain rules: dates parse, totals
+reconcile, IDs match checksums, and required fields are present. Route uncertain
+or contradictory fields to human review. Do not let an LLM "repair" a missing
+number without recording that it is inference rather than OCR output.
+
+Cost should be evaluated per accepted document, not merely per page. Include
+preprocessing, retries, annotation mode, downstream parsing, storage, privacy
+review, human correction, and the loss from an undetected error. Keep private
+documents within approved data-handling boundaries and confirm the current
+provider terms before uploading regulated or sensitive material.
+
+### Voxtral TTS: Speech Quality, Consent, and Deployment Are Separate Decisions
+
+The [Voxtral TTS card](https://docs.mistral.ai/models/model-cards/voxtral-tts-26-03)
+lists an open v26.03 model, `voxtral-mini-tts-2603`, nine languages, zero-shot
+voice cloning, streaming with approximately 90 ms time-to-first-audio, and no
+transcript required for voice prompts. The current Mistral selection view lists
+CC BY-NC 4.0 and 4B parameters, while the pricing page lists hosted generation
+costs. Treat latency, language support, cloning, and pricing as current product
+facts to recheck before deployment; they are not permission to imitate people
+or create misleading audio.
+
+A speech benchmark should separate intelligibility from preference. Prepare an
+original script with names, numbers, abbreviations, domain terms, punctuation,
+language switches, and emotional but non-deceptive delivery directions. Have
+reviewers score word errors, number errors, pronunciation, prosody, pacing,
+latency, clipping, and consistency across repeated output. For a streaming
+system, measure time-to-first-audio, interruption behavior, audio continuity,
+and tail latency independently.
+
+Voice adaptation needs a documented consent path. Confirm that the speaker owns
+or has authorized the source recording, explain the intended use, keep source
+audio access controlled, and prevent a copied voice from being presented as a
+live recording or person endorsement. Do not use a public figure, colleague, or
+customer voice merely because a technical feature can accept it. Watermarking,
+provenance, and voice-identity restrictions remain unknown unless documented by
+the chosen surface.
+
+### Leanstral 1.5: Treat the Compiler as the Evaluator
+
+The [Leanstral 1.5 model card](https://docs.mistral.ai/models/model-cards/leanstral-1-5)
+describes a Labs model for Lean 4 automated theorem proving and autoformalization.
+It lists `labs-leanstral-1-5`, 119B total parameters, 6.5B active parameters,
+256K context, and a listed zero price. The prior Leanstral card is retired in
+favor of 1.5. These facts do not establish a general mathematical-reasoning rank,
+a guaranteed proof success rate, local weight availability, or a right to run an
+unreviewed proof in a safety-critical system.
+
+The primary outcome is a valid compiled proof in a pinned Lean project. An
+evaluation should record repository commit, Lean/compiler version, imports,
+theorem statement, initial context, model configuration, number of attempts,
+tool output, final proof file, and exact compilation command. Measure first-pass
+compile success, success after bounded repair, unsupported-library hallucination,
+time to proof, and human edits. A fluent explanation with an invalid term is a
+failure, however mathematically plausible it sounds.
+
+Keep proof search scoped. Give the theorem, known lemmas, permitted imports,
+naming conventions, desired proof style, and a command that checks the artifact.
+When autoformalizing natural language, separate the question "did the formal
+statement faithfully represent the intended mathematics?" from "does Lean accept
+the proof?" Both must be reviewed. Compiling an unintended theorem is not a
+successful formalization.
+
+### Robostral Navigate: An Announcement Is Not a Production Contract
+
+Mistral's [news index](https://mistral.ai/news/) records the 2026-07-08
+announcement of Robostral Navigate as its first model built for embodied
+navigation. The public material reviewed for this guide does not establish a
+model identifier, public API, license, weight download, output action schema,
+simulation interface, supported robot hardware, pricing, rate limit, or safety
+operating procedure. Those omissions are material, so they remain unknown.
+
+The correct current use of this entry is a research watchlist and an evaluation
+design, not a deployment recipe. A future navigation assessment should separate
+visual scene understanding, map interpretation, high-level route planning,
+action selection, low-level control, collision avoidance, recovery, and operator
+override. Success in one layer does not prove success in another. Simulated
+navigation should record world version, sensor noise, latency, action space,
+success definition, collision policy, and failure recovery before any claim is
+made about physical transfer.
+
+No model output should directly control a physical robot without an independent
+safety layer, hardware limits, emergency stop, operator authority, monitoring,
+and staged validation. The difference between "suggest a route" and "send a
+motor command" is an engineering and safety boundary, not a wording detail.
+
+### Gemma 4: Open Weights Shift Responsibility to the Builder
+
+Google's [Gemma 4 overview](https://ai.google.dev/gemma/docs/core) says the
+family is provided with open weights for responsible commercial use. It lists
+E2B, E4B, 12B, 26B A4B, and 31B variants, configurable thinking modes,
+function-calling support, native system-role support, and a mix of text, image,
+video, and audio inputs that varies by variant. It also gives 128K context for
+small models and 256K for medium models. Gemma is distinct from hosted Gemini:
+the builder selects the weights, runtime, quantization, system prompt, tools,
+monitoring, and data boundary.
+
+The published memory table illustrates why a model-selection decision is also a
+systems decision. Approximate 4-bit memory requirements range from 2.9 GB for
+E2B to 17.5 GB for 31B, with the 26B A4B entry at 14.4 GB; actual requirements
+change with runtime, context, batch size, cache, and overhead. Use these figures
+for early capacity planning, not as a promise that a laptop will serve a given
+workload with acceptable latency.
+
+Evaluate Gemma variants across three layers. First validate the base model on
+the task with a frozen prompt and representative data. Then validate the runtime
+and quantization, including throughput, memory pressure, numerical regressions,
+and context behavior. Finally validate the application wrapper: system prompts,
+retrieval, tool schemas, filters, logging, and permission gates. A failure at
+the wrapper layer should not be reported as a model comparison without that
+context.
+
+### DiffusionGemma: A Different Generation Process, Not an Automatic Upgrade
+
+Google's [DiffusionGemma model card](https://ai.google.dev/gemma/docs/diffusiongemma/model_card)
+labels the model Apache 2.0 and documents a 25.2B-total/3.8B-active MoE design,
+discrete text diffusion, up to 256K context, and 256-token canvases. Its launch
+material describes a low-latency research role and warns that standard Gemma 4
+remains the production-quality recommendation where output quality is primary.
+That distinction should guide evaluation: this is not simply Gemma 4 with a
+faster name.
+
+The operational idea is blockwise iterative denoising rather than only a
+left-to-right token stream. That can change latency, correction behavior, and
+the kinds of local editing experiments worth testing. It also changes failure
+analysis. Measure time-to-first-useful output, end-to-end latency, block-boundary
+coherence, editing quality, long-form consistency, hardware utilization, and
+quality against an agreed rubric. Do not infer a universal speedup from a vendor
+claim on different hardware, precision, batch size, or workload.
+
+For local experiments, pin the exact artifact and inference stack, document the
+GPU/accelerator and precision, run a small safety and quality suite, and compare
+against an autoregressive baseline under the same constraints. Use the model's
+open status to improve reproducibility, not to remove privacy, safety, or
+evaluation obligations.
+
+### Veo 3.1 Lite Preview: Video Is a Sequence, Not a Single Frame
+
+Google's [Veo 3.1 Lite Preview page](https://ai.google.dev/gemini-api/docs/models/veo-3.1-lite-generate-preview)
+identifies `veo-3.1-lite-generate-preview`, text/image input, video-with-audio
+output, a 1,024-token text-input limit, and one output video per request. The
+page calls it high-efficiency and developer-first, but explicitly says it does
+not support 4K output or Extension. It is a preview model: a working prototype
+should retain the identifier, date, region/account condition, and observed
+limits rather than assuming permanent production behavior.
+
+Write a video brief in layers: subject and action, camera/framing, location and
+time, visual continuity requirements, audio requirements, prohibited elements,
+and the intended review rubric. Reference images should be rights-cleared and
+their role stated: identity, composition, palette, object layout, or mood. Do
+not expect an unmentioned attribute to stay fixed across edits merely because it
+appeared in the first generation.
+
+Evaluate temporal behavior, not just a still frame. Review prompt adherence,
+motion plausibility, object persistence, scene transitions, lip/audio alignment
+where relevant, visual artifacts, edit continuity, latency, price, and
+provenance. Save original outputs and prompts. Compressed social clips can hide
+frame artifacts and make comparisons misleading. Preview limitations should be
+tested explicitly, never worked around by undocumented assumptions.
+
+### Lyria 3: Music Generation Needs Musical and Rights-Aware Evaluation
+
+The current [Lyria 3 guide](https://ai.google.dev/gemini-api/docs/music-generation)
+documents two preview identifiers: `lyria-3-clip-preview` for 30-second clips
+and `lyria-3-pro-preview` for longer songs. It says the models accept text and
+image input and produce MP3 stereo audio, supports lyrics and structural output,
+and uses the Interactions API. The current guide reports 44.1 kHz stereo audio;
+the repository retains the older changelog's 48 kHz statement as an unresolved
+official-source conflict rather than choosing a convenient number.
+
+Use an original brief rather than copyrighted lyrics or a living artist's exact
+style. State instrumental versus vocal intent, language, mood, tempo range,
+instrumentation, structure, duration, and any text that must be pronounced. A
+prompt in a target language can be used to request that language's lyrics, but
+the generated words should be reviewed for intelligibility and appropriateness
+before publication.
+
+Score musical structure, chord/rhythm consistency, vocal intelligibility,
+instrument balance, prompt adherence, repetition, transition quality, long-form
+coherence, edit continuity, and rights/provenance obligations. Keep clip and
+long-song results separate. A 30-second loop may excel at texture while telling
+little about verse/chorus continuity. Check the live pricing, commercial terms,
+and safety policy before a public or paid release.
+
+### Gemini Robotics-ER 1.6: High-Level Embodied Reasoning, Not Motor Authority
+
+Google's [Robotics-ER 1.6 guide](https://ai.google.dev/gemini-api/docs/robotics-overview)
+documents preview identifier `gemini-robotics-er-1.6-preview`, multimodal input,
+text output, spatial understanding, task decomposition, structured outputs, tool
+use, and a configurable thinking budget. The current API page lists 131,072
+input and 65,536 output tokens; its model card uses rounded 128K/64K figures.
+The guide uses the current API page for integration planning and keeps the
+discrepancy visible.
+
+The model can be asked to identify objects, reason about relationships, sequence
+high-level subtasks, call user-provided functions, or assist a robot controller.
+Those are not the same as direct safe actuation. The controller must enforce
+action limits, collision handling, sensor validation, stop behavior, operator
+approval, and recovery. A function call is only a request until the host accepts
+and safely executes it.
+
+Design evaluations in layers. For perception, test object identity, location,
+counting, and instrument/gauge reading with ground truth. For planning, test
+constraint satisfaction, ordering, uncertainty reporting, and recovery from
+missing objects. For tool use, test schema validity, authorization, timeouts,
+and side-effect handling. For physical transfer, test only after simulation and
+supervised trials, and log environment, sensor stream, model version, thinking
+budget, operator decisions, near misses, and interventions.
+
+Google explicitly warns that physical robots can cause damage and that safety
+remains the user's responsibility. Do not deploy this preview model in
+safety-critical work or represent its visual/spatial reasoning as a certification
+of physical reliability.
+
+### Gemini 3.5 Pro: Keep the Watchlist Useful Without Pretending It Is Released
+
+The current [Google DeepMind Gemini page](https://deepmind.google/models/gemini/)
+says only "3.5 Pro coming soon." This is enough to preserve a watchlist entry,
+but it is not enough to create an API recipe, price table, context claim, effort
+menu, tool matrix, or benchmark comparison. The absence of those details is the
+current state of the research, not a gap to fill by pattern-matching Flash or
+3.1 Pro identifiers.
+
+Recheck this entry only when Google publishes a model page or catalog listing,
+a public/restricted identifier, documented availability, and access instructions.
+At that point, record release date, surface, region/plan limits, modalities,
+context/output limits, tools, reasoning controls, pricing, safety material, and
+benchmark methodology separately. Until then, do not let a consumer UI rumor or
+a third-party list silently convert the watchlist into a product recommendation.
 
 ## Grok 4.5 in Grok Build
 
@@ -923,6 +1434,147 @@ The video research pack uses precise discovery searches for Gemini Omni Flash
 official demos, full tests, Omni-versus-Veo comparisons, and Google I/O 2026.
 No unrelated YouTube ID is relabeled as an Omni demonstration.
 
+## Extended Operating Guidance for the Established Families
+
+### GPT-5.6 Sol, Terra, and Luna
+
+The GPT-5.6 family is a tier, effort, and surface decision. Sol is appropriate
+when an error is expensive and the task has enough evidence to inspect; Terra is
+the default for bounded engineering and research work; Luna is appropriate for
+high-volume tasks with deterministic validation. The tier does not replace a
+clear work order, and a higher effort does not repair missing context or unclear
+authority.
+
+For every family member, write the task in five parts: the observable result,
+the allowed evidence and files, the excluded scope, the verification command or
+review rubric, and the stop condition. A Sol architecture review should include
+alternatives and falsifiers. A Terra repository repair should include tests and
+paths. A Luna batch task should include a schema, a gold sample, and handling
+for missing values. Record tier, effort, model ID, tool permissions, retries,
+cost, latency, and human correction. That record matters more than a model-name
+claim when two runs disagree.
+
+Use Ultra only for separable workstreams. Give each worker exclusive ownership,
+immutable inputs where possible, an explicit output contract, and a final
+integration check. A parallel model run against one shared mutable area can add
+duplicated investigation and merge failure without improving correctness. For a
+linear diagnosis or a single risky migration, one high-effort agent with a
+strong verification gate is usually easier to audit.
+
+### Claude Fable 5 and Claude Opus 4.8
+
+Fable 5's documented fallback behavior must be treated as part of the product
+result. Log the chosen effort, visible fallback notice, task type, harness,
+tool permissions, and final model identity where it is exposed. A routed run may
+be useful but is not a pure Fable measurement. Opus 4.8 remains a useful
+Claude-family baseline when that routing distinction would confound evaluation.
+
+For knowledge work, split source extraction from recommendation writing. Give
+the model an authority hierarchy, dates, claim ledger, and required uncertainty
+section. For coding, require inspect-first behavior, a smallest-hypothesis rule,
+a regression test, a focused diff, and a final command result. The model's
+reasoning effort changes the search budget; it does not authorize deployment,
+secrets, destructive operations, or unsupported tools.
+
+Fable's promotional and usage-credit surfaces should not be collapsed into one
+cost number. Record whether the work used a subscription allowance, billed
+credits, or the API. Compare successful-task cost including retries, tool calls,
+fallbacks, and review effort. A lower nominal rate can be outweighed by a
+workflow that fails validation or requires repeated human correction.
+
+### Grok 4.5 and Muse Spark 1.1
+
+Grok Build and Muse Spark deployments are model-plus-harness systems. A coding
+result depends on repository state, agent system prompt, terminal permissions,
+network/search availability, tool loop, retry policy, and the human reviewer.
+Keep those settings beside the model and effort label. Do not transfer an agent
+benchmark result to a bare API request or another coding environment.
+
+For Grok Build, define command recovery in advance: capture the failure, restate
+the smallest next hypothesis, avoid unrelated cleanup, and stop after a bounded
+number of attempts or missing authority. For Muse Spark, separate visual or
+multimodal perception from planning, tool-call validity, and final task
+completion. A coherent answer can still be grounded in the wrong image region,
+call an invalid tool, or leave a repository change untested.
+
+### Gemini 3.5 Flash
+
+Gemini 3.5 Flash exposes developer thinking controls and a broad catalog of
+tool paths, but a tool should be enabled only when the task needs it. Every
+additional tool affects data handling, latency, cost, failure behavior, and
+prompt-injection exposure. Begin with the smallest useful tool set and add a
+tool only after an evaluation identifies a specific gap.
+
+Keep consumer labels separate from API values. For an API evaluation, record
+model ID, thinking setting, prompt version, source/context selection, tool
+schemas, tool results, timeouts, output limits, retries, and the acceptance
+result. Use the same tool boundary when comparing against another vendor. A
+model that has search, code execution, or computer-use support in one surface
+does not give those capabilities to every integration by name alone.
+
+### GPT-Live-1, GPT-Live-1 Mini, and Gemini Live Translate
+
+Live audio models must be tested as streaming systems. A transcript alone cannot
+show recognition latency, interruptions, pause handling, overlap behavior, false
+starts, spoken-output quality, or whether the voice response actually matches
+the visible text. Record microphone, speaker route, client and model version,
+network condition, language pair, noise condition, chunking, and end-to-end
+latency distribution for every meaningful evaluation.
+
+GPT-Live is a general conversational architecture with documented delegated
+reasoning and tool behavior. Design prompts that state when the system should
+listen, ask a clarifying question, wait, announce a tool action, and return to a
+conversation after an interruption. Gemini Live Translate is narrower: assess
+meaning preservation, terminology, proper nouns, tone, dialect shifts, and
+simultaneous-turn behavior in both language directions. Do not infer general
+web, function, or thinking controls for the translation preview where the
+documented surface excludes them.
+
+Privacy is part of the acceptance criteria. Review microphone capture,
+transcripts, memory, connected tools, region, and the handling of third-party
+voices before testing. In a sensitive setting, use a pre-approved corpus and a
+clear consent process. If a translation is ambiguous, retain the original term
+or ask for clarification rather than emitting a confident invented equivalent.
+
+### GPT Image 2, Nano Banana, Seedream, and Muse Image
+
+Image systems need separate generation and editing tests. Generation tests
+should measure composition, typography, factual visual details, reference use,
+prompt adherence, safety, rights, and output resolution. Editing tests should
+measure localized change, preservation of unmentioned regions, identity and
+reference consistency, mask/selection fidelity, and drift after several edits.
+Save original full-resolution outputs, prompt metadata, references, tool settings,
+and reviewer decisions; compressed previews conceal the defects that matter in
+production.
+
+GPT Image 2's internal architecture remains undisclosed in the checked sources.
+Do not infer it from an interface thinking state or output behavior. Nano Banana
+Lite, Nano Banana 2, and Nano Banana Pro should be compared on a shared output
+contract rather than a family-name ladder: reference count, required text,
+localization, aspect ratio, search/grounding choice, thinking configuration,
+image-edit sequence, latency, and cost. Seedream claims require the same
+full-resolution, rights-aware inspection because its technical disclosure is
+more limited. Muse Image's Content Seal is provenance information, not proof of
+truth, ownership, safety, or prompt compliance.
+
+### Muse Video, Veo, Lyria, and Gemini Omni Flash
+
+Video evaluation is inherently temporal. Judge motion plausibility, object and
+character persistence, scene transitions, editing continuity, audio alignment,
+frame artifacts, prompt adherence, latency, provenance, and the rights of every
+input asset. Store the original clip, input images, prompt, model identifier,
+preview/stable status, resolution, frame rate, duration, and every edit turn.
+A visually strong still frame cannot prove that a clip is coherent.
+
+Muse Video remains an announced/coming-soon system in this snapshot, so it has a
+readiness checklist rather than a production recipe. Veo 3.1 Lite and Gemini
+Omni Flash are preview systems whose published limitations belong in the test
+plan. Do not reinterpret unavailable extension, interpolation, audio-reference,
+or voice-edit behavior as an undocumented capability. Lyria is music generation,
+not a video model: score musical structure, vocal intelligibility, arrangement,
+repetition, language, edit continuity, output format, commercial terms, and
+artist-style restrictions separately from video criteria.
+
 ## How to Choose Without Chasing a Single Winner
 
 The following is an **interpretation** of the cited product controls and dated
@@ -984,6 +1636,11 @@ measure whether a diagram is factually correct.
   the checked date, benchmark version, model effort, harness, and fallback.
 - Fable scores include the production Opus 4.8 fallback where Artificial
   Analysis labels it that way.
+- Anthropic's promotional-access terms extend Fable 5 subscription access through
+  July 19, 2026 at 11:59:59 PM PT, and the linked Claude Code promotion extends
+  the 50% weekly-limit increase through the same date. Recheck the live terms
+  before purchase or deployment decisions because promotional conditions can
+  change.
 - No independent source cited here tests Sol Ultra against Fable Max. Ultra is
   orchestration, while the benchmark uses Sol Max.
 - GPT Image 2's claimed fully autoregressive architecture is not established in

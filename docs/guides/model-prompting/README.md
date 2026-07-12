@@ -103,3 +103,25 @@ When a model menu or effort set changes:
 3. Bump the `Checked:` date.
 4. Keep architecture, pricing, and access claims labeled by evidence type.
 5. Run `python -m unittest tests.test_model_prompting_guides` and the repo health check.
+
+## Expanded Reading and Evaluation Standard
+
+Each model page now includes an **Expanded Operating Dossier**. Read it after
+the model-specific prompt template when a task has meaningful cost, autonomy,
+multimodal, long-context, or safety consequences. The dossier keeps the same
+evidence discipline as the main guide: product facts come from documented
+surfaces, local menu observations are not universal, and recommendations remain
+interpretation until tested against the reader's own work.
+
+Use the same minimum run record across pages: model identifier, surface, effort
+or thinking setting, prompt revision, context and sources, tools and permissions,
+output limit, retries, latency, cost, validation output, and human correction.
+This makes a comparison between two models or two efforts reviewable rather than
+a collection of remembered impressions.
+
+Do not force unrelated specialist systems into one score. OCR needs extraction
+ground truth and correction metrics; TTS needs intelligibility, latency, consent,
+and rights review; formal proofs need compiler acceptance; media needs original
+output inspection; robotics needs simulation, independent safety controls, and
+supervised transfer tests. A general chat benchmark cannot substitute for these
+task-specific gates.

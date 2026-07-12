@@ -74,7 +74,7 @@ class ModelPromptingPackTests(unittest.TestCase):
             "0.144.1",
             "Extra High",
             "Ultracode",
-            "July 12, 2026",
+            "July 19, 2026",
             "Grok 4.5",
             "Nano Banana Pro",
             "Muse Video",
@@ -105,7 +105,7 @@ class ModelPromptingPackTests(unittest.TestCase):
 
     def test_fable_cutoff_and_ultracode(self):
         text = read(PACK / "claude-fable-5-prompting.md")
-        self.assertIn("2026-07-12 11:59:59 PM PT", text)
+        self.assertIn("2026-07-19 11:59:59 PM PT", text)
         self.assertIn("Ultracode", text)
         self.assertIn("2.1.170", text)
         self.assertIn("Extra", text)
