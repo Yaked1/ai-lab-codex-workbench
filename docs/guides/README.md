@@ -4,7 +4,7 @@
 
 - [Current models, interfaces, and effort controls](current-models-and-interfaces.md)
 - [Frontier models and multimodal systems in 2026](frontier-models-and-multimodal-systems-2026.md)
-- [Model and effort prompting guides](model-prompting/README.md) (Sol/Terra/Luna, Fable/Opus, Grok, Muse, Gemini, Live, image/video)
+- [Model and effort prompting guides](model-prompting/README.md) (Sol/Terra/Luna, Claude, DeepSeek, GLM, Mistral, Google, Muse, Live, image/video)
 - [Surface and effort map](model-prompting/surface-and-effort-map.md)
 - [Effort evaluation playbook](model-prompting/effort-evaluation-playbook.md)
 - [Model source and observation ledger](model-prompting/sources-and-observations.md)

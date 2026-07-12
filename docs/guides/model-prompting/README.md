@@ -28,9 +28,14 @@ catalog. Verify live pickers before writing public claims.
 | Fast/cheap GPT-5.6 volume work | [GPT-5.6 Luna](gpt-5-6-luna-prompting.md) |
 | Claude long-horizon / Mythos-class work | [Claude Fable 5](claude-fable-5-prompting.md) |
 | Claude baseline without Fable fallback | [Claude Opus 4.8](claude-opus-4-8-prompting.md) |
+| Claude agentic work at a lower dated API price | [Claude Sonnet 5](claude-sonnet-5-prompting.md) |
 | Cost-efficient coding in Grok Build | [Grok 4.5](grok-4-5-prompting.md) |
+| DeepSeek preview coding and structured API work | [DeepSeek V4](deepseek-v4-prompting.md) |
+| GLM open-source long-horizon coding | [GLM-5.2](glm-5-2-prompting.md) |
+| Mistral generalist, OCR, TTS, Lean, and robotics workload selection | [Current Mistral models](mistral-current-models-prompting.md) |
 | Meta multimodal reasoning | [Muse Spark 1.1](muse-spark-1-1-prompting.md) |
 | Google agentic Flash coding | [Gemini 3.5 Flash](gemini-3-5-flash-prompting.md) |
+| Google open weights, video, music, and robotics | [Google open, media, and robotics](google-open-media-robotics-prompting.md) |
 | Full-duplex voice | [GPT-Live-1](gpt-live-1-prompting.md) |
 | Speech translation only | [Gemini Live Translate](gemini-live-translate-prompting.md) |
 | Image generation / editing | [GPT Image 2](gpt-image-2-prompting.md), [Nano Banana family](nano-banana-family-prompting.md), [Seedream 5.0 Pro](seedream-5-0-pro-prompting.md), [Muse Image / Video](muse-image-video-prompting.md) |

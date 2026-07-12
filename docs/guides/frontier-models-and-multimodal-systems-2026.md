@@ -2,10 +2,10 @@
 
 Checked: 2026-07-12
 
-This guide explains the GPT-5.6 family, Claude Fable 5 and Opus 4.8, Grok
-4.5, Muse Spark 1.1, Gemini 3.5 Flash, current live-audio systems, and current
-image and video model families. It is a dated research snapshot, not a promise
-that every model picker will look the same on every account.
+This guide explains the GPT-5.6 family, current Claude, DeepSeek, GLM, Mistral,
+Google open-model, media, robotics, live-audio, image, and video systems. It is
+a dated research snapshot, not a promise that every model picker will look the
+same on every account or an exhaustive catalog of every vendor release.
 
 Facts are labeled by evidence type:
 
@@ -386,6 +386,130 @@ editing behavior. It is not a bare API-model score. Fable Max with fallback
 scores higher in the dated intelligence and coding snapshots, while Opus offers
 a cleaner comparison when the evaluator needs to avoid Fable's model-routing
 layer.
+
+## Claude Sonnet 5
+
+**Official, checked 2026-07-12.** Anthropic released Claude Sonnet 5 on
+2026-06-30. Its launch post says it is available on every Claude plan, in Claude
+Code, and through the Claude Platform as `claude-sonnet-5`. The introductory API
+price is $2 input / $10 output per million tokens through 2026-08-31, changing
+to $3 / $15 afterward. These are vendor-published product facts, not an
+independent cost or capability comparison.
+
+Anthropic positions Sonnet 5 as its most agentic Sonnet model. It narrows the
+gap to Opus 4.8 on some agentic tasks, but that positioning does not establish
+that it replaces Fable 5 or Opus 4.8. The launch post confirms browser and
+terminal tool use in the product description; it does not make a browser,
+terminal, or agent harness available automatically to every API caller.
+
+| Decision | Evidence-conscious guidance |
+| --- | --- |
+| Normal knowledge work and cost-sensitive coding | Start with Sonnet 5 where its lower dated API price is appropriate; supply an explicit deliverable and a verification step. |
+| Long-running or tool-using work | Define the tool boundary, stop conditions, and recovery behavior. Record the product surface and actual tool configuration. |
+| High-effort work | The checked launch source compares effort levels but does not publish a complete cross-surface effort menu. Confirm the live API or product control before claiming a particular value. |
+| Fable or Opus comparison | Treat Sonnet, Fable, and Opus as distinct released models. Select with a matched task evaluation, not a family-name assumption. |
+
+Use the [Sonnet 5 prompting guide](model-prompting/claude-sonnet-5-prompting.md)
+for source-aware work orders and unsupported-use boundaries.
+
+## Coding, Agentic, and Cost-Efficient Model Additions
+
+### DeepSeek-V4-Pro and DeepSeek-V4-Flash
+
+**Official preview, checked 2026-07-12.** DeepSeek's 2026-04-24 release and
+current API documentation identify `deepseek-v4-pro` and `deepseek-v4-flash`.
+Both are API-accessible through DeepSeek's OpenAI-compatible and
+Anthropic-compatible endpoints, support thinking and non-thinking modes, JSON
+output, tool calls, a 1M-token context, and a 384K maximum output. The current
+pricing table lists $0.435/$0.87 input-cache-miss/output per million tokens for
+Pro and $0.14/$0.28 for Flash; cache-hit prices and concurrency limits are
+published separately in that same official table.
+
+DeepSeek calls the release "Preview" and says the weights are available. This
+guide therefore does not relabel either model stable merely because the API is
+usable. The checked sources establish the announced total/active parameter
+counts as vendor claims, but this guide does not restate a license because the
+reviewed API pages did not establish one. `deepseek-chat` and
+`deepseek-reasoner` are compatibility aliases scheduled for discontinuation on
+2026-07-24 at 15:59 UTC, not new V4 product names.
+
+### GLM-5.2
+
+**Official released/open source, checked 2026-07-12.** Z.ai announced GLM-5.2
+on 2026-06-16 as a flagship long-horizon model, with an MIT license, publicly
+available weights, 1M context, Z.ai product access, and Coding Plan support.
+The official guide uses the model name `GLM-5.2` and documents High and Max
+thinking choices in its coding surfaces. It does not supply a current per-token
+price or a maximum-output figure in the source reviewed here, so neither is
+invented in this guide.
+
+Z.ai's published coding results are **vendor claims**. They should not be
+combined with independent benchmark or agent-harness results without matching
+configuration, tools, context limit, and time limit. See the
+[GLM-5.2 prompting guide](model-prompting/glm-5-2-prompting.md).
+
+### Current Mistral Family by Workload
+
+Mistral's current catalog has both generalist and specialist systems. They
+should not share one leaderboard.
+
+| System | Status and official identifier | Appropriate evaluation |
+| --- | --- | --- |
+| Mistral Medium 3.5 | Open weights, Modified MIT; `mistral-medium-3-5`; 256K context; $1.50/$7.50 per million input/output | Coding and agent workflows with the same tools, repository tasks, and correction budget |
+| Mistral Small 4 | Open weights, Apache 2.0; `mistral-small-2603`; 119B total / 6.5B active; 256K; $0.15/$0.60 | Cost-sensitive multimodal, coding, and agent tasks, not the word "Small" alone |
+| OCR 4 | Premier document service; `mistral-ocr-4-0`; paragraph bounding boxes and structural labels; $4/1,000 pages or $5/1,000 annotated pages | Extraction accuracy, tables, layout, bounding boxes, language coverage, and human correction |
+| Voxtral TTS | Open weights, CC BY-NC 4.0; `voxtral-mini-tts-2603`; 9 languages; streaming and about 90 ms time-to-first-audio | Intelligibility, latency, pronunciation, voice-consent safeguards, and edit burden |
+| Leanstral 1.5 | Labs model; `labs-leanstral-1-5`; Lean 4 specialization; 119B total / 6.5B active; 256K; listed free | Successfully compiled proofs, correction burden, and reproducible Lean project tests |
+| Robostral Navigate | Officially announced 2026-07-08 as embodied navigation | Navigation, simulation transfer, safety constraints, and physical-robot validation, not general-chat scores |
+
+The Mistral model cards establish the listed identifiers, published limits,
+licensing labels, and prices. They do not establish every requested deployment,
+handwriting, voice-identity, robot-hardware, or safety detail. In particular,
+the reviewed Mistral announcement establishes Robostral Navigate's existence
+but not a public API identifier, pricing, weight download, or operating terms.
+It is therefore an **announced, limited-information system**, not production
+guidance. See [Mistral current-model prompting](model-prompting/mistral-current-models-prompting.md).
+
+### Google Open, Media, and Robotics Systems
+
+| System | Classification | Confirmed, source-bounded facts |
+| --- | --- | --- |
+| Gemma 4 | Open-weight family | 2B, 4B, 12B, 26B A4B, and 31B variants; commercial use permitted; 128K small-model and 256K medium-model contexts; text/image inputs across the family, with audio and video support varying by variant |
+| DiffusionGemma | Experimental open model | Apache 2.0; 25.2B total / 3.8B active; discrete diffusion; up to 256K context; 256-token canvases; intended for low-latency local experimentation rather than the default production-quality Gemma path |
+| Veo 3.1 Lite | Public preview video API | `veo-3.1-lite-generate-preview`; text/image input; video with audio output; no 4K output or Extension in the reviewed model page |
+| Lyria 3 | Public-preview music API family | `lyria-3-clip-preview` for 30-second clips and `lyria-3-pro-preview` for longer prompted songs; text/image input; MP3 stereo output |
+| Gemini Robotics-ER 1.6 | Preview robotics VLM | `gemini-robotics-er-1.6-preview`; text/image/video/audio input and text output; current API page lists 131,072 input and 65,536 output tokens plus tool, structured-output, and thinking support |
+
+Gemma is not an API edition of Gemini. Gemma 4 and DiffusionGemma are
+open-weight systems intended for deployment choices that the builder controls;
+Gemini media and robotics entries are hosted product surfaces with current
+preview restrictions. DiffusionGemma's architecture is described by its official
+model card, so this guide can distinguish its blockwise discrete-diffusion
+generation from ordinary token-by-token autoregression without inference.
+
+Veo, Lyria, OCR, theorem proving, and robotics require category-specific
+evaluation. Video needs temporal consistency, audio, editing, and prompt
+adherence; music needs structure, audio quality, prompt adherence, and edit
+continuity; OCR needs extraction and layout fidelity; Leanstral needs valid
+compiled proofs; robotics needs simulation, spatial reasoning, safety, and
+real-world transfer. Embodied reasoning, high-level planning, and function
+calling do **not** establish safe direct low-level motor control.
+
+The current Lyria guide says 44.1 kHz output, while the March 25 API changelog
+said 48 kHz. This is an official-source conflict. The table follows the current
+guide and retains the discrepancy in [Uncertainties](#uncertainties-and-known-limits).
+The Robotics-ER API page lists 131,072/65,536 limits while its model card uses
+rounded 128K/64K figures; use the current API page for the integration limit.
+See [Google open, media, and robotics prompting](model-prompting/google-open-media-robotics-prompting.md).
+
+### Watchlist: Gemini 3.5 Pro
+
+**Officially announced, unavailable, checked 2026-07-12.** Google's current
+Gemini 3.5 page says only "3.5 Pro coming soon." The reviewed Google sources do
+not provide a public or restricted API identifier, documented availability, or
+access instructions. Gemini 3.5 Pro is therefore a watchlist item, not a model
+entry, and this guide provides no price, context limit, tools, or prompting
+template for it.
 
 ## Grok 4.5 in Grok Build
 
@@ -867,6 +991,17 @@ measure whether a diagram is factually correct.
 - Seedream 5.0 Pro has limited English first-party technical disclosure.
 - Muse Video is announced as coming soon; no available production surface or
   stable integration limits were confirmed for this snapshot.
+- Gemini 3.5 Pro is officially described as coming soon, but Google has not
+  provided a usable model surface, identifier, or access instructions.
+- Robostral Navigate has an official announcement but no public API identifier,
+  pricing, weights, operating terms, or hardware requirements in the sources
+  reviewed here.
+- Lyria 3's current generation guide says 44.1 kHz, while its March 25 API
+  changelog says 48 kHz. The conflict is unresolved; verify the live API output
+  format before setting a production audio contract.
+- The current Robotics-ER API page lists 131,072/65,536 input/output tokens,
+  while the April model card uses 128K/64K. The guide follows the newer API page
+  for integration planning.
 - Third-party videos are qualitative context. They are not the factual source
   for pricing, access, architecture, or benchmark scores.
 
@@ -888,6 +1023,17 @@ Primary sources, accessed 2026-07-11 unless noted:
 - [Anthropic Help: Fable 5 promotional access](https://support.claude.com/en/articles/15424964-claude-fable-5-promotional-access).
 - [Anthropic API: effort controls](https://platform.claude.com/docs/en/build-with-claude/effort).
 - [Anthropic API: pricing](https://platform.claude.com/docs/en/about-claude/pricing).
+- [Anthropic: Introducing Claude Sonnet 5](https://www.anthropic.com/news/claude-sonnet-5), published 2026-06-30, accessed 2026-07-12.
+- [DeepSeek: V4 Preview release](https://api-docs.deepseek.com/news/news260424/), published 2026-04-24, accessed 2026-07-12.
+- [DeepSeek: models and pricing](https://api-docs.deepseek.com/quick_start/pricing/), accessed 2026-07-12.
+- [Z.ai: GLM-5.2](https://z.ai/blog/glm-5.2), published 2026-06-16, accessed 2026-07-12.
+- [Mistral: Mistral Medium 3.5 model card](https://docs.mistral.ai/models/model-cards/mistral-medium-3-5-26-04), accessed 2026-07-12.
+- [Mistral: Mistral Small 4 model card](https://docs.mistral.ai/models/model-cards/mistral-small-4-0-26-03), published 2026-03-16, accessed 2026-07-12.
+- [Mistral: OCR 4 model card](https://docs.mistral.ai/models/model-cards/ocr-4-0), published 2026-06-23, accessed 2026-07-12.
+- [Mistral: Voxtral TTS model card](https://docs.mistral.ai/models/model-cards/voxtral-tts-26-03), published 2026-03-23, accessed 2026-07-12.
+- [Mistral: Leanstral 1.5 model card](https://docs.mistral.ai/models/model-cards/leanstral-1-5), published 2026-06-30, accessed 2026-07-12.
+- [Mistral: model pricing and catalog](https://mistral.ai/pricing/api/), accessed 2026-07-12.
+- [Mistral: latest news](https://mistral.ai/news/), accessed 2026-07-12; establishes the Robostral Navigate announcement dated 2026-07-08.
 - [SpaceXAI: Introducing Grok 4.5](https://x.ai/news/grok-4-5).
 - [SpaceXAI Docs: Grok 4.5](https://docs.x.ai/developers/grok-4-5).
 - [SpaceXAI: Grok Build CLI](https://x.ai/cli).
@@ -905,6 +1051,14 @@ Primary sources, accessed 2026-07-11 unless noted:
 - [Google: Gemini Omni Flash API guide](https://ai.google.dev/gemini-api/docs/omni).
 - [Google: Gemini Omni Flash model page](https://ai.google.dev/gemini-api/docs/models/gemini-omni-flash).
 - [Google: Gemini Omni Flash and Flow](https://blog.google/innovation-and-ai/models-and-research/google-labs/flow-updates/).
+- [Google AI for Developers: Gemma 4 overview](https://ai.google.dev/gemma/docs/core), accessed 2026-07-12.
+- [Google AI for Developers: DiffusionGemma model card](https://ai.google.dev/gemma/docs/diffusiongemma/model_card), accessed 2026-07-12.
+- [Google: Introducing DiffusionGemma](https://blog.google/innovation-and-ai/technology/developers-tools/diffusion-gemma-faster-text-generation/), published 2026-06-10, accessed 2026-07-12.
+- [Google AI for Developers: Veo 3.1 Lite Preview](https://ai.google.dev/gemini-api/docs/models/veo-3.1-lite-generate-preview), accessed 2026-07-12.
+- [Google AI for Developers: Lyria 3](https://ai.google.dev/gemini-api/docs/music-generation), accessed 2026-07-12.
+- [Google Gemini API changelog](https://ai.google.dev/gemini-api/docs/changelog), accessed 2026-07-12.
+- [Google AI for Developers: Gemini Robotics-ER 1.6](https://ai.google.dev/gemini-api/docs/robotics-overview), accessed 2026-07-12.
+- [Google DeepMind: Gemini 3.5](https://deepmind.google/models/gemini/), accessed 2026-07-12.
 - [ByteDance Dreamina: Seedream 5.0 Pro](https://dreamina.capcut.com/seedream/seedream-5-0-pro).
 
 Independent sources, accessed 2026-07-11:

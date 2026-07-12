@@ -15,6 +15,11 @@ REQUIRED_FILES = (
     "gpt-5-6-luna-prompting.md",
     "claude-fable-5-prompting.md",
     "claude-opus-4-8-prompting.md",
+    "claude-sonnet-5-prompting.md",
+    "deepseek-v4-prompting.md",
+    "glm-5-2-prompting.md",
+    "mistral-current-models-prompting.md",
+    "google-open-media-robotics-prompting.md",
     "grok-4-5-prompting.md",
     "muse-spark-1-1-prompting.md",
     "gemini-3-5-flash-prompting.md",
@@ -163,6 +168,34 @@ class ModelPromptingPackTests(unittest.TestCase):
         self.assertIn("### Muse Image and Muse Video", essay)
         self.assertIn("Content Seal", essay)
         self.assertIn("coming soon", essay)
+
+    def test_frontier_essay_records_all_new_audit_outcomes(self):
+        essay = read(
+            ROOT
+            / "docs"
+            / "guides"
+            / "frontier-models-and-multimodal-systems-2026.md"
+        )
+        for needle in (
+            "Claude Sonnet 5",
+            "DeepSeek-V4-Pro and DeepSeek-V4-Flash",
+            "GLM-5.2",
+            "Current Mistral Family by Workload",
+            "Gemma 4",
+            "DiffusionGemma",
+            "Veo 3.1 Lite",
+            "Lyria 3",
+            "Gemini Robotics-ER 1.6",
+            "Watchlist: Gemini 3.5 Pro",
+            "Robostral Navigate",
+        ):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, essay)
+
+    def test_new_guides_preserve_documented_boundaries(self):
+        self.assertIn("Preview", read(PACK / "deepseek-v4-prompting.md"))
+        self.assertIn("no public identifier", read(PACK / "mistral-current-models-prompting.md"))
+        self.assertIn("coming soon", read(PACK / "google-open-media-robotics-prompting.md"))
 
     def test_index_links_every_guide(self):
         index = read(PACK / "README.md")

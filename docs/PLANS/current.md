@@ -1,12 +1,11 @@
-# Current Plan: Model and Effort Prompting Guide Pack
+# Current Plan: 2026 Frontier Model and Multimodal Coverage
 
 ## Goal
 
-Finish the prompting-guide pack started by Grok, using the dated frontier-model
-essay as the main repository source and current official vendor documentation
-for claims that can change. The finished pack must give each named model and
-effort mode useful, surface-aware prompt patterns without forcing every guide
-to the same length.
+Audit the requested 2026 frontier, specialist, media, and embodied-reasoning
+systems against current official sources. Expand the dated frontier essay and
+prompting pack only for documented public surfaces, with a clear watchlist for
+officially announced but unavailable systems.
 
 ![GPT-5.6 effort controls by product surface](../assets/model-guides/gpt-5-6-effort-surfaces.svg)
 
@@ -17,68 +16,59 @@ model access, effort menus, and prices.*
 
 ## Scope
 
-- GPT-5.6 Sol, Terra, and Luna across Codex CLI, ChatGPT Desktop, web Work,
-  standard Chat, and API where supported.
-- Claude Fable 5 and Opus 4.8 across Claude web, Claude Code, Desktop Code,
-  API, and Fable's post-promotion usage-credit transition.
-- Grok 4.5 in Grok Build.
-- Meta Muse Spark 1.1, Muse Image, and the unavailable Muse Video path.
-- Gemini 3.5 Flash, Gemini 3.5 Live Translate, and Gemini Omni Flash.
-- GPT-Live-1, GPT-Live-1 Mini, GPT Image 2, Nano Banana Pro, Nano Banana 2,
-  Nano Banana 2 Lite, and Seedream 5.0 Pro.
+- Claude Sonnet 5; DeepSeek V4 Pro and Flash; GLM-5.2.
+- Mistral Medium 3.5, Small 4, OCR 4, Voxtral TTS, Leanstral 1.5, and
+  Robostral Navigate.
+- Gemma 4, DiffusionGemma, Veo 3.1 Lite, Lyria 3, Gemini Robotics-ER 1.6,
+  and Gemini 3.5 Pro's release status.
 
 ## Measurable Outcome
 
-- Every named model is covered by an indexed prompting guide or a clearly
-  separated model section in a family guide.
-- Every documented or observed effort label is mapped to its product surface.
-- Copy-ready prompts include scope, constraints, verification, and failure
-  behavior rather than marketing prose alone.
-- Official facts, dated interface observations, independent results,
-  interpretations, and unconfirmed claims remain distinct.
-- Tests enforce the required guide set, effort coverage, model-name mappings,
-  source labels, navigation, and public-safety rules.
+- Every audit target has a documented outcome: released, preview, announced,
+  or unconfirmed.
+- Every new factual claim links to a visited official source and carries a
+  checked date or a stated uncertainty.
+- New prompting guides are indexed and contain task fit, tool boundaries,
+  verification, failure modes, cost framing, and unsuitable uses.
+- Regression tests protect the new guide set, taxonomy, watchlist, and links.
 
 ## Phases
 
-- [x] Inspect the branch, existing essay, Grok-authored guide pack, tests, and
-  repository instructions.
-- [x] Verify changing product claims against current primary sources and the
-  local Codex catalog/version evidence.
-- [x] Correct surface and effort terminology without discarding useful Grok
-  material.
-- [x] Improve model guides according to task complexity and add missing depth
-  only where it improves real prompting decisions.
-- [x] Strengthen navigation, source notes, and regression tests.
-- [x] Run focused and full repository verification, review the diff, and
-  prepare the finished documentation change for commit.
+- [x] Inspect the branch, existing essay, prompting pack, tests, and repository
+  instructions.
+- [x] Research every requested audit target through official sources.
+- [x] Add source-conscious taxonomy, audit outcomes, and prompting guidance.
+- [x] Update indexes and regression tests.
+- [x] Run focused and full validation, review the diff, and commit on `main`.
 
 ## Key Questions
 
-1. Which menus are official vendor documentation versus a dated local or user
-   interface observation?
-2. Does each effort section change the prompt strategy, or merely repeat a
-   generic template?
-3. Are Ultra and Ultracode described as orchestration instead of single-model
-   effort values?
-4. Are unavailable or undisclosed products clearly blocked from production
-   guidance?
-5. Can a reader select a model, surface, effort, prompt, and verification rule
-   without reading the entire pack?
+1. Which named systems have a documented public API or product surface?
+2. Which specialist systems require different evaluation criteria from general
+   language models?
+3. Which facts are absent or conflict across official sources and must remain
+   unknown?
 
 ## Decisions
 
-- Preserve the existing `docs/guides/model-prompting/` structure and improve it
-  in place.
-- Keep closely related image and live-audio variants in family guides when that
-  avoids duplicated instructions, but give each model its own decision and
-  prompt section.
-- Treat Codex CLI `0.144.0` as both the official GPT-5.6 minimum and the local
-  catalog snapshot. Record `0.144.1` separately as the latest stable npm release
-  on the checked date.
-- Treat Desktop `Light` and exact web Work menus as dated interface observations
-  unless a current official help page enumerates them.
-- Commit after all repository checks pass. Do not push unless explicitly asked.
+- Preserve existing verified 2026 coverage and add grouped guides where models
+  share an operational category.
+- Use first-party sources for all release, identifier, availability, pricing,
+  license, and capability claims. Do not add numerical benchmarks without an
+  independent method.
+- Keep Gemini 3.5 Pro on a watchlist because Google currently says only
+  "coming soon" and provides no usable model identifier or access instructions.
+- Keep Robostral Navigate out of production guidance because the official
+  announcement is not paired with a documented public model surface.
+
+## Checkpoint Notes
+
+- Official-source sweep completed 2026-07-12. New release and access facts are
+  linked in the frontier guide; no independent benchmark values were added.
+- Gemini 3.5 Pro remains an official coming-soon watchlist entry. Robostral
+  Navigate remains announced with limited public technical information.
+- Focused prompting-guide tests, repository health, formatting check, full
+  unit suite, and `git diff --check` passed before staging.
 
 ## Errors Encountered
 
@@ -95,6 +85,5 @@ model access, effort menus, and prices.*
 
 ## Status
 
-All six phases are complete. Repository health and formatting checks passed,
-all 113 unit tests passed, and `git diff --check` reported no errors. The
-finished documentation change is ready for its requested commit.
+Documentation expansion is complete and validated. Commit only the listed
+frontier-guide, prompting-guide, index, test, and plan changes; do not push.
