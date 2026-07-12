@@ -1,6 +1,6 @@
 # Frontier Models and Multimodal Systems in 2026
 
-Checked: 2026-07-11
+Checked: 2026-07-12
 
 This guide explains the GPT-5.6 family, Claude Fable 5 and Opus 4.8, Grok
 4.5, Muse Spark 1.1, Gemini 3.5 Flash, current live-audio systems, and current
@@ -25,6 +25,14 @@ Third-party videos are workflow evidence only. They do not establish prices,
 plan eligibility, model IDs, architecture, or benchmark scores. The
 [video research pack](../research/video-research-pack-2026-07-11.md) records
 verified videos and discovery searches separately.
+
+## Prompting Guides for These Models
+
+For copy-ready work orders, effort playbooks, and surface-specific templates
+for every model family in this essay, use the
+[model and effort prompting pack](model-prompting/README.md). Start with the
+[surface and effort map](model-prompting/surface-and-effort-map.md) when you
+need Codex vs Desktop Light vs Work Ultra vs Claude Extra/xhigh labels.
 
 ## The Short Answer
 
@@ -730,6 +738,28 @@ YouTube frames can hide small text errors, edge artifacts, and reference drift.
 The limited English first-party technical disclosure does not establish a
 particular diffusion, autoregressive, or reasoning architecture.
 
+### Muse Image and Muse Video
+
+Meta launched Muse Image on July 7, 2026 across the Meta AI app and meta.ai,
+Instagram Stories in the United States, and WhatsApp in limited countries,
+with Facebook support announced as coming later. Meta describes Muse Image as
+an agentic image-generation and editing model with search and coding tools,
+self-refinement, multi-reference composition, and integration with Muse Spark.
+Those tool and quality statements are vendor claims that should be tested on
+the actual product surface used.
+
+Muse Image also applies Meta's Content Seal invisible provenance signal to
+images created in Meta AI and on meta.ai. A prompt should still state rights,
+identity, factual-grounding, and output constraints; watermarking does not make
+an unsafe or misleading request acceptable.
+
+Muse Video is an early preview, not a currently available production path in
+this snapshot. Meta says it is coming soon and identifies current work on
+audio-video synchronization and physically accurate fast motion. The
+repository therefore documents research and readiness checks but does not
+publish a live production integration template. See the
+[Muse Image and Muse Video prompting guide](model-prompting/muse-image-video-prompting.md).
+
 ### Image-model videos
 
 [![Watch a GPT Image 2, Nano Banana 2, and Seedream comparison](https://i.ytimg.com/vi/FDhx79PU5KQ/maxresdefault.jpg)](https://yaked1.github.io/ai-lab-codex-workbench/site/model-media.html#image-model-comparison)
@@ -835,12 +865,14 @@ measure whether a diagram is factually correct.
 - GPT Image 2's claimed fully autoregressive architecture is not established in
   the checked OpenAI documentation.
 - Seedream 5.0 Pro has limited English first-party technical disclosure.
+- Muse Video is announced as coming soon; no available production surface or
+  stable integration limits were confirmed for this snapshot.
 - Third-party videos are qualitative context. They are not the factual source
   for pricing, access, architecture, or benchmark scores.
 
 ## Sources
 
-Primary sources, accessed 2026-07-11:
+Primary sources, accessed 2026-07-11 unless noted:
 
 - [OpenAI: GPT-5.6 launch](https://openai.com/index/gpt-5-6/), published 2026-07-09.
 - [OpenAI Help: GPT-5.6 in ChatGPT](https://help.openai.com/en/articles/20001354-gpt-56-in-chatgpt).
@@ -861,6 +893,7 @@ Primary sources, accessed 2026-07-11:
 - [SpaceXAI: Grok Build CLI](https://x.ai/cli).
 - [SpaceXAI: Grok Build changelog](https://x.ai/build/changelog).
 - [Meta: Introducing Muse Spark 1.1](https://ai.meta.com/blog/introducing-muse-spark-meta-model-api/).
+- [Meta: Introducing Muse Image and Muse Video](https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/), accessed 2026-07-12.
 - [Google: Gemini 3.5 Flash changes](https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5).
 - [Google Gemini Apps Help: thinking levels](https://support.google.com/gemini/answer/16275805?hl=en).
 - [Google: Live translation with Gemini Live API](https://ai.google.dev/gemini-api/docs/live-api/live-translate).

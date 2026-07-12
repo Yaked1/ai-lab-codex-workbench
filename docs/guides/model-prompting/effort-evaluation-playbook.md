@@ -1,0 +1,206 @@
+# Effort Evaluation Playbook
+
+Checked: 2026-07-12
+
+This playbook helps choose an effort level with evidence. It applies to GPT-5.6
+Low/Light through Max, Claude Low through Max, Grok Low through High, and
+Gemini Flash API thinking levels. Ultra and Ultracode require a separate
+orchestration evaluation because they change the workflow, not only the amount
+of single-model reasoning.
+
+## The Decision to Measure
+
+Choose the lowest effort that meets the task's quality threshold at an
+acceptable total cost. Total cost includes model or credit use, retries,
+elapsed time, tool calls, and human correction.
+
+```text
+Decision: choose [model + surface + effort] for [task class]
+Quality threshold: [pass rate / rubric score]
+Latency ceiling: [seconds or minutes]
+Cost ceiling: [per task]
+Safety gate: [no secrets / approval / refusal behavior]
+Review burden: [maximum human correction time]
+```
+
+## Build a Representative Task Set
+
+Use 10 to 30 tasks drawn from real work. A useful set contains:
+
+- easy tasks that should expose over-spending;
+- normal tasks that represent most volume;
+- hard tasks that test useful headroom;
+- known failure cases from prior runs;
+- tasks with deterministic checks where possible.
+
+Do not select only impressive demos. Keep the task set frozen while comparing
+efforts.
+
+## Freeze the Prompt Contract
+
+Change only the effort control during the first comparison. Keep model,
+surface, prompt, context, tools, time limit, and acceptance checks identical.
+
+```text
+Goal: [observable result]
+Inputs: [frozen files or source packet]
+Scope: [include / exclude]
+Tools: [exact list]
+Verification: [commands or rubric]
+Failure: [stop condition]
+Output: [schema]
+```
+
+If one effort needs a different prompt to succeed, record a second “prompt
+tuning” experiment rather than silently changing the baseline.
+
+## Metrics
+
+| Metric | Why it matters | Collection |
+| --- | --- | --- |
+| Task success | Primary outcome | Deterministic test or blinded rubric |
+| First-pass success | Reliability | Pass before any retry |
+| Human correction | Hidden operating cost | Minutes and edit count |
+| Elapsed time | User experience | Wall-clock start to accepted result |
+| Input/output tokens | API cost driver | Provider usage record |
+| Tool calls | Agent efficiency | Trace count and failures |
+| Retry count | Stability | Number of repair loops |
+| Scope violations | Safety/maintainability | Diff or action audit |
+| Refusal/fallback | Product behavior | Visible notice and final model identity |
+
+## Single-Model Ladder
+
+Use this procedure for Sol, Terra, Luna, Fable, Opus, Grok, and Gemini Flash:
+
+1. Start at the recommended daily level, not automatically at the minimum.
+2. Run the frozen set at least twice if outputs are nondeterministic.
+3. Escalate one band only when a failed acceptance check plausibly needs more
+   reasoning or tool use.
+4. Stop when the quality threshold passes or the failure is missing data,
+   permissions, or an unsupported product feature.
+5. Prefer the lower effort when the quality confidence intervals overlap and
+   correction burden is similar.
+
+Typical starting bands:
+
+| Task | GPT-5.6 | Claude | Grok | Gemini Flash API |
+| --- | --- | --- | --- | --- |
+| Schema transform | Low/Light | Low | Low | minimal/low |
+| Normal feature or report | Medium | High or Medium after eval | Medium | medium |
+| Difficult debugging | High | High/xhigh | High | high |
+| Ambiguous architecture | Sol Extra High | xhigh | High plus strict evidence | high plus stronger tools |
+| Final single-agent review | Max after proof of headroom | Max after proof of headroom | High | high |
+
+## Ultra and Ultracode Experiment
+
+Do not compare Ultra to Max by changing only a menu label. Ultra adds parallel
+agents; Ultracode adds `xhigh` plus standing permission for multi-agent
+workflows.
+
+Compare two end-to-end workflows:
+
+```text
+Baseline A: one agent at High or Max
+Workflow B: Ultra / Ultracode with explicit independent streams
+
+Same overall task, repository state, acceptance suite, and time limit.
+Measure total tokens across all agents, wall time, duplicate work, merge
+conflicts, final pass rate, and human reconciliation time.
+```
+
+Parallel evaluation contract:
+
+```text
+Overall outcome: [project]
+Stream A ownership: [paths]
+Stream B ownership: [paths]
+Stream C ownership: [paths]
+Reviewer: read-only
+Shared interface freeze: [file/schema]
+Synthesis rule: [tests are truth / primary agent resolves]
+Abort condition: streams are sequential or collide on one hot file
+```
+
+An orchestration win requires more than a higher-quality answer. It should
+improve accepted task success or elapsed time enough to justify higher total
+tokens and coordination risk.
+
+## Coding Evaluation
+
+Use a clean checkout or reproducible fixture for each run. Record:
+
+```text
+commit_before:
+model:
+surface:
+effort:
+prompt_hash:
+tools_enabled:
+commands_run:
+tests_passed:
+files_changed:
+scope_violations:
+elapsed_seconds:
+human_fix_minutes:
+commit_after_or_patch_hash:
+```
+
+Reject a run that reports success without executing the named check. A good
+explanation cannot substitute for a passing regression test.
+
+## Research and Document Evaluation
+
+Score each artifact on:
+
+1. claim-to-source traceability;
+2. numerical accuracy;
+3. conflict handling;
+4. decision usefulness;
+5. editability;
+6. unsupported-claim count;
+7. human correction time.
+
+Use a blind reviewer when possible. Keep visual polish separate from analytical
+correctness.
+
+## Live Audio Evaluation
+
+Text-model effort does not transfer directly to full-duplex voice. For
+GPT-Live and Live Translate, freeze the microphone, network, script, language
+pair, and background-noise conditions. Measure interruption, pause handling,
+proper nouns, numbers, overlap, tool-delegation time, and transcript match.
+
+## Image and Video Evaluation
+
+Image and video systems generally do not expose the same effort ladder. Hold
+prompt, references, aspect ratio, resolution, and revision count constant.
+Score prompt adherence, typography, identity consistency, edit precision,
+artifacts, audio sync, latency, and safety. Inspect original outputs rather
+than compressed social media.
+
+## Failure Modes
+
+| Failure | Repair |
+| --- | --- |
+| Max wins because prompt changed | Re-run with frozen baseline prompt |
+| One lucky output decides routing | Use repeated runs and a task set |
+| Ultra appears cheaper because worker tokens omitted | Count all agents |
+| Higher effort fixes missing context | Add the missing input; effort was not the cause |
+| Benchmark score replaces local eval | Use benchmark only to choose candidates |
+| Human correction ignored | Record minutes and edit count |
+
+## Verification Checklist
+
+- [ ] Task set represents real easy, normal, hard, and failure cases
+- [ ] Prompt, context, tools, and checks are frozen across effort comparisons
+- [ ] Success, latency, total tokens, retries, and human correction recorded
+- [ ] Ultra/Ultracode counted as a workflow with all agent costs
+- [ ] Fable fallback and harness identity logged
+- [ ] Decision rule chooses the lowest effort meeting the threshold
+- [ ] Results include date, product surface, client version, and model ID
+
+## Related
+
+- [Surface and effort map](surface-and-effort-map.md)
+- [Sources and observations](sources-and-observations.md)
+- [Model prompting index](README.md)

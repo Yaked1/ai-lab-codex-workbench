@@ -21,7 +21,7 @@ claims, independent results, and unresolved gaps.
 | Run a first Codex task | [Codex start guide](docs/codex/00-start-here.md) | [Goal workflow](docs/codex/01-codex-goal-workflow.md) |
 | Learn prompt engineering | [Prompt engineering guide](docs/guides/comprehensive-prompt-engineering-guide.md) | [Prompt playbook](docs/guides/prompt-engineering-playbook.md) |
 | Prompt coding agents | [Coding-agent prompting](docs/guides/prompting-ai-coding-agents.md) | [Power tips](docs/guides/coding-agent-power-tips.md) |
-| Check current models and effort modes | [Current model and interface guide](docs/guides/current-models-and-interfaces.md) | [2026 frontier model essay](docs/guides/frontier-models-and-multimodal-systems-2026.md) |
+| Check current models and effort modes | [Current model and interface guide](docs/guides/current-models-and-interfaces.md) | [Model prompting pack](docs/guides/model-prompting/README.md) |
 | Use live voice or translation | [Live audio and translation](docs/guides/live-audio-and-translation.md) | Follow the linked official docs before deployment |
 | Run a full agent task | [Agent task lifecycle](docs/workflows/agent-task-lifecycle.md) | [Task template](docs/templates/task-spec.md) |
 | Install reusable skills | [Skills catalog](skills/README.md) | `python scripts/install_skill.py --list` |
@@ -205,6 +205,18 @@ source-checked map of current audio, image, and video model families.
 Its [video research pack](docs/research/video-research-pack-2026-07-11.md)
 separates verified embedded videos from discovery searches that are not factual
 evidence.
+
+The [model and effort prompting pack](docs/guides/model-prompting/README.md)
+turns that inventory into per-model work orders: Sol/Terra/Luna efforts
+(including Desktop Light and Work Ultra evidence boundaries), Fable/Opus Extra vs
+xhigh/Ultracode, Grok Build High default, Muse Spark, Gemini Flash, Live
+audio/translate, and image/video families (GPT Image 2, Nano Banana, Omni,
+Seedream, Muse Image; Muse Video marked coming soon and unavailable for
+production prompting).
+The pack's [effort evaluation playbook](docs/guides/model-prompting/effort-evaluation-playbook.md)
+tests whether higher effort is worth its cost, while its
+[source ledger](docs/guides/model-prompting/sources-and-observations.md)
+separates official access from local and user-observed menus.
 
 Each guide now includes an original, attributed visual and links to watchable
 official demos where available. The

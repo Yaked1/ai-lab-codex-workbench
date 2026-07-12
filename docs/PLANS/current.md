@@ -1,70 +1,100 @@
-# Current Plan: Frontier Models and Multimodal Systems
+# Current Plan: Model and Effort Prompting Guide Pack
 
 ## Goal
 
-Publish a source-checked long-form guide to GPT-5.6, Claude Fable 5, Grok 4.5,
-Gemini 3.5, current image models, and live-audio systems, with original charts
-and watchable embedded videos.
+Finish the prompting-guide pack started by Grok, using the dated frontier-model
+essay as the main repository source and current official vendor documentation
+for claims that can change. The finished pack must give each named model and
+effort mode useful, surface-aware prompt patterns without forcing every guide
+to the same length.
 
-![Current Artificial Analysis benchmark snapshot](../assets/model-guides/aa-frontier-benchmark-2026-07-11.svg)
+![GPT-5.6 effort controls by product surface](../assets/model-guides/gpt-5-6-effort-surfaces.svg)
 
-[![Watch the GPT-5.6, GPT-Live, Grok 4.5, and Muse Spark launch discussion](https://i.ytimg.com/vi/QjuuTHJKxWI/maxresdefault.jpg)](https://yaked1.github.io/ai-lab-codex-workbench/site/model-media.html#launch-discussion)
+[![Watch a hands-on test of GPT-5.6 Sol, Terra, and Luna](https://i.ytimg.com/vi/xDXX2M5DrO0/maxresdefault.jpg)](https://yaked1.github.io/ai-lab-codex-workbench/site/model-media.html#gpt-5-6-family-test)
+
+*Third-party workflow context. Official documentation remains the authority for
+model access, effort menus, and prices.*
+
+## Scope
+
+- GPT-5.6 Sol, Terra, and Luna across Codex CLI, ChatGPT Desktop, web Work,
+  standard Chat, and API where supported.
+- Claude Fable 5 and Opus 4.8 across Claude web, Claude Code, Desktop Code,
+  API, and Fable's post-promotion usage-credit transition.
+- Grok 4.5 in Grok Build.
+- Meta Muse Spark 1.1, Muse Image, and the unavailable Muse Video path.
+- Gemini 3.5 Flash, Gemini 3.5 Live Translate, and Gemini Omni Flash.
+- GPT-Live-1, GPT-Live-1 Mini, GPT Image 2, Nano Banana Pro, Nano Banana 2,
+  Nano Banana 2 Lite, and Seedream 5.0 Pro.
 
 ## Measurable Outcome
 
-- One dated guide distinguishes confirmed facts, vendor claims, independent
-  benchmarks, local interface evidence, and unresolved claims.
-- GPT-5.6 interface and effort tables cover Chat, Work, Codex, and API without
-  presenting account-specific observations as universal access.
-- Original figures show the effort surface, current benchmark snapshot, and
-  multimodal model map.
-- The GitHub Pages gallery includes verified, embeddable videos for the major
-  model groups covered by the guide.
-- Deterministic tests cover asset links, accessibility metadata, source
-  sections, model-name corrections, gallery anchors, and iframe sources.
-- A dated video research pack covers every requested release with either
-  verified metadata or an explicitly non-evidentiary discovery search.
+- Every named model is covered by an indexed prompting guide or a clearly
+  separated model section in a family guide.
+- Every documented or observed effort label is mapped to its product surface.
+- Copy-ready prompts include scope, constraints, verification, and failure
+  behavior rather than marketing prose alone.
+- Official facts, dated interface observations, independent results,
+  interpretations, and unconfirmed claims remain distinct.
+- Tests enforce the required guide set, effort coverage, model-name mappings,
+  source labels, navigation, and public-safety rules.
 
 ## Phases
 
-- [x] Inspect the current guides, media gallery, source ledgers, and branch.
-- [x] Verify official OpenAI, Anthropic, SpaceXAI, Google, Meta, and ByteDance
-  sources plus Artificial Analysis results.
-- [x] Write the long-form guide and original figures.
-- [x] Expand the embedded gallery and repository navigation.
-- [x] Add regression coverage for the new assets, guide, and gallery entries.
-- [x] Run the repository command suite and inspect every result.
-- [x] Create the requested commit on `main`.
+- [x] Inspect the branch, existing essay, Grok-authored guide pack, tests, and
+  repository instructions.
+- [x] Verify changing product claims against current primary sources and the
+  local Codex catalog/version evidence.
+- [x] Correct surface and effort terminology without discarding useful Grok
+  material.
+- [x] Improve model guides according to task complexity and add missing depth
+  only where it improves real prompting decisions.
+- [x] Strengthen navigation, source notes, and regression tests.
+- [x] Run focused and full repository verification, review the diff, and
+  prepare the finished documentation change for commit.
 
-## Key Corrections
+## Key Questions
 
-- Current Codex labels use `low`, not `light`.
-- Nano Banana 2 is Gemini 3.1 Flash Image. Gemini 3 Pro Image is Nano Banana
-  Pro.
-- Artificial Analysis names its agentic coding composite the Coding Agent
-  Index, not the Codex Index.
-- Artificial Analysis tested GPT-5.6 Sol at `max`; `ultra` is a separate
-  multi-agent product mode.
-- OpenAI does not publicly document GPT Image 2 as a fully autoregressive
-  architecture. That architecture claim remains unconfirmed.
+1. Which menus are official vendor documentation versus a dated local or user
+   interface observation?
+2. Does each effort section change the prompt strategy, or merely repeat a
+   generic template?
+3. Are Ultra and Ultracode described as orchestration instead of single-model
+   effort values?
+4. Are unavailable or undisclosed products clearly blocked from production
+   guidance?
+5. Can a reader select a model, surface, effort, prompt, and verification rule
+   without reading the entire pack?
 
-## Existing Repository State
+## Decisions
 
-The earlier `CLAUDE.md` edit is already part of commit `cd09d15`; it is not an
-unstaged file in this continuation. All new changes from this pass remain in
-the requested all-changes staging scope.
+- Preserve the existing `docs/guides/model-prompting/` structure and improve it
+  in place.
+- Keep closely related image and live-audio variants in family guides when that
+  avoids duplicated instructions, but give each model its own decision and
+  prompt section.
+- Treat Codex CLI `0.144.0` as both the official GPT-5.6 minimum and the local
+  catalog snapshot. Record `0.144.1` separately as the latest stable npm release
+  on the checked date.
+- Treat Desktop `Light` and exact web Work menus as dated interface observations
+  unless a current official help page enumerates them.
+- Commit after all repository checks pass. Do not push unless explicitly asked.
+
+## Errors Encountered
+
+- Initial parallel output truncated several guide bodies. Resolved by reading
+  the files in smaller batches.
+- The first `agent-reach doctor --json` output was omitted by the command batch.
+  Resolved by running it separately; web access is available through Jina
+  Reader and GitHub is available without authenticated extended features.
+- PowerShell could not launch `rg.exe` in this session. The consistency scan
+  used `Select-String` instead.
+- `safe_autofix.py --check` requested deterministic wrapping in the new source
+  ledger. `--write` applied only that formatting change and the diff was
+  reviewed.
 
 ## Status
 
-Essay expansion, media classification, video research, figures, navigation,
-provenance, and regression tests are complete. Verification on 2026-07-12:
-
-- `python scripts/repo_health_check.py`: passed.
-- `python scripts/safe_autofix.py --check`: no changes needed.
-- `python -m unittest discover -s tests`: 94 tests passed.
-- `git diff --check`: passed; Git only reported line-ending conversion notices.
-- Focused model-media suite: 11 tests passed.
-- Six SVG files parsed as XML and include non-empty titles and descriptions.
-- Eleven gallery iframes use privacy-enhanced YouTube sources, lazy loading,
-  descriptive titles, fullscreen support, and unique HTML anchors.
-- The expected GitHub Pages media URL returned HTTP 200.
+All six phases are complete. Repository health and formatting checks passed,
+all 113 unit tests passed, and `git diff --check` reported no errors. The
+finished documentation change is ready for its requested commit.
