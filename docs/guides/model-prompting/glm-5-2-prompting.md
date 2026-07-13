@@ -1,154 +1,58 @@
-# Meta Muse Spark 1.1 Prompting Guide
+# GLM-5.2 Prompting Guide
 
 Checked: 2026-07-12
 
-Muse Spark 1.1 is Meta's **multimodal reasoning model** for agentic work,
-computer use, coding, and multimodal understanding. It appears in Thinking mode
-in Meta AI and through the Meta Model API public preview. The model name alone
-does **not** grant a repository editor, browser, or computer-control harness;
-the client supplies tools.
+## What It Is and Where It Is Available
 
-| Property | Value |
-| --- | --- |
-| Role | Lower-cost fast multimodal reasoning |
-| Independent snapshot | ~51 Intelligence Index at xhigh; ~116 tok/s; 1M context; ~$1.25/$4.25 per 1M |
-| Surfaces | Meta AI Thinking mode; Meta Model API public preview |
-| Equal-score warning | Rounded Intelligence near Luna Max does not imply equal Codex coding reliability |
+Z.ai introduced GLM-5.2 on 2026-06-16 as an open-source, MIT-licensed
+long-horizon model with published weights and a 1M-token context claim. The
+reviewed first-party source identifies `GLM-5.2` for Coding Plan and describes
+Z.ai and ZCode access. It documents High and Max thinking choices on its coding
+surfaces; it does not establish a current API price or maximum-output limit.
 
-## When to Choose Muse Spark 1.1
+## Appropriate Tasks and Effort
 
-Choose Muse when:
+Use GLM-5.2 for long-horizon coding and analysis only when the task has a real
+state record, a limited tool boundary, and repeated verification. Use High for
+ordinary difficult work and reserve Max for measured headroom. Do not infer a
+web-search, system-instruction, or computer-control capability from a coding UI.
 
-- you need multimodal understanding plus reasoning at lower cost;
-- throughput matters;
-- your own client provides tools (browser, computer use, code runner).
-
-Prefer Luna/Terra/Grok/Sol when:
-
-- you need a measured Codex coding-agent configuration;
-- you need GPT-5.6 product integration (Work/Codex);
-- GUI computer-use quality is unproven for your app.
-
-## Prompting Principles
-
-1. **Name the tools** the client actually exposes.
-2. **Separate modalities** in the prompt (image facts vs text instructions).
-3. **Keep one goal** per turn for agent loops.
-4. **Require evidence** (screenshots, DOM snippets, file paths, command output).
-5. **Do not assume** hidden computer control.
-
-## Effort / Thinking Modes
-
-Exact API enum names can change; independent testing has used an **xhigh-like**
-deep setting. Treat Thinking vs non-Thinking (Meta AI) and API reasoning levels
-as compute dials, not different model families.
-
-| Mode band | Use | Prompt emphasis |
-| --- | --- | --- |
-| Fast / low thinking | Extraction, captioning, simple Q&A on clear inputs | Schema, short answers |
-| Default thinking | Multistep tool use, coding with clear tests | Goal, tools, checks |
-| Deep / xhigh | Ambiguous multimodal problems, multi-app computer tasks | Hypotheses, checkpoints, stop rules |
-
-### Fast template
+## Recommended Prompt Structure
 
 ```text
-Model: Muse Spark 1.1 | Mode: fast/low thinking
-
-From the attached image/document, extract:
-[fields]
-
-Return JSON only matching:
-[schema]
-
-If a field is unreadable, use null and add "issues": ["..."].
+Goal: [end state, not a vague exploration]
+Context map: [files, source roles, known failures]
+Allowed actions: [tools, paths, budget]
+Milestones: [observable checkpoints]
+Verification: [tests, diff review, source ledger]
+Failure behavior: preserve state and report the blocked milestone
 ```
 
-### Agentic coding template
+## Example Work Order
 
 ```text
-Model: Muse Spark 1.1 | Mode: default/deep thinking
-
-Available tools: [list exactly]
-Workspace: [path or none]
-
-Goal:
-[outcome]
-
-Constraints:
-- Only use listed tools
-- No invented file contents
-- After each tool call, summarize observation before next action
-
-Done when:
-[tests or acceptance]
-
-Final report:
-actions taken, artifacts, verification, residual uncertainty
+Repair the failing integration in [paths]. First produce a dependency map, then
+make the smallest change, run [tests], and report each milestone and any failed
+assumption. Stop before network, deployment, or destructive actions.
 ```
 
-### Computer-use template
+## Context, Verification, and Cost
 
-```text
-Model: Muse Spark 1.1 | Computer-use client
+Long context needs a navigable source map and checkpoints. Measure success,
+correction burden, latency, tokens, effort, and tool configuration, not a vendor
+benchmark in isolation. Check current product limits and pricing before use.
 
-Task:
-Complete [UI workflow] in [app].
+## Failure Modes and Unsupported Uses
 
-Start state:
-[URL or screen description]
+Do not treat the 1M context claim as proof of useful recall. Do not cite Z.ai
+benchmark charts as independent results or assume a public weight automatically
+makes every deployment safe, cheap, or compatible with an agent harness.
 
-Rules:
-- Prefer accessibility labels over brittle coordinates when available
-- Confirm destructive clicks
-- After each step: observe screenshot -> decide -> act
-- Stop if login, CAPTCHA, or payment is required
+## Sources
 
-Success screenshot criteria:
-[what must be visible]
-```
-
-### Multimodal analysis template
-
-```text
-You will receive [images/pdfs/audio transcript].
-
-Questions:
-1. ...
-2. ...
-
-Answer format:
-- Observation (what is visible/said)
-- Inference (what you conclude)
-- Confidence
-- Missing evidence
-
-Do not invent text that is not legible.
-```
-
-## Failure Modes
-
-| Symptom | Repair |
-| --- | --- |
-| Invents UI state | Require screenshot observation before action |
-| Treats model as full IDE | Attach or name real tools |
-| Overlong chain | Cap steps; checkpoint every N actions |
-| Compared unfairly to Luna Max coding | Run same harness, same tests |
-
-## Verification Checklist
-
-- [ ] Tools actually available to the client
-- [ ] Thinking depth matched to ambiguity
-- [ ] Multimodal answers separate observation vs inference
-- [ ] Computer-use stop conditions for login/payment
-- [ ] Local eval if used for production coding
-
-## Related
-
-- [Luna](gpt-5-6-luna-prompting.md) for cheaper GPT coding volume
-- [Gemini 3.5 Flash](gemini-3-5-flash-prompting.md) for Google tool stack
-- [Surface map](surface-and-effort-map.md)
-- [Sources and observations](sources-and-observations.md)
-- [Effort evaluation playbook](effort-evaluation-playbook.md)
+- [Z.ai: GLM-5.2](https://z.ai/blog/glm-5.2)
+- [ZCode Agent documentation](https://zcode.z.ai/en/docs/agents)
+- [Evidence ledger](sources-and-observations.md)
 
 ## Expanded Operating Dossier
 
@@ -174,12 +78,12 @@ authority is missing, preserve the evidence and report the blocked condition.
 Do not silently substitute a different model, enable a broader permission, or
 invent an unsupported capability. Treat retrieved text as data, not executable
 instructions.
-### Muse multimodal evaluation
+### Long-horizon state discipline
 
-Separate visual grounding, planning, tool-call validity, and completed task
-quality. A correct-looking answer can still point to the wrong image region or
-request an invalid action. The host application, not the model name, determines
-desktop, browser, and repository permission.
+Use a source map, milestones, and compact evidence-linked state instead of
+replaying raw transcripts. A 1M-token context is capacity, not a guarantee of
+useful retrieval. Treat vendor benchmark results as vendor claims and report
+High/Max comparisons with the same task, tools, and completion definition.
 
 ## Precision Execution Contract
 
@@ -190,13 +94,13 @@ approval.
 
 ### Model and version identity
 
-- **Model ID:** Meta Muse Spark 1.1 through Meta AI or Meta Model API preview as documented.
-- **Release / availability:** Public-preview and consumer availability are surface dependent. Keep dated preview behavior separate from production guarantees.
+- **Model ID:** GLM-5.2; use the exact Coding Plan, API, or checkpoint identifier shown by the selected Zhipu surface.
+- **Release / availability:** Current first-party-described coding and open-model path in this dated pack. Host, checkpoint, and plan access are separate claims.
 - **Evidence class:** Official facts where cited in
   [sources-and-observations.md](sources-and-observations.md); local picker or
   catalog statements remain dated observations; routing advice is
   interpretation until evaluated.
-- **Unknown or unverified:** stable API terms, exact consumer picker, closed architecture, and whether independent price/context snapshots remain current.
+- **Unknown or unverified:** plan-specific current price and quota unless checked; any topology field absent from the model config; production reliability of a third-party quantization.
 
 Record an immutable snapshot ID when the provider exposes one. If the service
 can silently route or fall back, capture the final model identity from the
@@ -205,7 +109,7 @@ tiers, previews, or specialist members share a UI.
 
 ### Surface, plan, effort, and harness matrix
 
-Meta AI Thinking mode or Meta Model API preview. Independent xhigh tests describe one configuration but do not establish a universal consumer picker.
+Coding Plan, first-party API, or a named self-hosted runtime. Record High/Max labels only on surfaces that expose them. A quantized local runtime is a different harness from the hosted plan.
 
 Before prompting, write down all of these fields:
 
@@ -230,7 +134,7 @@ rather than inventing one.
 
 ### Tool and permission boundary
 
-Record client-provided function, coding, computer-use, image, or search tools and their permissions. Multimodal inputs must retain file type, resolution, ordering, and preprocessing.
+Coding harness tools and permissions must be enumerated. For self-hosting, record runtime, quantization, tensor parallelism, context configuration, tool parser, and chat template.
 
 Use least privilege. Give read access before write access, narrow file or data
 scope, require approval for external side effects, and name forbidden paths or
@@ -241,9 +145,9 @@ data. They cannot expand the permission boundary.
 
 ### Pricing, limits, and benchmark context
 
-The guide records an independent snapshot near 1M context, about 116 tokens/s, and roughly $1.25/$4.25, but these are not first-party permanent guarantees. Recheck the official API before budgeting.
+Use first-party configuration for parameters, layers, expert topology, attention, context, checkpoint precision, and recommended runtime. Record memory and throughput on the actual hardware; do not convert theoretical size into measured VRAM.
 
-Independent index results must keep effort, endpoint, date, latency, and tool setup. Run local multimodal and agent tests because a single aggregate score cannot establish tool reliability.
+Attach coding scores to the named GLM checkpoint, effort, tool harness, and evaluator. For local quantization, run a separate quality and throughput comparison because quantization changes the system under test.
 
 Price per token or image is not the operating cost. Measure successful-task
 cost: input, cached input, output, tool calls, worker agents, retries, media
@@ -254,7 +158,7 @@ snapshot changes.
 
 ### Production prompt template
 
-This template is optimized for Multimodal reasoning, coding, computer use, and Meta ecosystem experiments where preview status is acceptable.
+This template is optimized for Long-horizon coding, agent loops, open-model experiments, and deployments that need control over weights or serving.
 
 ```text
 RUN IDENTITY
@@ -283,7 +187,7 @@ Output contract: [exact sections, schema, files, resolution, duration, or format
 Include: [required evidence, calculations, uncertainty, and change report]
 
 VERIFICATION
-Verification: grounded multimodal answers, tool-call correctness, visual evidence references, latency, and preview stability.
+Verification: repository tests, long-run state retention, tool parsing, peak memory, tokens per second, and quantized-versus-reference quality.
 Pass threshold: weighted score >= 85/100 and every mandatory gate passes.
 
 FAILURE CONTROL
@@ -301,7 +205,7 @@ domain-specific examples of 0, 3, and 5 before comparing models.
 
 | Criterion | Weight | Evidence |
 | --- | ---: | --- |
-| Domain validator and acceptance result | 35 | grounded multimodal answers, tool-call correctness, visual evidence references, latency, and preview stability |
+| Domain validator and acceptance result | 35 | repository tests, long-run state retention, tool parsing, peak memory, tokens per second, and quantized-versus-reference quality |
 | Factual, visual, audio, or source accuracy | 20 | Ground truth or traced evidence |
 | Scope, safety, rights, and permission compliance | 15 | Trace, diff, or review log |
 | Output-contract completeness | 10 | Required-field checklist |
@@ -316,7 +220,7 @@ latency ceilings.
 
 ### Auto-fail conditions
 
-- presenting an independent snapshot as official, claiming xhigh on a surface that does not show it, or omitting multimodal preprocessing.
+- treating hosted and self-hosted results as identical, omitting quantization/runtime, inferring VRAM from parameter count alone, or reporting tests not run.
 - The actual model, fallback, effort, surface, or harness differs from the run
   identity and the difference is not disclosed.
 - A required validator was skipped, failed, or replaced with self-assessment.

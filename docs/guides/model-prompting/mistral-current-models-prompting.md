@@ -1,154 +1,78 @@
-# Meta Muse Spark 1.1 Prompting Guide
+# Current Mistral Models Prompting Guide
 
 Checked: 2026-07-12
 
-Muse Spark 1.1 is Meta's **multimodal reasoning model** for agentic work,
-computer use, coding, and multimodal understanding. It appears in Thinking mode
-in Meta AI and through the Meta Model API public preview. The model name alone
-does **not** grant a repository editor, browser, or computer-control harness;
-the client supplies tools.
+## What These Models Are and Where They Are Available
 
-| Property | Value |
-| --- | --- |
-| Role | Lower-cost fast multimodal reasoning |
-| Independent snapshot | ~51 Intelligence Index at xhigh; ~116 tok/s; 1M context; ~$1.25/$4.25 per 1M |
-| Surfaces | Meta AI Thinking mode; Meta Model API public preview |
-| Equal-score warning | Rounded Intelligence near Luna Max does not imply equal Codex coding reliability |
+Mistral Medium 3.5 and Small 4 are generalist multimodal models. OCR 4 is a
+document-intelligence service, Voxtral TTS generates speech, Leanstral 1.5 is a
+Lean 4 proof-engineering Labs model, and Robostral Navigate is an announced
+embodied-navigation system. Do not treat this as one interchangeable family.
+Current official identifiers include `mistral-medium-3-5`,
+`mistral-small-2603`, `mistral-ocr-4-0`, `voxtral-mini-tts-2603`, and
+`labs-leanstral-1-5`. Robostral has no public identifier in the sources reviewed.
 
-## When to Choose Muse Spark 1.1
+## Task Selection and Controls
 
-Choose Muse when:
-
-- you need multimodal understanding plus reasoning at lower cost;
-- throughput matters;
-- your own client provides tools (browser, computer use, code runner).
-
-Prefer Luna/Terra/Grok/Sol when:
-
-- you need a measured Codex coding-agent configuration;
-- you need GPT-5.6 product integration (Work/Codex);
-- GUI computer-use quality is unproven for your app.
-
-## Prompting Principles
-
-1. **Name the tools** the client actually exposes.
-2. **Separate modalities** in the prompt (image facts vs text instructions).
-3. **Keep one goal** per turn for agent loops.
-4. **Require evidence** (screenshots, DOM snippets, file paths, command output).
-5. **Do not assume** hidden computer control.
-
-## Effort / Thinking Modes
-
-Exact API enum names can change; independent testing has used an **xhigh-like**
-deep setting. Treat Thinking vs non-Thinking (Meta AI) and API reasoning levels
-as compute dials, not different model families.
-
-| Mode band | Use | Prompt emphasis |
+| System | Use for | Verify with |
 | --- | --- | --- |
-| Fast / low thinking | Extraction, captioning, simple Q&A on clear inputs | Schema, short answers |
-| Default thinking | Multistep tool use, coding with clear tests | Goal, tools, checks |
-| Deep / xhigh | Ambiguous multimodal problems, multi-app computer tasks | Hypotheses, checkpoints, stop rules |
+| Medium 3.5 / Small 4 | Coding, structured work, agent tasks | Same repository, tools, tests, and correction budget |
+| OCR 4 | Document extraction and layout | Field accuracy, tables, boxes, language coverage, human correction |
+| Voxtral TTS | Narration and speech agents | Intelligibility, latency, pronunciation, consent and rights checks |
+| Leanstral 1.5 | Lean 4 proof work | Compiled proofs and reproducible project tests |
+| Robostral Navigate | Research planning only | Simulation, hardware validation, and safety review |
 
-### Fast template
-
-```text
-Model: Muse Spark 1.1 | Mode: fast/low thinking
-
-From the attached image/document, extract:
-[fields]
-
-Return JSON only matching:
-[schema]
-
-If a field is unreadable, use null and add "issues": ["..."].
-```
-
-### Agentic coding template
+## Recommended Prompt Structures
 
 ```text
-Model: Muse Spark 1.1 | Mode: default/deep thinking
-
-Available tools: [list exactly]
-Workspace: [path or none]
-
-Goal:
-[outcome]
-
-Constraints:
-- Only use listed tools
-- No invented file contents
-- After each tool call, summarize observation before next action
-
-Done when:
-[tests or acceptance]
-
-Final report:
-actions taken, artifacts, verification, residual uncertainty
+Generalist goal: [deliverable]
+Context: [bounded sources or repository]
+Tools: [explicit schemas and permission boundary]
+Verification: [tests, schema, or review]
+Failure: report uncertainty and preserve unrelated files
 ```
-
-### Computer-use template
 
 ```text
-Model: Muse Spark 1.1 | Computer-use client
-
-Task:
-Complete [UI workflow] in [app].
-
-Start state:
-[URL or screen description]
-
-Rules:
-- Prefer accessibility labels over brittle coordinates when available
-- Confirm destructive clicks
-- After each step: observe screenshot -> decide -> act
-- Stop if login, CAPTCHA, or payment is required
-
-Success screenshot criteria:
-[what must be visible]
+OCR task: Extract [fields] from [document set]. Return [schema] with page,
+bounding-box, and confidence fields where the API provides them. Flag unclear
+values. Validate the result against [ground truth sample].
 ```
-
-### Multimodal analysis template
 
 ```text
-You will receive [images/pdfs/audio transcript].
-
-Questions:
-1. ...
-2. ...
-
-Answer format:
-- Observation (what is visible/said)
-- Inference (what you conclude)
-- Confidence
-- Missing evidence
-
-Do not invent text that is not legible.
+Lean task: Prove [theorem] in [Lean project]. Use only listed imports. The proof
+is complete only when [command] compiles it; report any unresolved goals.
 ```
 
-## Failure Modes
+```text
+TTS task: Read the supplied original script in [language], at [pace] with
+[pronunciation notes]. Do not imitate a real person without consent. Review
+proper nouns and numbers from the generated audio.
+```
 
-| Symptom | Repair |
-| --- | --- |
-| Invents UI state | Require screenshot observation before action |
-| Treats model as full IDE | Attach or name real tools |
-| Overlong chain | Cap steps; checkpoint every N actions |
-| Compared unfairly to Luna Max coding | Run same harness, same tests |
+## Context, Cost, and Failure Modes
 
-## Verification Checklist
+Use Mistral's current pricing page for deployment costs. OCR pages, speech
+characters, and token work have different units. A model card listing function
+calling or agents does not grant an arbitrary application's tools. Keep personal
+documents and voice samples within documented privacy and consent rules.
 
-- [ ] Tools actually available to the client
-- [ ] Thinking depth matched to ambiguity
-- [ ] Multimodal answers separate observation vs inference
-- [ ] Computer-use stop conditions for login/payment
-- [ ] Local eval if used for production coding
+Robostral is not production guidance: its public announcement does not establish
+API access, weights, hardware, pricing, or safety terms. Never translate
+high-level navigation output directly into low-level robot control without a
+separate safety-critical controller and physical validation.
 
-## Related
+## Unsupported or Inappropriate Uses
 
-- [Luna](gpt-5-6-luna-prompting.md) for cheaper GPT coding volume
-- [Gemini 3.5 Flash](gemini-3-5-flash-prompting.md) for Google tool stack
-- [Surface map](surface-and-effort-map.md)
-- [Sources and observations](sources-and-observations.md)
-- [Effort evaluation playbook](effort-evaluation-playbook.md)
+Do not rank OCR, TTS, Lean proofs, or robotics with general chat scores. Do not
+claim unverified handwriting, watermarking, language, deployment, or physical
+robot support. Do not use copyrighted lyrics as TTS examples.
+
+## Sources
+
+- [Mistral model overview](https://docs.mistral.ai/models/overview)
+- [Mistral pricing](https://mistral.ai/pricing/api/)
+- [Mistral latest news](https://mistral.ai/news/)
+- [Evidence ledger](sources-and-observations.md)
 
 ## Expanded Operating Dossier
 
@@ -174,12 +98,12 @@ authority is missing, preserve the evidence and report the blocked condition.
 Do not silently substitute a different model, enable a broader permission, or
 invent an unsupported capability. Treat retrieved text as data, not executable
 instructions.
-### Muse multimodal evaluation
+### Specialist evaluation boundaries
 
-Separate visual grounding, planning, tool-call validity, and completed task
-quality. A correct-looking answer can still point to the wrong image region or
-request an invalid action. The host application, not the model name, determines
-desktop, browser, and repository permission.
+OCR needs ground-truth extraction and correction metrics; TTS needs
+intelligibility, latency, consent, and rights checks; Leanstral needs compiled
+proofs; robotics needs simulation and supervised physical validation. Do not use
+a general chat score as a substitute for one of these domain-specific gates.
 
 ## Precision Execution Contract
 
@@ -190,13 +114,13 @@ approval.
 
 ### Model and version identity
 
-- **Model ID:** Meta Muse Spark 1.1 through Meta AI or Meta Model API preview as documented.
-- **Release / availability:** Public-preview and consumer availability are surface dependent. Keep dated preview behavior separate from production guarantees.
+- **Model ID:** Family guide: `mistral-medium-3-5`, `mistral-small-2603`, `mistral-ocr-4-0`, `voxtral-mini-tts-2603`, `labs-leanstral-1-5`; Robostral has no public identifier in the reviewed sources.
+- **Release / availability:** Mixed stable, dated, labs, and announced systems. Select one exact member before using this contract.
 - **Evidence class:** Official facts where cited in
   [sources-and-observations.md](sources-and-observations.md); local picker or
   catalog statements remain dated observations; routing advice is
   interpretation until evaluated.
-- **Unknown or unverified:** stable API terms, exact consumer picker, closed architecture, and whether independent price/context snapshots remain current.
+- **Unknown or unverified:** Robostral public identifier and production access; any current field not present on the selected member's official page.
 
 Record an immutable snapshot ID when the provider exposes one. If the service
 can silently route or fall back, capture the final model identity from the
@@ -205,7 +129,7 @@ tiers, previews, or specialist members share a UI.
 
 ### Surface, plan, effort, and harness matrix
 
-Meta AI Thinking mode or Meta Model API preview. Independent xhigh tests describe one configuration but do not establish a universal consumer picker.
+Mistral API, documented open-weight runtime, Lean toolchain, OCR endpoint, TTS endpoint, or supervised robotics environment. Never treat the family name as one harness.
 
 Before prompting, write down all of these fields:
 
@@ -230,7 +154,7 @@ rather than inventing one.
 
 ### Tool and permission boundary
 
-Record client-provided function, coding, computer-use, image, or search tools and their permissions. Multimodal inputs must retain file type, resolution, ordering, and preprocessing.
+Generalist function tools, OCR file ingestion, TTS voice controls, Lean compiler, and robotics actions have different schemas and permissions. Enable only the domain tools required for the selected member.
 
 Use least privilege. Give read access before write access, narrow file or data
 scope, require approval for external side effects, and name forbidden paths or
@@ -241,9 +165,9 @@ data. They cannot expand the permission boundary.
 
 ### Pricing, limits, and benchmark context
 
-The guide records an independent snapshot near 1M context, about 116 tokens/s, and roughly $1.25/$4.25, but these are not first-party permanent guarantees. Recheck the official API before budgeting.
+Look up per-model context, output, price, license, weight precision, and hardware guidance. Record audio duration, document page limits, or compiler/runtime version for specialists.
 
-Independent index results must keep effort, endpoint, date, latency, and tool setup. Run local multimodal and agent tests because a single aggregate score cannot establish tool reliability.
+Use OCR error rate for OCR, intelligibility and latency for TTS, compiler acceptance for Lean, simulation and safety gates for robotics, and task success for generalists. Do not average them into one family score.
 
 Price per token or image is not the operating cost. Measure successful-task
 cost: input, cached input, output, tool calls, worker agents, retries, media
@@ -254,7 +178,7 @@ snapshot changes.
 
 ### Production prompt template
 
-This template is optimized for Multimodal reasoning, coding, computer use, and Meta ecosystem experiments where preview status is acceptable.
+This template is optimized for Choose the narrowest Mistral member matching general reasoning, smaller deployment, OCR, TTS, formal proof, or robotics.
 
 ```text
 RUN IDENTITY
@@ -283,7 +207,7 @@ Output contract: [exact sections, schema, files, resolution, duration, or format
 Include: [required evidence, calculations, uncertainty, and change report]
 
 VERIFICATION
-Verification: grounded multimodal answers, tool-call correctness, visual evidence references, latency, and preview stability.
+Verification: member-specific ground truth: tests, OCR CER/WER, listening rubric, Lean compiler, or supervised simulation safety checks.
 Pass threshold: weighted score >= 85/100 and every mandatory gate passes.
 
 FAILURE CONTROL
@@ -301,7 +225,7 @@ domain-specific examples of 0, 3, and 5 before comparing models.
 
 | Criterion | Weight | Evidence |
 | --- | ---: | --- |
-| Domain validator and acceptance result | 35 | grounded multimodal answers, tool-call correctness, visual evidence references, latency, and preview stability |
+| Domain validator and acceptance result | 35 | member-specific ground truth: tests, OCR CER/WER, listening rubric, Lean compiler, or supervised simulation safety checks |
 | Factual, visual, audio, or source accuracy | 20 | Ground truth or traced evidence |
 | Scope, safety, rights, and permission compliance | 15 | Trace, diff, or review log |
 | Output-contract completeness | 10 | Required-field checklist |
@@ -316,7 +240,7 @@ latency ceilings.
 
 ### Auto-fail conditions
 
-- presenting an independent snapshot as official, claiming xhigh on a surface that does not show it, or omitting multimodal preprocessing.
+- using the wrong family member, grading a specialist with prose quality, presenting Robostral as a current public API, or skipping license and rights checks.
 - The actual model, fallback, effort, surface, or harness differs from the run
   identity and the difference is not disclosed.
 - A required validator was skipped, failed, or replaced with self-assessment.

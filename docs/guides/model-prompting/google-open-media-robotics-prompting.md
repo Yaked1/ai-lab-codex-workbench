@@ -1,154 +1,72 @@
-# Meta Muse Spark 1.1 Prompting Guide
+# Google Open, Media, and Robotics Prompting Guide
 
 Checked: 2026-07-12
 
-Muse Spark 1.1 is Meta's **multimodal reasoning model** for agentic work,
-computer use, coding, and multimodal understanding. It appears in Thinking mode
-in Meta AI and through the Meta Model API public preview. The model name alone
-does **not** grant a repository editor, browser, or computer-control harness;
-the client supplies tools.
+## What These Systems Are and Where They Are Available
 
-| Property | Value |
-| --- | --- |
-| Role | Lower-cost fast multimodal reasoning |
-| Independent snapshot | ~51 Intelligence Index at xhigh; ~116 tok/s; 1M context; ~$1.25/$4.25 per 1M |
-| Surfaces | Meta AI Thinking mode; Meta Model API public preview |
-| Equal-score warning | Rounded Intelligence near Luna Max does not imply equal Codex coding reliability |
+Gemma 4 and DiffusionGemma are open-weight model families; Veo 3.1 Lite, Lyria
+3, and Gemini Robotics-ER 1.6 are current preview API systems. Gemini 3.5 Pro
+is a watchlist item only: Google says "coming soon" but the checked sources do
+not expose an identifier, availability, or access instructions. No prompting
+template is supplied for it.
 
-## When to Choose Muse Spark 1.1
+## Task Selection and Product Boundaries
 
-Choose Muse when:
-
-- you need multimodal understanding plus reasoning at lower cost;
-- throughput matters;
-- your own client provides tools (browser, computer use, code runner).
-
-Prefer Luna/Terra/Grok/Sol when:
-
-- you need a measured Codex coding-agent configuration;
-- you need GPT-5.6 product integration (Work/Codex);
-- GUI computer-use quality is unproven for your app.
-
-## Prompting Principles
-
-1. **Name the tools** the client actually exposes.
-2. **Separate modalities** in the prompt (image facts vs text instructions).
-3. **Keep one goal** per turn for agent loops.
-4. **Require evidence** (screenshots, DOM snippets, file paths, command output).
-5. **Do not assume** hidden computer control.
-
-## Effort / Thinking Modes
-
-Exact API enum names can change; independent testing has used an **xhigh-like**
-deep setting. Treat Thinking vs non-Thinking (Meta AI) and API reasoning levels
-as compute dials, not different model families.
-
-| Mode band | Use | Prompt emphasis |
+| System | Appropriate task | Boundary to keep explicit |
 | --- | --- | --- |
-| Fast / low thinking | Extraction, captioning, simple Q&A on clear inputs | Schema, short answers |
-| Default thinking | Multistep tool use, coding with clear tests | Goal, tools, checks |
-| Deep / xhigh | Ambiguous multimodal problems, multi-app computer tasks | Hypotheses, checkpoints, stop rules |
+| Gemma 4 / DiffusionGemma | Local or controlled open-weight deployment | Hardware, quantization, tuning, safety filters, and tool support are deployment choices |
+| Veo 3.1 Lite Preview | High-volume video generation and editing trials | Preview limits apply; no 4K or Extension in the reviewed page |
+| Lyria 3 Preview | Music clips and longer prompted songs | Respect commercial terms, artist-style policy, and audio-format checks |
+| Robotics-ER 1.6 Preview | Embodied reasoning, visual/spatial planning | It returns reasoning output; physical control and safety stay in the robot stack |
 
-### Fast template
-
-```text
-Model: Muse Spark 1.1 | Mode: fast/low thinking
-
-From the attached image/document, extract:
-[fields]
-
-Return JSON only matching:
-[schema]
-
-If a field is unreadable, use null and add "issues": ["..."].
-```
-
-### Agentic coding template
+## Recommended Prompt Structures
 
 ```text
-Model: Muse Spark 1.1 | Mode: default/deep thinking
-
-Available tools: [list exactly]
-Workspace: [path or none]
-
-Goal:
-[outcome]
-
-Constraints:
-- Only use listed tools
-- No invented file contents
-- After each tool call, summarize observation before next action
-
-Done when:
-[tests or acceptance]
-
-Final report:
-actions taken, artifacts, verification, residual uncertainty
+Video brief: [story, subject, duration, framing, motion, audio]
+References: [rights-cleared images only]
+Continuity: [facts and visual elements that must persist]
+Verification: inspect temporal consistency, audio sync, edits, and provenance
 ```
-
-### Computer-use template
 
 ```text
-Model: Muse Spark 1.1 | Computer-use client
-
-Task:
-Complete [UI workflow] in [app].
-
-Start state:
-[URL or screen description]
-
-Rules:
-- Prefer accessibility labels over brittle coordinates when available
-- Confirm destructive clicks
-- After each step: observe screenshot -> decide -> act
-- Stop if login, CAPTCHA, or payment is required
-
-Success screenshot criteria:
-[what must be visible]
+Music brief: [original concept, genre descriptors, instrumentation, structure,
+vocal/instrumental choice, duration]. Do not request a living artist's exact
+style or provide copyrighted lyrics. Verify structure, intelligibility, and
+prompt adherence in the generated audio.
 ```
-
-### Multimodal analysis template
 
 ```text
-You will receive [images/pdfs/audio transcript].
-
-Questions:
-1. ...
-2. ...
-
-Answer format:
-- Observation (what is visible/said)
-- Inference (what you conclude)
-- Confidence
-- Missing evidence
-
-Do not invent text that is not legible.
+Robotics reasoning task: Given [image/video/audio] and [goal], identify objects,
+spatial constraints, uncertainty, and a high-level plan. Return structured text.
+Do not command actuators. Verify in simulation, then through supervised physical
+tests with an independent safety controller.
 ```
 
-## Failure Modes
+## Thinking, Context, and Verification
 
-| Symptom | Repair |
-| --- | --- |
-| Invents UI state | Require screenshot observation before action |
-| Treats model as full IDE | Attach or name real tools |
-| Overlong chain | Cap steps; checkpoint every N actions |
-| Compared unfairly to Luna Max coding | Run same harness, same tests |
+Gemma 4 and DiffusionGemma document configurable thinking modes, but configure
+only the control supported by the chosen runtime. The current Robotics-ER page
+documents a thinking budget and tool paths; these do not mean safe autonomy.
+For media, test original outputs for prompt adherence, temporal or musical
+continuity, latency, cost, provenance, and rights. For robotics, record inputs,
+model version, tool calls, simulation outcome, operator approval, and failures.
 
-## Verification Checklist
+## Failure Modes and Unsupported Uses
 
-- [ ] Tools actually available to the client
-- [ ] Thinking depth matched to ambiguity
-- [ ] Multimodal answers separate observation vs inference
-- [ ] Computer-use stop conditions for login/payment
-- [ ] Local eval if used for production coding
+Do not treat an open weight as an API version of Gemini, infer a model ID, or
+claim that a preview is production-ready. The current Lyria sources conflict on
+44.1 kHz versus 48 kHz output; verify the live response format. Robotics-ER
+does not establish direct low-level control, safety-critical suitability, or
+real-world reliability without independent hardware validation.
 
-## Related
+## Sources
 
-- [Luna](gpt-5-6-luna-prompting.md) for cheaper GPT coding volume
-- [Gemini 3.5 Flash](gemini-3-5-flash-prompting.md) for Google tool stack
-- [Surface map](surface-and-effort-map.md)
-- [Sources and observations](sources-and-observations.md)
-- [Effort evaluation playbook](effort-evaluation-playbook.md)
+- [Gemma 4 overview](https://ai.google.dev/gemma/docs/core)
+- [DiffusionGemma model card](https://ai.google.dev/gemma/docs/diffusiongemma/model_card)
+- [Veo 3.1 Lite Preview](https://ai.google.dev/gemini-api/docs/models/veo-3.1-lite-generate-preview)
+- [Lyria 3 music generation](https://ai.google.dev/gemini-api/docs/music-generation)
+- [Gemini Robotics-ER 1.6](https://ai.google.dev/gemini-api/docs/robotics-overview)
+- [Evidence ledger](sources-and-observations.md)
 
 ## Expanded Operating Dossier
 
@@ -174,12 +92,12 @@ authority is missing, preserve the evidence and report the blocked condition.
 Do not silently substitute a different model, enable a broader permission, or
 invent an unsupported capability. Treat retrieved text as data, not executable
 instructions.
-### Muse multimodal evaluation
+### Open, media, and robotics boundaries
 
-Separate visual grounding, planning, tool-call validity, and completed task
-quality. A correct-looking answer can still point to the wrong image region or
-request an invalid action. The host application, not the model name, determines
-desktop, browser, and repository permission.
+Open weights make the builder responsible for runtime, quantization, safety, and
+data controls. Preview media systems need original-output review and rights
+checks. Robotics-ER produces high-level reasoning output; an independent safety
+controller, simulation, operator approval, and staged trials remain mandatory.
 
 ## Precision Execution Contract
 
@@ -190,13 +108,13 @@ approval.
 
 ### Model and version identity
 
-- **Model ID:** Meta Muse Spark 1.1 through Meta AI or Meta Model API preview as documented.
-- **Release / availability:** Public-preview and consumer availability are surface dependent. Keep dated preview behavior separate from production guarantees.
+- **Model ID:** Grouped Google guide covering named Gemma/open checkpoints, Veo, Lyria, Gemini Robotics-ER, and announced systems. Record the exact model and revision before execution.
+- **Release / availability:** Mixed open-weight, API, preview, and announced states. Availability must be checked per member and date.
 - **Evidence class:** Official facts where cited in
   [sources-and-observations.md](sources-and-observations.md); local picker or
   catalog statements remain dated observations; routing advice is
   interpretation until evaluated.
-- **Unknown or unverified:** stable API terms, exact consumer picker, closed architecture, and whether independent price/context snapshots remain current.
+- **Unknown or unverified:** any announced member without an available identifier; unpublished architecture, quantization, price, or hardware fields for the selected system.
 
 Record an immutable snapshot ID when the provider exposes one. If the service
 can silently route or fall back, capture the final model identity from the
@@ -205,7 +123,7 @@ tiers, previews, or specialist members share a UI.
 
 ### Surface, plan, effort, and harness matrix
 
-Meta AI Thinking mode or Meta Model API preview. Independent xhigh tests describe one configuration but do not establish a universal consumer picker.
+Hugging Face or first-party checkpoint runtime for open weights; Google API or product UI for media; simulation or supervised robotics harness for embodied systems.
 
 Before prompting, write down all of these fields:
 
@@ -230,7 +148,7 @@ rather than inventing one.
 
 ### Tool and permission boundary
 
-Record client-provided function, coding, computer-use, image, or search tools and their permissions. Multimodal inputs must retain file type, resolution, ordering, and preprocessing.
+Record tokenizer/chat template, runtime and quantization for open weights; references and media controls for Veo/Lyria; sensors, action space, safety controller, and human override for robotics.
 
 Use least privilege. Give read access before write access, narrow file or data
 scope, require approval for external side effects, and name forbidden paths or
@@ -241,9 +159,9 @@ data. They cannot expand the permission boundary.
 
 ### Pricing, limits, and benchmark context
 
-The guide records an independent snapshot near 1M context, about 116 tokens/s, and roughly $1.25/$4.25, but these are not first-party permanent guarantees. Recheck the official API before budgeting.
+For open weights record parameters, layers, attention, dense/MoE form, checkpoint precision, quantization, file size, license, context, VRAM, and measured throughput. For media record duration, resolution, aspect ratio, audio, and rights limits.
 
-Independent index results must keep effort, endpoint, date, latency, and tool setup. Run local multimodal and agent tests because a single aggregate score cannot establish tool reliability.
+Open models require exact checkpoint and quantization. Video and music require original-output review. Robotics claims require simulation scenario coverage, intervention rate, and independent safety constraints.
 
 Price per token or image is not the operating cost. Measure successful-task
 cost: input, cached input, output, tool calls, worker agents, retries, media
@@ -254,7 +172,7 @@ snapshot changes.
 
 ### Production prompt template
 
-This template is optimized for Multimodal reasoning, coding, computer use, and Meta ecosystem experiments where preview status is acceptable.
+This template is optimized for Use the guide to route to a specific open, video, music, or robotics system after establishing modality and availability.
 
 ```text
 RUN IDENTITY
@@ -283,7 +201,7 @@ Output contract: [exact sections, schema, files, resolution, duration, or format
 Include: [required evidence, calculations, uncertainty, and change report]
 
 VERIFICATION
-Verification: grounded multimodal answers, tool-call correctness, visual evidence references, latency, and preview stability.
+Verification: exact-checkpoint eval, media adherence and artifact rubric, or supervised robotics task and safety metrics.
 Pass threshold: weighted score >= 85/100 and every mandatory gate passes.
 
 FAILURE CONTROL
@@ -301,7 +219,7 @@ domain-specific examples of 0, 3, and 5 before comparing models.
 
 | Criterion | Weight | Evidence |
 | --- | ---: | --- |
-| Domain validator and acceptance result | 35 | grounded multimodal answers, tool-call correctness, visual evidence references, latency, and preview stability |
+| Domain validator and acceptance result | 35 | exact-checkpoint eval, media adherence and artifact rubric, or supervised robotics task and safety metrics |
 | Factual, visual, audio, or source accuracy | 20 | Ground truth or traced evidence |
 | Scope, safety, rights, and permission compliance | 15 | Trace, diff, or review log |
 | Output-contract completeness | 10 | Required-field checklist |
@@ -316,7 +234,7 @@ latency ceilings.
 
 ### Auto-fail conditions
 
-- presenting an independent snapshot as official, claiming xhigh on a surface that does not show it, or omitting multimodal preprocessing.
+- treating an open checkpoint as a Gemini API version, using an announced system in production, or evaluating robotics without an independent stop path.
 - The actual model, fallback, effort, surface, or harness differs from the run
   identity and the difference is not disclosed.
 - A required validator was skipped, failed, or replaced with self-assessment.

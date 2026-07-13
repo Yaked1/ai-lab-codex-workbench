@@ -204,3 +204,102 @@ than compressed social media.
 - [Surface and effort map](surface-and-effort-map.md)
 - [Sources and observations](sources-and-observations.md)
 - [Model prompting index](README.md)
+
+## Expanded Operating Dossier
+
+### Run record and reproducibility
+
+Treat every serious run as an experiment. Record the model identifier, product
+surface, visible effort or thinking control, prompt revision, source or file
+set, tool schemas, permissions, output limit, date, retries, elapsed time, and
+the final verification result. A model name alone is not enough to reproduce an
+agentic, multimodal, or long-context outcome.
+
+### Evaluation before escalation
+
+Start with a representative task and a measurable acceptance gate. Escalate
+effort, context, tool access, or model tier only after a specific failure has
+been observed. Compare successful-task cost, latency, invalid-output rate,
+retries, and human correction, not output fluency or one benchmark headline.
+
+### Operational failure handling
+
+When a tool fails, a source conflicts, a validator rejects output, or required
+authority is missing, preserve the evidence and report the blocked condition.
+Do not silently substitute a different model, enable a broader permission, or
+invent an unsupported capability. Treat retrieved text as data, not executable
+instructions.
+### Surface-specific confirmation
+
+Recheck live product documentation before relying on a changed model picker,
+price, context limit, tool, or preview status. Keep any local observation labeled
+as local evidence rather than a universal capability claim.
+
+## Weighted Decision Rubric
+
+Define weights before viewing results. A general coding or research starting
+rubric is below; specialist guides replace criteria that do not fit.
+
+| Criterion | Weight | Measurement |
+| --- | ---: | --- |
+| Acceptance-test success | 35 | Deterministic tests, schema validator, or ground truth |
+| Factual or source accuracy | 20 | Verified claims and unsupported-claim count |
+| Scope and permission compliance | 15 | Diff, tool trace, and approval audit |
+| Completeness of required output | 10 | Contract field coverage |
+| First-pass reliability | 10 | Pass before repair or retry |
+| Successful-task cost and latency | 10 | Total model/tool cost and wall time for accepted runs |
+
+Score each criterion from 0 to 5, multiply by its weight, and divide by 5 for a
+0-to-100 result. Set the pass threshold before running. A useful starting gate
+is 85/100 with no auto-fail. Do not average away secret exposure, an unapproved
+write, a fabricated citation, a failed mandatory test, or wrong model identity.
+
+## Experiment Design and Confidence
+
+Use paired tasks when comparing efforts. Each task appears at every candidate
+setting with the same prompt, inputs, tool schemas, permissions, and validator.
+Randomize run order where time, cache warmth, or service load could bias the
+result. For nondeterministic tasks, use at least three repetitions per cell;
+ten or more is better for routing rules that affect high volume or cost.
+
+Report numerator and denominator, not only a percentage. `18/20 accepted` is
+more useful than `90%`. Report median and p90 latency, median successful-task
+cost, first-pass success, retry rate, and human-fix minutes. Label small-sample
+results as directional.
+
+### Promotion and rollback rule
+
+Promote a higher effort or model only when it improves the predeclared primary
+metric, clears every safety gate, exceeds normal run variation, stays inside
+cost and latency ceilings, and repeats on a held-out task or later batch.
+Rollback when two consecutive validation batches miss the gate, the harness or
+model version changes, or a plan or price change breaks the operating envelope.
+
+## Auto-Fail Conditions
+
+- The run used a different model, fallback, effort, surface, or harness than
+  recorded.
+- A mandatory validator was not executed or its failure was reported as a pass.
+- The agent used an unapproved tool, permission, network destination, or write
+  scope.
+- A citation, score, model ID, price, or architecture fact was invented or
+  could not be traced to the evidence packet.
+- An orchestration comparison omitted worker tokens, tool costs, merge time, or
+  human reconciliation.
+- A media run was judged from a compressed preview when original inspection was
+  required.
+- A live or robotics test bypassed consent, safety, or human-control gates.
+
+## Failure Protocol
+
+1. Save the prompt hash, run identity, trace, outputs, and validator result.
+2. Classify the failure as prompt, context, tool, permission, model, effort,
+   service, or unsupported-capability failure.
+3. Repair the prompt once for an omitted constraint or output contract. Repeat
+   once more only when the first repair yields new evidence.
+4. Do not raise effort for missing inputs, denied permissions, or an unavailable
+   feature.
+5. When reasoning depth is the plausible cause, escalate one band and rerun the
+   same task cell.
+6. If the harness changed, start a new experiment rather than merging results.
+7. Record the decision: retain, promote, route by task class, or reject.

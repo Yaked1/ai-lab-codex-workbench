@@ -15,6 +15,11 @@ REQUIRED_FILES = (
     "gpt-5-6-luna-prompting.md",
     "claude-fable-5-prompting.md",
     "claude-opus-4-8-prompting.md",
+    "claude-sonnet-5-prompting.md",
+    "deepseek-v4-prompting.md",
+    "glm-5-2-prompting.md",
+    "mistral-current-models-prompting.md",
+    "google-open-media-robotics-prompting.md",
     "grok-4-5-prompting.md",
     "muse-spark-1-1-prompting.md",
     "gemini-3-5-flash-prompting.md",
@@ -33,6 +38,44 @@ CORE_NEEDLES = (
     "```text",
     "Failure",
     "Verification",
+)
+
+SHARED_FILES = {
+    "README.md",
+    "surface-and-effort-map.md",
+    "sources-and-observations.md",
+    "effort-evaluation-playbook.md",
+}
+
+PRECISION_HEADINGS = (
+    "## Precision Execution Contract",
+    "### Model and version identity",
+    "### Surface, plan, effort, and harness matrix",
+    "### Tool and permission boundary",
+    "### Pricing, limits, and benchmark context",
+    "### Production prompt template",
+    "### Evaluation rubric",
+    "### Auto-fail conditions",
+    "### Failure protocol",
+    "### Run record",
+)
+
+PRECISION_FIELDS = (
+    "Model ID:",
+    "Release / availability:",
+    "Plan:",
+    "Surface:",
+    "Harness / client version:",
+    "Effort / thinking:",
+    "Tools enabled:",
+    "Permission boundary:",
+    "Objective:",
+    "Context:",
+    "Constraints:",
+    "Output contract:",
+    "Verification:",
+    "Stop conditions:",
+    "Retry / escalation:",
 )
 
 
@@ -57,6 +100,40 @@ class ModelPromptingPackTests(unittest.TestCase):
                 for needle in CORE_NEEDLES:
                     self.assertIn(needle, text, f"{name} missing {needle}")
 
+    def test_every_model_guide_has_precision_contract(self):
+        for name in REQUIRED_FILES:
+            if name in SHARED_FILES:
+                continue
+            text = read(PACK / name)
+            with self.subTest(name=name):
+                for heading in PRECISION_HEADINGS:
+                    self.assertIn(heading, text, f"{name} missing {heading}")
+                for field in PRECISION_FIELDS:
+                    self.assertIn(field, text, f"{name} missing {field}")
+
+    def test_every_model_guide_has_reference_manual_depth(self):
+        word_pattern = __import__("re").compile(r"\b[\w.-]+\b", __import__("re").UNICODE)
+        for name in REQUIRED_FILES:
+            if name in SHARED_FILES:
+                continue
+            words = word_pattern.findall(read(PACK / name))
+            with self.subTest(name=name):
+                self.assertGreaterEqual(
+                    len(words),
+                    1000,
+                    f"{name} has only {len(words)} words; expected an operating manual",
+                )
+
+    def test_precision_contract_identifies_unknowns_and_evidence(self):
+        for name in REQUIRED_FILES:
+            if name in SHARED_FILES:
+                continue
+            text = read(PACK / name)
+            with self.subTest(name=name):
+                self.assertIn("Unknown or unverified:", text)
+                self.assertIn("Evidence class:", text)
+                self.assertIn("Auto-fail", text)
+
     def test_surface_map_covers_user_effort_facts(self):
         text = read(PACK / "surface-and-effort-map.md")
         for needle in (
@@ -69,7 +146,7 @@ class ModelPromptingPackTests(unittest.TestCase):
             "0.144.1",
             "Extra High",
             "Ultracode",
-            "July 12, 2026",
+            "July 19, 2026",
             "Grok 4.5",
             "Nano Banana Pro",
             "Muse Video",
@@ -93,6 +170,33 @@ class ModelPromptingPackTests(unittest.TestCase):
             with self.subTest(needle=needle):
                 self.assertIn(needle, text)
 
+    def test_sol_precision_addendum_records_current_surface_identity(self):
+        surface = read(PACK / "surface-and-effort-map.md")
+        for needle in (
+            "0.145.0-alpha.4",
+            "ChatGPT Desktop Work",
+            "ChatGPT Desktop Codex",
+            "Plus | Medium, High",
+            "Pro, Business, Enterprise | Medium, High, Extra High, Sol Pro",
+            "no `ultra` reasoning value",
+            "1.05M-token context window",
+            "Sol **$5/$30**",
+            "Agents Last Exam | 52.7 | 50.4 | 50.3",
+        ):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, surface)
+
+        sol = read(PACK / "gpt-5-6-sol-prompting.md")
+        for needle in (
+            "installed 0.144.0, stable 0.144.1, alpha 0.145.0-alpha.4",
+            "Sol Pro path",
+            "API: none through max, never ultra",
+            "universal Business Work Ultra eligibility",
+            "Vendor launch chart: Agents Last Exam 52.7",
+        ):
+            with self.subTest(sol_needle=needle):
+                self.assertIn(needle, sol)
+
     def test_luna_has_no_ultra_menu(self):
         text = read(PACK / "gpt-5-6-luna-prompting.md")
         self.assertIn("No Ultra", text)
@@ -100,7 +204,7 @@ class ModelPromptingPackTests(unittest.TestCase):
 
     def test_fable_cutoff_and_ultracode(self):
         text = read(PACK / "claude-fable-5-prompting.md")
-        self.assertIn("2026-07-12 11:59:59 PM PT", text)
+        self.assertIn("2026-07-19 11:59:59 PM PT", text)
         self.assertIn("Ultracode", text)
         self.assertIn("2.1.170", text)
         self.assertIn("Extra", text)
@@ -163,6 +267,34 @@ class ModelPromptingPackTests(unittest.TestCase):
         self.assertIn("### Muse Image and Muse Video", essay)
         self.assertIn("Content Seal", essay)
         self.assertIn("coming soon", essay)
+
+    def test_frontier_essay_records_all_new_audit_outcomes(self):
+        essay = read(
+            ROOT
+            / "docs"
+            / "guides"
+            / "frontier-models-and-multimodal-systems-2026.md"
+        )
+        for needle in (
+            "Claude Sonnet 5",
+            "DeepSeek-V4-Pro and DeepSeek-V4-Flash",
+            "GLM-5.2",
+            "Current Mistral Family by Workload",
+            "Gemma 4",
+            "DiffusionGemma",
+            "Veo 3.1 Lite",
+            "Lyria 3",
+            "Gemini Robotics-ER 1.6",
+            "Watchlist: Gemini 3.5 Pro",
+            "Robostral Navigate",
+        ):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, essay)
+
+    def test_new_guides_preserve_documented_boundaries(self):
+        self.assertIn("Preview", read(PACK / "deepseek-v4-prompting.md"))
+        self.assertIn("no public identifier", read(PACK / "mistral-current-models-prompting.md"))
+        self.assertIn("coming soon", read(PACK / "google-open-media-robotics-prompting.md"))
 
     def test_index_links_every_guide(self):
         index = read(PACK / "README.md")

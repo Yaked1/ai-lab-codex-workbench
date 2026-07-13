@@ -70,8 +70,10 @@ Confirmed:
 - Anthropic recommends Opus `xhigh` for coding/agentic work and at least `high`
   for other intelligence-sensitive work. Large `max_tokens` budgets are needed
   for `xhigh` and `max` agentic runs.
-- Fable promotional access ends July 12, 2026 at 11:59:59 PM PT. Fable remains
-  available through usage credits where allowed; API billing is separate.
+- Anthropic's Fable promotional-access terms state that the promotion ends July
+  19, 2026 at 11:59:59 PM PT. The linked Claude Code weekly-limits promotion
+  states that its 50% increase also extends through that date. This is a dated
+  promotional condition and should be rechecked before billing decisions.
 
 Claude web `Extra` and exact Code/Desktop picker labels are recorded as dated
 surface observations where the API page only documents `xhigh`.
@@ -151,3 +153,69 @@ generation and editing controls, not an inferred architecture.
 - [ ] Ultra, Ultracode, and API effort remain separate
 - [ ] Preview and unavailable products are not presented as shipping defaults
 - [ ] Benchmark model, effort, fallback, and harness stay together
+
+## Expanded-Dossier Source Rules
+
+The expanded prompting pages must not add a product fact unless the linked
+primary source establishes that exact fact. When a guide gives operational
+advice, it should say whether that advice is an interpretation of documented
+controls or a local evaluation procedure. A model card, launch chart, or product
+demo can establish a vendor claim; it does not establish an independent result.
+
+For every serious comparison, retain a small evidence packet: source URL and
+date, model identifier, product surface, effort/thinking configuration, context
+and tool setup, prompt version, observed outputs, validation result, cost/latency
+measurement, and human correction. Keep preview and announced systems separate
+from stable production surfaces. If two official sources conflict, record both
+and choose neither without a newer authoritative resolution.
+
+## Claim-Level GPT-5.6 Ledger
+
+| Claim | Evidence class | Scope | Checked | Recheck trigger |
+| --- | --- | --- | --- | --- |
+| Codex CLI minimum for GPT-5.6 is 0.144.0 | Official | Codex CLI access | 2026-07-12 | Help page or CLI release changes |
+| Installed CLI is 0.144.0 | Local evidence | This Windows machine | 2026-07-12 | Local package update |
+| Stable npm is 0.144.1; alpha is 0.145.0-alpha.4 | Package registry | Public npm tags | 2026-07-12 | Version-sensitive instruction |
+| Sol/Terra local menu includes Low through Ultra; Luna stops at Max | Local evidence | Installed catalog and account | 2026-07-12 | Client, login, or catalog update |
+| Plus Chat offers Sol Medium and High | Official | ChatGPT Chat | 2026-07-12 | Plan or picker update |
+| Pro/Business/Enterprise Chat add Extra High and Sol Pro | Official | ChatGPT Chat | 2026-07-12 | Plan or picker update |
+| Work Ultra is documented for Pro and Enterprise | Official | ChatGPT Work | 2026-07-12 | Help or launch page update |
+| Business Work Ultra was visible | User observation | One workspace only | 2026-07-12 | Workspace policy or rollout update |
+| API uses `none` through `max`, not `ultra` | Official | Responses API controls | 2026-07-12 | Model page or API schema update |
+| Sol/Terra/Luna API context is 1.05M with 128K output | Official | Dated model catalog | 2026-07-12 | Model snapshot or catalog update |
+| Sol/Terra/Luna list prices are $5/$30, $2.50/$15, $1/$6 | Official | Standard API million-token rates | 2026-07-12 | Pricing page update |
+
+### Required evidence packet for any model claim
+
+```text
+Claim:
+Exact model or product identifier:
+Source URL and page title:
+Publisher:
+Publication/update date if shown:
+Date checked:
+Evidence class:
+Surface and plan scope:
+Harness and version scope:
+Directly supported wording or data:
+Inference, if any:
+Conflict or uncertainty:
+Recheck trigger:
+```
+
+Architecture, price, context, effort, plan access, benchmark, and availability
+are separate claims. A model page that supports one does not automatically
+support the others. A vendor score remains a vendor result until an independent
+evaluator reproduces the named model, effort, tools, and harness.
+
+### Source failure protocol
+
+1. Preserve the URL, checked date, and failure response.
+2. Look for a second first-party page from the same vendor.
+3. If only cached, user-provided, or local evidence remains, narrow the claim
+   and label the evidence.
+4. Do not copy a price, score, ID, architecture field, or plan boundary from an
+   unattributed summary.
+5. Mark the field `unknown or unverified` when the exact claim cannot be
+   established.
+6. Recheck by trigger rather than silently retaining a stale value.
