@@ -55,6 +55,8 @@ The package includes:
 - Prompt templates under `prompts/`.
 - Standard-library scripts under `scripts/`.
 - Unit tests under `tests/`.
+- Committed reusable skills under `skills/` and committed walkthroughs under
+  `examples/`.
 - GitHub workflow files under `.github/workflows/`.
 - A generated JSON manifest next to the zip in `dist/`.
 
@@ -87,6 +89,20 @@ Built dist/ai-agent-coding-workbench-v0.1.0.zip
 Wrote dist/package-manifest-v0.1.0.json
 ```
 
+The builder records the exact selected `HEAD` as `source_commit` in the
+manifest, enumerates only that Git tree, and reads every ZIP byte from its
+committed blobs. Dirty tracked files and untracked files are not packaged. It
+refuses an existing same-version ZIP or manifest before creating the output
+directory or changing either artifact.
+
+Run either builder with `--root` set to the exact Git repository top level.
+A nested directory is rejected even when Git can discover a parent repository.
+Each builder creates both temporary artifacts in the output directory, links
+each final name with no-overwrite semantics, and retains file-identity evidence
+until the ZIP and manifest are both linked. On failure, cleanup removes only a
+final path whose identity still matches this build; a competing replacement is
+preserved. Filesystem and cleanup errors produce a concise nonzero CLI result.
+
 The `dist/` folder is ignored by Git so local package artifacts do not get committed accidentally.
 
 ## Focused Prompting OS Package
@@ -112,7 +128,13 @@ For validation-only runs, prefer a temporary ignored output directory:
 python scripts/create_prompting_os_package.py --version v1 --output-dir .\dist\prompting-os
 ```
 
-The focused package builder is deterministic, writes a JSON manifest with file hashes, excludes caches, archives, private-looking files, `.env` files, and oversized files, and keeps manifest paths relative to the repository root.
+The focused package builder treats the selected source directory, including the
+repository root when explicitly selected, as a prefix in the same committed
+Git tree. It is deterministic, writes a JSON manifest with
+file hashes and `source_commit`, excludes caches, archives, private-looking
+files, `.env` files, and oversized files, and keeps manifest paths relative to
+the repository root. It also refuses same-version output collisions rather than
+replacing an archive or manifest.
 
 The focused package is not meant to be a thin README wrapper. It should contain
 long-form technical files that are useful offline: a prompt kernel, model-family
@@ -214,29 +236,3 @@ Use [docs/templates/release-notes.md](templates/release-notes.md) for manual rel
 - Claims that need official-doc verification.
 
 Do not paste private data, logs, tokens, personal paths, or account-specific URLs into release notes.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **repository support file** surface. During broad
-maintenance, reviewers should treat `docs/releases-and-packages.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `releases and packages` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

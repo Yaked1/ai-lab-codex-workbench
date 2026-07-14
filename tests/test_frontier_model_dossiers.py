@@ -6,17 +6,52 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-GUIDE = ROOT / "docs" / "guides" / "frontier-models-and-multimodal-systems-2026.md"
+GUIDES = ROOT / "docs" / "guides"
+GUIDE = GUIDES / "frontier-overview-and-selection.md"
+FRONTIER_PAGES = (
+    "frontier-overview-and-selection.md",
+    "frontier-openai-and-anthropic.md",
+    "frontier-google-and-media.md",
+    "frontier-open-and-specialist-models.md",
+    "frontier-evaluation-and-deployment.md",
+    "frontier-sources-and-method.md",
+)
+
+CORE_DOSSIER_PREFIXES = {
+    "GPT-5.6 Sol",
+    "Claude Fable 5",
+    "DeepSeek-V4-Pro",
+    "Mistral Small 4",
+    "Gemma 4 12B",
+    "Gemini 3.5 Flash",
+    "GPT-Live-1",
+    "GPT Image 2",
+    "Veo 3.1 Lite Preview",
+    "Gemini Robotics-ER 1.6",
+}
+
+EPISTEMIC_BOUNDARY_PATTERN = re.compile(
+    r"(?i)\b(?:undisclosed|(?:does|do) not disclose|not disclosed|"
+    r"(?:does|do) not publish|not published|no public|unknown|"
+    r"does not (?:by itself )?establish|not established|not inferred|"
+    r"does not imply|"
+    r"(?:does|do) not guarantee|not guaranteed|(?:does|do) not support|"
+    r"unsupported|explicit constraint|failure (?:mode|case|boundary)|cannot prove|does not prove|"
+    r"areas to verify|remain incomplete|require explicit current documentation|"
+    r"not evidence|not identical|unless documented|should not be used to promise|"
+    r"trade \w+ for)\b"
+)
 
 
 def guide_text() -> str:
-    return GUIDE.read_text(encoding="utf-8")
+    return "\n".join((GUIDES / name).read_text(encoding="utf-8") for name in FRONTIER_PAGES)
 
 
 def announcement_dossiers(text: str) -> dict[str, str]:
-    start = text.index("## Announcement-Style Release Dossiers")
-    end = text.index("## GPT-5.6 Is a Family", start)
-    block = text[start:end]
+    overview = GUIDE.read_text(encoding="utf-8")
+    start = overview.index("## Announcement-Style Release Dossiers")
+    end = overview.index("## How to Choose Without Chasing a Single Winner", start)
+    block = overview[start:end]
     matches = list(re.finditer(r"(?m)^### (.+)$", block))
     dossiers: dict[str, str] = {}
     for index, match in enumerate(matches):
@@ -28,12 +63,30 @@ def announcement_dossiers(text: str) -> dict[str, str]:
     return dossiers
 
 
+def dossier_subsection(dossier: str, heading: str) -> str:
+    start_match = re.search(rf"(?m)^{re.escape(heading)}\s*$", dossier)
+    if start_match is None:
+        raise AssertionError(f"missing subsection {heading}")
+    next_heading = re.search(r"(?m)^####\s+.+$", dossier[start_match.end() :])
+    end = start_match.end() + next_heading.start() if next_heading else len(dossier)
+    return dossier[start_match.end() : end].strip()
+
+
+def has_epistemic_boundary(text: str) -> bool:
+    return EPISTEMIC_BOUNDARY_PATTERN.search(" ".join(text.split())) is not None
+
+
 class FrontierModelDossierTests(unittest.TestCase):
     """Keep broad model coverage deep and evidence-conscious."""
 
     def test_every_announcement_dossier_uses_the_full_schema(self) -> None:
         dossiers = announcement_dossiers(guide_text())
-        self.assertGreaterEqual(len(dossiers), 40)
+        missing_core = {
+            prefix
+            for prefix in CORE_DOSSIER_PREFIXES
+            if not any(title.startswith(prefix) for title in dossiers)
+        }
+        self.assertEqual(set(), missing_core, f"missing core dossier(s): {sorted(missing_core)}")
         required_subsections = (
             "#### Launch story",
             "#### Capabilities and product behavior",
@@ -44,22 +97,55 @@ class FrontierModelDossierTests(unittest.TestCase):
         )
         for title, dossier in dossiers.items():
             with self.subTest(title=title):
-                self.assertGreaterEqual(len(dossier.split()), 200)
                 self.assertIn("| Release field | Evidence-conscious record |", dossier)
                 for subsection in required_subsections:
                     self.assertIn(subsection, dossier)
 
-    def test_guide_has_a_large_cross_model_technical_reference(self) -> None:
+    def test_every_dossier_limits_subsection_states_an_epistemic_boundary(self) -> None:
+        for title, dossier in announcement_dossiers(guide_text()).items():
+            limits = dossier_subsection(
+                dossier,
+                "#### Limits, unknowns, and misleading shortcuts to avoid",
+            )
+            with self.subTest(title=title):
+                self.assertTrue(limits, f"{title} has an empty limits subsection")
+                self.assertTrue(
+                    has_epistemic_boundary(limits),
+                    f"{title} has no explicit epistemic boundary: {limits}",
+                )
+
+    def test_limits_boundary_helper_rejects_heading_only_and_generic_prose(self) -> None:
+        heading = "#### Limits, unknowns, and misleading shortcuts to avoid"
+        with self.assertRaisesRegex(AssertionError, "missing subsection"):
+            dossier_subsection("#### Practical verdict\nUse it carefully.\n", heading)
+        self.assertEqual("", dossier_subsection(f"{heading}\n\n#### Practical verdict\nStop.\n", heading))
+        self.assertFalse(has_epistemic_boundary("Use the model carefully."))
+        self.assertFalse(has_epistemic_boundary("Failure is possible."))
+        self.assertTrue(has_epistemic_boundary("The architecture is not published."))
+
+    def test_guide_has_named_cross_model_reference_surfaces_and_sources(self) -> None:
         text = guide_text()
-        self.assertGreaterEqual(len(text.split()), 35_000)
         for heading in (
+            "## How the Expanded Technical Dossiers Are Structured",
             "## Comprehensive Architecture, Performance, and Deployment Dossiers",
             "### Open-Weight Quantization and Deployment Reference",
             "### Model-Guide Completeness Matrix",
             "## Uncertainties and Known Limits",
             "## Sources",
+            "## Method",
         ):
-            self.assertIn(heading, text)
+            with self.subTest(heading=heading):
+                self.assertIn(heading, text)
+        first_party_sources = {
+            "OpenAI": "https://openai.com/index/gpt-5-6/",
+            "Anthropic": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+            "DeepSeek": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+            "Mistral": "https://mistral.ai/news/",
+            "Google": "https://ai.google.dev/gemma/docs/core",
+        }
+        for family, source in first_party_sources.items():
+            with self.subTest(family=family):
+                self.assertIn(source, text)
 
     def test_open_weight_models_retain_exact_architecture_fields(self) -> None:
         text = guide_text()

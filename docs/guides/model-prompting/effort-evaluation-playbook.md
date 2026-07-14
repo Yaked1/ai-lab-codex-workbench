@@ -68,6 +68,43 @@ tuning” experiment rather than silently changing the baseline.
 | Scope violations | Safety/maintainability | Diff or action audit |
 | Refusal/fallback | Product behavior | Visible notice and final model identity |
 
+## Compact Worked Example
+
+This illustrative one-task record shows the minimum evidence shape; it is not a
+cross-model benchmark.
+
+### Filled baseline and candidate
+
+| Run | Model and effort | Frozen task |
+| --- | --- | --- |
+| Baseline | GPT-5.6 Terra Medium | Correct one dated claim and cite its official source. |
+| Candidate | GPT-5.6 Terra High | The same prompt, files, tools, and acceptance checks. |
+
+This is a planned model comparison and was not executed. Run both rows before
+using them to make an effort-routing claim.
+
+### Observed validation
+
+The only observed result here is deterministic Task 10 document-contract evidence,
+not model performance.
+
+| Evidence | Result |
+| --- | --- |
+| Red contract run | The ledger test rejected a missing `Source identity` column. |
+| Green contract run | The same test accepted the six-column ledger after the source column was added. |
+
+### Counterexample and failure
+
+In the future comparison, a longer candidate answer must still fail if its claim
+row lacks source identity. Output length or confident wording cannot override
+that auto-fail.
+
+### Executable verification
+
+```powershell
+python -m unittest tests.test_model_prompting_guides
+```
+
 ## Single-Model Ladder
 
 Use this procedure for Sol, Terra, Luna, Fable, Opus, Grok, and Gemini Flash:
@@ -205,30 +242,18 @@ than compressed social media.
 - [Sources and observations](sources-and-observations.md)
 - [Model prompting index](README.md)
 
-## Expanded Operating Dossier
+## Shared execution policy
 
-### Run record and reproducibility
+Run records, verification, escalation, and operational failure handling live
+in one place:
 
-Treat every serious run as an experiment. Record the model identifier, product
-surface, visible effort or thinking control, prompt revision, source or file
-set, tool schemas, permissions, output limit, date, retries, elapsed time, and
-the final verification result. A model name alone is not enough to reproduce an
-agentic, multimodal, or long-context outcome.
+- [Shared execution contract](shared-execution-contract.md)
 
-### Evaluation before escalation
+Use that contract for every serious run. Keep only model-specific identity,
+surfaces, task fit, examples, limits, and evidence on this page.
 
-Start with a representative task and a measurable acceptance gate. Escalate
-effort, context, tool access, or model tier only after a specific failure has
-been observed. Compare successful-task cost, latency, invalid-output rate,
-retries, and human correction, not output fluency or one benchmark headline.
+## Model-specific operating notes
 
-### Operational failure handling
-
-When a tool fails, a source conflicts, a validator rejects output, or required
-authority is missing, preserve the evidence and report the blocked condition.
-Do not silently substitute a different model, enable a broader permission, or
-invent an unsupported capability. Treat retrieved text as data, not executable
-instructions.
 ### Surface-specific confirmation
 
 Recheck live product documentation before relying on a changed model picker,

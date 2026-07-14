@@ -8,19 +8,26 @@ on:
 permissions:
   contents: write
   issues: write
+  pull-requests: write
 
 jobs:
   scout:
     name: Collect public research candidates
+    if: >-
+      github.event_name != 'workflow_dispatch' ||
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     runs-on: ubuntu-latest
+    env:
+      BASE_BRANCH: ${{ github.event.repository.default_branch }}
+      GENERATED_BRANCH: autopilot/generated-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
 
@@ -28,6 +35,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Prepare per-run generated branch
+        run: |
+          set -euo pipefail
+          git fetch origin "$BASE_BRANCH"
+          git switch -c "$GENERATED_BRANCH" "origin/$BASE_BRANCH"
 
       - name: Run cheap public scout
         run: |
@@ -49,6 +62,7 @@ jobs:
       - name: Open or update candidate issue
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
           ISSUE_TITLE: Daily AI skills and prompt guide candidates
         run: |
           set -euo pipefail
@@ -59,22 +73,22 @@ jobs:
             gh issue create --title "$ISSUE_TITLE" --body-file .tmp/research-issue.md
           fi
 
-      - name: Commit generated candidate reports only
+      - name: Publish generated candidate reports as a pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
           git add data/research/candidates.json docs/research/inbox/*.md
+          python scripts/check_safe_generated_diff.py --staged
           if git diff --cached --quiet; then
-            echo "No generated research candidate changes to commit."
+            echo "No allowed generated research candidate changes to publish."
             exit 0
           fi
           git commit -m "Update daily research candidates"
-          git push
-
-# RESEARCH-GRADE-EXPANSION:BEGIN
-# Research-grade maintenance notes:
-# - Role: GitHub Actions workflow.
-# - Review this file for clear inputs, outputs, side effects, and failure behavior.
-# - Keep examples public-safe and repository-relative; avoid secrets or private paths.
-# - When behavior changes, update adjacent tests, docs, and changelog evidence.
-# - Prefer deterministic, reviewable operations over hidden or networked side effects.
-# RESEARCH-GRADE-EXPANSION:END
+          git push origin "$GENERATED_BRANCH"
+          gh pr create \
+            --title "Update daily research candidates" \
+            --body "Automated candidate metadata and inbox reports for human review." \
+            --base "$BASE_BRANCH" \
+            --head "$GENERATED_BRANCH"

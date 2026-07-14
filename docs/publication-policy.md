@@ -71,6 +71,50 @@ The curator prompt prep workflow may prepare a ready-to-copy local Codex prompt
 only when manually triggered. Actual Codex writing happens locally through Codex
 CLI or the Codex app, followed by branch, pull request, checks, and human review.
 
+## Generated Publication Boundary
+
+Generated research publication is limited to these paths:
+
+- `data/research/candidates.json`
+- `docs/research/inbox/*.md`
+- `docs/research/curated/curator-prompt-*.md`
+
+The daily scout, curator prompt prep, and repository autopilot workflows never
+write the default branch. When allowed generated changes exist, each workflow
+creates the same-repository branch
+`autopilot/generated-${{ github.run_id }}-${{ github.run_attempt }}` from the
+default branch, commits as the GitHub Actions bot, pushes that branch, and
+opens a new pull request for human review. Including `github.run_attempt`
+prevents a rerun from colliding with the first attempt's branch. Repository
+maintainers review generated PRs before merge.
+
+Candidate metadata and curator prompts are automation outputs. Curated guide
+content remains a human-reviewed contribution and is not published by those
+workflows. The workflows do not delete remote branches. After a generated PR is
+merged or closed, branch retirement is a separately configured owner setting or
+a maintainer action; this policy does not claim that either is active.
+
+These workflows create pull requests with `GITHUB_TOKEN`. Under GitHub's
+[token event rules](https://docs.github.com/en/actions/concepts/security/github_token),
+an opened, synchronized, or reopened pull request created with that token does
+create `pull_request` workflow runs in an approval-required state. Someone with
+write access must approve those runs. The documented exception does not include
+`pull_request_target`, so the safe-generated automerge workflow still requires
+a separately authorized trusted invocation, such as its guarded manual
+dispatch. Maintainers must verify that required checks actually completed
+before merge. If PR creation fails after the branch push, the per-attempt branch
+remains for inspection; an owner setting or maintainer action must retire it.
+The workflow does not delete that ref automatically.
+
+Each write-capable job has a checked-in guard that accepts manual dispatch only
+from the default branch. A selected ref can contain a modified workflow, so the
+guard is not an authorization boundary by itself. Owner-side workflow execution
+protections must restrict manual dispatch to trusted maintainers, and those
+maintainers must select the default branch.
+
+When Repository Autopilot runs with `create_pr=false`, it completes generation
+and validation but does not publish or push an orphan branch.
+
 ## Attribution Requirements
 
 Every guide that is materially informed by external material should make the
@@ -245,29 +289,3 @@ a maintainer runs that prompt through a local Codex or Claude Code session,
 and the result goes through a normal branch, pull request, checks, and
 review cycle before merge — with any pricing claim linked and marked for
 official-doc verification instead of stated as a fixed number.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **repository support file** surface. During broad
-maintenance, reviewers should treat `docs/publication-policy.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `publication policy` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

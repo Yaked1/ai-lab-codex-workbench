@@ -29,23 +29,29 @@ on:
 permissions:
   contents: write
   issues: write
+  pull-requests: write
 
 jobs:
   prep:
     name: Prepare local Codex curator prompt
+    if: >-
+      github.event_name != 'workflow_dispatch' ||
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     runs-on: ubuntu-latest
     env:
+      BASE_BRANCH: ${{ github.event.repository.default_branch }}
+      GENERATED_BRANCH: autopilot/generated-${{ github.run_id }}-${{ github.run_attempt }}
       CURATOR_SCOPE: ${{ inputs.scope }}
       CURATOR_DRY_RUN: ${{ inputs.dry_run }}
       CURATOR_MAX_SOURCES: ${{ inputs.max_sources }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
 
@@ -53,6 +59,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Prepare per-run generated branch
+        run: |
+          set -euo pipefail
+          git fetch origin "$BASE_BRANCH"
+          git switch -c "$GENERATED_BRANCH" "origin/$BASE_BRANCH"
 
       - name: Generate local curator prompt
         run: |
@@ -74,6 +86,7 @@ jobs:
       - name: Open or update local-run issue
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
           ISSUE_TITLE: Run local Codex curator when usage is available
         run: |
           set -euo pipefail
@@ -84,22 +97,22 @@ jobs:
             gh issue create --title "$ISSUE_TITLE" --body-file .tmp/curator-prompt-issue.md
           fi
 
-      - name: Commit generated prompt file only
+      - name: Publish generated prompt file as a pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
           git add docs/research/curated/curator-prompt-*.md
+          python scripts/check_safe_generated_diff.py --staged
           if git diff --cached --quiet; then
-            echo "No generated curator prompt changes to commit."
+            echo "No allowed generated curator prompt changes to publish."
             exit 0
           fi
           git commit -m "Prepare local curator prompt"
-          git push
-
-# RESEARCH-GRADE-EXPANSION:BEGIN
-# Research-grade maintenance notes:
-# - Role: GitHub Actions workflow.
-# - Review this file for clear inputs, outputs, side effects, and failure behavior.
-# - Keep examples public-safe and repository-relative; avoid secrets or private paths.
-# - When behavior changes, update adjacent tests, docs, and changelog evidence.
-# - Prefer deterministic, reviewable operations over hidden or networked side effects.
-# RESEARCH-GRADE-EXPANSION:END
+          git push origin "$GENERATED_BRANCH"
+          gh pr create \
+            --title "Prepare local curator prompt" \
+            --body "Automated local-curator prompt for human review." \
+            --base "$BASE_BRANCH" \
+            --head "$GENERATED_BRANCH"

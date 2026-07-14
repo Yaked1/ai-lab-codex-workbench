@@ -132,7 +132,7 @@ release documentation. It should answer:
 - Which files must exist?
 - Which package files are included?
 - Which private-looking files are excluded?
-- How large and substantial is the package?
+- Which named behaviors and evidence surfaces does the package preserve?
 - What checks ran?
 - How are generated artifacts kept out of commits?
 - What changed in the public docs?
@@ -140,22 +140,15 @@ release documentation. It should answer:
 The maintenance surface prevents the repository from looking comprehensive
 while quietly shipping thin or unsafe artifacts.
 
-## Depth Targets
+## Behavior and Evidence Targets
 
-These are local quality targets for the focused Prompting OS package:
-
-| Target | Reason |
+| Target | Evidence |
 | --- | --- |
-| At least 14 Markdown files | Keeps the package broader than a small note bundle. |
-| At least 14 Markdown files over 5 KB | Ensures each module has real technical depth. |
-| At least 100 KB of Markdown source | Forces the package to contain substantial offline material. |
-| Required production/security/evaluation modules | Prevents useful but shallow prompt advice. |
-| Required template and rubric | Makes the package actionable, not only explanatory. |
-| Deterministic ZIP and JSON manifest | Makes release artifacts auditable. |
-
-The benchmark repository is much larger than this workbench should be. This
-workbench is not trying to match an 8 MB prompt archive byte-for-byte. It is
-using that archive to avoid shipping a hollow package.
+| Named production, security, evaluation, and troubleshooting artifacts | Exact path assertions. |
+| Worked example and counterexample | Bounded example sections with expected behavior. |
+| Executable verification | Repository-local commands in the relevant module. |
+| Source identity | Row-level archive name, inspection status, and safe-use scope. |
+| Commit-exact packaging | Source, manifest, and ZIP path parity plus hashes. |
 
 ## Comprehensiveness Scorecard
 
@@ -167,7 +160,7 @@ Use this scorecard when reviewing future additions:
 | Depth | Short definitions only. | Procedure, examples, failure modes, and verification. |
 | Indexing | Files exist but readers cannot route. | README, module map, and source map point to the right places. |
 | Safety | Generic disclaimer. | Concrete rules for secrets, leak-derived sources, tools, and publication. |
-| Evaluation | "Looks good." | Rubrics, test cases, package-size gates, and command output. |
+| Evaluation | "Looks good." | Rubrics, test cases, behavior gates, and command output. |
 | Packaging | ZIP exists. | Deterministic ZIP, hashes, manifest, exclusions, and review checklist. |
 | Originality | Copied prompt text. | Original synthesis from public-safe structural patterns. |
 
@@ -177,8 +170,7 @@ When someone says "make it more comprehensive," do this:
 
 1. Identify the target surface: README, guides, prompt templates, package,
    tests, release docs, or static site.
-2. Measure the current surface: file count, size, coverage, links, tests, and
-   packaging.
+2. Inventory named artifacts, examples, failures, links, tests, and packaging.
 3. Compare against the benchmark traits: category breadth, standalone depth,
    index quality, safety policy, and manifest evidence.
 4. Add original technical content where the gap is real.
@@ -187,9 +179,8 @@ When someone says "make it more comprehensive," do this:
 7. Run repository checks.
 8. Stage the full reviewed diff if the task asks for staging.
 
-Do not inflate files with filler just to increase byte count. Add tables,
-procedures, examples, checklists, failure modes, and verification gates that
-change how a reader works.
+Add material only when it changes a reader behavior, evidence trail, failure
+response, or verification path.
 
 ## Public-Safety Gate
 
@@ -213,39 +204,10 @@ python scripts/create_prompting_os_package.py --version v1 --output-dir .\.tmp\p
 python -m unittest discover -s tests
 ```
 
-The package-depth tests require the ZIP source to remain substantial. They do
-not prove every paragraph is perfect, but they do prevent the package from
-collapsing back into a short README and a few thin notes.
+The package tests require named artifacts, examples, failures, source identity,
+and commit-exact archive parity. They do not grade prose quality.
 
 ## Final Rule
 
-Use large prompt repositories as evidence that serious prompt work deserves
-depth, organization, and maintenance. Do not use them as permission to copy
-unsafe content. This repository should be lengthy because it teaches, not
-because it mirrors.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Prompting OS module** surface. During broad
-maintenance, reviewers should treat `docs/prompting-os/11-comprehensiveness-benchmark.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `11 comprehensiveness benchmark` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->
+Use prompt repositories as structural evidence for organization and
+maintenance, never as permission to copy unsafe content or optimize for volume.

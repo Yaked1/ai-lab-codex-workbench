@@ -96,8 +96,11 @@ writes guide prose and merges it.
 - Generate a ready-to-copy local curator prompt in `docs/research/curated/`.
 - Run deterministic safe autofix.
 - Run repository health checks, formatting checks, and unit tests.
-- Create or update the branch `autopilot/generated-research-updates`.
-- Open or update the pull request titled `Autopilot generated research updates`.
+- For allowed generated changes, create the per-attempt branch
+  `autopilot/generated-${{ github.run_id }}-${{ github.run_attempt }}` from the
+  default branch. The attempt suffix makes reruns collision-safe.
+- Commit as the GitHub Actions bot and open a new pull request titled
+  `Autopilot generated research updates`.
 
 The workflow commits only these generated files:
 
@@ -139,9 +142,11 @@ table and a worked rejection example.
 | Any other guide or content doc | No | Human review required. |
 | Any file outside `docs/research/` and `data/research/` | No | Human review required. |
 
-The check is deterministic, implemented in
-`scripts/check_safe_generated_diff.py`, and re-run in CI, so this table is not
-just documentation -- it is enforced by a script every time.
+The check is deterministic and implemented in
+`scripts/check_safe_generated_diff.py`. Each publisher runs it against the
+staged index before pushing. A later CI run provides separate evidence only
+when that run actually exists; repository documentation never substitutes for
+the recorded check result.
 
 ## Why No OpenAI API Keys
 
@@ -181,12 +186,52 @@ content, or convert archived downloads into docs without local review.
 
 ## Generated-File Pull Requests
 
-The autopilot branch is intentionally narrow. It may contain candidate
+Each per-run generated branch is intentionally narrow. It may contain candidate
 metadata, inbox reports, and local curator prompts. It must not contain
-finished guide content.
+finished guide content. The workflow stages only these paths before it runs the
+staged-diff checker and publishes the pull request:
+
+- `data/research/candidates.json`
+- `docs/research/inbox/*.md`
+- `docs/research/curated/curator-prompt-*.md`
 
 Generated-file PRs are useful because they give maintainers a safe queue of
 candidate sources and a prompt they can copy into a local Codex session.
+
+The daily scout, curator prompt prep, and Repository Autopilot workflows never
+write the default branch. They create a same-repository per-attempt branch named
+`autopilot/generated-${{ github.run_id }}-${{ github.run_attempt }}` from the
+default branch, use the GitHub Actions bot commit identity, then open a PR for
+maintainers to review. `github.run_id` identifies the run and
+`github.run_attempt` changes on rerun, so a retry does not collide with a branch
+pushed by an earlier attempt.
+Generated metadata and local prompts are automation outputs; curated guide
+content still requires human review. The workflows do not delete remote
+branches. After merge or close, an owner setting or maintainer action may retire
+the branch, but this repository does not claim that automatic retirement is
+configured.
+
+The PR publishers authenticate with `GITHUB_TOKEN`. GitHub's
+[token event rules](https://docs.github.com/en/actions/concepts/security/github_token)
+say that an opened, synchronized, or reopened pull request created with that
+token creates `pull_request` workflow runs in an approval-required state.
+Someone with write access must approve those runs. The exception does not list
+`pull_request_target`, so `automerge-safe-generated.yml` still needs a
+separately authorized trusted invocation, such as its guarded manual dispatch.
+Before merge, a maintainer must verify that required checks actually completed.
+If PR creation fails after the branch push, the per-attempt branch remains for
+inspection. The workflow reports the failure but does not delete the ref; an
+owner setting or maintainer action must retire it.
+
+The write-capable jobs include a checked-in default-branch guard for manual
+dispatch. Because a user can select a ref containing a modified workflow, the
+guard cannot authorize that user. Owner-side workflow execution protections
+must limit dispatch to trusted maintainers, and those maintainers must select
+the default branch.
+
+With `create_pr=false`, Repository Autopilot performs its generation and
+validation steps but skips publication entirely: it does not push an orphan
+branch.
 
 ## Safe Automerge
 
@@ -235,29 +280,3 @@ five scored candidates). This is read-only and safe to run at any time.
 | Candidates file is missing or invalid JSON | The scout has not run yet, or a manual edit broke the JSON. | Run the scout workflow again, or fix the JSON and re-validate with `python scripts/repo_autopilot_status.py`. |
 | Curator prompt folder is empty | `curator-prompt-prep.yml` has not been run. | Trigger it manually, then rerun `local_autopilot.ps1 -Mode prompt`. |
 | PR contains both generated files and guide edits | A local agent branch mixed autopilot output with manual edits. | Split into two PRs: one generated-only, one reviewed normally. |
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **repository support file** surface. During broad
-maintenance, reviewers should treat `docs/automation/repository-autopilot.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `repository autopilot` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

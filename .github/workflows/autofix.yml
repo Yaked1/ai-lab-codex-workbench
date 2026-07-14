@@ -15,15 +15,19 @@ permissions:
 jobs:
   autofix:
     name: Apply deterministic safe fixes
+    if: >-
+      github.event_name != 'workflow_dispatch' ||
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           fetch-depth: 0
+          ref: ${{ github.event.repository.default_branch }}
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
 
@@ -44,27 +48,21 @@ jobs:
       - name: Create pull request if changed
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          AUTOFIX_REASON: ${{ inputs.reason }}
+          BASE_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
           if git diff --quiet; then
             echo "No changes to propose. Civilization spared one PR."
             exit 0
           fi
-          BRANCH="automation/safe-autofix-${{ github.run_id }}"
+          BRANCH="automation/safe-autofix-${{ github.run_id }}-${{ github.run_attempt }}"
           git checkout -b "$BRANCH"
-          git add .
+          git add --update
           git commit -m "Apply safe autofix"
           git push -u origin "$BRANCH"
           gh pr create \
             --title "Apply safe autofix" \
-            --body "Automated deterministic cleanup. Reason: ${{ inputs.reason }}" \
-            --base main \
+            --body "Automated deterministic cleanup. Reason: $AUTOFIX_REASON" \
+            --base "$BASE_BRANCH" \
             --head "$BRANCH"
-
-# RESEARCH-GRADE-EXPANSION:BEGIN
-# Research-grade maintenance notes:
-# - Role: GitHub Actions workflow.
-# - Review this file for clear inputs, outputs, side effects, and failure behavior.
-# - Keep examples public-safe and repository-relative; avoid secrets or private paths.
-# - When behavior changes, update adjacent tests, docs, and changelog evidence.
-# - Prefer deterministic, reviewable operations over hidden or networked side effects.
-# RESEARCH-GRADE-EXPANSION:END

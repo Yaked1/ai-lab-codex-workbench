@@ -272,29 +272,3 @@ the full chat transcript:
 | Provider authentication fails mid-session | Report the failure without pasting the key or token; check environment variables outside the chat. |
 | Aider suggests a long retry loop or a larger model to "fix" a vague task | Stop, narrow the prompt and file list, and verify cost exposure before continuing. |
 | The final summary says checks passed but does not name commands | Treat the result as unverified and run the commands yourself before commit. |
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **agent prompt template** surface. During broad
-maintenance, reviewers should treat `prompts/aider/agent-task.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `agent task` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

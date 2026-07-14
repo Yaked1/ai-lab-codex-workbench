@@ -89,7 +89,7 @@ Example structural extraction:
 | Architecture | Prompting OS module map and package manifest explanation. |
 | Troubleshooting | Failure mode table with repository-specific fixes. |
 | Release notes | Changelog entry and package review checklist. |
-| Tests | Unit tests for required docs and package depth. |
+| Tests | Unit tests for required docs, behavior, evidence, and package parity. |
 
 ## Exercise 3: Handle Missing Official Evidence
 
@@ -197,10 +197,10 @@ The package is complete.
 Strong:
 
 ```text
-The focused Prompting OS package contains at least 35 Markdown files and at
-least 300 KB of Markdown payload when the package-depth tests pass. The final
-release report should include the manifest count, total Markdown bytes,
-shortest packaged Markdown file size, ZIP SHA-256, and skipped sources.
+The focused Prompting OS package contains the named core artifacts and its
+committed source paths match the manifest and ZIP paths. The release report
+should include `source_commit`, ZIP SHA-256, path-parity result, and skipped
+sources.
 ```
 
 ### Example: Tool Claim
@@ -272,29 +272,3 @@ Ask these before publishing a source-grounded section:
 - [ ] The writing is original and tailored to this repository.
 - [ ] The final section includes examples, failure modes, and verification.
 - [ ] Tests or checklists guard any durable claims.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Prompting OS module** surface. During broad
-maintenance, reviewers should treat `docs/prompting-os/29-source-grounded-writing-lab.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `29 source grounded writing lab` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

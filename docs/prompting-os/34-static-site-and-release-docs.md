@@ -116,15 +116,30 @@ It should exclude:
 
 ## Focused Prompting OS Package
 
-The focused package is narrower. It includes `docs/prompting-os/` and should be
-deep enough to teach without the rest of the repository.
+The focused package is narrower. It includes `docs/prompting-os/` and is
+reviewed through explicit behavior, evidence, integrity, and parity contracts.
 
-Review fields:
+Behavior and evidence review:
+
+```text
+Named core artifacts:
+Worked example:
+Failure or counterexample:
+Executable verification:
+Source, manifest, and archive parity:
+```
+
+Inventory metadata (not quality proof):
 
 ```text
 Markdown file count:
 Markdown byte count:
 Shortest Markdown file:
+```
+
+Integrity metadata:
+
+```text
 Required numbered modules:
 Template included:
 Rubric included:
@@ -158,8 +173,8 @@ Good:
 ```text
 Added Prompting OS modules for archive source mapping, package evidence,
 tool permissions, source-grounded writing, and maintainer operations. The
-focused package now enforces at least 35 Markdown files and 300 KB of Markdown
-payload.
+focused package now enforces named artifacts, evidence identity, and
+commit-exact source/manifest/archive parity.
 ```
 
 Bad:
@@ -231,29 +246,3 @@ Get-Content .\.tmp\prompting-os-package-check\prompting-os-v1-manifest.json -Tot
 - [ ] Package metrics are included in final report when package changed.
 - [ ] Changelog records user-visible package or site changes.
 - [ ] Public-safety scan covers static HTML and release docs.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Prompting OS module** surface. During broad
-maintenance, reviewers should treat `docs/prompting-os/34-static-site-and-release-docs.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `34 static site and release docs` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

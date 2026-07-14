@@ -70,13 +70,21 @@ Confirmed:
 - Anthropic recommends Opus `xhigh` for coding/agentic work and at least `high`
   for other intelligence-sensitive work. Large `max_tokens` budgets are needed
   for `xhigh` and `max` agentic runs.
-- Anthropic's Fable promotional-access terms state that the promotion ends July
-  19, 2026 at 11:59:59 PM PT. The linked Claude Code weekly-limits promotion
-  states that its 50% increase also extends through that date. This is a dated
-  promotional condition and should be rechecked before billing decisions.
+- Anthropic's Fable promotional-access terms, updated July 13, 2026, state that
+  included promotional access ends July 19, 2026 at 11:59:59 PM PT. A separate
+  Claude Code weekly-limits promotion states that its 50% increase ends at the
+  same time. Afterward Fable is no longer included in subscription weekly
+  limits but remains available using usage credits. These are dated promotional
+  conditions and should be rechecked before billing decisions.
 
 Claude web `Extra` and exact Code/Desktop picker labels are recorded as dated
 surface observations where the API page only documents `xhigh`.
+
+### Fable promotional-access evidence
+
+| Claim | Evidence class | Scope | Checked | Recheck trigger |
+| --- | --- | --- | --- | --- |
+| [Fable included promotional access ends July 19, 2026 at 11:59:59 PM PT; the separate 50% Claude Code weekly-limit increase ends at the same deadline; afterward Fable leaves subscription weekly limits but remains available using usage credits](https://support.claude.com/en/articles/15424964-claude-fable-5-promotional-access) | Official | Pro, Max, Team, and eligible premium Enterprise subscription access; Claude Code weekly limits; usage-credit continuity | 2026-07-13 | Help Center article changes or the deadline passes |
 
 ## SpaceXAI and Grok
 
@@ -171,19 +179,19 @@ and choose neither without a newer authoritative resolution.
 
 ## Claim-Level GPT-5.6 Ledger
 
-| Claim | Evidence class | Scope | Checked | Recheck trigger |
-| --- | --- | --- | --- | --- |
-| Codex CLI minimum for GPT-5.6 is 0.144.0 | Official | Codex CLI access | 2026-07-12 | Help page or CLI release changes |
-| Installed CLI is 0.144.0 | Local evidence | This Windows machine | 2026-07-12 | Local package update |
-| Stable npm is 0.144.1; alpha is 0.145.0-alpha.4 | Package registry | Public npm tags | 2026-07-12 | Version-sensitive instruction |
-| Sol/Terra local menu includes Low through Ultra; Luna stops at Max | Local evidence | Installed catalog and account | 2026-07-12 | Client, login, or catalog update |
-| Plus Chat offers Sol Medium and High | Official | ChatGPT Chat | 2026-07-12 | Plan or picker update |
-| Pro/Business/Enterprise Chat add Extra High and Sol Pro | Official | ChatGPT Chat | 2026-07-12 | Plan or picker update |
-| Work Ultra is documented for Pro and Enterprise | Official | ChatGPT Work | 2026-07-12 | Help or launch page update |
-| Business Work Ultra was visible | User observation | One workspace only | 2026-07-12 | Workspace policy or rollout update |
-| API uses `none` through `max`, not `ultra` | Official | Responses API controls | 2026-07-12 | Model page or API schema update |
-| Sol/Terra/Luna API context is 1.05M with 128K output | Official | Dated model catalog | 2026-07-12 | Model snapshot or catalog update |
-| Sol/Terra/Luna list prices are $5/$30, $2.50/$15, $1/$6 | Official | Standard API million-token rates | 2026-07-12 | Pricing page update |
+| Claim | Evidence class | Source identity | Scope | Checked | Recheck trigger |
+| --- | --- | --- | --- | --- | --- |
+| Codex CLI minimum for GPT-5.6 is 0.144.0 | Official | [ChatGPT Work and Codex](https://help.openai.com/en/articles/20001275) | Codex CLI access | 2026-07-12 | Help page or CLI release changes |
+| Installed CLI is 0.144.0 | Local evidence | `codex --version` | This Windows machine | 2026-07-12 | Local package update |
+| Stable npm is 0.144.1; alpha is 0.145.0-alpha.4 | Package registry | [`@openai/codex` npm tags](https://www.npmjs.com/package/@openai/codex) | Public npm tags | 2026-07-12 | Version-sensitive instruction |
+| Sol/Terra local menu includes Low through Ultra; Luna stops at Max | Local evidence | `codex debug models` | Installed catalog and account | 2026-07-12 | Client, login, or catalog update |
+| Plus Chat offers Sol Medium and High | Official | [GPT-5.6 in ChatGPT](https://help.openai.com/en/articles/20001354) | ChatGPT Chat | 2026-07-12 | Plan or picker update |
+| Pro/Business/Enterprise Chat add Extra High and Sol Pro | Official | [GPT-5.6 in ChatGPT](https://help.openai.com/en/articles/20001354) | ChatGPT Chat | 2026-07-12 | Plan or picker update |
+| Work Ultra is documented for Pro and Enterprise | Official | [ChatGPT Work and Codex](https://help.openai.com/en/articles/20001275) | ChatGPT Work | 2026-07-12 | Help or launch page update |
+| Business Work Ultra was visible | User observation | ChatGPT Desktop Work picker observation | One workspace only | 2026-07-12 | Workspace policy or rollout update |
+| API uses `none` through `max`, not `ultra` | Official | [OpenAI model catalog](https://developers.openai.com/api/docs/models) | Responses API controls | 2026-07-12 | Model page or API schema update |
+| Sol/Terra/Luna API context is 1.05M with 128K output | Official | [OpenAI model catalog](https://developers.openai.com/api/docs/models) | Dated model catalog | 2026-07-12 | Model snapshot or catalog update |
+| Sol/Terra/Luna list prices are $5/$30, $2.50/$15, $1/$6 | Official | [OpenAI model catalog](https://developers.openai.com/api/docs/models) | Standard API million-token rates | 2026-07-12 | Pricing page update |
 
 ### Required evidence packet for any model claim
 
@@ -219,3 +227,13 @@ evaluator reproduces the named model, effort, tools, and harness.
 5. Mark the field `unknown or unverified` when the exact claim cannot be
    established.
 6. Recheck by trigger rather than silently retaining a stale value.
+
+## Shared execution policy
+
+Run records, verification, escalation, and operational failure handling live
+in one place:
+
+- [Shared execution contract](shared-execution-contract.md)
+
+Use that contract for every serious run. Keep only model-specific identity,
+surfaces, task fit, examples, limits, and evidence on this page.

@@ -112,7 +112,7 @@ Maintain these files as the local contract:
 - `docs/model-routing.md`: model routing and usage discipline.
 - `docs/agent-reach-usage.md`: external-source safety rules.
 - `prompts/codex/setup-from-documents-goal.md`: reusable setup goal.
-- `prompts/codex/repo-cleanup-balanced-goal.md`: balanced cleanup goal.
+- `prompts/codex/repository-cleanup.goal.md`: balanced cleanup goal.
 - `prompts/claude/agent-reach-search.md`: reusable Agent-Reach Claude prompt.
 
 ## External-Content Safety

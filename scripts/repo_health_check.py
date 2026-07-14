@@ -104,8 +104,6 @@ REQUIRED_FILES = [
     "scripts/create_prompting_os_package.py",
     "tests/test_prompting_os_package.py",
     "scripts/mechanical_research_expansion.py",
-    "docs/review/mechanical-research-expansion-report.md",
-    "docs/review/mechanical-research-expansion-manifest.json",
     "scripts/safe_autofix.py",
     "scripts/repo_health_check.py",
 ]
@@ -227,12 +225,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
-# RESEARCH-GRADE-EXPANSION:BEGIN
-# Research-grade maintenance notes:
-# - Role: repository automation script.
-# - Review this file for clear inputs, outputs, side effects, and failure behavior.
-# - Keep examples public-safe and repository-relative; avoid secrets or private paths.
-# - When behavior changes, update adjacent tests, docs, and changelog evidence.
-# - Prefer deterministic, reviewable operations over hidden or networked side effects.
-# RESEARCH-GRADE-EXPANSION:END

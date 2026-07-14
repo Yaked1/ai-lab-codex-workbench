@@ -16,18 +16,17 @@ claims, independent results, and unresolved gaps.
 
 ## Start Here
 
-| Goal | First read | Next step |
+Choose one route. The repository has many references because apparently one
+Markdown file is never enough, but the first action should still be obvious.
+
+| Route | First result | Start |
 | --- | --- | --- |
-| Run a first Codex task | [Codex start guide](docs/codex/00-start-here.md) | [Goal workflow](docs/codex/01-codex-goal-workflow.md) |
-| Learn prompt engineering | [Prompt engineering guide](docs/guides/comprehensive-prompt-engineering-guide.md) | [Prompt playbook](docs/guides/prompt-engineering-playbook.md) |
-| Prompt coding agents | [Coding-agent prompting](docs/guides/prompting-ai-coding-agents.md) | [Power tips](docs/guides/coding-agent-power-tips.md) |
-| Check current models and effort modes | [Current model and interface guide](docs/guides/current-models-and-interfaces.md) | [Model prompting pack](docs/guides/model-prompting/README.md) |
-| Use live voice or translation | [Live audio and translation](docs/guides/live-audio-and-translation.md) | Follow the linked official docs before deployment |
-| Run a full agent task | [Agent task lifecycle](docs/workflows/agent-task-lifecycle.md) | [Task template](docs/templates/task-spec.md) |
-| Install reusable skills | [Skills catalog](skills/README.md) | `python scripts/install_skill.py --list` |
-| Audit a prompt | [Prompt audit checklist](docs/guides/prompt-audit-checklist.md) | [Quality rubric](docs/prompting-os/evals/prompt-quality-rubric.md) |
-| Work with image prompts | [Image-generation guide](docs/image-generation/README.md) | [Prompting engine](docs/prompting-os/05-image-prompting-engine.md) |
-| Maintain or release the repo | [Maintainer runbook](docs/prompting-os/31-workbench-maintainer-runbook.md) | [Release process](docs/releases/release-process.md) |
+| **Run a task** | Produce and verify one reviewed report in 5 to 15 minutes | [First reviewed agent task](examples/first-reviewed-agent-task/README.md) |
+| **Learn prompting** | Build a prompt contract, then follow a 15-minute or one-hour track | [Prompting OS first success](docs/prompting-os/00-first-success.md) |
+| **Contribute** | Run local checks and open a scoped, reviewable change | [Contributing guide](CONTRIBUTING.md) |
+
+The product promise is simple: turn a vague AI task into a bounded work order,
+a reviewable artifact, and evidence that the result passed its declared check.
 
 ## Quick Start
 
@@ -92,9 +91,11 @@ Final report:
 
 The [prompt engineering guide](docs/guides/comprehensive-prompt-engineering-guide.md)
 explains task framing, examples, output schemas, ambiguity, tool use, and
-iteration. The [Prompting OS](docs/prompting-os/README.md) turns those ideas
-into a modular system with model drivers, context rules, evaluation, security,
-maintenance, and reusable patterns.
+iteration. The [agent-prompting craft guide](docs/guides/prompting-ai-coding-agents.md)
+turns that contract into work orders, while [coding-agent power tips](docs/guides/coding-agent-power-tips.md)
+cover tool-specific usage. The [Prompting OS](docs/prompting-os/README.md) turns
+those ideas into a modular system with model drivers, context rules, evaluation,
+security, maintenance, and reusable patterns.
 
 Use [prompting references](docs/guides/prompting-references.md) to find official
 vendor and evaluation sources. Use the
@@ -200,8 +201,11 @@ Translate's product and API paths.
 
 The [frontier models and multimodal systems essay](docs/guides/frontier-models-and-multimodal-systems-2026.md)
 adds plan-by-plan GPT-5.6 controls, effort guidance for all three tiers,
-Artificial Analysis comparisons, Fable's July 12 cutoff, Grok and Muse, and a
-source-checked map of current audio, image, and video model families.
+Artificial Analysis comparisons, Grok and Muse, and a source-checked map of
+current audio, image, and video model families. Anthropic's
+[current Fable promotion terms](https://support.claude.com/en/articles/15424964-claude-fable-5-promotional-access)
+extend included access through **July 19, 2026 at 11:59:59 PM PT**. Fable does
+not disappear after that deadline; it remains available using usage credits.
 Its [video research pack](docs/research/video-research-pack-2026-07-11.md)
 separates verified embedded videos from discovery searches that are not factual
 evidence.
@@ -226,6 +230,18 @@ than copied.
 
 These files are dated snapshots. Check the linked primary sources before
 making a purchase, deployment, or account-access decision.
+
+## Offline Site and Starter
+
+- [Offline discovery site](docs/site/index.html) offers the same run, learn, and
+  contribute routes plus local search with no external assets.
+- [Copyable starter](starter/README.md) is the small fork/copy boundary for a
+  task template, safety rules, one evaluation, and one example.
+- [Model media](docs/site/model-media.html) is explicitly network-required;
+  the remaining core site is offline-capable.
+- [GitHub owner settings and ref retirement](docs/maintenance/github-owner-settings.md)
+  separates committed policy from live GitHub controls and records non-destructive
+  branch dispositions.
 
 ## Repository Map
 

@@ -1,22 +1,27 @@
 $ErrorActionPreference = "Stop"
 
+function Invoke-CheckedCommand {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Command,
+        [string[]]$Arguments = @()
+    )
+
+    & $Command @Arguments
+    $exitCode = $LASTEXITCODE
+    if ($exitCode -ne 0) {
+        exit $exitCode
+    }
+}
+
 Write-Host "Running repository health check..."
-python scripts/repo_health_check.py
+Invoke-CheckedCommand -Command "python" -Arguments @("scripts/repo_health_check.py")
 
 Write-Host "Running safe autofix check..."
-python scripts/safe_autofix.py --check
+Invoke-CheckedCommand -Command "python" -Arguments @("scripts/safe_autofix.py", "--check")
 
 Write-Host "Running unit tests..."
-python -m unittest discover -s tests
+Invoke-CheckedCommand -Command "python" -Arguments @("-m", "unittest", "discover", "-s", "tests")
 
 Write-Host "All local checks passed. Miracles do happen, apparently."
-
-<#
-RESEARCH-GRADE-EXPANSION:BEGIN
-Research-grade maintenance notes:
-- Role: repository automation script.
-- Review parameters, side effects, exit behavior, dry-run/apply boundaries, and failure output before changing this script.
-- Keep examples public-safe and repository-relative; do not print secrets or inspect private machine state.
-- When behavior changes, update tests or documented manual verification steps and record user-visible changes in the changelog.
-RESEARCH-GRADE-EXPANSION:END
-#>
+exit 0

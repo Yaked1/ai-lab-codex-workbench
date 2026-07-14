@@ -6,6 +6,21 @@ It is built from the patterns that strong prompting repositories share: clear ta
 
 It is not a prompt dump. Prompt dumps are mostly archaeology with better Markdown.
 
+## Choose a Track
+
+| Track | Time | Artifact | Observable check |
+| --- | ---: | --- | --- |
+| First working prompt | 15 minutes | One reviewed report | `python examples/first-reviewed-agent-task/check_report.py` prints `PASS` |
+| Reliable agent task | About one hour | A scoped work order plus verified result | Relevant tests or rubric pass and the final diff/report is reviewed |
+| Maintainer reference | As needed | Repository policy, evaluation, or release evidence | Full repository gates and owner-side evidence where required |
+
+Start with [00-first-success.md](00-first-success.md). Continue with
+[01-kernel.md](01-kernel.md), [03-context-engineering.md](03-context-engineering.md),
+[06-evaluation-and-optimization.md](06-evaluation-and-optimization.md), and
+[28-tool-permission-model.md](28-tool-permission-model.md) for the one-hour
+track. The remaining modules are a reference library, not a mandatory beginner
+procession.
+
 ## Operating System Metaphor
 
 | OS part | Prompting equivalent | Purpose |
@@ -49,7 +64,7 @@ Use this path:
 7. Read `08-production-prompt-architecture.md` before turning prompts into repeatable workflows.
 8. Read `09-security-and-governance.md` before adding tools, RAG, automation, or release packages.
 9. Read `10-evaluation-cookbook.md` before changing packaged prompts.
-10. Read `11-comprehensiveness-benchmark.md` before expanding the repository or focused ZIP for depth.
+10. Read `11-comprehensiveness-benchmark.md` before expanding the repository or focused ZIP for behavior and evidence coverage.
 11. Read `12-prompt-pattern-library.md` for reusable prompt patterns.
 12. Read `13-agent-operations-manual.md` before running long agent tasks.
 13. Read `14-rag-and-tool-use-field-guide.md` before combining sources and tools.
@@ -73,7 +88,7 @@ Use this path:
 | `08-production-prompt-architecture.md` | Prompt asset specifications, prompt interfaces, versioning, telemetry, migration, and production readiness. |
 | `09-security-and-governance.md` | Data classification, prompt injection defense, tool permission profiles, RAG governance, leak-derived content policy, and incident response. |
 | `10-evaluation-cookbook.md` | Golden, edge, abuse, regression, RAG, image, coding-agent, and package quality evaluation recipes. |
-| `11-comprehensiveness-benchmark.md` | Public-safe structural benchmark guidance with package-depth targets and review procedure. |
+| `11-comprehensiveness-benchmark.md` | Public-safe behavior, evidence, and package-parity guidance. |
 | `12-prompt-pattern-library.md` | Reusable task, source, agent, structured-output, visual, compression, and evaluation prompt patterns. |
 | `13-agent-operations-manual.md` | Operational runbook for coding agents and tool-using agents, including dirty worktrees, staging, tool discipline, and package work. |
 | `14-rag-and-tool-use-field-guide.md` | Source ledgers, RAG contracts, tool permission ladders, tool audits, and injection cases. |
@@ -109,30 +124,22 @@ Use these routes when the package is opened for a specific job.
 
 | Job | Read first | Then verify |
 | --- | --- | --- |
-| Expand the repository from a broad instruction file | `25-repository-expansion-playbook.md`, `24-archive-corpus-source-map.md`, `32-completion-evidence-manual.md` | README byte count, package metrics, source map, tests, changelog. |
-| Build or review the focused package | `15-maintenance-and-release-manual.md`, `26-offline-package-reader-guide.md`, `34-static-site-and-release-docs.md` | ZIP, manifest, SHA-256, file count, Markdown bytes, shortest Markdown file. |
+| Expand the repository from a broad instruction file | `25-repository-expansion-playbook.md`, `24-archive-corpus-source-map.md`, `32-completion-evidence-manual.md` | Named reader paths, source map, examples, failure cases, tests, changelog. |
+| Build or review the focused package | `15-maintenance-and-release-manual.md`, `26-offline-package-reader-guide.md`, `34-static-site-and-release-docs.md` | Required artifacts, source commit, ZIP/manifest path parity, SHA-256. |
 | Write or audit prompt templates | `12-prompt-pattern-library.md`, `27-prompt-evaluation-datasets.md`, `33-prompt-library-indexing.md` | Required sections, examples, risk level, package inclusion, failure cases. |
 | Run a coding-agent task | `13-agent-operations-manual.md`, `28-tool-permission-model.md`, `30-agent-review-and-red-team.md` | Worktree status, scoped files, commands, checks, public-safety scan. |
 | Create source-grounded guidance | `03-context-engineering.md`, `14-rag-and-tool-use-field-guide.md`, `29-source-grounded-writing-lab.md` | Source ledger, source status, official-doc boundaries, unsupported claims. |
 | Teach a workshop | `17-curriculum-and-workshops.md`, `26-offline-package-reader-guide.md`, `35-workshop-assessment-bank.md` | Exercises, scoring rubrics, package snapshot, no private examples. |
 
-## Package Quality Floor
+## Package Quality Contract
 
-The focused package should remain useful as an offline technical manual. Current
-tests should enforce these floors:
-
-- At least 35 Markdown files.
-- At least 300 KB of Markdown payload.
-- Every packaged Markdown module should generally be at least 6 KB unless it is
-  intentionally an index, diagram companion, schema, or other narrow support
-  artifact.
-- Required numbered modules, template, and rubric are present.
-- The package manifest uses relative paths and records per-file hashes.
-
-The byte floor is not permission to add filler. If a module is too short, add
-examples, failure modes, decision tables, exercises, review questions, and
-verification steps. If the module is intentionally small, document why and keep
-the package-level average high enough for offline study.
+- Named core artifacts: kernel, production, security, evaluation, examples,
+  troubleshooting, source map, master template, and rubric.
+- Worked example: a filled prompt contract with observable checks.
+- Failure case: expected rejection or recovery behavior.
+- Verification command: `python -m unittest tests.test_prompting_os_package`.
+- Source, manifest, and archive parity: identical paths from one `source_commit`,
+  with relative names and per-file hashes.
 
 ## Public-Safe Source Use
 
@@ -178,40 +185,11 @@ Use a temporary output directory when validating package behavior without touchi
 python scripts/create_prompting_os_package.py --version v1 --output-dir .\dist\prompting-os
 ```
 
-The package is intended to be substantial. The repository tests check that the
-focused ZIP source has many long technical Markdown files, a large enough total
-Markdown footprint, a non-trivial master template, a non-trivial rubric, and
-the production/security/evaluation/comprehensiveness/operations modules listed
-above.
+Repository tests check the named artifacts, worked and failure examples,
+verification path, source identity, and commit-exact package parity above.
 
 ## Inspired By
 
 This synthesis is inspired by public projects and docs such as DAIR.AI Prompt Engineering Guide, OpenAI Cookbook, promptfoo, Microsoft beginner/workshop materials, Anthropic and other official vendor prompting docs, Prompt Master-style template libraries, Stop Slop-style anti-slop guides, structured prompt collections, vision-language prompting surveys, multimodal generation surveys, MCP/agent bridge projects, and public-safe structural inspection of local archive copies.
 
 The safe rule: extract structures and concepts, not bulk text. Keep local archive paths out of public docs, and verify fast-changing tool behavior in official docs before publishing exact claims.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Prompting OS module** surface. During broad
-maintenance, reviewers should treat `docs/prompting-os/README.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `README` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

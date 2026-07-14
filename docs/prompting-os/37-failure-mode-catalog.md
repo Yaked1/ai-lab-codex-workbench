@@ -45,7 +45,7 @@ usual cause, and the preferred repair.
 
 | Failure | Symptom | Repair |
 | --- | --- | --- |
-| Thin package | ZIP exists but content is too small to teach. | Enforce Markdown file and byte floors. |
+| Hollow package | ZIP exists but required behaviors or evidence are absent. | Enforce named artifacts, examples, failures, verification, and path parity. |
 | Manifest not inspected | Build passed but contents unknown. | Open manifest and derive metrics. |
 | Missing hash | Release cannot be identified. | Record ZIP SHA-256. |
 | Private path in manifest | Manifest leaks local environment. | Use relative path rendering and scan output. |
@@ -107,29 +107,3 @@ When a failure is found:
 - [ ] Public-safety scan ran.
 - [ ] New docs are linked from the relevant index.
 - [ ] Final report avoids overclaiming.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Prompting OS module** surface. During broad
-maintenance, reviewers should treat `docs/prompting-os/37-failure-mode-catalog.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `37 failure mode catalog` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

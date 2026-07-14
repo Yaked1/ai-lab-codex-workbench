@@ -4,7 +4,9 @@ These guards keep the prompting guides present, public-safe, linked from the
 README, and bundled inside the release package.
 """
 import importlib.util
+import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -50,6 +52,21 @@ PROMPT_REQUIRED_SECTIONS = {
     "Failure cases": ("## Failure Cases",),
 }
 
+CORE_PROMPTS = {
+    "prompts/aider/agent-task.md",
+    "prompts/antigravity/agent-task.md",
+    "prompts/claude/agent-reach-search.md",
+    "prompts/claude-code/review-docs.goal.md",
+    "prompts/codex/docs-update.goal.md",
+    "prompts/codex/fix-bug.goal.md",
+    "prompts/codex/implement-feature.goal.md",
+    "prompts/codex/review-pr.goal.md",
+    "prompts/cursor/agent-task.md",
+    "prompts/github-copilot/agent-task.md",
+    "prompts/opencode/agent-task.md",
+    "prompts/windsurf/agent-task.md",
+}
+
 
 def load_script(name):
     script = ROOT / "scripts" / f"{name}.py"
@@ -61,6 +78,7 @@ def load_script(name):
 
 discover_ai_sources = load_script("discover_ai_sources")
 build_release_package = load_script("build_release_package")
+mechanical_research_expansion = load_script("mechanical_research_expansion")
 
 
 def read(relative):
@@ -173,10 +191,7 @@ class PromptingGuidesReadmeLinkageTests(unittest.TestCase):
                 self.assertIn(needle, security)
 
     def test_readme_is_focused_public_entry_point(self):
-        readme_path = ROOT / "README.md"
         readme = read("README.md")
-        self.assertGreaterEqual(readme_path.stat().st_size, 10_000)
-        self.assertLessEqual(readme_path.stat().st_size, 25_000)
         for needle in (
             "Start Here",
             "Quick Start",
@@ -199,7 +214,11 @@ class PromptingGuidesReadmeLinkageTests(unittest.TestCase):
 class PromptTemplateCompletenessTests(unittest.TestCase):
     def test_prompt_templates_include_operational_sections(self):
         prompt_files = sorted((ROOT / "prompts").rglob("*.md"))
-        self.assertGreaterEqual(len(prompt_files), 10)
+        prompt_paths = {path.relative_to(ROOT).as_posix() for path in prompt_files}
+        self.assertTrue(
+            CORE_PROMPTS.issubset(prompt_paths),
+            f"missing core prompt(s): {sorted(CORE_PROMPTS - prompt_paths)}",
+        )
 
         for path in prompt_files:
             text = path.read_text(encoding="utf-8")
@@ -239,14 +258,212 @@ class PromptingGuidesPackagingTests(unittest.TestCase):
                 self.assertIn(relative, included)
 
 
+class MechanicalResearchExpansionStripTests(unittest.TestCase):
+    begin = mechanical_research_expansion.MARKER_BEGIN
+    end = mechanical_research_expansion.MARKER_END
+
+    def marked(self, opening: str, closing: str, body: str = "generated note") -> str:
+        return f"{opening}{self.begin}{body}{self.end}{closing}"
+
+    def test_markdown_strip_preserves_unique_content(self):
+        text = (
+            "# Keep this heading\n\n"
+            + self.marked("<!-- ", " -->", " -->\n## Generated\n\nGenerated only\n<!-- ")
+            + "\n\nUnique tail\n"
+        )
+
+        stripped = mechanical_research_expansion.strip_text("guide.md", text)
+
+        self.assertEqual("# Keep this heading\n\nUnique tail\n", stripped)
+
+    def test_python_and_yaml_line_comment_blocks_strip(self):
+        for relative in ("script.py", "workflow.yml"):
+            with self.subTest(relative=relative):
+                text = (
+                    "keep_before\n\n"
+                    f"# {self.begin}\n"
+                    "# generated only\n"
+                    f"# {self.end}\n\n"
+                    "keep_after\n"
+                )
+
+                stripped = mechanical_research_expansion.strip_text(relative, text)
+
+                self.assertEqual("keep_before\n\nkeep_after\n", stripped)
+
+    def test_powershell_block_comment_strips(self):
+        text = (
+            "Write-Host 'keep'\n\n"
+            "<#\n"
+            f"{self.begin}\n"
+            "Generated only\n"
+            f"{self.end}\n"
+            "#>\n"
+        )
+
+        stripped = mechanical_research_expansion.strip_text("check.ps1", text)
+
+        self.assertEqual("Write-Host 'keep'\n", stripped)
+
+    def test_html_section_and_svg_comment_strip(self):
+        html = (
+            "<main>\n"
+            "  <p>keep</p>\n\n"
+            f"  <!-- {self.begin} -->\n"
+            "  <section class=\"research-grade-addendum\">generated</section>\n"
+            f"  <!-- {self.end} -->\n\n"
+            "</main>\n"
+        )
+        svg = (
+            "<svg>\n"
+            f"  <!-- {self.begin}\n"
+            "  generated\n"
+            f"  {self.end} -->\n\n"
+            "  <rect />\n"
+            "</svg>\n"
+        )
+
+        self.assertEqual(
+            "<main>\n  <p>keep</p>\n\n</main>\n",
+            mechanical_research_expansion.strip_text("page.html", html),
+        )
+        self.assertEqual(
+            "<svg>\n  <rect />\n</svg>\n",
+            mechanical_research_expansion.strip_text("diagram.svg", svg),
+        )
+
+    def test_css_removes_only_exact_generated_rule(self):
+        text = (
+            "body { color: black; }\n\n"
+            f"/* {self.begin}\n"
+            "generated\n"
+            f"{self.end} */\n\n"
+            ".research-grade-addendum {\n"
+            "  border-top: 1px solid #d8dee8;\n"
+            "  margin-top: 2rem;\n"
+            "  padding-top: 1rem;\n"
+            "}\n\n"
+            ".research-grade-addendum { color: red; }\n"
+        )
+
+        stripped = mechanical_research_expansion.strip_text("styles.css", text)
+
+        self.assertEqual(
+            "body { color: black; }\n\n.research-grade-addendum { color: red; }\n",
+            stripped,
+        )
+
+    def test_css_terminal_generated_content_does_not_leave_blank_eof(self):
+        text = (
+            "body { color: black; }\n\n"
+            f"/* {self.begin}\n"
+            "generated\n"
+            f"{self.end} */\n\n"
+            ".research-grade-addendum {\n"
+            "  border-top: 1px solid #d8dee8;\n"
+            "  margin-top: 2rem;\n"
+            "  padding-top: 1rem;\n"
+            "}\n"
+        )
+
+        stripped = mechanical_research_expansion.strip_text("styles.css", text)
+
+        self.assertEqual("body { color: black; }\n", stripped)
+        self.assertFalse(stripped.endswith("\n\n"))
+
+    def test_malformed_markers_fail_closed_and_name_path(self):
+        for relative, text in (
+            ("unclosed.md", f"before\n<!-- {self.begin} -->\n"),
+            ("out-of-order.py", f"# {self.end}\n# {self.begin}\n"),
+        ):
+            with self.subTest(relative=relative):
+                with self.assertRaisesRegex(ValueError, relative):
+                    mechanical_research_expansion.strip_text(relative, text)
+
+    def test_strip_is_idempotent_and_preserves_final_newline_state(self):
+        for ending in ("\n", ""):
+            with self.subTest(ending=repr(ending)):
+                text = (
+                    "before\n\n"
+                    f"<!-- {self.begin} -->\nGenerated\n<!-- {self.end} -->\n\n"
+                    f"after{ending}"
+                )
+                stripped = mechanical_research_expansion.strip_text("guide.md", text)
+
+                self.assertEqual(f"before\n\nafter{ending}", stripped)
+                self.assertEqual(stripped, mechanical_research_expansion.strip_text("guide.md", stripped))
+
+    def test_default_check_is_read_only_and_write_then_check_is_clean(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "README.md").write_text(
+                f"keep\n<!-- {self.begin} -->\nGenerated\n<!-- {self.end} -->\n",
+                encoding="utf-8",
+            )
+            subprocess.run(["git", "init", "-q"], cwd=root, check=True)
+            subprocess.run(["git", "add", "README.md"], cwd=root, check=True)
+
+            command = [sys.executable, str(ROOT / "scripts" / "mechanical_research_expansion.py"), "--root", str(root)]
+            before = (root / "README.md").read_text(encoding="utf-8")
+            audit = subprocess.run(command, text=True, capture_output=True, check=False)
+
+            self.assertNotEqual(0, audit.returncode)
+            self.assertIn("README.md", audit.stdout + audit.stderr)
+            self.assertEqual(before, (root / "README.md").read_text(encoding="utf-8"))
+
+            write = subprocess.run(command + ["--write"], text=True, capture_output=True, check=False)
+            self.assertEqual(0, write.returncode, write.stdout + write.stderr)
+            self.assertNotIn(self.begin, (root / "README.md").read_text(encoding="utf-8"))
+
+            second_write = subprocess.run(command + ["--write"], text=True, capture_output=True, check=False)
+            self.assertEqual(0, second_write.returncode, second_write.stdout + second_write.stderr)
+            self.assertIn("0 changed", second_write.stdout)
+
+            clean_audit = subprocess.run(command + ["--check"], text=True, capture_output=True, check=False)
+            self.assertEqual(0, clean_audit.returncode, clean_audit.stdout + clean_audit.stderr)
+
+    def test_live_root_scan_is_clean_across_all_approved_tracked_paths(self):
+        errors, changes = mechanical_research_expansion.scan_repo(ROOT)
+
+        self.assertEqual([], errors)
+        self.assertEqual([], changes)
+
+    def test_cli_malformed_marker_fails_without_mutating_bytes(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            malformed = root / "malformed.md"
+            original = f"keep\n<!-- {self.begin} -->\n".encode("utf-8")
+            malformed.write_bytes(original)
+            subprocess.run(["git", "init", "-q"], cwd=root, check=True)
+            subprocess.run(["git", "add", "malformed.md"], cwd=root, check=True)
+
+            base_command = [
+                sys.executable,
+                str(ROOT / "scripts" / "mechanical_research_expansion.py"),
+                "--root",
+                str(root),
+            ]
+            for suffix in ([], ["--check"]):
+                with self.subTest(suffix=suffix):
+                    result = subprocess.run(
+                        base_command + suffix,
+                        text=True,
+                        capture_output=True,
+                        check=False,
+                    )
+
+                    self.assertNotEqual(0, result.returncode)
+                    self.assertIn("malformed.md", result.stdout + result.stderr)
+                    self.assertEqual(original, malformed.read_bytes())
+
+    def test_deleted_mechanical_expansion_artifacts_are_absent(self):
+        for relative in (
+            "docs/review/mechanical-research-expansion-report.md",
+            "docs/review/mechanical-research-expansion-manifest.json",
+        ):
+            with self.subTest(relative=relative):
+                self.assertFalse((ROOT / relative).exists())
+
+
 if __name__ == "__main__":
     unittest.main()
-
-# RESEARCH-GRADE-EXPANSION:BEGIN
-# Research-grade maintenance notes:
-# - Role: repository regression test.
-# - Review this file for clear inputs, outputs, side effects, and failure behavior.
-# - Keep examples public-safe and repository-relative; avoid secrets or private paths.
-# - When behavior changes, update adjacent tests, docs, and changelog evidence.
-# - Prefer deterministic, reviewable operations over hidden or networked side effects.
-# RESEARCH-GRADE-EXPANSION:END

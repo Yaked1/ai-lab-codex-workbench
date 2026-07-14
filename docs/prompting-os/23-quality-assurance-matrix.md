@@ -7,8 +7,8 @@ verification is required for each change.
 
 | Artifact | Quality question | Verification |
 | --- | --- | --- |
-| README | Is it comprehensive, navigable, public-safe? | Size check, link review, health check. |
-| Prompting OS modules | Are they deep and useful offline? | Package-depth tests and manifest. |
+| README | Does it expose required routes, links, commands, and safety guidance? | Named-section tests, live-link review, executable commands, health check. |
+| Prompting OS modules | Do they teach procedures, examples, failures, and verification? | Bounded behavior/evidence tests and package parity. |
 | Prompt templates | Are inputs, scope, checks, and failure behavior present? | Prompt docs tests and manual review. |
 | Scripts | Do they behave deterministically? | Unit tests and focused command. |
 | Static site | Does it work offline? | Local link and asset review. |
@@ -60,7 +60,6 @@ Did prompt templates change?
 
 ### README
 
-- Minimum useful length.
 - Complete table of contents.
 - Links to Prompting OS, guides, templates, checks, source policy.
 - Public-safety section.
@@ -68,7 +67,6 @@ Did prompt templates change?
 
 README evidence:
 
-- File length is substantial for a public manual.
 - Table of contents includes major workflows.
 - Prompting OS modules are linked.
 - Validation commands are visible.
@@ -78,18 +76,16 @@ README evidence:
 ### Prompting OS Package
 
 - Required modules.
-- Substantial Markdown payload.
-- Every module meaningful enough to study offline.
+- Named core artifacts and reader routes.
+- Worked example, failure case, and verification command.
 - Manifest paths are relative.
 - Generated ZIP ignored.
 
 Package evidence:
 
-- Markdown file count.
-- Total Markdown bytes.
-- Minimum useful file size.
 - Manifest hash.
 - Required modules list.
+- Source, manifest, and archive path parity.
 
 ### Prompt Templates
 
@@ -124,9 +120,8 @@ Package evidence:
 
 ### False Broad Completion
 
-A package test confirms that a ZIP builds, but no one checks whether the ZIP has
-substantial content. The fix is to inspect the manifest and enforce Markdown
-payload thresholds.
+A package test confirms that a ZIP builds, but no one checks its source commit,
+required paths, hashes, or path parity. The fix is to assert those contracts.
 
 ### README Drift
 
@@ -149,8 +144,8 @@ package and inspect the generated manifest.
 
 | Claim | Minimum evidence |
 | --- | --- |
-| README is comprehensive | README byte count, heading map, and link review. |
-| Package is comprehensive | Manifest Markdown count, byte count, and required modules. |
+| README routes readers | Named headings, links, commands, and review. |
+| Package is complete | Required paths, source commit, hashes, and path parity. |
 | Public safety is preserved | Secret/path scan and source-policy review. |
 | Scripts still work | Unit tests and focused command output. |
 | Generated artifact is correct | Manifest hash and archive listing. |
@@ -183,7 +178,7 @@ Do not mark a task complete until:
 - Passing tests but ignoring package manifest.
 - Reviewing README without checking links.
 - Claiming source-grounded accuracy without checking citations.
-- Treating byte count as quality without reading content.
+- Treating volume as quality instead of testing behavior and evidence.
 - Treating a model summary as evidence.
 - Running a narrow check and claiming broad completion.
 
@@ -191,29 +186,3 @@ Do not mark a task complete until:
 
 Quality assurance is matching evidence to claims. A narrow check cannot prove a
 broad claim.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Prompting OS module** surface. During broad
-maintenance, reviewers should treat `docs/prompting-os/23-quality-assurance-matrix.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `23 quality assurance matrix` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

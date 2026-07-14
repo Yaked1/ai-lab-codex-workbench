@@ -28,8 +28,12 @@ to rely on the cited primary and independent sources, not this video.*
   low/medium/high/xhigh/max/ultra, and Luna low/medium/high/xhigh/max.
 - Fable 5 API effort values are low/medium/high/xhigh/max. Ultracode is a
   Claude Code orchestration mode, not an API effort above max.
-- Fable 5 promotional included access was extended through 2026-07-12 at
-  11:59:59 PM PT for eligible paid plans, then moves to usage credits.
+- Superseded historical observation: Fable 5 promotional included access was
+  extended through 2026-07-12 at 11:59:59 PM PT. Anthropic's
+  [current promotion terms](https://support.claude.com/en/articles/15424964-claude-fable-5-promotional-access),
+  updated July 13, 2026, extend that access through July 19, 2026 at 11:59:59
+  PM PT. A separate 50% Claude Code weekly-limit increase ends at the same
+  time. Afterward Fable remains available using usage credits.
 - Fable 5 standard pricing is $10/$50 per million tokens across the full 1M
   context window, including inputs above 200K.
 - Grok 4.5 is the default Grok Build model, supports low/medium/high reasoning,

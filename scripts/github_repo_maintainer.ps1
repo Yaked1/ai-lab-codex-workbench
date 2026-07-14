@@ -142,6 +142,104 @@ function Invoke-Capture {
     return @($output)
 }
 
+function ConvertTo-WindowsCommandLineArgument {
+    param([AllowEmptyString()][string]$Argument)
+
+    if ($Argument.Length -gt 0 -and $Argument -notmatch '[\s"]') {
+        return $Argument
+    }
+
+    $builder = [System.Text.StringBuilder]::new()
+    [void]$builder.Append('"')
+    $backslashCount = 0
+    foreach ($character in $Argument.ToCharArray()) {
+        if ($character -eq '\') {
+            $backslashCount++
+            continue
+        }
+
+        if ($character -eq '"') {
+            [void]$builder.Append('\', ($backslashCount * 2) + 1)
+            [void]$builder.Append('"')
+            $backslashCount = 0
+            continue
+        }
+
+        [void]$builder.Append('\', $backslashCount)
+        [void]$builder.Append($character)
+        $backslashCount = 0
+    }
+
+    [void]$builder.Append('\', $backslashCount * 2)
+    [void]$builder.Append('"')
+    return $builder.ToString()
+}
+
+function Invoke-GitBytes {
+    param([string[]]$Arguments)
+
+    $startInfo = [System.Diagnostics.ProcessStartInfo]::new()
+    $startInfo.FileName = "git"
+    $startInfo.UseShellExecute = $false
+    $startInfo.RedirectStandardOutput = $true
+    $startInfo.RedirectStandardError = $true
+    $startInfo.Arguments = (($Arguments | ForEach-Object {
+        ConvertTo-WindowsCommandLineArgument $_
+    }) -join ' ')
+
+    $process = [System.Diagnostics.Process]::new()
+    $process.StartInfo = $startInfo
+    if (-not $process.Start()) {
+        throw "Could not start git $($Arguments -join ' ')."
+    }
+
+    $output = [System.IO.MemoryStream]::new()
+    try {
+        $stderrTask = $process.StandardError.ReadToEndAsync()
+        $process.StandardOutput.BaseStream.CopyTo($output)
+        $process.WaitForExit()
+        $stderr = $stderrTask.Result
+        if ($process.ExitCode -ne 0) {
+            throw "git $($Arguments -join ' ') failed: $stderr"
+        }
+        return ,$output.ToArray()
+    } finally {
+        $output.Dispose()
+        $process.Dispose()
+    }
+}
+
+function ConvertFrom-NulDelimitedGitOutput {
+    param([byte[]]$Bytes)
+
+    $items = New-Object System.Collections.Generic.List[string]
+    if ($Bytes.Length -eq 0) {
+        return $items.ToArray()
+    }
+
+    $decoder = [System.Text.UTF8Encoding]::new($false, $true)
+    $start = 0
+    for ($index = 0; $index -lt $Bytes.Length; $index++) {
+        if ($Bytes[$index] -ne 0) {
+            continue
+        }
+        if ($index -eq $start) {
+            throw "Git returned an empty NUL-delimited path field."
+        }
+        try {
+            $items.Add($decoder.GetString($Bytes, $start, $index - $start)) | Out-Null
+        } catch {
+            throw "Git returned a path that is not valid UTF-8."
+        }
+        $start = $index + 1
+    }
+
+    if ($start -ne $Bytes.Length) {
+        throw "Git returned output without a terminating NUL byte."
+    }
+    return $items.ToArray()
+}
+
 function Resolve-PythonCommand {
     foreach ($candidate in @("py", "python", "python3")) {
         if (Test-CommandAvailable $candidate) {
@@ -181,34 +279,61 @@ function Get-CurrentBranch {
     return $branch.Trim()
 }
 
-function Get-ChangedPaths {
-    $lines = Invoke-Capture git @("status", "--porcelain=v1")
-    $items = New-Object System.Collections.Generic.List[object]
+function Add-ChangedPathEntry {
+    param(
+        [hashtable]$ByPath,
+        [System.Collections.Generic.List[object]]$Items,
+        [string]$Status,
+        [string]$Path
+    )
 
-    foreach ($lineRaw in $lines) {
-        $line = [string]$lineRaw
-        if ($line.Length -lt 4) {
-            continue
+    if ($ByPath.ContainsKey($Path)) {
+        if ($Status -eq "D") {
+            $ByPath[$Path].Deleted = $true
         }
-
-        $statusCode = $line.Substring(0, 2)
-        $path = $line.Substring(3).Trim()
-        if ($path -match " -> ") {
-            $parts = $path -split " -> ", 2
-            $path = $parts[1]
-        }
-        $path = $path.Trim('"') -replace "\\", "/"
-        $isDeleted = $statusCode.Contains("D")
-
-        $items.Add([pscustomobject]@{
-            Status = $statusCode
-            Path = $path
-            Deleted = $isDeleted
-        }) | Out-Null
+        return
     }
 
-    # @() on a generic List[object] throws "Argument types do not match" in PowerShell 7.4+.
-    # Use .ToArray(); the leading comma keeps the result an array through the return unroll.
+    $entry = [pscustomobject]@{
+        Status = $Status
+        Path = $Path
+        Deleted = ($Status -eq "D")
+    }
+    $ByPath.Add($Path, $entry)
+    $Items.Add($entry) | Out-Null
+}
+
+function Add-NulDelimitedNameStatusEntries {
+    param(
+        [hashtable]$ByPath,
+        [System.Collections.Generic.List[object]]$Items,
+        [byte[]]$Bytes
+    )
+
+    $fields = @(ConvertFrom-NulDelimitedGitOutput $Bytes)
+    if (($fields.Count % 2) -ne 0) {
+        throw "Git returned malformed NUL-delimited name-status output."
+    }
+
+    for ($index = 0; $index -lt $fields.Count; $index += 2) {
+        $status = $fields[$index]
+        if ($status -notin @("A", "D", "M", "T")) {
+            throw "Git returned unsupported status '$status' while collecting changed paths."
+        }
+        Add-ChangedPathEntry $ByPath $Items $status $fields[$index + 1]
+    }
+}
+
+function Get-ChangedPaths {
+    $items = New-Object System.Collections.Generic.List[object]
+    $byPath = @{}
+
+    Add-NulDelimitedNameStatusEntries $byPath $items (Invoke-GitBytes @("diff", "--name-status", "-z", "--no-renames", "--"))
+    Add-NulDelimitedNameStatusEntries $byPath $items (Invoke-GitBytes @("diff", "--cached", "--name-status", "-z", "--no-renames", "--"))
+    foreach ($path in @(ConvertFrom-NulDelimitedGitOutput (Invoke-GitBytes @("ls-files", "--others", "--exclude-standard", "-z", "--")))) {
+        Add-ChangedPathEntry $byPath $items "?" $path
+    }
+
     return ,$items.ToArray()
 }
 
@@ -303,6 +428,12 @@ function Test-SecretLikeContent {
     }
 
     $text = Get-Content -LiteralPath $full -Raw -ErrorAction Stop
+    return Test-SecretLikeText $text
+}
+
+function Test-SecretLikeText {
+    param([string]$Text)
+
     $patterns = @(
         "-----BEGIN (RSA |OPENSSH |EC )?PRIVATE KEY-----",
         "ghp_[A-Za-z0-9_]{20,}",
@@ -317,6 +448,118 @@ function Test-SecretLikeContent {
         }
     }
     return $false
+}
+
+function Get-StagedPaths {
+    $paths = @(ConvertFrom-NulDelimitedGitOutput (Invoke-GitBytes @("diff", "--cached", "--name-only", "-z", "--no-renames", "--")))
+    return [string[]]@($paths | Sort-Object -Unique)
+}
+
+function Get-StagedDeletedPaths {
+    $items = New-Object System.Collections.Generic.List[object]
+    $byPath = @{}
+    Add-NulDelimitedNameStatusEntries $byPath $items (Invoke-GitBytes @("diff", "--cached", "--name-status", "-z", "--no-renames", "--"))
+    return [string[]]@($items | Where-Object Deleted | ForEach-Object Path | Sort-Object -Unique)
+}
+
+function Assert-StagedPathSet {
+    param([string[]]$ApprovedPaths)
+
+    $approved = @($ApprovedPaths | Sort-Object -Unique)
+    $staged = @(Get-StagedPaths)
+    $difference = @(Compare-Object -ReferenceObject $approved -DifferenceObject $staged)
+    if ($approved.Count -ne $staged.Count -or $difference.Count -gt 0) {
+        throw "Staged index paths do not exactly match approved paths. Approved: $($approved -join ', '); staged: $($staged -join ', ')."
+    }
+}
+
+function Get-CachedBlobSize {
+    param([string]$Path)
+
+    $lines = @(Invoke-Capture git @("cat-file", "-s", ":$Path"))
+    if ($lines.Count -ne 1) {
+        throw "Could not determine cached blob size for '$Path'."
+    }
+
+    [long]$size = 0
+    if (-not [long]::TryParse(([string]$lines[0]).Trim(), [ref]$size) -or $size -lt 0) {
+        throw "Cached blob size for '$Path' is invalid."
+    }
+    return $size
+}
+
+function Get-CachedBlobBytes {
+    param([string]$Path)
+
+    return ,(Invoke-GitBytes @("show", ":$Path"))
+}
+
+function Get-DisallowedCachedControlByte {
+    param([byte[]]$Bytes)
+
+    foreach ($byte in $Bytes) {
+        if ($byte -eq 0 -or ($byte -lt 32 -and $byte -notin @(9, 10, 13)) -or $byte -eq 127) {
+            return $byte
+        }
+    }
+    return $null
+}
+
+function Assert-CachedBlobIsSafe {
+    param([string]$Path)
+
+    $size = Get-CachedBlobSize $Path
+    if ($size -gt $MaxSecretScanBytes) {
+        throw "Cached staged blob '$Path' exceeds -MaxSecretScanBytes $MaxSecretScanBytes."
+    }
+
+    if (-not (Test-TextFileLikely $Path)) {
+        throw "Refusing cached blob '$Path' because non-text content cannot be inspected safely."
+    }
+
+    $bytes = Get-CachedBlobBytes $Path
+    if ($bytes.Length -ne $size) {
+        throw "Cached blob '$Path' changed while it was being validated."
+    }
+
+    $controlByte = Get-DisallowedCachedControlByte $bytes
+    if ($null -ne $controlByte) {
+        throw ("Refusing cached blob '{0}' because it contains binary control byte 0x{1:X2}." -f $Path, $controlByte)
+    }
+
+    try {
+        $text = [System.Text.UTF8Encoding]::new($false, $true).GetString($bytes)
+    } catch {
+        throw "Could not decode cached staged content for '$Path' as UTF-8."
+    }
+
+    if (Test-SecretLikeText $text) {
+        throw "Refusing secret-looking staged content in '$Path'."
+    }
+}
+
+function Assert-ValidatedStagedIndex {
+    param([string[]]$ApprovedPaths)
+
+    Assert-StagedPathSet $ApprovedPaths
+    $staged = @(Get-StagedPaths)
+    $deleted = @(Get-StagedDeletedPaths)
+    foreach ($path in $staged) {
+        if ($deleted -contains $path) {
+            continue
+        }
+        Assert-CachedBlobIsSafe $path
+    }
+}
+
+function Assert-ExistingIndexIsSafe {
+    param([string[]]$ApprovedPaths)
+
+    $staged = @(Get-StagedPaths)
+    if ($staged.Count -eq 0) {
+        return
+    }
+    Assert-ValidatedStagedIndex $ApprovedPaths
 }
 
 function Select-StageablePaths {
@@ -546,14 +789,16 @@ function Stage-SelectedChanges {
         return
     }
 
+    Assert-ExistingIndexIsSafe $Paths
+
     Write-Section "Staging selected paths"
     Invoke-Native git (@("add", "--") + $Paths) | Out-Null
+    Assert-ValidatedStagedIndex $Paths
     $Script:ActionsTaken.Add("Staged $($Paths.Count) path(s)") | Out-Null
 }
 
 function Test-StagedChangesExist {
-    $staged = Invoke-Capture git @("diff", "--cached", "--name-only")
-    return [bool]($staged -and ($staged | Where-Object { -not [string]::IsNullOrWhiteSpace([string]$_) }))
+    return @(Get-StagedPaths).Count -gt 0
 }
 
 function New-CommitMessage {
@@ -561,7 +806,7 @@ function New-CommitMessage {
         return $CommitMessage
     }
 
-    $staged = Invoke-Capture git @("diff", "--cached", "--name-only")
+    $staged = Get-StagedPaths
     $joined = ($staged -join "`n")
 
     if ($joined -match "(^|`n)docs/") {
@@ -576,7 +821,25 @@ function New-CommitMessage {
     return "chore: run repository maintenance"
 }
 
+function Get-StagedTreeId {
+    $lines = @(Invoke-Capture git @("write-tree"))
+    if ($lines.Count -ne 1 -or ([string]$lines[0]) -notmatch "^[0-9a-f]{40,64}$") {
+        throw "Could not determine the validated staged tree ID."
+    }
+    return [string]$lines[0]
+}
+
+function Get-HeadTreeId {
+    $lines = @(Invoke-Capture git @("rev-parse", "HEAD^{tree}"))
+    if ($lines.Count -ne 1 -or ([string]$lines[0]) -notmatch "^[0-9a-f]{40,64}$") {
+        throw "Could not determine the committed HEAD tree ID."
+    }
+    return [string]$lines[0]
+}
+
 function Commit-StagedChanges {
+    param([string[]]$ApprovedPaths)
+
     if (-not (Test-StagedChangesExist)) {
         Write-WarnLine "No staged changes to commit."
         return $false
@@ -592,8 +855,15 @@ function Commit-StagedChanges {
         return $false
     }
 
+    Assert-ValidatedStagedIndex $ApprovedPaths
+
     Write-Section "Committing"
+    $validatedTreeId = Get-StagedTreeId
     Invoke-Native git @("commit", "-m", $message) | Out-Null
+    $committedTreeId = Get-HeadTreeId
+    if ($committedTreeId -ne $validatedTreeId) {
+        throw "Committed HEAD tree does not match the validated staged tree. A pre-commit hook may have changed the index. The local commit may exist and needs maintainer inspection before any push, PR, or success report."
+    }
     $Script:ActionsTaken.Add("Created commit: $message") | Out-Null
     return $true
 }
@@ -808,7 +1078,7 @@ switch ($Mode) {
         $changed = Get-ChangedPaths
         $paths = Select-StageablePaths $repoRoot $changed
         Stage-SelectedChanges $repoRoot $paths
-        Commit-StagedChanges | Out-Null
+        Commit-StagedChanges $paths | Out-Null
         Show-FinalReport
         return
     }
@@ -818,7 +1088,7 @@ switch ($Mode) {
         $changed = Get-ChangedPaths
         $paths = Select-StageablePaths $repoRoot $changed
         Stage-SelectedChanges $repoRoot $paths
-        Commit-StagedChanges | Out-Null
+        Commit-StagedChanges $paths | Out-Null
         Push-Branch $currentBranch
         Create-PullRequest $currentBranch
         Show-FinalReport
@@ -836,20 +1106,10 @@ switch ($Mode) {
         $changed = Get-ChangedPaths
         $paths = Select-StageablePaths $repoRoot $changed
         Stage-SelectedChanges $repoRoot $paths
-        Commit-StagedChanges | Out-Null
+        Commit-StagedChanges $paths | Out-Null
         Push-Branch $currentBranch
         Create-PullRequest $currentBranch
         Show-FinalReport
         return
     }
 }
-
-<#
-RESEARCH-GRADE-EXPANSION:BEGIN
-Research-grade maintenance notes:
-- Role: repository automation script.
-- Review parameters, side effects, exit behavior, dry-run/apply boundaries, and failure output before changing this script.
-- Keep examples public-safe and repository-relative; do not print secrets or inspect private machine state.
-- When behavior changes, update tests or documented manual verification steps and record user-visible changes in the changelog.
-RESEARCH-GRADE-EXPANSION:END
-#>

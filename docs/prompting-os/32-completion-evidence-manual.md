@@ -27,10 +27,9 @@ cover the broad requirement.
 
 | Requirement | Strong evidence | Weak evidence |
 | --- | --- | --- |
-| README reaches a byte floor | File size command and test enforcing floor. | Visual impression that it is long. |
-| Prompting OS has enough Markdown files | Package source count or manifest count. | `git diff --stat` line count. |
-| Package has enough payload | Sum of Markdown bytes from source or manifest. | ZIP file size alone. |
-| Shortest module is substantial | Sorted file sizes or manifest entries. | Average size. |
+| README routes readers | Named sections, links, and executable commands. | Visual impression that it is long. |
+| Prompting OS preserves core behavior | Named artifacts, example, failure, and verification assertions. | File or byte totals. |
+| Package contents are exact | Source commit, hashes, and source/manifest/archive path parity. | ZIP file size alone. |
 | Package was built | Command output, ZIP path, manifest path, hash. | Package script exists. |
 | Manifest was inspected | Manifest excerpt and derived metrics. | Package command printed success. |
 | Public safety preserved | Secret scan, private-path search, source-policy review. | No secrets noticed manually. |
@@ -47,20 +46,12 @@ Example:
 
 ```text
 Requirement:
-- README.md at least 50 KB.
+- Prompting OS package preserves its named artifacts and commit-exact paths.
 
 Evidence:
-- README.md byte count.
-- Test threshold.
-
-Requirement:
-- Prompting OS package at least 35 Markdown files and 300 KB Markdown.
-
-Evidence:
-- Source file count.
-- Source Markdown byte total.
-- Package manifest count and byte total.
-- Tests enforcing thresholds.
+- Worked example, failure case, and verification command.
+- Row-level source identity.
+- `source_commit` and source/manifest/archive path parity.
 
 Requirement:
 - Build package and report SHA-256.
@@ -121,14 +112,13 @@ Get-FileHash .\.tmp\prompting-os-package-check\prompting-os-v1.zip -Algorithm SH
 For docs:
 
 - Heading list proves navigation shape.
-- File size proves byte floor.
 - Link tests or grep prove key links exist.
 - Content tests prove required sections.
 - Public-safety search proves no obvious private path or secret pattern.
 - Changelog proves user-visible change is recorded.
 
-Do not use line count alone to prove quality. Combine size with section,
-example, failure-mode, checklist, and verification evidence.
+Do not use line or byte counts to prove quality. Test named sections, examples,
+failure behavior, source identity, and verification instead.
 
 ## Prompt Template Completion Evidence
 
@@ -227,29 +217,3 @@ Remaining risks:
 - [ ] Skipped sources are named.
 - [ ] Remaining limitations are stated.
 - [ ] Final status does not overclaim beyond evidence.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Prompting OS module** surface. During broad
-maintenance, reviewers should treat `docs/prompting-os/32-completion-evidence-manual.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `32 completion evidence manual` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

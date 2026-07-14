@@ -51,9 +51,13 @@ README, guide index, and frontier essay.
 - Anthropic documents API efforts `low`, `medium`, `high`, `xhigh`, and `max`;
   `high` is the default. Ultracode is `xhigh` plus standing multi-agent workflow
   permission, not another API effort.
-- Anthropic confirms Fable access requires Claude Code `2.1.170` or later and
-  that included subscription access ends July 12, 2026 at 11:59:59 PM PT,
-  after which usage credits remain available under the terms.
+- Historical snapshot: Anthropic confirmed Fable access requires Claude Code
+  `2.1.170` or later. Its July 12, 2026 deadline is superseded by the
+  [current promotion terms](https://support.claude.com/en/articles/15424964-claude-fable-5-promotional-access),
+  updated July 13, 2026, which extend included promotional access through July
+  19, 2026 at 11:59:59 PM PT. The separate 50% Claude Code weekly-limit
+  increase ends at the same time, after which Fable remains available using
+  usage credits.
 - Meta officially launched Muse Image on Meta AI and selected Meta product
   surfaces. Muse Video is an announced preview that is coming soon, not a
   currently available production path.

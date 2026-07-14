@@ -42,7 +42,7 @@ Leak-derived repositories such as
 may be used only as structural benchmarks: long standalone files, categorized
 folders, source/status metadata, version history, and dense technical
 organization. Do not copy, mirror, summarize in detail, or package leaked
-prompt contents. The local structural metrics and package-depth targets are in
+prompt contents. The local behavior, evidence, and package-parity targets are in
 `11-comprehensiveness-benchmark.md`.
 
 ## Uploaded ZIP Patterns
@@ -112,29 +112,3 @@ Prompting OS improves the common pattern by adding:
 ## Final Principle
 
 Prompting is not a bag of tricks. It is interface design for unstable intelligence. Treat it like engineering, teaching, writing, testing, and risk management fused into one deeply inconvenient craft.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Prompting OS module** surface. During broad
-maintenance, reviewers should treat `docs/prompting-os/07-source-map.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `07 source map` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

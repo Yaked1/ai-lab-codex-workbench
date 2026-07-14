@@ -33,14 +33,13 @@ Capture:
 - Required checks.
 - Whether staging, committing, or pushing is requested.
 
-If the task says "make it comprehensive," convert that into measurable targets:
+If the task says "make it comprehensive," convert that into observable targets:
 
-- README size or sections.
-- Package Markdown file count.
-- Package byte count.
-- Required topics.
+- Named reader routes and required topics.
+- Worked examples and failure behavior.
+- Executable verification.
 - Tests that prevent regression.
-- Package manifest evidence.
+- Source, manifest, and archive parity.
 
 ### 2. Inspect State
 
@@ -231,7 +230,7 @@ When the task involves a ZIP or release package:
 - Identify included files.
 - Build into an ignored output directory.
 - Inspect the manifest.
-- Record file count, byte count, hashes, and required files.
+- Record source commit, hashes, required files, and path parity.
 - Add tests for package expectations.
 - Do not commit generated ZIPs unless explicitly requested.
 
@@ -259,29 +258,3 @@ An agent task is done only when:
 
 Autonomy without audit is just risk with a progress bar. Keep every agent action
 connected to evidence.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Prompting OS module** surface. During broad
-maintenance, reviewers should treat `docs/prompting-os/13-agent-operations-manual.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `13 agent operations manual` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->
