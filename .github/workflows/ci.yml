@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
 
@@ -31,11 +31,18 @@ jobs:
       - name: Unit tests
         run: python -m unittest discover -s tests
 
-# RESEARCH-GRADE-EXPANSION:BEGIN
-# Research-grade maintenance notes:
-# - Role: GitHub Actions workflow.
-# - Review this file for clear inputs, outputs, side effects, and failure behavior.
-# - Keep examples public-safe and repository-relative; avoid secrets or private paths.
-# - When behavior changes, update adjacent tests, docs, and changelog evidence.
-# - Prefer deterministic, reviewable operations over hidden or networked side effects.
-# RESEARCH-GRADE-EXPANSION:END
+  windows-runtime:
+    name: Validate Windows PowerShell paths
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.12"
+
+      - name: Run the local PowerShell gate
+        shell: pwsh
+        run: pwsh -NoProfile -File scripts/local_check.ps1

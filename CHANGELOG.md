@@ -1,15 +1,12 @@
 # Changelog
 
-## 2026-07-11
-
-- Added source-verified GPT-5.6, Fable 5, Grok 4.5, Gemini 3.5 Flash, GPT-Live,
-  and live-translation guidance with dated availability and effort mappings.
-- Added an evidence-tiered Fable 5 Max versus GPT-5.6 Sol comparison that keeps
-  Sol Max benchmark results separate from Sol Ultra orchestration.
-- Replaced stale model routing and shortened the README into a focused entry
-  point for the deeper guides.
-
 ## Unreleased
+
+### Repository audit remediation
+
+- Split the frontier-model reference into six bounded subject pages with stable compatibility anchors and a lossless migration manifest.
+- Centralized model run records, verification, escalation, and failure handling in one shared execution contract.
+- Added a 15-minute first-success tutorial, community files, branch policy, and contributor evidence contracts.
 
 Fixed:
 
@@ -110,6 +107,15 @@ Fixed:
 
 - Removed the duplicate release workflow path and restored package-builder tests required by repository health checks so `release-package.yml` can run without ambiguous workflow names.
 
+## 2026-07-11
+
+- Added source-verified GPT-5.6, Fable 5, Grok 4.5, Gemini 3.5 Flash, GPT-Live,
+  and live-translation guidance with dated availability and effort mappings.
+- Added an evidence-tiered Fable 5 Max versus GPT-5.6 Sol comparison that keeps
+  Sol Max benchmark results separate from Sol Ultra orchestration.
+- Replaced stale model routing and shortened the README into a focused entry
+  point for the deeper guides.
+
 ## 0.1.0
 
 Initial Codex automation workbench.
@@ -124,29 +130,3 @@ Added:
 - PowerShell helper scripts.
 - Python safety and formatting scripts.
 - Issue and PR templates.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **top-level repository policy document** surface. During broad
-maintenance, reviewers should treat `CHANGELOG.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `CHANGELOG` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

@@ -32,7 +32,7 @@ failure modes, and regression cases.
 | Regression cases | Previously fixed failure. | "A prompt template must keep final report and failure cases." |
 | Format cases | Structured output contracts. | "Return JSON with required keys and no extra prose." |
 | Public-safety cases | Secret, private path, or leaked prompt handling. | "Source includes a private local path and token-looking text." |
-| Package cases | Release and manifest behavior. | "Build package and confirm Markdown byte floor." |
+| Package cases | Release and manifest behavior. | "Build package and confirm source/manifest/archive path parity." |
 
 ## Minimal Case Schema
 
@@ -218,7 +218,8 @@ Package datasets test release promises.
 | --- | --- |
 | Build focused package | ZIP exists, manifest exists, SHA-256 recorded. |
 | Manifest public safety | Manifest paths are relative and exclude local machine paths. |
-| Markdown depth | Count and byte floor pass. |
+| Behavior evidence | Worked example, failure case, and verification command are present. |
+| Path parity | Committed source, manifest, and archive paths match. |
 | Required modules | Required files appear in package manifest. |
 | Exclusion rules | `.env`, archives, caches, private-looking files are excluded. |
 | Determinism | Fixed ZIP timestamp is used for files. |
@@ -275,29 +276,3 @@ represent the desired behavior, not the current workaround.
 - [ ] Package cases inspect manifest evidence, not only command success.
 - [ ] Human-scored cases have a rubric.
 - [ ] Automated tests guard stable promises.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Prompting OS module** surface. During broad
-maintenance, reviewers should treat `docs/prompting-os/27-prompt-evaluation-datasets.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `27 prompt evaluation datasets` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

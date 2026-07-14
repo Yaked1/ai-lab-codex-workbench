@@ -89,8 +89,11 @@ thumbnail is stored in Git.
 - Verified official overview: [Anthropic](../site/model-media.html#fable-official).
 - Verified independent test: [Every](../site/model-media.html#fable-hands-on).
 - Discovery search: [Claude Fable 5 July 12 2026 usage credits](https://www.youtube.com/results?search_query=Claude+Fable+5+July+12+2026+usage+credits).
-- The cutoff and usage-credit rules must come from Anthropic's promotional
-  access terms, not a video description.
+- The July 12 query is a superseded historical discovery search, not a current
+  claim. Anthropic's [current promotional-access terms](https://support.claude.com/en/articles/15424964-claude-fable-5-promotional-access),
+  updated July 13, 2026, extend included promotional access through July 19,
+  2026 at 11:59:59 PM PT. The separate 50% Claude Code weekly-limit increase
+  ends at the same time. Afterward Fable remains available using usage credits.
 
 ## Claude Opus 4.8
 

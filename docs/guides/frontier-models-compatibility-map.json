@@ -1,0 +1,3699 @@
+{
+  "legacy_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+  "source_sha256": "e7a53cb3682b3ab490a10c73e8f6bbc5885a773ab88fed827edb1b4087ade010",
+  "source_node_counts": {
+    "h1": 1,
+    "h2": 22,
+    "h3": 124
+  },
+  "bridge_nodes": [
+    {
+      "path": "docs/guides/frontier-sources-and-method.md",
+      "anchor": "frontier-sources-and-method"
+    },
+    {
+      "path": "docs/guides/frontier-overview-and-selection.md",
+      "anchor": "frontier-overview-and-selection"
+    },
+    {
+      "path": "docs/guides/frontier-openai-and-anthropic.md",
+      "anchor": "openai-and-anthropic-frontier-systems"
+    },
+    {
+      "path": "docs/guides/frontier-open-and-specialist-models.md",
+      "anchor": "open-and-specialist-frontier-models"
+    },
+    {
+      "path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "anchor": "frontier-evaluation-and-deployment"
+    },
+    {
+      "path": "docs/guides/frontier-google-and-media.md",
+      "anchor": "google-live-image-and-media-systems"
+    },
+    {
+      "path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "anchor": "subject-pages"
+    },
+    {
+      "path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "anchor": "compatibility-anchors"
+    }
+  ],
+  "nodes": [
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 0,
+      "type": "h1",
+      "heading": "Frontier Models and Multimodal Systems in 2026",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026"
+      ],
+      "line_start": 1,
+      "line_end": 34,
+      "anchor": "frontier-models-and-multimodal-systems-in-2026",
+      "content_sha256": "64d67c7de4376befa322e820d7a20942e49b26ec4953d38f42435d135ef51f3a",
+      "destination_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "destination_anchor": "frontier-models-and-multimodal-systems-in-2026",
+      "destination_title": "Frontier models landing"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 1,
+      "type": "h2",
+      "heading": "How the Expanded Technical Dossiers Are Structured",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "How the Expanded Technical Dossiers Are Structured"
+      ],
+      "line_start": 34,
+      "line_end": 68,
+      "anchor": "how-the-expanded-technical-dossiers-are-structured",
+      "content_sha256": "fdb9d317f25e7e0649c88c924f39217e43e89c14812f71d2ad62b3a9012e894c",
+      "destination_path": "docs/guides/frontier-sources-and-method.md",
+      "destination_anchor": "how-the-expanded-technical-dossiers-are-structured",
+      "destination_title": "Frontier sources and method"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 2,
+      "type": "h3",
+      "heading": "Architecture disclosure scale",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "How the Expanded Technical Dossiers Are Structured",
+        "Architecture disclosure scale"
+      ],
+      "line_start": 68,
+      "line_end": 85,
+      "anchor": "architecture-disclosure-scale",
+      "content_sha256": "55cc179d75f6faa6ecc34c9d9db3efee4771a678a4562cbeb358f11a50030dd7",
+      "destination_path": "docs/guides/frontier-sources-and-method.md",
+      "destination_anchor": "architecture-disclosure-scale",
+      "destination_title": "Frontier sources and method"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 3,
+      "type": "h3",
+      "heading": "Rules for architecture tables",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "How the Expanded Technical Dossiers Are Structured",
+        "Rules for architecture tables"
+      ],
+      "line_start": 85,
+      "line_end": 100,
+      "anchor": "rules-for-architecture-tables",
+      "content_sha256": "5b7b8cb6cb6bab422b67b5d1478dc588e0429ae098cf38224367d40537ffc441",
+      "destination_path": "docs/guides/frontier-sources-and-method.md",
+      "destination_anchor": "rules-for-architecture-tables",
+      "destination_title": "Frontier sources and method"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 4,
+      "type": "h3",
+      "heading": "Rules for benchmark tables",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "How the Expanded Technical Dossiers Are Structured",
+        "Rules for benchmark tables"
+      ],
+      "line_start": 100,
+      "line_end": 111,
+      "anchor": "rules-for-benchmark-tables",
+      "content_sha256": "e3d2e1f0b2ad888c5d08b536cfc6c8b0813ea0e192c499b9e6cad06929765012",
+      "destination_path": "docs/guides/frontier-sources-and-method.md",
+      "destination_anchor": "rules-for-benchmark-tables",
+      "destination_title": "Frontier sources and method"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 5,
+      "type": "h2",
+      "heading": "Prompting Guides for These Models",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Prompting Guides for These Models"
+      ],
+      "line_start": 111,
+      "line_end": 119,
+      "anchor": "prompting-guides-for-these-models",
+      "content_sha256": "c1dceff9e623006a9ab23e9a5e3017f0619e68bb4e876b9e0e5c4c4966e9d5d5",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "prompting-guides-for-these-models",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 6,
+      "type": "h2",
+      "heading": "The Short Answer",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "The Short Answer"
+      ],
+      "line_start": 119,
+      "line_end": 139,
+      "anchor": "the-short-answer",
+      "content_sha256": "59ffb27119f12fd412495db331cdad2ccb2bb3a144a71647ef8e5395fb24c090",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "the-short-answer",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 7,
+      "type": "h2",
+      "heading": "Announcement-Style Release Dossiers",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers"
+      ],
+      "line_start": 139,
+      "line_end": 152,
+      "anchor": "announcement-style-release-dossiers",
+      "content_sha256": "26eb584cc34f53effe9aedb72850b95c13a208125abce4cc76bfb818d8444506",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "announcement-style-release-dossiers",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 8,
+      "type": "h3",
+      "heading": "How to read each release dossier",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "How to read each release dossier"
+      ],
+      "line_start": 152,
+      "line_end": 164,
+      "anchor": "how-to-read-each-release-dossier",
+      "content_sha256": "2858067bb409c5b21442ae5f9b5026186de1b08430c7201f1771de0b0e193d55",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "how-to-read-each-release-dossier",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 9,
+      "type": "h3",
+      "heading": "GPT-5.6 Sol: OpenAI’s flagship tier for frontier professional work",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "GPT-5.6 Sol: OpenAI’s flagship tier for frontier professional work"
+      ],
+      "line_start": 164,
+      "line_end": 223,
+      "anchor": "gpt-56-sol-openais-flagship-tier-for-frontier-professional-work",
+      "content_sha256": "7e167e6bb0367f0822e794c16e14cef5090da21ca065db3af5cfd739d4361b8d",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gpt-56-sol-openais-flagship-tier-for-frontier-professional-work",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 10,
+      "type": "h3",
+      "heading": "GPT-5.6 Terra: The balanced GPT-5.6 tier for daily engineering and professional workflows",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "GPT-5.6 Terra: The balanced GPT-5.6 tier for daily engineering and professional workflows"
+      ],
+      "line_start": 223,
+      "line_end": 279,
+      "anchor": "gpt-56-terra-the-balanced-gpt-56-tier-for-daily-engineering-and-professional-workflows",
+      "content_sha256": "382e087f19be14224a6dd982faf5834cee98dfcf90b0fb97a856485ad552a20d",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gpt-56-terra-the-balanced-gpt-56-tier-for-daily-engineering-and-professional-workflows",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 11,
+      "type": "h3",
+      "heading": "GPT-5.6 Luna: OpenAI’s fastest and least expensive GPT-5.6 tier",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "GPT-5.6 Luna: OpenAI’s fastest and least expensive GPT-5.6 tier"
+      ],
+      "line_start": 279,
+      "line_end": 333,
+      "anchor": "gpt-56-luna-openais-fastest-and-least-expensive-gpt-56-tier",
+      "content_sha256": "843ead1390a5751b22d4b283c0957c7e5141f8fc94b4533ea4837818f3f354e6",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gpt-56-luna-openais-fastest-and-least-expensive-gpt-56-tier",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 12,
+      "type": "h3",
+      "heading": "Claude Fable 5: Anthropic’s generally available Mythos-class frontier model with conservative safeguards",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Claude Fable 5: Anthropic’s generally available Mythos-class frontier model with conservative safeguards"
+      ],
+      "line_start": 333,
+      "line_end": 389,
+      "anchor": "claude-fable-5-anthropics-generally-available-mythos-class-frontier-model-with-conservative-safeguards",
+      "content_sha256": "5283ba8a8c84cc307c2f6b408e7d6fd5b420bed47614aaf5e42836290d8a2e76",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "claude-fable-5-anthropics-generally-available-mythos-class-frontier-model-with-conservative-safeguards",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 13,
+      "type": "h3",
+      "heading": "Claude Opus 4.8: Anthropic’s premium closed model for demanding coding, analysis, and agent work",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Claude Opus 4.8: Anthropic’s premium closed model for demanding coding, analysis, and agent work"
+      ],
+      "line_start": 389,
+      "line_end": 441,
+      "anchor": "claude-opus-48-anthropics-premium-closed-model-for-demanding-coding-analysis-and-agent-work",
+      "content_sha256": "02f2fb89d46fa5573f57aae2b11d09c7817dbcaf17a06c75958e9d253d70353c",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "claude-opus-48-anthropics-premium-closed-model-for-demanding-coding-analysis-and-agent-work",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 14,
+      "type": "h3",
+      "heading": "Claude Sonnet 5: Anthropic’s agentic Sonnet release aimed at frontier performance per dollar",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Claude Sonnet 5: Anthropic’s agentic Sonnet release aimed at frontier performance per dollar"
+      ],
+      "line_start": 441,
+      "line_end": 496,
+      "anchor": "claude-sonnet-5-anthropics-agentic-sonnet-release-aimed-at-frontier-performance-per-dollar",
+      "content_sha256": "af9a3badb84229b2101e4383617e0ba32466b942f543f1583e482c685e9441ff",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "claude-sonnet-5-anthropics-agentic-sonnet-release-aimed-at-frontier-performance-per-dollar",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 15,
+      "type": "h3",
+      "heading": "DeepSeek-V4-Pro: DeepSeek’s 1.6T-total, 49B-active open MoE flagship",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "DeepSeek-V4-Pro: DeepSeek’s 1.6T-total, 49B-active open MoE flagship"
+      ],
+      "line_start": 496,
+      "line_end": 551,
+      "anchor": "deepseek-v4-pro-deepseeks-16t-total-49b-active-open-moe-flagship",
+      "content_sha256": "53b6f2cdb87fa20d0153256ef3102290c199f3542f290cb2c9d4401de4e1ff76",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "deepseek-v4-pro-deepseeks-16t-total-49b-active-open-moe-flagship",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 16,
+      "type": "h3",
+      "heading": "DeepSeek-V4-Flash: A 284B-total, 13B-active V4 checkpoint optimized for speed and cost",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "DeepSeek-V4-Flash: A 284B-total, 13B-active V4 checkpoint optimized for speed and cost"
+      ],
+      "line_start": 551,
+      "line_end": 604,
+      "anchor": "deepseek-v4-flash-a-284b-total-13b-active-v4-checkpoint-optimized-for-speed-and-cost",
+      "content_sha256": "c52c76c8ba3653d5c26dcad527193daa301d4483f4735affd7c9fbf614184a5a",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "deepseek-v4-flash-a-284b-total-13b-active-v4-checkpoint-optimized-for-speed-and-cost",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 17,
+      "type": "h3",
+      "heading": "GLM-5.2: Z.ai’s 744B-total, 40B-active long-horizon MoE flagship",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "GLM-5.2: Z.ai’s 744B-total, 40B-active long-horizon MoE flagship"
+      ],
+      "line_start": 604,
+      "line_end": 658,
+      "anchor": "glm-52-zais-744b-total-40b-active-long-horizon-moe-flagship",
+      "content_sha256": "f83859c11abe36b5cb26b750c2976f2cb37a493170779a323e17157437336613",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "glm-52-zais-744b-total-40b-active-long-horizon-moe-flagship",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 18,
+      "type": "h3",
+      "heading": "Mistral Medium 3.5: A dense 128B open-weight multimodal model for coding and agents",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Mistral Medium 3.5: A dense 128B open-weight multimodal model for coding and agents"
+      ],
+      "line_start": 658,
+      "line_end": 709,
+      "anchor": "mistral-medium-35-a-dense-128b-open-weight-multimodal-model-for-coding-and-agents",
+      "content_sha256": "5a4e71153a44940b992c13f146fa05d9599701591b4243f43696d4b836191793",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "mistral-medium-35-a-dense-128b-open-weight-multimodal-model-for-coding-and-agents",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 19,
+      "type": "h3",
+      "heading": "Mistral Small 4: A 119B-total, 6.5B-active multimodal MoE with first-party NVFP4",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Mistral Small 4: A 119B-total, 6.5B-active multimodal MoE with first-party NVFP4"
+      ],
+      "line_start": 709,
+      "line_end": 761,
+      "anchor": "mistral-small-4-a-119b-total-65b-active-multimodal-moe-with-first-party-nvfp4",
+      "content_sha256": "ef1ec86a3b242169bc7087778a4389c41f85737e7741485109ead8aeff96a499",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "mistral-small-4-a-119b-total-65b-active-multimodal-moe-with-first-party-nvfp4",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 20,
+      "type": "h3",
+      "heading": "Mistral OCR 4: A document-intelligence service built around structured extraction rather than chat scores",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Mistral OCR 4: A document-intelligence service built around structured extraction rather than chat scores"
+      ],
+      "line_start": 761,
+      "line_end": 813,
+      "anchor": "mistral-ocr-4-a-document-intelligence-service-built-around-structured-extraction-rather-than-chat-scores",
+      "content_sha256": "b90d3611fc4e3823f3de691e55d0f83a54237a43662e12e6b39f2889e2e42273",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "mistral-ocr-4-a-document-intelligence-service-built-around-structured-extraction-rather-than-chat-scores",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 21,
+      "type": "h3",
+      "heading": "Voxtral TTS: Mistral’s open 4B streaming speech model with voice adaptation",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Voxtral TTS: Mistral’s open 4B streaming speech model with voice adaptation"
+      ],
+      "line_start": 813,
+      "line_end": 862,
+      "anchor": "voxtral-tts-mistrals-open-4b-streaming-speech-model-with-voice-adaptation",
+      "content_sha256": "1ac7d616fb0b566262ad0d6f5fbaabf93e5b570b29436cd8c22052e2726543ac",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "voxtral-tts-mistrals-open-4b-streaming-speech-model-with-voice-adaptation",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 22,
+      "type": "h3",
+      "heading": "Leanstral 1.5: A 119B-total, 6.5B-active model specialized for Lean 4 proof engineering",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Leanstral 1.5: A 119B-total, 6.5B-active model specialized for Lean 4 proof engineering"
+      ],
+      "line_start": 862,
+      "line_end": 912,
+      "anchor": "leanstral-15-a-119b-total-65b-active-model-specialized-for-lean-4-proof-engineering",
+      "content_sha256": "1d3eb8f09384ee2266e721b34a3a1335d6bcf6a7c056cb5056f525d72060f302",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "leanstral-15-a-119b-total-65b-active-model-specialized-for-lean-4-proof-engineering",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 23,
+      "type": "h3",
+      "heading": "Robostral Navigate: Mistral’s announced embodied-navigation system",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Robostral Navigate: Mistral’s announced embodied-navigation system"
+      ],
+      "line_start": 912,
+      "line_end": 961,
+      "anchor": "robostral-navigate-mistrals-announced-embodied-navigation-system",
+      "content_sha256": "52183e3b651ce6b4d9abde801d0f73ee65dcd9cb65280d02ab711f503cd22c02",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "robostral-navigate-mistrals-announced-embodied-navigation-system",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 24,
+      "type": "h3",
+      "heading": "Gemma 4 E2B: Ultra-mobile effective-parameter model",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Gemma 4 E2B: Ultra-mobile effective-parameter model"
+      ],
+      "line_start": 961,
+      "line_end": 1016,
+      "anchor": "gemma-4-e2b-ultra-mobile-effective-parameter-model",
+      "content_sha256": "94f8e62daa941f2364bd42654bbb45a9c646eb66c6ff9bb342bff14391cbb776",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemma-4-e2b-ultra-mobile-effective-parameter-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 25,
+      "type": "h3",
+      "heading": "Gemma 4 E4B: Higher-capability mobile and edge model",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Gemma 4 E4B: Higher-capability mobile and edge model"
+      ],
+      "line_start": 1016,
+      "line_end": 1070,
+      "anchor": "gemma-4-e4b-higher-capability-mobile-and-edge-model",
+      "content_sha256": "ce6fcf3e478bfb581444908cc2788bb1d7aceb2d1d313821e8a3e520bbd89488",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemma-4-e4b-higher-capability-mobile-and-edge-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 26,
+      "type": "h3",
+      "heading": "Gemma 4 12B: Unified multimodal workstation model",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Gemma 4 12B: Unified multimodal workstation model"
+      ],
+      "line_start": 1070,
+      "line_end": 1124,
+      "anchor": "gemma-4-12b-unified-multimodal-workstation-model",
+      "content_sha256": "b34158f07a72bc7fa21846d02bff7176b064356991c26c396a53693d3ffe89ac",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemma-4-12b-unified-multimodal-workstation-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 27,
+      "type": "h3",
+      "heading": "Gemma 4 26B-A4B: Sparse high-throughput reasoning model",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Gemma 4 26B-A4B: Sparse high-throughput reasoning model"
+      ],
+      "line_start": 1124,
+      "line_end": 1179,
+      "anchor": "gemma-4-26b-a4b-sparse-high-throughput-reasoning-model",
+      "content_sha256": "4870703c489aa143f01b386fd871530e3d5fdde187b3d884025e6a2ab0ab468a",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemma-4-26b-a4b-sparse-high-throughput-reasoning-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 28,
+      "type": "h3",
+      "heading": "Gemma 4 31B: Largest dense Gemma 4 model",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Gemma 4 31B: Largest dense Gemma 4 model"
+      ],
+      "line_start": 1179,
+      "line_end": 1233,
+      "anchor": "gemma-4-31b-largest-dense-gemma-4-model",
+      "content_sha256": "c063fd07ccd14248100fbfa18874629a028e176b9f0bd64533132c8c67389820",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemma-4-31b-largest-dense-gemma-4-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 29,
+      "type": "h3",
+      "heading": "DiffusionGemma 26B-A4B: Google’s experimental blockwise discrete-diffusion text generator",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "DiffusionGemma 26B-A4B: Google’s experimental blockwise discrete-diffusion text generator"
+      ],
+      "line_start": 1233,
+      "line_end": 1283,
+      "anchor": "diffusiongemma-26b-a4b-googles-experimental-blockwise-discrete-diffusion-text-generator",
+      "content_sha256": "675c01bef253123de24e5fd0492400d39a69813599b3ee297b3fbed8502207a2",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "diffusiongemma-26b-a4b-googles-experimental-blockwise-discrete-diffusion-text-generator",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 30,
+      "type": "h3",
+      "heading": "Grok 4.5: SpaceXAI’s fast frontier model for coding, agents, and knowledge work",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Grok 4.5: SpaceXAI’s fast frontier model for coding, agents, and knowledge work"
+      ],
+      "line_start": 1283,
+      "line_end": 1336,
+      "anchor": "grok-45-spacexais-fast-frontier-model-for-coding-agents-and-knowledge-work",
+      "content_sha256": "b93830603f835a648e1bef754ebfc79ae921a2233c40fcca099943da9c87f3a7",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "grok-45-spacexais-fast-frontier-model-for-coding-agents-and-knowledge-work",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 31,
+      "type": "h3",
+      "heading": "Meta Muse Spark 1.1: Meta’s million-token reasoning model for personal agents and multi-agent orchestration",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Meta Muse Spark 1.1: Meta’s million-token reasoning model for personal agents and multi-agent orchestration"
+      ],
+      "line_start": 1336,
+      "line_end": 1390,
+      "anchor": "meta-muse-spark-11-metas-million-token-reasoning-model-for-personal-agents-and-multi-agent-orchestration",
+      "content_sha256": "1159ffdd824fe04423596b1ce2ebdef636604757fedb695a4b3f918913484f8e",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "meta-muse-spark-11-metas-million-token-reasoning-model-for-personal-agents-and-multi-agent-orchestration",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 32,
+      "type": "h3",
+      "heading": "Gemini 3.5 Flash: Google’s stable high-speed frontier model for agents and coding",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Gemini 3.5 Flash: Google’s stable high-speed frontier model for agents and coding"
+      ],
+      "line_start": 1390,
+      "line_end": 1444,
+      "anchor": "gemini-35-flash-googles-stable-high-speed-frontier-model-for-agents-and-coding",
+      "content_sha256": "b35afc97f7bdc748516839e42d3047d6aa28d2ba04303dc22f1889be6c13cb72",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemini-35-flash-googles-stable-high-speed-frontier-model-for-agents-and-coding",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 33,
+      "type": "h3",
+      "heading": "GPT-Live-1: OpenAI’s full-duplex conversational model for continuous listening and speaking",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "GPT-Live-1: OpenAI’s full-duplex conversational model for continuous listening and speaking"
+      ],
+      "line_start": 1444,
+      "line_end": 1496,
+      "anchor": "gpt-live-1-openais-full-duplex-conversational-model-for-continuous-listening-and-speaking",
+      "content_sha256": "41c185717cfd114f96942683999ac86972b5dd54aa9b2d6d00491da626503b37",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gpt-live-1-openais-full-duplex-conversational-model-for-continuous-listening-and-speaking",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 34,
+      "type": "h3",
+      "heading": "GPT-Live-1 Mini: The lower-cost live-conversation path for broad access",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "GPT-Live-1 Mini: The lower-cost live-conversation path for broad access"
+      ],
+      "line_start": 1496,
+      "line_end": 1543,
+      "anchor": "gpt-live-1-mini-the-lower-cost-live-conversation-path-for-broad-access",
+      "content_sha256": "917259f013285146a0bf7467daf08b36e77e637e6fa69bdf6a23fb87798fa821",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gpt-live-1-mini-the-lower-cost-live-conversation-path-for-broad-access",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 35,
+      "type": "h3",
+      "heading": "Gemini 3.5 Flash Live Translate: Google’s preview simultaneous-translation model for more than 70 languages",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Gemini 3.5 Flash Live Translate: Google’s preview simultaneous-translation model for more than 70 languages"
+      ],
+      "line_start": 1543,
+      "line_end": 1592,
+      "anchor": "gemini-35-flash-live-translate-googles-preview-simultaneous-translation-model-for-more-than-70-languages",
+      "content_sha256": "ec80fa84cc09c1bc13c99c78fd6e8ce1fb4d2f542ca9b521bb2cb7b1e469893e",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemini-35-flash-live-translate-googles-preview-simultaneous-translation-model-for-more-than-70-languages",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 36,
+      "type": "h3",
+      "heading": "GPT Image 2: OpenAI’s state-of-the-art image generation and editing model",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "GPT Image 2: OpenAI’s state-of-the-art image generation and editing model"
+      ],
+      "line_start": 1592,
+      "line_end": 1641,
+      "anchor": "gpt-image-2-openais-state-of-the-art-image-generation-and-editing-model",
+      "content_sha256": "a2cc12787b5831f683837bbe6e383680880f3ebcc3889d032b4021e3e9468ebe",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gpt-image-2-openais-state-of-the-art-image-generation-and-editing-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 37,
+      "type": "h3",
+      "heading": "Nano Banana 2: Google’s general-purpose Gemini 3.1 Flash Image model",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Nano Banana 2: Google’s general-purpose Gemini 3.1 Flash Image model"
+      ],
+      "line_start": 1641,
+      "line_end": 1687,
+      "anchor": "nano-banana-2-googles-general-purpose-gemini-31-flash-image-model",
+      "content_sha256": "667cbd687bbf03ffb79954691d5abe5b84a02258439991efb7d2e2f89f996309",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "nano-banana-2-googles-general-purpose-gemini-31-flash-image-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 38,
+      "type": "h3",
+      "heading": "Nano Banana Pro: Google’s Gemini 3 Pro Image model for maximum control and professional layouts",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Nano Banana Pro: Google’s Gemini 3 Pro Image model for maximum control and professional layouts"
+      ],
+      "line_start": 1687,
+      "line_end": 1733,
+      "anchor": "nano-banana-pro-googles-gemini-3-pro-image-model-for-maximum-control-and-professional-layouts",
+      "content_sha256": "cdba83378dfcfbf402becaad956ff28259921b081abe6f5fc390dc0490ff7f15",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "nano-banana-pro-googles-gemini-3-pro-image-model-for-maximum-control-and-professional-layouts",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 39,
+      "type": "h3",
+      "heading": "Nano Banana 2 Lite: Google’s ultra-low-latency Gemini 3.1 Flash Lite Image model",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Nano Banana 2 Lite: Google’s ultra-low-latency Gemini 3.1 Flash Lite Image model"
+      ],
+      "line_start": 1733,
+      "line_end": 1780,
+      "anchor": "nano-banana-2-lite-googles-ultra-low-latency-gemini-31-flash-lite-image-model",
+      "content_sha256": "7174c85e726ecbd6e8910fc807c7cf9c6d78ea383308672359b17c46e3df8154",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "nano-banana-2-lite-googles-ultra-low-latency-gemini-31-flash-lite-image-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 40,
+      "type": "h3",
+      "heading": "Seedream 5.0 Pro: ByteDance Dreamina’s professional image generation and editing system",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Seedream 5.0 Pro: ByteDance Dreamina’s professional image generation and editing system"
+      ],
+      "line_start": 1780,
+      "line_end": 1827,
+      "anchor": "seedream-50-pro-bytedance-dreaminas-professional-image-generation-and-editing-system",
+      "content_sha256": "85d65b615b325820edd30aeaa376c548ec38c989082010809ad404b9c1e22e95",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "seedream-50-pro-bytedance-dreaminas-professional-image-generation-and-editing-system",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 41,
+      "type": "h3",
+      "heading": "Muse Image: Meta’s agentic image generation and editing model with search and coding tools",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Muse Image: Meta’s agentic image generation and editing model with search and coding tools"
+      ],
+      "line_start": 1827,
+      "line_end": 1875,
+      "anchor": "muse-image-metas-agentic-image-generation-and-editing-model-with-search-and-coding-tools",
+      "content_sha256": "cf0b622225b0ffd7d43c4c40f622ef61eed95c2cd8c75121ce0eba1fb2acc55c",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "muse-image-metas-agentic-image-generation-and-editing-model-with-search-and-coding-tools",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 42,
+      "type": "h3",
+      "heading": "Muse Video: Meta’s preview video model focused on fidelity, native audio, and physical motion",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Muse Video: Meta’s preview video model focused on fidelity, native audio, and physical motion"
+      ],
+      "line_start": 1875,
+      "line_end": 1920,
+      "anchor": "muse-video-metas-preview-video-model-focused-on-fidelity-native-audio-and-physical-motion",
+      "content_sha256": "5dca47b8c7bdb2ea89c818e2b2fea835751b1d872890d39111a754264873bdfe",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "muse-video-metas-preview-video-model-focused-on-fidelity-native-audio-and-physical-motion",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 43,
+      "type": "h3",
+      "heading": "Veo 3.1 Lite Preview: Google’s lower-cost developer video model with audio output",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Veo 3.1 Lite Preview: Google’s lower-cost developer video model with audio output"
+      ],
+      "line_start": 1920,
+      "line_end": 1967,
+      "anchor": "veo-31-lite-preview-googles-lower-cost-developer-video-model-with-audio-output",
+      "content_sha256": "d8d1ade83763e50fdef667385831a8f3c1a339447160639c0548feecec646681",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "veo-31-lite-preview-googles-lower-cost-developer-video-model-with-audio-output",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 44,
+      "type": "h3",
+      "heading": "Lyria 3 Clip Preview: Google’s 30-second music generation model",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Lyria 3 Clip Preview: Google’s 30-second music generation model"
+      ],
+      "line_start": 1967,
+      "line_end": 2013,
+      "anchor": "lyria-3-clip-preview-googles-30-second-music-generation-model",
+      "content_sha256": "320076865ff0ab01ce636a98e0e946be2d5ccac92ea0b2bff49e4d3cf9d3844c",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "lyria-3-clip-preview-googles-30-second-music-generation-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 45,
+      "type": "h3",
+      "heading": "Lyria 3 Pro Preview: Google’s longer-form prompted music model",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Lyria 3 Pro Preview: Google’s longer-form prompted music model"
+      ],
+      "line_start": 2013,
+      "line_end": 2058,
+      "anchor": "lyria-3-pro-preview-googles-longer-form-prompted-music-model",
+      "content_sha256": "20282fb55303b85ba22c1c907fc13b1097e4a480516743601db4cc1d7132343b",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "lyria-3-pro-preview-googles-longer-form-prompted-music-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 46,
+      "type": "h3",
+      "heading": "Gemini Omni Flash Preview: Google’s conversational video generation and editing model",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Gemini Omni Flash Preview: Google’s conversational video generation and editing model"
+      ],
+      "line_start": 2058,
+      "line_end": 2107,
+      "anchor": "gemini-omni-flash-preview-googles-conversational-video-generation-and-editing-model",
+      "content_sha256": "013a193feca3fd3274fc7fb32c51a502466faf4dc228ab66fcb8594ecc820939",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemini-omni-flash-preview-googles-conversational-video-generation-and-editing-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 47,
+      "type": "h3",
+      "heading": "Gemini Robotics-ER 1.6: Google’s preview embodied-reasoning VLM for perception and high-level robot planning",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Gemini Robotics-ER 1.6: Google’s preview embodied-reasoning VLM for perception and high-level robot planning"
+      ],
+      "line_start": 2107,
+      "line_end": 2158,
+      "anchor": "gemini-robotics-er-16-googles-preview-embodied-reasoning-vlm-for-perception-and-high-level-robot-planning",
+      "content_sha256": "b4353bfec57027c7605d0289a39d5d893e44c465fdcd6c10700fb76f4f1b50b0",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemini-robotics-er-16-googles-preview-embodied-reasoning-vlm-for-perception-and-high-level-robot-planning",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 48,
+      "type": "h3",
+      "heading": "Gemini 3.5 Pro: Google’s announced but unreleased next Pro model",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Announcement-Style Release Dossiers",
+        "Gemini 3.5 Pro: Google’s announced but unreleased next Pro model"
+      ],
+      "line_start": 2158,
+      "line_end": 2202,
+      "anchor": "gemini-35-pro-googles-announced-but-unreleased-next-pro-model",
+      "content_sha256": "6cd90d0078d310d8e51139c8fefb431f8098e6e555c88f64654fa78ecf9e29a4",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemini-35-pro-googles-announced-but-unreleased-next-pro-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 49,
+      "type": "h2",
+      "heading": "GPT-5.6 Is a Family, Not a Ladder of Nicknames",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "GPT-5.6 Is a Family, Not a Ladder of Nicknames"
+      ],
+      "line_start": 2202,
+      "line_end": 2217,
+      "anchor": "gpt-56-is-a-family-not-a-ladder-of-nicknames",
+      "content_sha256": "f47cb393f4554087d6adf972dc509b7d3246afae735df5cf35498fda5d4c0c35",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "gpt-56-is-a-family-not-a-ladder-of-nicknames",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 50,
+      "type": "h3",
+      "heading": "Standard ChatGPT Chat",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "GPT-5.6 Is a Family, Not a Ladder of Nicknames",
+        "Standard ChatGPT Chat"
+      ],
+      "line_start": 2217,
+      "line_end": 2234,
+      "anchor": "standard-chatgpt-chat",
+      "content_sha256": "8049314c498883e102260816c3ab0ed4a6d3dbef0ead249e5e9ecbd5681df74a",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "standard-chatgpt-chat",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 51,
+      "type": "h3",
+      "heading": "Work and Codex",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "GPT-5.6 Is a Family, Not a Ladder of Nicknames",
+        "Work and Codex"
+      ],
+      "line_start": 2234,
+      "line_end": 2274,
+      "anchor": "work-and-codex",
+      "content_sha256": "bb189f4444f23e6eca7044b7c75b1b5250485b21f071cce3c51c39082c7db807",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "work-and-codex",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 52,
+      "type": "h3",
+      "heading": "API",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "GPT-5.6 Is a Family, Not a Ladder of Nicknames",
+        "API"
+      ],
+      "line_start": 2274,
+      "line_end": 2297,
+      "anchor": "api",
+      "content_sha256": "34f4619beb761a08777081c0fb7a2d030564843c147536114b7d92fc611bf261",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "api",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 53,
+      "type": "h2",
+      "heading": "What Each GPT-5.6 Effort Is For",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "What Each GPT-5.6 Effort Is For"
+      ],
+      "line_start": 2297,
+      "line_end": 2310,
+      "anchor": "what-each-gpt-56-effort-is-for",
+      "content_sha256": "17386c67cd5351bfec0a5add3dac0ca46321ccca68c53430721768b206c7671c",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "what-each-gpt-56-effort-is-for",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 54,
+      "type": "h3",
+      "heading": "Sol at Low, Medium, High, Extra High, Max, and Ultra",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "What Each GPT-5.6 Effort Is For",
+        "Sol at Low, Medium, High, Extra High, Max, and Ultra"
+      ],
+      "line_start": 2310,
+      "line_end": 2348,
+      "anchor": "sol-at-low-medium-high-extra-high-max-and-ultra",
+      "content_sha256": "b414deb12cdb1256f8c0d879d1f0eac15c374b3afa15af3a6da61d4d4d18001e",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "sol-at-low-medium-high-extra-high-max-and-ultra",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 55,
+      "type": "h3",
+      "heading": "Terra at Low, Medium, High, Extra High, Max, and Ultra",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "What Each GPT-5.6 Effort Is For",
+        "Terra at Low, Medium, High, Extra High, Max, and Ultra"
+      ],
+      "line_start": 2348,
+      "line_end": 2378,
+      "anchor": "terra-at-low-medium-high-extra-high-max-and-ultra",
+      "content_sha256": "8bdd3bac8b4689c5775debf00856229b153b36228235ad1f5656510bf2e188ad",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "terra-at-low-medium-high-extra-high-max-and-ultra",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 56,
+      "type": "h3",
+      "heading": "Luna at Low, Medium, High, Extra High, and Max",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "What Each GPT-5.6 Effort Is For",
+        "Luna at Low, Medium, High, Extra High, and Max"
+      ],
+      "line_start": 2378,
+      "line_end": 2411,
+      "anchor": "luna-at-low-medium-high-extra-high-and-max",
+      "content_sha256": "cccf0ae477ed55ab7980fbf5bbeac51bb1972c278f5c66bc719123d56de27d06",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "luna-at-low-medium-high-extra-high-and-max",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 57,
+      "type": "h3",
+      "heading": "Prompt Patterns by Interface",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "What Each GPT-5.6 Effort Is For",
+        "Prompt Patterns by Interface"
+      ],
+      "line_start": 2411,
+      "line_end": 2431,
+      "anchor": "prompt-patterns-by-interface",
+      "content_sha256": "56237d422feac371fc47f8141e0a381b57a126d3169988e21dca630033f6e00a",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "prompt-patterns-by-interface",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 58,
+      "type": "h3",
+      "heading": "Price, Context, and Caching",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "What Each GPT-5.6 Effort Is For",
+        "Price, Context, and Caching"
+      ],
+      "line_start": 2431,
+      "line_end": 2444,
+      "anchor": "price-context-and-caching",
+      "content_sha256": "58a8d68a5b00c4c57b9295707b4d90df6547a169ef8d62a0c88bdb50ac9c72ff",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "price-context-and-caching",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 59,
+      "type": "h3",
+      "heading": "Safeguards and Reliability",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "What Each GPT-5.6 Effort Is For",
+        "Safeguards and Reliability"
+      ],
+      "line_start": 2444,
+      "line_end": 2452,
+      "anchor": "safeguards-and-reliability",
+      "content_sha256": "71ddb99d4ff55e20d04cf2b5a4e839bc30407fc613eba25b41ff7dd720b43464",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "safeguards-and-reliability",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 60,
+      "type": "h3",
+      "heading": "Watch: GPT-5.6 Family Testing",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "What Each GPT-5.6 Effort Is For",
+        "Watch: GPT-5.6 Family Testing"
+      ],
+      "line_start": 2452,
+      "line_end": 2459,
+      "anchor": "watch-gpt-56-family-testing",
+      "content_sha256": "ca11bd8e81b3a363719a87a7f29c5b9f38e1a81e514bd699f4a53419427baae3",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "watch-gpt-56-family-testing",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 61,
+      "type": "h2",
+      "heading": "Claude Fable 5 and Claude Opus 4.8",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Claude Fable 5 and Claude Opus 4.8"
+      ],
+      "line_start": 2459,
+      "line_end": 2467,
+      "anchor": "claude-fable-5-and-claude-opus-48",
+      "content_sha256": "dcffa104d19431beac5fd713c7733f88edfc43c579646e11bf644103d02a0a8d",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "claude-fable-5-and-claude-opus-48",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 62,
+      "type": "h3",
+      "heading": "The July 19 Subscription Access Update",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Claude Fable 5 and Claude Opus 4.8",
+        "The July 19 Subscription Access Update"
+      ],
+      "line_start": 2467,
+      "line_end": 2496,
+      "anchor": "the-july-19-subscription-access-update",
+      "content_sha256": "31c1c439734d63a57da9d865a60b25a9b0384ff8d98fced246b4bb952797cddf",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "the-july-19-subscription-access-update",
+      "destination_title": "OpenAI and Anthropic frontier systems",
+      "evidence_id": "fable-access-july-19-2026"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 63,
+      "type": "h3",
+      "heading": "Price, Context, and Fallback",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Claude Fable 5 and Claude Opus 4.8",
+        "Price, Context, and Fallback"
+      ],
+      "line_start": 2496,
+      "line_end": 2519,
+      "anchor": "price-context-and-fallback",
+      "content_sha256": "d2238a1321bf0192c3b5a1d8006820647a914faac1e2293733edd216ad5a0740",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "price-context-and-fallback",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 64,
+      "type": "h3",
+      "heading": "Claude Opus 4.8 as Model and Claude Code Configuration",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Claude Fable 5 and Claude Opus 4.8",
+        "Claude Opus 4.8 as Model and Claude Code Configuration"
+      ],
+      "line_start": 2519,
+      "line_end": 2543,
+      "anchor": "claude-opus-48-as-model-and-claude-code-configuration",
+      "content_sha256": "4f5433d649c6a95706983414ef4d87a743fca3cf986db1265b2279eb13722312",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "claude-opus-48-as-model-and-claude-code-configuration",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 65,
+      "type": "h2",
+      "heading": "Claude Sonnet 5",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Claude Sonnet 5"
+      ],
+      "line_start": 2543,
+      "line_end": 2568,
+      "anchor": "claude-sonnet-5",
+      "content_sha256": "071d7f77899889e106286f7e2b94a7d4ad9a40af24990215b43c71b611cef22f",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "claude-sonnet-5",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 66,
+      "type": "h2",
+      "heading": "Coding, Agentic, and Cost-Efficient Model Additions",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Coding, Agentic, and Cost-Efficient Model Additions"
+      ],
+      "line_start": 2568,
+      "line_end": 2570,
+      "anchor": "coding-agentic-and-cost-efficient-model-additions",
+      "content_sha256": "97ffc9e44d5f5a368140be942622c97ea3e6c1b942391ccac4c0307899947ae3",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "coding-agentic-and-cost-efficient-model-additions",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 67,
+      "type": "h3",
+      "heading": "DeepSeek-V4-Pro and DeepSeek-V4-Flash",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Coding, Agentic, and Cost-Efficient Model Additions",
+        "DeepSeek-V4-Pro and DeepSeek-V4-Flash"
+      ],
+      "line_start": 2570,
+      "line_end": 2589,
+      "anchor": "deepseek-v4-pro-and-deepseek-v4-flash",
+      "content_sha256": "6dc4cf597de5f514d88f25502c8c53fdb618bb1a76f049c58cbf4e1da5167799",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "deepseek-v4-pro-and-deepseek-v4-flash",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 68,
+      "type": "h3",
+      "heading": "GLM-5.2",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Coding, Agentic, and Cost-Efficient Model Additions",
+        "GLM-5.2"
+      ],
+      "line_start": 2589,
+      "line_end": 2604,
+      "anchor": "glm-52",
+      "content_sha256": "b8e12406a0295d85467b102aa64ea8c412d795fbb86ff624f2d63f4f12cd9d67",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "glm-52",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 69,
+      "type": "h3",
+      "heading": "Current Mistral Family by Workload",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Coding, Agentic, and Cost-Efficient Model Additions",
+        "Current Mistral Family by Workload"
+      ],
+      "line_start": 2604,
+      "line_end": 2626,
+      "anchor": "current-mistral-family-by-workload",
+      "content_sha256": "fcda3aa4b0d9f60d75988c38dbe70169abd6726a88798b817718d02bf080486b",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "current-mistral-family-by-workload",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 70,
+      "type": "h3",
+      "heading": "Google Open, Media, and Robotics Systems",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Coding, Agentic, and Cost-Efficient Model Additions",
+        "Google Open, Media, and Robotics Systems"
+      ],
+      "line_start": 2626,
+      "line_end": 2658,
+      "anchor": "google-open-media-and-robotics-systems",
+      "content_sha256": "66d79782bc28f8b1ffdf8f49b7c30d4f37ecb06a3ebe7fcea4adb7d8e6d37291",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "google-open-media-and-robotics-systems",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 71,
+      "type": "h3",
+      "heading": "Watchlist: Gemini 3.5 Pro",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Coding, Agentic, and Cost-Efficient Model Additions",
+        "Watchlist: Gemini 3.5 Pro"
+      ],
+      "line_start": 2658,
+      "line_end": 2667,
+      "anchor": "watchlist-gemini-35-pro",
+      "content_sha256": "0ac3b047071b0210ae0b9c0b9a5996e1edcf31e5a19d23e8c0fa64f7f1bee591",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "watchlist-gemini-35-pro",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 72,
+      "type": "h2",
+      "heading": "Detailed Dossiers for the Newly Audited Systems",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Detailed Dossiers for the Newly Audited Systems"
+      ],
+      "line_start": 2667,
+      "line_end": 2676,
+      "anchor": "detailed-dossiers-for-the-newly-audited-systems",
+      "content_sha256": "a844a88e5b0b67f1ff09dd909e780fa534219e5b85859960967f465641202431",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "detailed-dossiers-for-the-newly-audited-systems",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 73,
+      "type": "h3",
+      "heading": "Claude Sonnet 5: Product Surface, Work Shape, and Review Discipline",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Detailed Dossiers for the Newly Audited Systems",
+        "Claude Sonnet 5: Product Surface, Work Shape, and Review Discipline"
+      ],
+      "line_start": 2676,
+      "line_end": 2753,
+      "anchor": "claude-sonnet-5-product-surface-work-shape-and-review-discipline",
+      "content_sha256": "8eed7cf4f1ef35c7e07d81aa4d2186a01d5e17cccb33afb4af31795c432f6909",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "claude-sonnet-5-product-surface-work-shape-and-review-discipline",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 74,
+      "type": "h3",
+      "heading": "DeepSeek-V4-Pro and DeepSeek-V4-Flash: Preview APIs With Deliberate Modes",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Detailed Dossiers for the Newly Audited Systems",
+        "DeepSeek-V4-Pro and DeepSeek-V4-Flash: Preview APIs With Deliberate Modes"
+      ],
+      "line_start": 2753,
+      "line_end": 2891,
+      "anchor": "deepseek-v4-pro-and-deepseek-v4-flash-preview-apis-with-deliberate-modes",
+      "content_sha256": "c7dc10a1cd66f7241fa250c5f166f4cc09e5819c90042c3fc039563a5851508a",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "deepseek-v4-pro-and-deepseek-v4-flash-preview-apis-with-deliberate-modes",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 75,
+      "type": "h3",
+      "heading": "GLM-5.2: Long-Horizon Claims Need Long-Horizon Evidence",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Detailed Dossiers for the Newly Audited Systems",
+        "GLM-5.2: Long-Horizon Claims Need Long-Horizon Evidence"
+      ],
+      "line_start": 2891,
+      "line_end": 3004,
+      "anchor": "glm-52-long-horizon-claims-need-long-horizon-evidence",
+      "content_sha256": "a608943cddcf544cb8141629bb511da3a43a5230664b97e9e89d2111f11ffd52",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "glm-52-long-horizon-claims-need-long-horizon-evidence",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 76,
+      "type": "h3",
+      "heading": "Mistral Medium 3.5 and Mistral Small 4: Generalist Models With Different Operating Envelopes",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Detailed Dossiers for the Newly Audited Systems",
+        "Mistral Medium 3.5 and Mistral Small 4: Generalist Models With Different Operating Envelopes"
+      ],
+      "line_start": 3004,
+      "line_end": 3107,
+      "anchor": "mistral-medium-35-and-mistral-small-4-generalist-models-with-different-operating-envelopes",
+      "content_sha256": "cd2b16c4865568b43a0787a17505ec9c84c6e51692836ac48821ccb28545011d",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "mistral-medium-35-and-mistral-small-4-generalist-models-with-different-operating-envelopes",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 77,
+      "type": "h3",
+      "heading": "Mistral OCR 4: Document Intelligence Must Be Tested as Extraction",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Detailed Dossiers for the Newly Audited Systems",
+        "Mistral OCR 4: Document Intelligence Must Be Tested as Extraction"
+      ],
+      "line_start": 3107,
+      "line_end": 3138,
+      "anchor": "mistral-ocr-4-document-intelligence-must-be-tested-as-extraction",
+      "content_sha256": "9b76ebb8b79c6c5d73ad6f3eda9313c51860a0b7eaa5b889ddab2797a5644a7d",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "mistral-ocr-4-document-intelligence-must-be-tested-as-extraction",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 78,
+      "type": "h3",
+      "heading": "Voxtral TTS: Speech Quality, Consent, and Deployment Are Separate Decisions",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Detailed Dossiers for the Newly Audited Systems",
+        "Voxtral TTS: Speech Quality, Consent, and Deployment Are Separate Decisions"
+      ],
+      "line_start": 3138,
+      "line_end": 3165,
+      "anchor": "voxtral-tts-speech-quality-consent-and-deployment-are-separate-decisions",
+      "content_sha256": "7051d1d7f4476feae4f579f938a34960f6d6cb776a856c877f47ab7d2e68bfb2",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "voxtral-tts-speech-quality-consent-and-deployment-are-separate-decisions",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 79,
+      "type": "h3",
+      "heading": "Leanstral 1.5: Treat the Compiler as the Evaluator",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Detailed Dossiers for the Newly Audited Systems",
+        "Leanstral 1.5: Treat the Compiler as the Evaluator"
+      ],
+      "line_start": 3165,
+      "line_end": 3190,
+      "anchor": "leanstral-15-treat-the-compiler-as-the-evaluator",
+      "content_sha256": "68f97f7b761aa795daffba42f48f7f0c01badb1e245d364a54170ea9e97ba93b",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "leanstral-15-treat-the-compiler-as-the-evaluator",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 80,
+      "type": "h3",
+      "heading": "Robostral Navigate: An Announcement Is Not a Production Contract",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Detailed Dossiers for the Newly Audited Systems",
+        "Robostral Navigate: An Announcement Is Not a Production Contract"
+      ],
+      "line_start": 3190,
+      "line_end": 3213,
+      "anchor": "robostral-navigate-an-announcement-is-not-a-production-contract",
+      "content_sha256": "aef16d15db2a9d47cfd4f4acde66cec90d6890cca84dfe09aad4228dfae92e02",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "robostral-navigate-an-announcement-is-not-a-production-contract",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 81,
+      "type": "h3",
+      "heading": "Gemma 4: Open Weights Shift Responsibility to the Builder",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Detailed Dossiers for the Newly Audited Systems",
+        "Gemma 4: Open Weights Shift Responsibility to the Builder"
+      ],
+      "line_start": 3213,
+      "line_end": 3239,
+      "anchor": "gemma-4-open-weights-shift-responsibility-to-the-builder",
+      "content_sha256": "a6aba8334b4e1de0453eb89f9a7b7e6ff71f453f627e93809c2724780d693305",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "gemma-4-open-weights-shift-responsibility-to-the-builder",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 82,
+      "type": "h3",
+      "heading": "DiffusionGemma: A Different Generation Process, Not an Automatic Upgrade",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Detailed Dossiers for the Newly Audited Systems",
+        "DiffusionGemma: A Different Generation Process, Not an Automatic Upgrade"
+      ],
+      "line_start": 3239,
+      "line_end": 3263,
+      "anchor": "diffusiongemma-a-different-generation-process-not-an-automatic-upgrade",
+      "content_sha256": "32aa9e9ad4be381980f0f2220a0c419365155ba68df806ca5c8237439180a506",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "diffusiongemma-a-different-generation-process-not-an-automatic-upgrade",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 83,
+      "type": "h3",
+      "heading": "Veo 3.1 Lite Preview: Video Is a Sequence, Not a Single Frame",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Detailed Dossiers for the Newly Audited Systems",
+        "Veo 3.1 Lite Preview: Video Is a Sequence, Not a Single Frame"
+      ],
+      "line_start": 3263,
+      "line_end": 3287,
+      "anchor": "veo-31-lite-preview-video-is-a-sequence-not-a-single-frame",
+      "content_sha256": "aba5433b0de207517aa32caedf5e251e742d06b8c3bcc4b4fd95dc7f47305b7d",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "veo-31-lite-preview-video-is-a-sequence-not-a-single-frame",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 84,
+      "type": "h3",
+      "heading": "Lyria 3: Music Generation Needs Musical and Rights-Aware Evaluation",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Detailed Dossiers for the Newly Audited Systems",
+        "Lyria 3: Music Generation Needs Musical and Rights-Aware Evaluation"
+      ],
+      "line_start": 3287,
+      "line_end": 3311,
+      "anchor": "lyria-3-music-generation-needs-musical-and-rights-aware-evaluation",
+      "content_sha256": "dd2f6d380897529d4c76f48af7ef0ccd958452e762627e73b11ca1ec679a34e9",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "lyria-3-music-generation-needs-musical-and-rights-aware-evaluation",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 85,
+      "type": "h3",
+      "heading": "Gemini Robotics-ER 1.6: High-Level Embodied Reasoning, Not Motor Authority",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Detailed Dossiers for the Newly Audited Systems",
+        "Gemini Robotics-ER 1.6: High-Level Embodied Reasoning, Not Motor Authority"
+      ],
+      "line_start": 3311,
+      "line_end": 3341,
+      "anchor": "gemini-robotics-er-16-high-level-embodied-reasoning-not-motor-authority",
+      "content_sha256": "2e263ffa372078b62a9655e17036932548b7c93ff47c98c785226b5bf6bcf584",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "gemini-robotics-er-16-high-level-embodied-reasoning-not-motor-authority",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 86,
+      "type": "h3",
+      "heading": "Gemini 3.5 Pro: Keep the Watchlist Useful Without Pretending It Is Released",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Detailed Dossiers for the Newly Audited Systems",
+        "Gemini 3.5 Pro: Keep the Watchlist Useful Without Pretending It Is Released"
+      ],
+      "line_start": 3341,
+      "line_end": 3357,
+      "anchor": "gemini-35-pro-keep-the-watchlist-useful-without-pretending-it-is-released",
+      "content_sha256": "e17b05e8504e800f5ba24d435a3814dd3d2ac859c50cdf6c5ffd81267cbc69ba",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "gemini-35-pro-keep-the-watchlist-useful-without-pretending-it-is-released",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 87,
+      "type": "h2",
+      "heading": "Grok 4.5 in Grok Build",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Grok 4.5 in Grok Build"
+      ],
+      "line_start": 3357,
+      "line_end": 3392,
+      "anchor": "grok-45-in-grok-build",
+      "content_sha256": "bce64db8862d0cbb2d7d7302b606a534e9e466a1ae5d6c6fe45e76abe637444b",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "grok-45-in-grok-build",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 88,
+      "type": "h2",
+      "heading": "Artificial Analysis: What the Scores Do and Do Not Mean",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Artificial Analysis: What the Scores Do and Do Not Mean"
+      ],
+      "line_start": 3392,
+      "line_end": 3396,
+      "anchor": "artificial-analysis-what-the-scores-do-and-do-not-mean",
+      "content_sha256": "6528f20a36a773e704af1a07f980419f582c76172d57835008edc290ef65b4e7",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "artificial-analysis-what-the-scores-do-and-do-not-mean",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 89,
+      "type": "h3",
+      "heading": "Intelligence Index v4.1",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Artificial Analysis: What the Scores Do and Do Not Mean",
+        "Intelligence Index v4.1"
+      ],
+      "line_start": 3396,
+      "line_end": 3417,
+      "anchor": "intelligence-index-v41",
+      "content_sha256": "0cc31038b7a7fd85d959b36246d1f39c0f067925fb968498e9c9e725a3763010",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "intelligence-index-v41",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 90,
+      "type": "h3",
+      "heading": "Coding Agent Index",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Artificial Analysis: What the Scores Do and Do Not Mean",
+        "Coding Agent Index"
+      ],
+      "line_start": 3417,
+      "line_end": 3453,
+      "anchor": "coding-agent-index",
+      "content_sha256": "9bb36632bbf72fdb7e222d5a49a9486b278d3fbb336af2b63f5f21d487cc50aa",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "coding-agent-index",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 91,
+      "type": "h3",
+      "heading": "AA-Briefcase and Other Useful Views",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Artificial Analysis: What the Scores Do and Do Not Mean",
+        "AA-Briefcase and Other Useful Views"
+      ],
+      "line_start": 3453,
+      "line_end": 3475,
+      "anchor": "aa-briefcase-and-other-useful-views",
+      "content_sha256": "c1b5b031b306902be631f36fb53a89e2bd35b2811dbdb9ed86915c370d81fe84",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "aa-briefcase-and-other-useful-views",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 92,
+      "type": "h2",
+      "heading": "Meta Muse Spark 1.1",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Meta Muse Spark 1.1"
+      ],
+      "line_start": 3475,
+      "line_end": 3504,
+      "anchor": "meta-muse-spark-11",
+      "content_sha256": "71d8c51b539ad7206a36e47cc8704fd4fbf287afc2e4178b2e730d18a4a1bef6",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "meta-muse-spark-11",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 93,
+      "type": "h2",
+      "heading": "Gemini 3.5 Flash",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Gemini 3.5 Flash"
+      ],
+      "line_start": 3504,
+      "line_end": 3551,
+      "anchor": "gemini-35-flash",
+      "content_sha256": "c29be470c58f753a0dc2884640b24fbb6a4fba8aa209d01e2a53bbceacf87b41",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "gemini-35-flash",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 94,
+      "type": "h2",
+      "heading": "GPT-Live-1 and Gemini 3.5 Live Translate",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "GPT-Live-1 and Gemini 3.5 Live Translate"
+      ],
+      "line_start": 3551,
+      "line_end": 3555,
+      "anchor": "gpt-live-1-and-gemini-35-live-translate",
+      "content_sha256": "7d778efe5f2491e9f1436eb004521bec61fc28f830035df9544049367885231d",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "gpt-live-1-and-gemini-35-live-translate",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 95,
+      "type": "h3",
+      "heading": "GPT-Live-1 and GPT-Live-1 Mini",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "GPT-Live-1 and Gemini 3.5 Live Translate",
+        "GPT-Live-1 and GPT-Live-1 Mini"
+      ],
+      "line_start": 3555,
+      "line_end": 3590,
+      "anchor": "gpt-live-1-and-gpt-live-1-mini",
+      "content_sha256": "e5b0e1d358d423aa4904667fe27ec0add3ed3e7a9d0bca787c424f58a1b17ed7",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "gpt-live-1-and-gpt-live-1-mini",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 96,
+      "type": "h3",
+      "heading": "Gemini 3.5 Flash Live Translate",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "GPT-Live-1 and Gemini 3.5 Live Translate",
+        "Gemini 3.5 Flash Live Translate"
+      ],
+      "line_start": 3590,
+      "line_end": 3625,
+      "anchor": "gemini-35-flash-live-translate",
+      "content_sha256": "22e0ac9cfbb953a6faf28a2ec56fb5ff9e642a7f7d9a3470231b62f9dadef470",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "gemini-35-flash-live-translate",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 97,
+      "type": "h2",
+      "heading": "Image and Video Models",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Image and Video Models"
+      ],
+      "line_start": 3625,
+      "line_end": 3629,
+      "anchor": "image-and-video-models",
+      "content_sha256": "adb9db0335f99163b0145f2bfe959761d81620ce7d3146895d9bdc5ca52f691e",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "image-and-video-models",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 98,
+      "type": "h3",
+      "heading": "GPT Image 2",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Image and Video Models",
+        "GPT Image 2"
+      ],
+      "line_start": 3629,
+      "line_end": 3651,
+      "anchor": "gpt-image-2",
+      "content_sha256": "7a103d2472fd9613c2659b4fd69a97e21851b585f3a74140142faeb3ba8cfdc8",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "gpt-image-2",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 99,
+      "type": "h3",
+      "heading": "Nano Banana 2, Nano Banana Pro, and Nano Banana 2 Lite",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Image and Video Models",
+        "Nano Banana 2, Nano Banana Pro, and Nano Banana 2 Lite"
+      ],
+      "line_start": 3651,
+      "line_end": 3690,
+      "anchor": "nano-banana-2-nano-banana-pro-and-nano-banana-2-lite",
+      "content_sha256": "91aa0de550476aa25e1226b23cd8e2abac1253c6fca431c2bdc9c2e3e31e34f3",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "nano-banana-2-nano-banana-pro-and-nano-banana-2-lite",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 100,
+      "type": "h3",
+      "heading": "Seedream 5.0 Pro",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Image and Video Models",
+        "Seedream 5.0 Pro"
+      ],
+      "line_start": 3690,
+      "line_end": 3708,
+      "anchor": "seedream-50-pro",
+      "content_sha256": "811d58aea93dba0beb1909763e5339cd7c92df9bda4740d56531aff4f8f37ad5",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "seedream-50-pro",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 101,
+      "type": "h3",
+      "heading": "Muse Image and Muse Video",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Image and Video Models",
+        "Muse Image and Muse Video"
+      ],
+      "line_start": 3708,
+      "line_end": 3730,
+      "anchor": "muse-image-and-muse-video",
+      "content_sha256": "08d4ef0ac75409e534ae13d3a649de792fe51903b82ed4a4fa2c5b4886898ba4",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "muse-image-and-muse-video",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 102,
+      "type": "h3",
+      "heading": "Image-model videos",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Image and Video Models",
+        "Image-model videos"
+      ],
+      "line_start": 3730,
+      "line_end": 3742,
+      "anchor": "image-model-videos",
+      "content_sha256": "c331f395ab6c569efb15a479b4348c098ee658218465a7d7e7146eb7b5ff80cd",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "image-model-videos",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 103,
+      "type": "h3",
+      "heading": "Gemini Omni Flash",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Image and Video Models",
+        "Gemini Omni Flash"
+      ],
+      "line_start": 3742,
+      "line_end": 3769,
+      "anchor": "gemini-omni-flash",
+      "content_sha256": "ab6b48d16313280d070f38fe79693436fa47a809efab604121afc4d3d77e6ffa",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "gemini-omni-flash",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 104,
+      "type": "h2",
+      "heading": "Extended Operating Guidance for the Established Families",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Extended Operating Guidance for the Established Families"
+      ],
+      "line_start": 3769,
+      "line_end": 3771,
+      "anchor": "extended-operating-guidance-for-the-established-families",
+      "content_sha256": "b5d2626be7e361a505a3d07ee20698565481f6675dfafa6fafc1a7dc430cb02e",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "extended-operating-guidance-for-the-established-families",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 105,
+      "type": "h3",
+      "heading": "GPT-5.6 Sol, Terra, and Luna",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Extended Operating Guidance for the Established Families",
+        "GPT-5.6 Sol, Terra, and Luna"
+      ],
+      "line_start": 3771,
+      "line_end": 3796,
+      "anchor": "gpt-56-sol-terra-and-luna",
+      "content_sha256": "a994fade6ca8ae1a93ee58572b49f034e561cdfdc77ac81bf1674df3cd54612e",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gpt-56-sol-terra-and-luna",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 106,
+      "type": "h3",
+      "heading": "Claude Fable 5 and Claude Opus 4.8",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Extended Operating Guidance for the Established Families",
+        "Claude Fable 5 and Claude Opus 4.8"
+      ],
+      "line_start": 3796,
+      "line_end": 3817,
+      "anchor": "claude-fable-5-and-claude-opus-48-1",
+      "content_sha256": "4975bf7c8a591141173a30e9f442934f19d29891de2a2854e5c36d03b8fd186a",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "claude-fable-5-and-claude-opus-48",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 107,
+      "type": "h3",
+      "heading": "Grok 4.5 and Muse Spark 1.1",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Extended Operating Guidance for the Established Families",
+        "Grok 4.5 and Muse Spark 1.1"
+      ],
+      "line_start": 3817,
+      "line_end": 3832,
+      "anchor": "grok-45-and-muse-spark-11",
+      "content_sha256": "92d85dbef4c010f82926bde5b604a678376e3aa4fdce39b2a769f3fb52905c58",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "grok-45-and-muse-spark-11",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 108,
+      "type": "h3",
+      "heading": "Gemini 3.5 Flash",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Extended Operating Guidance for the Established Families",
+        "Gemini 3.5 Flash"
+      ],
+      "line_start": 3832,
+      "line_end": 3847,
+      "anchor": "gemini-35-flash-1",
+      "content_sha256": "a299fc2ef500319a5ad712dbbf6719465bad5ae7e3c3ec7e16e6b58a2ec27e03",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gemini-35-flash",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 109,
+      "type": "h3",
+      "heading": "GPT-Live-1, GPT-Live-1 Mini, and Gemini Live Translate",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Extended Operating Guidance for the Established Families",
+        "GPT-Live-1, GPT-Live-1 Mini, and Gemini Live Translate"
+      ],
+      "line_start": 3847,
+      "line_end": 3871,
+      "anchor": "gpt-live-1-gpt-live-1-mini-and-gemini-live-translate",
+      "content_sha256": "068cf3586d999098aedcc308e35ea5b4b164e461f43e277169d73bffc1d23fa5",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gpt-live-1-gpt-live-1-mini-and-gemini-live-translate",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 110,
+      "type": "h3",
+      "heading": "GPT Image 2, Nano Banana, Seedream, and Muse Image",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Extended Operating Guidance for the Established Families",
+        "GPT Image 2, Nano Banana, Seedream, and Muse Image"
+      ],
+      "line_start": 3871,
+      "line_end": 3892,
+      "anchor": "gpt-image-2-nano-banana-seedream-and-muse-image",
+      "content_sha256": "b2f1a65ef6328736cf5329bb0f74b61e36ebd3b79bc36ba53f5f1bec758da943",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gpt-image-2-nano-banana-seedream-and-muse-image",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 111,
+      "type": "h3",
+      "heading": "Muse Video, Veo, Lyria, and Gemini Omni Flash",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Extended Operating Guidance for the Established Families",
+        "Muse Video, Veo, Lyria, and Gemini Omni Flash"
+      ],
+      "line_start": 3892,
+      "line_end": 3912,
+      "anchor": "muse-video-veo-lyria-and-gemini-omni-flash",
+      "content_sha256": "c7b0c33f6e45072c1cc37071bb184aff74ed1210f9eb5412bc2de82cf7ea951d",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "muse-video-veo-lyria-and-gemini-omni-flash",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 112,
+      "type": "h2",
+      "heading": "Comprehensive Architecture, Performance, and Deployment Dossiers",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers"
+      ],
+      "line_start": 3912,
+      "line_end": 3920,
+      "anchor": "comprehensive-architecture-performance-and-deployment-dossiers",
+      "content_sha256": "3a61a07eb5f8692519dcf6ce29fdff9d54a193366179ad0b726177f86fb74572",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "comprehensive-architecture-performance-and-deployment-dossiers",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 113,
+      "type": "h3",
+      "heading": "GPT-5.6 Sol, Terra, and Luna: Architecture Disclosure and Performance Envelope",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "GPT-5.6 Sol, Terra, and Luna: Architecture Disclosure and Performance Envelope"
+      ],
+      "line_start": 3920,
+      "line_end": 4020,
+      "anchor": "gpt-56-sol-terra-and-luna-architecture-disclosure-and-performance-envelope",
+      "content_sha256": "3764a40a2ec105d530aa2756bf4f202286f78cb4575bbdc08fc9d117169f7b98",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gpt-56-sol-terra-and-luna-architecture-disclosure-and-performance-envelope",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 114,
+      "type": "h3",
+      "heading": "Claude Fable 5: Safeguarded Frontier Model With an Evaluation Routing Caveat",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Claude Fable 5: Safeguarded Frontier Model With an Evaluation Routing Caveat"
+      ],
+      "line_start": 4020,
+      "line_end": 4076,
+      "anchor": "claude-fable-5-safeguarded-frontier-model-with-an-evaluation-routing-caveat",
+      "content_sha256": "c1743023ece40f1537617531951b3c8b999cf167f7671c6429502dc17e83ecee",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "claude-fable-5-safeguarded-frontier-model-with-an-evaluation-routing-caveat",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 115,
+      "type": "h3",
+      "heading": "Claude Opus 4.8: Closed Checkpoint, Strong Agent Harness, Cleaner Attribution",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Claude Opus 4.8: Closed Checkpoint, Strong Agent Harness, Cleaner Attribution"
+      ],
+      "line_start": 4076,
+      "line_end": 4097,
+      "anchor": "claude-opus-48-closed-checkpoint-strong-agent-harness-cleaner-attribution",
+      "content_sha256": "d1d31c6875013d5dc6ac4e3482c1a67ce7b07b449c294b8e8f0ceed957834372",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "claude-opus-48-closed-checkpoint-strong-agent-harness-cleaner-attribution",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 116,
+      "type": "h3",
+      "heading": "Claude Sonnet 5: Cost-Sensitive Agentic Model With Limited Architecture Disclosure",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Claude Sonnet 5: Cost-Sensitive Agentic Model With Limited Architecture Disclosure"
+      ],
+      "line_start": 4097,
+      "line_end": 4120,
+      "anchor": "claude-sonnet-5-cost-sensitive-agentic-model-with-limited-architecture-disclosure",
+      "content_sha256": "50c4087623ed92a002d93aca8d2837e7e1eae468b03ea98c7f84f2927d012474",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "claude-sonnet-5-cost-sensitive-agentic-model-with-limited-architecture-disclosure",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 117,
+      "type": "h3",
+      "heading": "DeepSeek-V4-Pro and DeepSeek-V4-Flash: Open MoE Architecture in Detail",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "DeepSeek-V4-Pro and DeepSeek-V4-Flash: Open MoE Architecture in Detail"
+      ],
+      "line_start": 4120,
+      "line_end": 4217,
+      "anchor": "deepseek-v4-pro-and-deepseek-v4-flash-open-moe-architecture-in-detail",
+      "content_sha256": "111ad099e7a886289281e6faf7297c91d1465cc3bedccc61d3fe2702ee9fa468",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "deepseek-v4-pro-and-deepseek-v4-flash-open-moe-architecture-in-detail",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 118,
+      "type": "h3",
+      "heading": "GLM-5.2: 744B-A40B MoE With IndexShare Sparse Attention",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "GLM-5.2: 744B-A40B MoE With IndexShare Sparse Attention"
+      ],
+      "line_start": 4217,
+      "line_end": 4287,
+      "anchor": "glm-52-744b-a40b-moe-with-indexshare-sparse-attention",
+      "content_sha256": "d03c8e46aa73a6f2554a029285c80d05e69229b6e601a5c267854cc787344bfd",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "glm-52-744b-a40b-moe-with-indexshare-sparse-attention",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 119,
+      "type": "h3",
+      "heading": "Mistral Medium 3.5: Dense 128B Multimodal Transformer",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Mistral Medium 3.5: Dense 128B Multimodal Transformer"
+      ],
+      "line_start": 4287,
+      "line_end": 4335,
+      "anchor": "mistral-medium-35-dense-128b-multimodal-transformer",
+      "content_sha256": "fdb407dda75af63863a1494953de9d9cd0b452b2acedcb872a90d337e6882aef",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "mistral-medium-35-dense-128b-multimodal-transformer",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 120,
+      "type": "h3",
+      "heading": "Mistral Small 4: 119B-A6.5B MoE With First-Party NVFP4",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Mistral Small 4: 119B-A6.5B MoE With First-Party NVFP4"
+      ],
+      "line_start": 4335,
+      "line_end": 4379,
+      "anchor": "mistral-small-4-119b-a65b-moe-with-first-party-nvfp4",
+      "content_sha256": "f733b5c779442eeb1079a3deed3a4fb08201dfe23b745e580ed9dcb7bd0a0204",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "mistral-small-4-119b-a65b-moe-with-first-party-nvfp4",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 121,
+      "type": "h3",
+      "heading": "Leanstral 1.5: Same MoE Family, Specialized Post-Training",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Leanstral 1.5: Same MoE Family, Specialized Post-Training"
+      ],
+      "line_start": 4379,
+      "line_end": 4405,
+      "anchor": "leanstral-15-same-moe-family-specialized-post-training",
+      "content_sha256": "ea6db22980513f20e9995ff2191acc956a099e68e52d510606a5c57ecc27e02a",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "leanstral-15-same-moe-family-specialized-post-training",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 122,
+      "type": "h3",
+      "heading": "Mistral OCR 4: Service Architecture Is Undisclosed, Output Structure Is the Product",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Mistral OCR 4: Service Architecture Is Undisclosed, Output Structure Is the Product"
+      ],
+      "line_start": 4405,
+      "line_end": 4426,
+      "anchor": "mistral-ocr-4-service-architecture-is-undisclosed-output-structure-is-the-product",
+      "content_sha256": "e2aea48f97ae33a5b60ab24a1bdcdf3cf6fbc04f8043d2fd6d3b8a6e176c5785",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "mistral-ocr-4-service-architecture-is-undisclosed-output-structure-is-the-product",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 123,
+      "type": "h3",
+      "heading": "Voxtral TTS: Public 4B Speech Checkpoint, Deployment and Consent Matrix",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Voxtral TTS: Public 4B Speech Checkpoint, Deployment and Consent Matrix"
+      ],
+      "line_start": 4426,
+      "line_end": 4449,
+      "anchor": "voxtral-tts-public-4b-speech-checkpoint-deployment-and-consent-matrix",
+      "content_sha256": "45cc1a16575beb57d51cd47f7956fa9d88278de5c10244544997b8b228cdaadb",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "voxtral-tts-public-4b-speech-checkpoint-deployment-and-consent-matrix",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 124,
+      "type": "h3",
+      "heading": "Gemma 4 Family: Variant-by-Variant Architecture",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Gemma 4 Family: Variant-by-Variant Architecture"
+      ],
+      "line_start": 4449,
+      "line_end": 4546,
+      "anchor": "gemma-4-family-variant-by-variant-architecture",
+      "content_sha256": "a6550015616b38c11328fa25c8ad8d7051fd01d5a77e5ec9d86fb4d36f07c0b5",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gemma-4-family-variant-by-variant-architecture",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 125,
+      "type": "h3",
+      "heading": "DiffusionGemma 26B-A4B: Blockwise Discrete Diffusion",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "DiffusionGemma 26B-A4B: Blockwise Discrete Diffusion"
+      ],
+      "line_start": 4546,
+      "line_end": 4578,
+      "anchor": "diffusiongemma-26b-a4b-blockwise-discrete-diffusion",
+      "content_sha256": "a8c4ad4c28003b60ecf8fb15436b004041f94eec0185df52d50fde8abe022efb",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "diffusiongemma-26b-a4b-blockwise-discrete-diffusion",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 126,
+      "type": "h3",
+      "heading": "Grok 4.5: Closed Model, Openly Tool-Centric Product Evaluation",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Grok 4.5: Closed Model, Openly Tool-Centric Product Evaluation"
+      ],
+      "line_start": 4578,
+      "line_end": 4602,
+      "anchor": "grok-45-closed-model-openly-tool-centric-product-evaluation",
+      "content_sha256": "92679cafb068a12a1ed33aeeda90b2f28e297ddc121c024fb753ba22397cfc35",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "grok-45-closed-model-openly-tool-centric-product-evaluation",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 127,
+      "type": "h3",
+      "heading": "Meta Muse Spark 1.1: Fast Hosted Reasoning With Undisclosed Checkpoint Topology",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Meta Muse Spark 1.1: Fast Hosted Reasoning With Undisclosed Checkpoint Topology"
+      ],
+      "line_start": 4602,
+      "line_end": 4624,
+      "anchor": "meta-muse-spark-11-fast-hosted-reasoning-with-undisclosed-checkpoint-topology",
+      "content_sha256": "1c6d13bb490d6cb2e1c4e333e31dbb6c0b5e52a8f460d220c3194c64dc8f62d9",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "meta-muse-spark-11-fast-hosted-reasoning-with-undisclosed-checkpoint-topology",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 128,
+      "type": "h3",
+      "heading": "Gemini 3.5 Flash: Hosted Multimodal Agent Model With Tool-Surface Separation",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Gemini 3.5 Flash: Hosted Multimodal Agent Model With Tool-Surface Separation"
+      ],
+      "line_start": 4624,
+      "line_end": 4646,
+      "anchor": "gemini-35-flash-hosted-multimodal-agent-model-with-tool-surface-separation",
+      "content_sha256": "39c9a651dad56c52ce37aab81e84ee7afa94a6a216e9d6fd88415f1f4458dc57",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gemini-35-flash-hosted-multimodal-agent-model-with-tool-surface-separation",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 129,
+      "type": "h3",
+      "heading": "GPT-Live-1 and GPT-Live-1 Mini: Full-Duplex System Architecture",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "GPT-Live-1 and GPT-Live-1 Mini: Full-Duplex System Architecture"
+      ],
+      "line_start": 4646,
+      "line_end": 4671,
+      "anchor": "gpt-live-1-and-gpt-live-1-mini-full-duplex-system-architecture",
+      "content_sha256": "d0885e1acf1cf720b01b67221453723e54329f8eb70d0239e6e3f9ef1694de2f",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gpt-live-1-and-gpt-live-1-mini-full-duplex-system-architecture",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 130,
+      "type": "h3",
+      "heading": "Gemini 3.5 Flash Live Translate: Streaming Translation Pipeline",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Gemini 3.5 Flash Live Translate: Streaming Translation Pipeline"
+      ],
+      "line_start": 4671,
+      "line_end": 4685,
+      "anchor": "gemini-35-flash-live-translate-streaming-translation-pipeline",
+      "content_sha256": "3d9547a091b6dcfcb4cb92f98e23b60c2e9784b3fef7726bbaa87276a2d30ddb",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gemini-35-flash-live-translate-streaming-translation-pipeline",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 131,
+      "type": "h3",
+      "heading": "GPT Image 2: Product Capabilities Without a Public Architecture Claim",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "GPT Image 2: Product Capabilities Without a Public Architecture Claim"
+      ],
+      "line_start": 4685,
+      "line_end": 4702,
+      "anchor": "gpt-image-2-product-capabilities-without-a-public-architecture-claim",
+      "content_sha256": "82b0f4c75611303d74510f2d1e77a45404cbf6151037175c3e1e2a24c09c0e50",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gpt-image-2-product-capabilities-without-a-public-architecture-claim",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 132,
+      "type": "h3",
+      "heading": "Nano Banana 2, Nano Banana Pro, and Nano Banana 2 Lite",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Nano Banana 2, Nano Banana Pro, and Nano Banana 2 Lite"
+      ],
+      "line_start": 4702,
+      "line_end": 4720,
+      "anchor": "nano-banana-2-nano-banana-pro-and-nano-banana-2-lite-1",
+      "content_sha256": "acfcd0c53fd558eda0c2061812d2ed7f370b8c02f197e1ec3c767ff2d5fd9ccf",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "nano-banana-2-nano-banana-pro-and-nano-banana-2-lite",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 133,
+      "type": "h3",
+      "heading": "Seedream 5.0 Pro: Limited First-Party English Technical Disclosure",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Seedream 5.0 Pro: Limited First-Party English Technical Disclosure"
+      ],
+      "line_start": 4720,
+      "line_end": 4733,
+      "anchor": "seedream-50-pro-limited-first-party-english-technical-disclosure",
+      "content_sha256": "8a4f01623f05810025ecfa890c8a315a36cd7dfd9ea4e8d9390b42d695a22eef",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "seedream-50-pro-limited-first-party-english-technical-disclosure",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 134,
+      "type": "h3",
+      "heading": "Muse Image and Muse Video",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Muse Image and Muse Video"
+      ],
+      "line_start": 4733,
+      "line_end": 4747,
+      "anchor": "muse-image-and-muse-video-1",
+      "content_sha256": "9f22dc4606f7a1228340c6b4091986351d907b7705f94ac500e7f07c2560817f",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "muse-image-and-muse-video",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 135,
+      "type": "h3",
+      "heading": "Veo 3.1 Lite Preview: Hosted Video Generation With Explicit Product Limits",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Veo 3.1 Lite Preview: Hosted Video Generation With Explicit Product Limits"
+      ],
+      "line_start": 4747,
+      "line_end": 4759,
+      "anchor": "veo-31-lite-preview-hosted-video-generation-with-explicit-product-limits",
+      "content_sha256": "ee56aba7f4d3ce9b404a33c034775d318c3fe6e20a5d88e73e4263de7dfdb195",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "veo-31-lite-preview-hosted-video-generation-with-explicit-product-limits",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 136,
+      "type": "h3",
+      "heading": "Lyria 3: Music-Generation Product, Not a Text-Model Benchmark Entry",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Lyria 3: Music-Generation Product, Not a Text-Model Benchmark Entry"
+      ],
+      "line_start": 4759,
+      "line_end": 4772,
+      "anchor": "lyria-3-music-generation-product-not-a-text-model-benchmark-entry",
+      "content_sha256": "52ce3f98a3ebeca5ae37e411917fd84af605398ec347da14bfd5270054b80ab1",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "lyria-3-music-generation-product-not-a-text-model-benchmark-entry",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 137,
+      "type": "h3",
+      "heading": "Gemini Omni Flash: Unified Multimodal Service With Closed Architecture",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Gemini Omni Flash: Unified Multimodal Service With Closed Architecture"
+      ],
+      "line_start": 4772,
+      "line_end": 4786,
+      "anchor": "gemini-omni-flash-unified-multimodal-service-with-closed-architecture",
+      "content_sha256": "4c2a8c1dcd400e73c25c09926a829a8254bf8fcca38249677594a6538892e7bf",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gemini-omni-flash-unified-multimodal-service-with-closed-architecture",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 138,
+      "type": "h3",
+      "heading": "Gemini Robotics-ER 1.6: Reasoning Model Above a Safety Controller",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Gemini Robotics-ER 1.6: Reasoning Model Above a Safety Controller"
+      ],
+      "line_start": 4786,
+      "line_end": 4805,
+      "anchor": "gemini-robotics-er-16-reasoning-model-above-a-safety-controller",
+      "content_sha256": "79c2daba6a4b6e3ca0d256a883346bcd2f6f532973fba25095c60f5578338783",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gemini-robotics-er-16-reasoning-model-above-a-safety-controller",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 139,
+      "type": "h3",
+      "heading": "Robostral Navigate: Research Watchlist Until an Interface Exists",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Robostral Navigate: Research Watchlist Until an Interface Exists"
+      ],
+      "line_start": 4805,
+      "line_end": 4816,
+      "anchor": "robostral-navigate-research-watchlist-until-an-interface-exists",
+      "content_sha256": "d225437834bfd48be2655942eeef67abcc7ed67b459d5eaf3340ed496ac01696",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "robostral-navigate-research-watchlist-until-an-interface-exists",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 140,
+      "type": "h3",
+      "heading": "Artificial Analysis and Benchmark Engineering: Expanded Reproducibility Rules",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Artificial Analysis and Benchmark Engineering: Expanded Reproducibility Rules"
+      ],
+      "line_start": 4816,
+      "line_end": 4855,
+      "anchor": "artificial-analysis-and-benchmark-engineering-expanded-reproducibility-rules",
+      "content_sha256": "33c594c76c5a271d8f61cdbfdd50fdf1321e59a84e19ce5374a293a7657ad016",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "artificial-analysis-and-benchmark-engineering-expanded-reproducibility-rules",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 141,
+      "type": "h3",
+      "heading": "Open-Weight Quantization and Deployment Reference",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Open-Weight Quantization and Deployment Reference"
+      ],
+      "line_start": 4855,
+      "line_end": 4901,
+      "anchor": "open-weight-quantization-and-deployment-reference",
+      "content_sha256": "238aa323d9743c2febcbd7c1cce0928072a3db74afa4eef4e52a59a1e8286317",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "open-weight-quantization-and-deployment-reference",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 142,
+      "type": "h3",
+      "heading": "Model-Guide Completeness Matrix",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Comprehensive Architecture, Performance, and Deployment Dossiers",
+        "Model-Guide Completeness Matrix"
+      ],
+      "line_start": 4901,
+      "line_end": 4924,
+      "anchor": "model-guide-completeness-matrix",
+      "content_sha256": "86fa59f2d12976d6faa610624e7ef5973b2bed5727605239e246723874e09f4c",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "model-guide-completeness-matrix",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 143,
+      "type": "h2",
+      "heading": "How to Choose Without Chasing a Single Winner",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "How to Choose Without Chasing a Single Winner"
+      ],
+      "line_start": 4924,
+      "line_end": 4974,
+      "anchor": "how-to-choose-without-chasing-a-single-winner",
+      "content_sha256": "f5229dc20a3a334b515713a4e43b4d01ed47efa5eecf293a8d98427a5c8a44c8",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "how-to-choose-without-chasing-a-single-winner",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 144,
+      "type": "h2",
+      "heading": "Uncertainties and Known Limits",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Uncertainties and Known Limits"
+      ],
+      "line_start": 4974,
+      "line_end": 5011,
+      "anchor": "uncertainties-and-known-limits",
+      "content_sha256": "69daea23f9212fd65cc8acb91d4805ef9e45e64b615d39fade0d53287028986a",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "uncertainties-and-known-limits",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 145,
+      "type": "h2",
+      "heading": "Sources",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Sources"
+      ],
+      "line_start": 5011,
+      "line_end": 5101,
+      "anchor": "sources",
+      "content_sha256": "24a5b24f698298b80434d3a79e946e7ac768678713da6feb9d43a13c79daabb3",
+      "destination_path": "docs/guides/frontier-sources-and-method.md",
+      "destination_anchor": "sources",
+      "destination_title": "Frontier sources and method"
+    },
+    {
+      "source_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "order": 146,
+      "type": "h2",
+      "heading": "Method",
+      "heading_path": [
+        "Frontier Models and Multimodal Systems in 2026",
+        "Method"
+      ],
+      "line_start": 5101,
+      "line_end": 5115,
+      "anchor": "method",
+      "content_sha256": "41d87e77a4bd33d067823f4b7ec86d5cf8420fab5e133f80c4bd0379d5b085e1",
+      "destination_path": "docs/guides/frontier-sources-and-method.md",
+      "destination_anchor": "method",
+      "destination_title": "Frontier sources and method"
+    }
+  ],
+  "compatibility_stubs": [
+    {
+      "anchor": "frontier-models-and-multimodal-systems-in-2026",
+      "heading": "Frontier Models and Multimodal Systems in 2026",
+      "destination_path": "docs/guides/frontier-models-and-multimodal-systems-2026.md",
+      "destination_anchor": "frontier-models-and-multimodal-systems-in-2026",
+      "destination_title": "Frontier models landing"
+    },
+    {
+      "anchor": "how-the-expanded-technical-dossiers-are-structured",
+      "heading": "How the Expanded Technical Dossiers Are Structured",
+      "destination_path": "docs/guides/frontier-sources-and-method.md",
+      "destination_anchor": "how-the-expanded-technical-dossiers-are-structured",
+      "destination_title": "Frontier sources and method"
+    },
+    {
+      "anchor": "architecture-disclosure-scale",
+      "heading": "Architecture disclosure scale",
+      "destination_path": "docs/guides/frontier-sources-and-method.md",
+      "destination_anchor": "architecture-disclosure-scale",
+      "destination_title": "Frontier sources and method"
+    },
+    {
+      "anchor": "rules-for-architecture-tables",
+      "heading": "Rules for architecture tables",
+      "destination_path": "docs/guides/frontier-sources-and-method.md",
+      "destination_anchor": "rules-for-architecture-tables",
+      "destination_title": "Frontier sources and method"
+    },
+    {
+      "anchor": "rules-for-benchmark-tables",
+      "heading": "Rules for benchmark tables",
+      "destination_path": "docs/guides/frontier-sources-and-method.md",
+      "destination_anchor": "rules-for-benchmark-tables",
+      "destination_title": "Frontier sources and method"
+    },
+    {
+      "anchor": "prompting-guides-for-these-models",
+      "heading": "Prompting Guides for These Models",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "prompting-guides-for-these-models",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "the-short-answer",
+      "heading": "The Short Answer",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "the-short-answer",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "announcement-style-release-dossiers",
+      "heading": "Announcement-Style Release Dossiers",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "announcement-style-release-dossiers",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "how-to-read-each-release-dossier",
+      "heading": "How to read each release dossier",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "how-to-read-each-release-dossier",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gpt-56-sol-openais-flagship-tier-for-frontier-professional-work",
+      "heading": "GPT-5.6 Sol: OpenAI’s flagship tier for frontier professional work",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gpt-56-sol-openais-flagship-tier-for-frontier-professional-work",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gpt-56-terra-the-balanced-gpt-56-tier-for-daily-engineering-and-professional-workflows",
+      "heading": "GPT-5.6 Terra: The balanced GPT-5.6 tier for daily engineering and professional workflows",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gpt-56-terra-the-balanced-gpt-56-tier-for-daily-engineering-and-professional-workflows",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gpt-56-luna-openais-fastest-and-least-expensive-gpt-56-tier",
+      "heading": "GPT-5.6 Luna: OpenAI’s fastest and least expensive GPT-5.6 tier",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gpt-56-luna-openais-fastest-and-least-expensive-gpt-56-tier",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "claude-fable-5-anthropics-generally-available-mythos-class-frontier-model-with-conservative-safeguards",
+      "heading": "Claude Fable 5: Anthropic’s generally available Mythos-class frontier model with conservative safeguards",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "claude-fable-5-anthropics-generally-available-mythos-class-frontier-model-with-conservative-safeguards",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "claude-opus-48-anthropics-premium-closed-model-for-demanding-coding-analysis-and-agent-work",
+      "heading": "Claude Opus 4.8: Anthropic’s premium closed model for demanding coding, analysis, and agent work",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "claude-opus-48-anthropics-premium-closed-model-for-demanding-coding-analysis-and-agent-work",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "claude-sonnet-5-anthropics-agentic-sonnet-release-aimed-at-frontier-performance-per-dollar",
+      "heading": "Claude Sonnet 5: Anthropic’s agentic Sonnet release aimed at frontier performance per dollar",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "claude-sonnet-5-anthropics-agentic-sonnet-release-aimed-at-frontier-performance-per-dollar",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "deepseek-v4-pro-deepseeks-16t-total-49b-active-open-moe-flagship",
+      "heading": "DeepSeek-V4-Pro: DeepSeek’s 1.6T-total, 49B-active open MoE flagship",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "deepseek-v4-pro-deepseeks-16t-total-49b-active-open-moe-flagship",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "deepseek-v4-flash-a-284b-total-13b-active-v4-checkpoint-optimized-for-speed-and-cost",
+      "heading": "DeepSeek-V4-Flash: A 284B-total, 13B-active V4 checkpoint optimized for speed and cost",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "deepseek-v4-flash-a-284b-total-13b-active-v4-checkpoint-optimized-for-speed-and-cost",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "glm-52-zais-744b-total-40b-active-long-horizon-moe-flagship",
+      "heading": "GLM-5.2: Z.ai’s 744B-total, 40B-active long-horizon MoE flagship",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "glm-52-zais-744b-total-40b-active-long-horizon-moe-flagship",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "mistral-medium-35-a-dense-128b-open-weight-multimodal-model-for-coding-and-agents",
+      "heading": "Mistral Medium 3.5: A dense 128B open-weight multimodal model for coding and agents",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "mistral-medium-35-a-dense-128b-open-weight-multimodal-model-for-coding-and-agents",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "mistral-small-4-a-119b-total-65b-active-multimodal-moe-with-first-party-nvfp4",
+      "heading": "Mistral Small 4: A 119B-total, 6.5B-active multimodal MoE with first-party NVFP4",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "mistral-small-4-a-119b-total-65b-active-multimodal-moe-with-first-party-nvfp4",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "mistral-ocr-4-a-document-intelligence-service-built-around-structured-extraction-rather-than-chat-scores",
+      "heading": "Mistral OCR 4: A document-intelligence service built around structured extraction rather than chat scores",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "mistral-ocr-4-a-document-intelligence-service-built-around-structured-extraction-rather-than-chat-scores",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "voxtral-tts-mistrals-open-4b-streaming-speech-model-with-voice-adaptation",
+      "heading": "Voxtral TTS: Mistral’s open 4B streaming speech model with voice adaptation",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "voxtral-tts-mistrals-open-4b-streaming-speech-model-with-voice-adaptation",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "leanstral-15-a-119b-total-65b-active-model-specialized-for-lean-4-proof-engineering",
+      "heading": "Leanstral 1.5: A 119B-total, 6.5B-active model specialized for Lean 4 proof engineering",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "leanstral-15-a-119b-total-65b-active-model-specialized-for-lean-4-proof-engineering",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "robostral-navigate-mistrals-announced-embodied-navigation-system",
+      "heading": "Robostral Navigate: Mistral’s announced embodied-navigation system",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "robostral-navigate-mistrals-announced-embodied-navigation-system",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gemma-4-e2b-ultra-mobile-effective-parameter-model",
+      "heading": "Gemma 4 E2B: Ultra-mobile effective-parameter model",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemma-4-e2b-ultra-mobile-effective-parameter-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gemma-4-e4b-higher-capability-mobile-and-edge-model",
+      "heading": "Gemma 4 E4B: Higher-capability mobile and edge model",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemma-4-e4b-higher-capability-mobile-and-edge-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gemma-4-12b-unified-multimodal-workstation-model",
+      "heading": "Gemma 4 12B: Unified multimodal workstation model",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemma-4-12b-unified-multimodal-workstation-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gemma-4-26b-a4b-sparse-high-throughput-reasoning-model",
+      "heading": "Gemma 4 26B-A4B: Sparse high-throughput reasoning model",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemma-4-26b-a4b-sparse-high-throughput-reasoning-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gemma-4-31b-largest-dense-gemma-4-model",
+      "heading": "Gemma 4 31B: Largest dense Gemma 4 model",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemma-4-31b-largest-dense-gemma-4-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "diffusiongemma-26b-a4b-googles-experimental-blockwise-discrete-diffusion-text-generator",
+      "heading": "DiffusionGemma 26B-A4B: Google’s experimental blockwise discrete-diffusion text generator",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "diffusiongemma-26b-a4b-googles-experimental-blockwise-discrete-diffusion-text-generator",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "grok-45-spacexais-fast-frontier-model-for-coding-agents-and-knowledge-work",
+      "heading": "Grok 4.5: SpaceXAI’s fast frontier model for coding, agents, and knowledge work",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "grok-45-spacexais-fast-frontier-model-for-coding-agents-and-knowledge-work",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "meta-muse-spark-11-metas-million-token-reasoning-model-for-personal-agents-and-multi-agent-orchestration",
+      "heading": "Meta Muse Spark 1.1: Meta’s million-token reasoning model for personal agents and multi-agent orchestration",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "meta-muse-spark-11-metas-million-token-reasoning-model-for-personal-agents-and-multi-agent-orchestration",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gemini-35-flash-googles-stable-high-speed-frontier-model-for-agents-and-coding",
+      "heading": "Gemini 3.5 Flash: Google’s stable high-speed frontier model for agents and coding",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemini-35-flash-googles-stable-high-speed-frontier-model-for-agents-and-coding",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gpt-live-1-openais-full-duplex-conversational-model-for-continuous-listening-and-speaking",
+      "heading": "GPT-Live-1: OpenAI’s full-duplex conversational model for continuous listening and speaking",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gpt-live-1-openais-full-duplex-conversational-model-for-continuous-listening-and-speaking",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gpt-live-1-mini-the-lower-cost-live-conversation-path-for-broad-access",
+      "heading": "GPT-Live-1 Mini: The lower-cost live-conversation path for broad access",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gpt-live-1-mini-the-lower-cost-live-conversation-path-for-broad-access",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gemini-35-flash-live-translate-googles-preview-simultaneous-translation-model-for-more-than-70-languages",
+      "heading": "Gemini 3.5 Flash Live Translate: Google’s preview simultaneous-translation model for more than 70 languages",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemini-35-flash-live-translate-googles-preview-simultaneous-translation-model-for-more-than-70-languages",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gpt-image-2-openais-state-of-the-art-image-generation-and-editing-model",
+      "heading": "GPT Image 2: OpenAI’s state-of-the-art image generation and editing model",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gpt-image-2-openais-state-of-the-art-image-generation-and-editing-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "nano-banana-2-googles-general-purpose-gemini-31-flash-image-model",
+      "heading": "Nano Banana 2: Google’s general-purpose Gemini 3.1 Flash Image model",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "nano-banana-2-googles-general-purpose-gemini-31-flash-image-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "nano-banana-pro-googles-gemini-3-pro-image-model-for-maximum-control-and-professional-layouts",
+      "heading": "Nano Banana Pro: Google’s Gemini 3 Pro Image model for maximum control and professional layouts",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "nano-banana-pro-googles-gemini-3-pro-image-model-for-maximum-control-and-professional-layouts",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "nano-banana-2-lite-googles-ultra-low-latency-gemini-31-flash-lite-image-model",
+      "heading": "Nano Banana 2 Lite: Google’s ultra-low-latency Gemini 3.1 Flash Lite Image model",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "nano-banana-2-lite-googles-ultra-low-latency-gemini-31-flash-lite-image-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "seedream-50-pro-bytedance-dreaminas-professional-image-generation-and-editing-system",
+      "heading": "Seedream 5.0 Pro: ByteDance Dreamina’s professional image generation and editing system",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "seedream-50-pro-bytedance-dreaminas-professional-image-generation-and-editing-system",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "muse-image-metas-agentic-image-generation-and-editing-model-with-search-and-coding-tools",
+      "heading": "Muse Image: Meta’s agentic image generation and editing model with search and coding tools",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "muse-image-metas-agentic-image-generation-and-editing-model-with-search-and-coding-tools",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "muse-video-metas-preview-video-model-focused-on-fidelity-native-audio-and-physical-motion",
+      "heading": "Muse Video: Meta’s preview video model focused on fidelity, native audio, and physical motion",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "muse-video-metas-preview-video-model-focused-on-fidelity-native-audio-and-physical-motion",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "veo-31-lite-preview-googles-lower-cost-developer-video-model-with-audio-output",
+      "heading": "Veo 3.1 Lite Preview: Google’s lower-cost developer video model with audio output",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "veo-31-lite-preview-googles-lower-cost-developer-video-model-with-audio-output",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "lyria-3-clip-preview-googles-30-second-music-generation-model",
+      "heading": "Lyria 3 Clip Preview: Google’s 30-second music generation model",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "lyria-3-clip-preview-googles-30-second-music-generation-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "lyria-3-pro-preview-googles-longer-form-prompted-music-model",
+      "heading": "Lyria 3 Pro Preview: Google’s longer-form prompted music model",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "lyria-3-pro-preview-googles-longer-form-prompted-music-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gemini-omni-flash-preview-googles-conversational-video-generation-and-editing-model",
+      "heading": "Gemini Omni Flash Preview: Google’s conversational video generation and editing model",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemini-omni-flash-preview-googles-conversational-video-generation-and-editing-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gemini-robotics-er-16-googles-preview-embodied-reasoning-vlm-for-perception-and-high-level-robot-planning",
+      "heading": "Gemini Robotics-ER 1.6: Google’s preview embodied-reasoning VLM for perception and high-level robot planning",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemini-robotics-er-16-googles-preview-embodied-reasoning-vlm-for-perception-and-high-level-robot-planning",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gemini-35-pro-googles-announced-but-unreleased-next-pro-model",
+      "heading": "Gemini 3.5 Pro: Google’s announced but unreleased next Pro model",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "gemini-35-pro-googles-announced-but-unreleased-next-pro-model",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "gpt-56-is-a-family-not-a-ladder-of-nicknames",
+      "heading": "GPT-5.6 Is a Family, Not a Ladder of Nicknames",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "gpt-56-is-a-family-not-a-ladder-of-nicknames",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "standard-chatgpt-chat",
+      "heading": "Standard ChatGPT Chat",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "standard-chatgpt-chat",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "work-and-codex",
+      "heading": "Work and Codex",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "work-and-codex",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "api",
+      "heading": "API",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "api",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "what-each-gpt-56-effort-is-for",
+      "heading": "What Each GPT-5.6 Effort Is For",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "what-each-gpt-56-effort-is-for",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "sol-at-low-medium-high-extra-high-max-and-ultra",
+      "heading": "Sol at Low, Medium, High, Extra High, Max, and Ultra",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "sol-at-low-medium-high-extra-high-max-and-ultra",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "terra-at-low-medium-high-extra-high-max-and-ultra",
+      "heading": "Terra at Low, Medium, High, Extra High, Max, and Ultra",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "terra-at-low-medium-high-extra-high-max-and-ultra",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "luna-at-low-medium-high-extra-high-and-max",
+      "heading": "Luna at Low, Medium, High, Extra High, and Max",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "luna-at-low-medium-high-extra-high-and-max",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "prompt-patterns-by-interface",
+      "heading": "Prompt Patterns by Interface",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "prompt-patterns-by-interface",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "price-context-and-caching",
+      "heading": "Price, Context, and Caching",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "price-context-and-caching",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "safeguards-and-reliability",
+      "heading": "Safeguards and Reliability",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "safeguards-and-reliability",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "watch-gpt-56-family-testing",
+      "heading": "Watch: GPT-5.6 Family Testing",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "watch-gpt-56-family-testing",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "claude-fable-5-and-claude-opus-48",
+      "heading": "Claude Fable 5 and Claude Opus 4.8",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "claude-fable-5-and-claude-opus-48",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "the-july-19-subscription-access-update",
+      "heading": "The July 19 Subscription Access Update",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "the-july-19-subscription-access-update",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "price-context-and-fallback",
+      "heading": "Price, Context, and Fallback",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "price-context-and-fallback",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "claude-opus-48-as-model-and-claude-code-configuration",
+      "heading": "Claude Opus 4.8 as Model and Claude Code Configuration",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "claude-opus-48-as-model-and-claude-code-configuration",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "claude-sonnet-5",
+      "heading": "Claude Sonnet 5",
+      "destination_path": "docs/guides/frontier-openai-and-anthropic.md",
+      "destination_anchor": "claude-sonnet-5",
+      "destination_title": "OpenAI and Anthropic frontier systems"
+    },
+    {
+      "anchor": "coding-agentic-and-cost-efficient-model-additions",
+      "heading": "Coding, Agentic, and Cost-Efficient Model Additions",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "coding-agentic-and-cost-efficient-model-additions",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "deepseek-v4-pro-and-deepseek-v4-flash",
+      "heading": "DeepSeek-V4-Pro and DeepSeek-V4-Flash",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "deepseek-v4-pro-and-deepseek-v4-flash",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "glm-52",
+      "heading": "GLM-5.2",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "glm-52",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "current-mistral-family-by-workload",
+      "heading": "Current Mistral Family by Workload",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "current-mistral-family-by-workload",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "google-open-media-and-robotics-systems",
+      "heading": "Google Open, Media, and Robotics Systems",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "google-open-media-and-robotics-systems",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "watchlist-gemini-35-pro",
+      "heading": "Watchlist: Gemini 3.5 Pro",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "watchlist-gemini-35-pro",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "detailed-dossiers-for-the-newly-audited-systems",
+      "heading": "Detailed Dossiers for the Newly Audited Systems",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "detailed-dossiers-for-the-newly-audited-systems",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "claude-sonnet-5-product-surface-work-shape-and-review-discipline",
+      "heading": "Claude Sonnet 5: Product Surface, Work Shape, and Review Discipline",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "claude-sonnet-5-product-surface-work-shape-and-review-discipline",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "deepseek-v4-pro-and-deepseek-v4-flash-preview-apis-with-deliberate-modes",
+      "heading": "DeepSeek-V4-Pro and DeepSeek-V4-Flash: Preview APIs With Deliberate Modes",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "deepseek-v4-pro-and-deepseek-v4-flash-preview-apis-with-deliberate-modes",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "glm-52-long-horizon-claims-need-long-horizon-evidence",
+      "heading": "GLM-5.2: Long-Horizon Claims Need Long-Horizon Evidence",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "glm-52-long-horizon-claims-need-long-horizon-evidence",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "mistral-medium-35-and-mistral-small-4-generalist-models-with-different-operating-envelopes",
+      "heading": "Mistral Medium 3.5 and Mistral Small 4: Generalist Models With Different Operating Envelopes",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "mistral-medium-35-and-mistral-small-4-generalist-models-with-different-operating-envelopes",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "mistral-ocr-4-document-intelligence-must-be-tested-as-extraction",
+      "heading": "Mistral OCR 4: Document Intelligence Must Be Tested as Extraction",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "mistral-ocr-4-document-intelligence-must-be-tested-as-extraction",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "voxtral-tts-speech-quality-consent-and-deployment-are-separate-decisions",
+      "heading": "Voxtral TTS: Speech Quality, Consent, and Deployment Are Separate Decisions",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "voxtral-tts-speech-quality-consent-and-deployment-are-separate-decisions",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "leanstral-15-treat-the-compiler-as-the-evaluator",
+      "heading": "Leanstral 1.5: Treat the Compiler as the Evaluator",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "leanstral-15-treat-the-compiler-as-the-evaluator",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "robostral-navigate-an-announcement-is-not-a-production-contract",
+      "heading": "Robostral Navigate: An Announcement Is Not a Production Contract",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "robostral-navigate-an-announcement-is-not-a-production-contract",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "gemma-4-open-weights-shift-responsibility-to-the-builder",
+      "heading": "Gemma 4: Open Weights Shift Responsibility to the Builder",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "gemma-4-open-weights-shift-responsibility-to-the-builder",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "diffusiongemma-a-different-generation-process-not-an-automatic-upgrade",
+      "heading": "DiffusionGemma: A Different Generation Process, Not an Automatic Upgrade",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "diffusiongemma-a-different-generation-process-not-an-automatic-upgrade",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "veo-31-lite-preview-video-is-a-sequence-not-a-single-frame",
+      "heading": "Veo 3.1 Lite Preview: Video Is a Sequence, Not a Single Frame",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "veo-31-lite-preview-video-is-a-sequence-not-a-single-frame",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "lyria-3-music-generation-needs-musical-and-rights-aware-evaluation",
+      "heading": "Lyria 3: Music Generation Needs Musical and Rights-Aware Evaluation",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "lyria-3-music-generation-needs-musical-and-rights-aware-evaluation",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "gemini-robotics-er-16-high-level-embodied-reasoning-not-motor-authority",
+      "heading": "Gemini Robotics-ER 1.6: High-Level Embodied Reasoning, Not Motor Authority",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "gemini-robotics-er-16-high-level-embodied-reasoning-not-motor-authority",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "gemini-35-pro-keep-the-watchlist-useful-without-pretending-it-is-released",
+      "heading": "Gemini 3.5 Pro: Keep the Watchlist Useful Without Pretending It Is Released",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "gemini-35-pro-keep-the-watchlist-useful-without-pretending-it-is-released",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "grok-45-in-grok-build",
+      "heading": "Grok 4.5 in Grok Build",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "grok-45-in-grok-build",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "artificial-analysis-what-the-scores-do-and-do-not-mean",
+      "heading": "Artificial Analysis: What the Scores Do and Do Not Mean",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "artificial-analysis-what-the-scores-do-and-do-not-mean",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "intelligence-index-v41",
+      "heading": "Intelligence Index v4.1",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "intelligence-index-v41",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "coding-agent-index",
+      "heading": "Coding Agent Index",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "coding-agent-index",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "aa-briefcase-and-other-useful-views",
+      "heading": "AA-Briefcase and Other Useful Views",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "aa-briefcase-and-other-useful-views",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "meta-muse-spark-11",
+      "heading": "Meta Muse Spark 1.1",
+      "destination_path": "docs/guides/frontier-open-and-specialist-models.md",
+      "destination_anchor": "meta-muse-spark-11",
+      "destination_title": "Open and specialist frontier models"
+    },
+    {
+      "anchor": "gemini-35-flash",
+      "heading": "Gemini 3.5 Flash",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "gemini-35-flash",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "anchor": "gpt-live-1-and-gemini-35-live-translate",
+      "heading": "GPT-Live-1 and Gemini 3.5 Live Translate",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "gpt-live-1-and-gemini-35-live-translate",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "anchor": "gpt-live-1-and-gpt-live-1-mini",
+      "heading": "GPT-Live-1 and GPT-Live-1 Mini",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "gpt-live-1-and-gpt-live-1-mini",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "anchor": "gemini-35-flash-live-translate",
+      "heading": "Gemini 3.5 Flash Live Translate",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "gemini-35-flash-live-translate",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "anchor": "image-and-video-models",
+      "heading": "Image and Video Models",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "image-and-video-models",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "anchor": "gpt-image-2",
+      "heading": "GPT Image 2",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "gpt-image-2",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "anchor": "nano-banana-2-nano-banana-pro-and-nano-banana-2-lite",
+      "heading": "Nano Banana 2, Nano Banana Pro, and Nano Banana 2 Lite",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "nano-banana-2-nano-banana-pro-and-nano-banana-2-lite",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "anchor": "seedream-50-pro",
+      "heading": "Seedream 5.0 Pro",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "seedream-50-pro",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "anchor": "muse-image-and-muse-video",
+      "heading": "Muse Image and Muse Video",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "muse-image-and-muse-video",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "anchor": "image-model-videos",
+      "heading": "Image-model videos",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "image-model-videos",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "anchor": "gemini-omni-flash",
+      "heading": "Gemini Omni Flash",
+      "destination_path": "docs/guides/frontier-google-and-media.md",
+      "destination_anchor": "gemini-omni-flash",
+      "destination_title": "Google, live, image, and media systems"
+    },
+    {
+      "anchor": "extended-operating-guidance-for-the-established-families",
+      "heading": "Extended Operating Guidance for the Established Families",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "extended-operating-guidance-for-the-established-families",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "gpt-56-sol-terra-and-luna",
+      "heading": "GPT-5.6 Sol, Terra, and Luna",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gpt-56-sol-terra-and-luna",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "claude-fable-5-and-claude-opus-48-1",
+      "heading": "Claude Fable 5 and Claude Opus 4.8",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "claude-fable-5-and-claude-opus-48",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "grok-45-and-muse-spark-11",
+      "heading": "Grok 4.5 and Muse Spark 1.1",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "grok-45-and-muse-spark-11",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "gemini-35-flash-1",
+      "heading": "Gemini 3.5 Flash",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gemini-35-flash",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "gpt-live-1-gpt-live-1-mini-and-gemini-live-translate",
+      "heading": "GPT-Live-1, GPT-Live-1 Mini, and Gemini Live Translate",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gpt-live-1-gpt-live-1-mini-and-gemini-live-translate",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "gpt-image-2-nano-banana-seedream-and-muse-image",
+      "heading": "GPT Image 2, Nano Banana, Seedream, and Muse Image",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gpt-image-2-nano-banana-seedream-and-muse-image",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "muse-video-veo-lyria-and-gemini-omni-flash",
+      "heading": "Muse Video, Veo, Lyria, and Gemini Omni Flash",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "muse-video-veo-lyria-and-gemini-omni-flash",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "comprehensive-architecture-performance-and-deployment-dossiers",
+      "heading": "Comprehensive Architecture, Performance, and Deployment Dossiers",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "comprehensive-architecture-performance-and-deployment-dossiers",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "gpt-56-sol-terra-and-luna-architecture-disclosure-and-performance-envelope",
+      "heading": "GPT-5.6 Sol, Terra, and Luna: Architecture Disclosure and Performance Envelope",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gpt-56-sol-terra-and-luna-architecture-disclosure-and-performance-envelope",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "claude-fable-5-safeguarded-frontier-model-with-an-evaluation-routing-caveat",
+      "heading": "Claude Fable 5: Safeguarded Frontier Model With an Evaluation Routing Caveat",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "claude-fable-5-safeguarded-frontier-model-with-an-evaluation-routing-caveat",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "claude-opus-48-closed-checkpoint-strong-agent-harness-cleaner-attribution",
+      "heading": "Claude Opus 4.8: Closed Checkpoint, Strong Agent Harness, Cleaner Attribution",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "claude-opus-48-closed-checkpoint-strong-agent-harness-cleaner-attribution",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "claude-sonnet-5-cost-sensitive-agentic-model-with-limited-architecture-disclosure",
+      "heading": "Claude Sonnet 5: Cost-Sensitive Agentic Model With Limited Architecture Disclosure",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "claude-sonnet-5-cost-sensitive-agentic-model-with-limited-architecture-disclosure",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "deepseek-v4-pro-and-deepseek-v4-flash-open-moe-architecture-in-detail",
+      "heading": "DeepSeek-V4-Pro and DeepSeek-V4-Flash: Open MoE Architecture in Detail",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "deepseek-v4-pro-and-deepseek-v4-flash-open-moe-architecture-in-detail",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "glm-52-744b-a40b-moe-with-indexshare-sparse-attention",
+      "heading": "GLM-5.2: 744B-A40B MoE With IndexShare Sparse Attention",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "glm-52-744b-a40b-moe-with-indexshare-sparse-attention",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "mistral-medium-35-dense-128b-multimodal-transformer",
+      "heading": "Mistral Medium 3.5: Dense 128B Multimodal Transformer",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "mistral-medium-35-dense-128b-multimodal-transformer",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "mistral-small-4-119b-a65b-moe-with-first-party-nvfp4",
+      "heading": "Mistral Small 4: 119B-A6.5B MoE With First-Party NVFP4",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "mistral-small-4-119b-a65b-moe-with-first-party-nvfp4",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "leanstral-15-same-moe-family-specialized-post-training",
+      "heading": "Leanstral 1.5: Same MoE Family, Specialized Post-Training",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "leanstral-15-same-moe-family-specialized-post-training",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "mistral-ocr-4-service-architecture-is-undisclosed-output-structure-is-the-product",
+      "heading": "Mistral OCR 4: Service Architecture Is Undisclosed, Output Structure Is the Product",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "mistral-ocr-4-service-architecture-is-undisclosed-output-structure-is-the-product",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "voxtral-tts-public-4b-speech-checkpoint-deployment-and-consent-matrix",
+      "heading": "Voxtral TTS: Public 4B Speech Checkpoint, Deployment and Consent Matrix",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "voxtral-tts-public-4b-speech-checkpoint-deployment-and-consent-matrix",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "gemma-4-family-variant-by-variant-architecture",
+      "heading": "Gemma 4 Family: Variant-by-Variant Architecture",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gemma-4-family-variant-by-variant-architecture",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "diffusiongemma-26b-a4b-blockwise-discrete-diffusion",
+      "heading": "DiffusionGemma 26B-A4B: Blockwise Discrete Diffusion",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "diffusiongemma-26b-a4b-blockwise-discrete-diffusion",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "grok-45-closed-model-openly-tool-centric-product-evaluation",
+      "heading": "Grok 4.5: Closed Model, Openly Tool-Centric Product Evaluation",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "grok-45-closed-model-openly-tool-centric-product-evaluation",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "meta-muse-spark-11-fast-hosted-reasoning-with-undisclosed-checkpoint-topology",
+      "heading": "Meta Muse Spark 1.1: Fast Hosted Reasoning With Undisclosed Checkpoint Topology",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "meta-muse-spark-11-fast-hosted-reasoning-with-undisclosed-checkpoint-topology",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "gemini-35-flash-hosted-multimodal-agent-model-with-tool-surface-separation",
+      "heading": "Gemini 3.5 Flash: Hosted Multimodal Agent Model With Tool-Surface Separation",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gemini-35-flash-hosted-multimodal-agent-model-with-tool-surface-separation",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "gpt-live-1-and-gpt-live-1-mini-full-duplex-system-architecture",
+      "heading": "GPT-Live-1 and GPT-Live-1 Mini: Full-Duplex System Architecture",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gpt-live-1-and-gpt-live-1-mini-full-duplex-system-architecture",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "gemini-35-flash-live-translate-streaming-translation-pipeline",
+      "heading": "Gemini 3.5 Flash Live Translate: Streaming Translation Pipeline",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gemini-35-flash-live-translate-streaming-translation-pipeline",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "gpt-image-2-product-capabilities-without-a-public-architecture-claim",
+      "heading": "GPT Image 2: Product Capabilities Without a Public Architecture Claim",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gpt-image-2-product-capabilities-without-a-public-architecture-claim",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "nano-banana-2-nano-banana-pro-and-nano-banana-2-lite-1",
+      "heading": "Nano Banana 2, Nano Banana Pro, and Nano Banana 2 Lite",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "nano-banana-2-nano-banana-pro-and-nano-banana-2-lite",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "seedream-50-pro-limited-first-party-english-technical-disclosure",
+      "heading": "Seedream 5.0 Pro: Limited First-Party English Technical Disclosure",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "seedream-50-pro-limited-first-party-english-technical-disclosure",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "muse-image-and-muse-video-1",
+      "heading": "Muse Image and Muse Video",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "muse-image-and-muse-video",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "veo-31-lite-preview-hosted-video-generation-with-explicit-product-limits",
+      "heading": "Veo 3.1 Lite Preview: Hosted Video Generation With Explicit Product Limits",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "veo-31-lite-preview-hosted-video-generation-with-explicit-product-limits",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "lyria-3-music-generation-product-not-a-text-model-benchmark-entry",
+      "heading": "Lyria 3: Music-Generation Product, Not a Text-Model Benchmark Entry",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "lyria-3-music-generation-product-not-a-text-model-benchmark-entry",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "gemini-omni-flash-unified-multimodal-service-with-closed-architecture",
+      "heading": "Gemini Omni Flash: Unified Multimodal Service With Closed Architecture",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gemini-omni-flash-unified-multimodal-service-with-closed-architecture",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "gemini-robotics-er-16-reasoning-model-above-a-safety-controller",
+      "heading": "Gemini Robotics-ER 1.6: Reasoning Model Above a Safety Controller",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "gemini-robotics-er-16-reasoning-model-above-a-safety-controller",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "robostral-navigate-research-watchlist-until-an-interface-exists",
+      "heading": "Robostral Navigate: Research Watchlist Until an Interface Exists",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "robostral-navigate-research-watchlist-until-an-interface-exists",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "artificial-analysis-and-benchmark-engineering-expanded-reproducibility-rules",
+      "heading": "Artificial Analysis and Benchmark Engineering: Expanded Reproducibility Rules",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "artificial-analysis-and-benchmark-engineering-expanded-reproducibility-rules",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "open-weight-quantization-and-deployment-reference",
+      "heading": "Open-Weight Quantization and Deployment Reference",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "open-weight-quantization-and-deployment-reference",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "model-guide-completeness-matrix",
+      "heading": "Model-Guide Completeness Matrix",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "model-guide-completeness-matrix",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "how-to-choose-without-chasing-a-single-winner",
+      "heading": "How to Choose Without Chasing a Single Winner",
+      "destination_path": "docs/guides/frontier-overview-and-selection.md",
+      "destination_anchor": "how-to-choose-without-chasing-a-single-winner",
+      "destination_title": "Frontier overview and selection"
+    },
+    {
+      "anchor": "uncertainties-and-known-limits",
+      "heading": "Uncertainties and Known Limits",
+      "destination_path": "docs/guides/frontier-evaluation-and-deployment.md",
+      "destination_anchor": "uncertainties-and-known-limits",
+      "destination_title": "Frontier evaluation and deployment"
+    },
+    {
+      "anchor": "sources",
+      "heading": "Sources",
+      "destination_path": "docs/guides/frontier-sources-and-method.md",
+      "destination_anchor": "sources",
+      "destination_title": "Frontier sources and method"
+    },
+    {
+      "anchor": "method",
+      "heading": "Method",
+      "destination_path": "docs/guides/frontier-sources-and-method.md",
+      "destination_anchor": "method",
+      "destination_title": "Frontier sources and method"
+    }
+  ]
+}

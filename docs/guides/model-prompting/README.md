@@ -20,6 +20,7 @@ catalog. Verify live pickers before writing public claims.
 
 | If you need… | Open |
 | --- | --- |
+| Shared run records, verification, escalation, failure handling | [Shared execution contract](shared-execution-contract.md) |
 | Effort menus across Chat, Work, Desktop, Codex, API, Claude, Grok | [Surface and effort map](surface-and-effort-map.md) |
 | Test whether a higher effort is worth it | [Effort evaluation playbook](effort-evaluation-playbook.md) |
 | Audit which claims are official vs observed | [Sources and interface observations](sources-and-observations.md) |
@@ -106,7 +107,7 @@ When a model menu or effort set changes:
 
 ## Expanded Reading and Evaluation Standard
 
-Each model page now includes an **Expanded Operating Dossier**. Read it after
+Each model page links the **[shared execution contract](shared-execution-contract.md)** for run records, verification, escalation, and failure handling. Read it after
 the model-specific prompt template when a task has meaningful cost, autonomy,
 multimodal, long-context, or safety consequences. The dossier keeps the same
 evidence discipline as the main guide: product facts come from documented

@@ -140,12 +140,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
-# RESEARCH-GRADE-EXPANSION:BEGIN
-# Research-grade maintenance notes:
-# - Role: repository automation script.
-# - Review this file for clear inputs, outputs, side effects, and failure behavior.
-# - Keep examples public-safe and repository-relative; avoid secrets or private paths.
-# - When behavior changes, update adjacent tests, docs, and changelog evidence.
-# - Prefer deterministic, reviewable operations over hidden or networked side effects.
-# RESEARCH-GRADE-EXPANSION:END

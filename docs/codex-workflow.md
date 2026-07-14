@@ -113,7 +113,7 @@ clearly and do not broaden scope without approval.
 1. Start in the repo root, not from `Documents`.
 2. Run `git status --short --branch`.
 3. Read `AGENTS.md` and the specific files in scope.
-4. Use `prompts/codex/repo-cleanup-balanced-goal.md`.
+4. Use `prompts/codex/repository-cleanup.goal.md`.
 5. Prefer deterministic scripts for large mechanical changes.
 6. Do not delete outside an explicit approved list.
 7. Run checks and inspect `git diff` before claiming completion.

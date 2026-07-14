@@ -42,7 +42,7 @@ Not every file needs the same treatment. Use tiers to keep expansion focused.
 
 | Tier | File type | Expansion target | Verification |
 | --- | --- | --- | --- |
-| Tier 1 | Root README, package README, major guide index | Full manual with navigation, workflows, package notes, safety, checks, and maintainer guidance. | Byte floor, heading checks, link checks, reviewer scan. |
+| Tier 1 | Root README, package README, major guide index | Manual with navigation, workflows, package notes, safety, checks, and maintainer guidance. | Named headings, link checks, commands, reviewer scan. |
 | Tier 2 | Major guide page | Overview, beginner path, advanced path, examples, failure modes, checklist, related docs. | Content tests for required headings and secret scan. |
 | Tier 3 | Prompt template | Target tool, purpose, full prompt, short prompt, inputs, included scope, excluded scope, safety, verification, success criteria, report, failure cases. | Template-section tests. |
 | Tier 4 | Script | Clear behavior, conservative defaults, public-safe outputs, deterministic tests where practical. | Unit tests and command checks. |
@@ -72,8 +72,7 @@ Use this loop for each focused batch.
    audience.
 
 5. Add tests or gates.
-   If the expansion creates a promise such as "the package is substantial,"
-   encode a minimum gate.
+   Encode the promised behavior, evidence identity, or artifact parity.
 
 6. Update navigation.
    Add links from the README, package README, guide index, release docs, or
@@ -99,7 +98,7 @@ Use this checklist when the request says "every meaningful file."
 | Guides | Does each guide include concepts, procedures, examples, failure modes, checklist, and where-to-next links? |
 | Tool docs | Does each tool doc say when to use it, when not to use it, risks, verification, and official-doc boundaries? |
 | Prompt templates | Are all required sections present and operational? |
-| Prompting OS | Does the focused package have enough depth to be useful offline? |
+| Prompting OS | Does the focused package preserve required procedures, examples, failures, verification, and parity? |
 | Automation docs | Are inputs, outputs, allowed files, forbidden behavior, rollback, dry run, and failure modes clear? |
 | Release docs | Can a maintainer build, inspect, and review the full release and focused package? |
 | Static site | Does it work offline without remote scripts, fonts, trackers, analytics, or CDNs? |
@@ -219,8 +218,8 @@ Do not use weak evidence for broad completion claims.
 
 | Claim | Weak evidence | Strong evidence |
 | --- | --- | --- |
-| README is comprehensive | It "looks long." | Byte count, heading list, links, tests, reviewer scan. |
-| Package is substantial | A ZIP exists. | Manifest count, Markdown bytes, shortest file size, SHA-256, package tests. |
+| README routes readers | It "looks long." | Named headings, links, commands, tests, reviewer scan. |
+| Package is complete | A ZIP exists. | Required paths, source commit, hashes, source/manifest/archive parity. |
 | Prompt templates are operational | They mention success criteria once. | Tests verify all required sections across prompt files. |
 | Public safety is preserved | No obvious secret in the edited paragraph. | Repository health check, targeted private-path search, token-pattern scan, source-policy review. |
 | External claims are safe | They sound plausible. | Official docs checked or claims phrased as "verify in official docs." |
@@ -286,35 +285,9 @@ Do not mark a broad expansion complete until these are true:
 - [ ] Existing staged and unstaged changes were preserved or intentionally
   incorporated.
 - [ ] New content is original, public-safe, and linked from relevant indexes.
-- [ ] Tests enforce the new depth or completeness claims.
+- [ ] Tests enforce the new behavior, evidence, or parity claims.
 - [ ] Package artifacts were built when package contents changed.
 - [ ] Manifest evidence was inspected, not merely generated.
 - [ ] Public-safety searches found no private paths or secrets.
 - [ ] Final status includes changed files, commands, checks, metrics, risks,
   and skipped sources.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Prompting OS module** surface. During broad
-maintenance, reviewers should treat `docs/prompting-os/25-repository-expansion-playbook.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `25 repository expansion playbook` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

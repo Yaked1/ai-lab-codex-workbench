@@ -1,10 +1,10 @@
 # Safe Automerge Policy
 
-Safe generated-file automerge exists only for mechanical research artifacts.
-It does not merge curated guide content, code changes, workflow changes, or
-policy changes. If you remember one rule from this page: automerge is for
-metadata the scout produced, never for prose a human or an agent wrote for
-readers.
+Safe generated-file automerge exists only for mechanical research artifacts,
+including explicitly allowlisted generated documentation. It does not merge
+curated guide content, code changes, workflow changes, or policy changes. If
+you remember one rule from this page: automerge is for source-queue artifacts,
+never for prose a human or an agent wrote for readers.
 
 ## Branch Requirement
 
@@ -107,19 +107,61 @@ autopilot branch, and move the `docs/skills/prompt-guides.md` change to its
 own branch that goes through normal human review, PR checks, and manual
 merge.
 
+## Workflow Trust Boundary
+
+The workflow separates a read-only validation job from the write-capable merge
+job. `pull_request_target` runs the base-owned workflow definition for a pull
+request, rather than the PR merge-branch definition that `pull_request` uses.
+Validation records the PR number, base SHA, and head SHA before checking out
+any PR code.
+
+```text
+base-owned pull_request_target event or default-branch workflow_dispatch
+  -> validate on ubuntu-latest (contents/pull-requests/checks: read)
+  -> check out the recorded PR head
+     with persist-credentials: false
+  -> git show <recorded base commit>:scripts/check_safe_generated_diff.py
+     into RUNNER_TEMP outside the PR checkout
+  -> run the trusted checker, health, autofix, and unit-test gates
+  -> expose only PR number and recorded SHAs
+  -> merge (contents/pull-requests: write)
+  -> gh pr merge --match-head-commit <recorded head SHA>
+```
+
+Validation runs on `ubuntu-latest` in Bash. Its shell steps use
+`set -euo pipefail`, so a nonzero command stops validation and the merge job
+does not run. Validation has read-only permissions, maps no secrets, and never
+passes write credentials to checked-out PR code: the exact-head checkout uses
+`persist-credentials: false`. The checker that makes the allowlist decision is
+always loaded from the recorded base commit into `RUNNER_TEMP`, not from the PR
+checkout. The merge job performs no checkout and runs no Python, Git, or
+PR-controlled script.
+
+`workflow_dispatch` remains available only when the checked-in validation job
+runs from `refs/heads/<default_branch>`, so it rejects an honest non-default
+dispatch. Manual dispatch can select another ref, whose modified workflow
+could remove that condition. Owner-side workflow execution protection controls
+actor and event rules, not ref selection. The owner must use it to limit
+`workflow_dispatch` to trusted maintainers, and those maintainers must select
+the default branch. The checked-in condition is defense in depth, not an
+enforcement boundary against a malicious selected ref. See GitHub's
+[Workflow execution protections documentation](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/actions-policies/workflow-execution-protections).
+
 ## Required Checks
 
-Before enabling squash merge, the workflow runs:
+Before enabling squash merge, validation runs on `ubuntu-latest` in Bash:
 
-```powershell
-python scripts/check_safe_generated_diff.py --base <BASE> --head <HEAD>
+```bash
+set -euo pipefail
+python "$RUNNER_TEMP/safe-generated-checker/check_safe_generated_diff.py" --base <BASE_SHA> --head <HEAD_SHA>
 python scripts/repo_health_check.py --ci
 python scripts/safe_autofix.py --check
 python -m unittest discover -s tests
 ```
 
-The merge command uses squash merge and does not use admin bypass. Repository
-branch protection still applies.
+The merge command uses squash merge, `--match-head-commit`, and no admin
+bypass. If the PR head changes after validation, GitHub CLI refuses the guarded
+merge. Repository branch protection still applies.
 
 ## Why Content Docs Require Human Review
 
@@ -141,21 +183,21 @@ local Codex -> branch -> PR -> checks -> human review -> merge
 | Branch does not start with `autopilot/` | Refuse automerge. |
 | Any changed file is outside the generated allowlist | Refuse automerge. |
 | Required checks fail | Refuse automerge. |
-| PR includes README, docs, scripts, tests, workflow, policy, or changelog changes | Refuse automerge. |
+| PR includes README, curated or non-allowlisted documentation, scripts, tests, workflow, policy, or changelog changes | Refuse automerge. |
 | PR includes only generated candidate/inbox/curator-prompt files and checks pass | Eligible for squash merge without admin bypass. |
 
 ## Required Evidence
 
-The automerge workflow should leave enough evidence for a maintainer to
-audit:
+The automerge workflow should leave enough evidence for a maintainer to audit:
 
-- Base and head refs checked.
-- Changed-file list.
-- Result of `check_safe_generated_diff.py`.
-- Repository health check result.
-- Safe autofix check result.
-- Unit test result.
-- Merge method used, if merged.
+| Evidence | Source |
+| --- | --- |
+| PR number, recorded base SHA, and recorded head SHA | Read-only validation outputs. |
+| Branch owner, `autopilot/` prefix, and non-draft decision | PR metadata query in validation. |
+| Base-owned trigger, default-branch dispatch gate, and credential-free checkout | Workflow definition; owner-side protection limits `workflow_dispatch` to trusted maintainers but does not restrict ref selection. |
+| Changed-file allowlist result | Base-owned checker copied to `RUNNER_TEMP`. |
+| Repository health, safe autofix, and unit-test results | Read-only validation job logs. |
+| Guarded merge method | Merge job log showing `--squash`, `--auto`, and `--match-head-commit`. |
 
 ## Why The Allowlist Is Narrow
 
@@ -187,34 +229,10 @@ Do not widen the allowlist just to make one PR merge automatically.
 | --- | --- |
 | Generated PR touches a guide | Stop automerge; require human review. |
 | Allowlist script fails | Do not merge; inspect script output. |
+| PR changes after validation | `--match-head-commit` refuses the merge; validate the new head again. |
+| Base checker cannot be loaded | Do not merge; repair the trusted-base workflow in a separately reviewed PR. |
 | Workflow lacks permissions | Fix workflow permissions in a separate reviewed PR. |
 | Branch name is wrong | Rename or recreate from `autopilot/` only if files are generated-only. |
 | Generated prompt contains unsafe source text | Keep it as a curator prompt only; do not publish as guide content. |
 | PR mixes allowed and forbidden files | Split the PR; never widen the allowlist to force a merge. |
 | Path uses backslashes or `../` traversal | The checker normalizes paths before matching; a suspicious result should be treated as refused, not bypassed. |
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **repository support file** surface. During broad
-maintenance, reviewers should treat `docs/automation/safe-automerge-policy.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `safe automerge policy` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

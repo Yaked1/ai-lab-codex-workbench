@@ -28,13 +28,3 @@ if ($existing) {
 if ($LASTEXITCODE -ne 0) { throw "git checkout failed for branch $Branch" }
 
 Write-Host "Using branch: $Branch"
-
-<#
-RESEARCH-GRADE-EXPANSION:BEGIN
-Research-grade maintenance notes:
-- Role: repository automation script.
-- Review parameters, side effects, exit behavior, dry-run/apply boundaries, and failure output before changing this script.
-- Keep examples public-safe and repository-relative; do not print secrets or inspect private machine state.
-- When behavior changes, update tests or documented manual verification steps and record user-visible changes in the changelog.
-RESEARCH-GRADE-EXPANSION:END
-#>

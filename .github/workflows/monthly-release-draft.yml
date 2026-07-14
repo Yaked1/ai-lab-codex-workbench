@@ -23,15 +23,21 @@ permissions:
 jobs:
   draft:
     name: Prepare release draft issue
+    if: >-
+      github.event_name != 'workflow_dispatch' ||
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     runs-on: ubuntu-latest
+    env:
+      VERSION_INPUT: ${{ inputs.version }}
+      KEEP_DIST_INPUT: ${{ inputs.keep_dist }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
 
@@ -55,8 +61,8 @@ jobs:
             fi
           }
 
-          version="${{ inputs.version }}"
-          keep_dist="${{ inputs.keep_dist }}"
+          version="$VERSION_INPUT"
+          keep_dist="$KEEP_DIST_INPUT"
           if [ -z "$version" ]; then
             version="v0.1.2-test"
           fi
@@ -78,11 +84,12 @@ jobs:
       - name: Open or update release draft issue
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
           ISSUE_TITLE: Monthly release draft
         run: |
           set -euo pipefail
 
-          version="${{ inputs.version }}"
+          version="$VERSION_INPUT"
           if [ -z "$version" ]; then
             version="v0.1.2-test"
           fi
@@ -131,12 +138,3 @@ jobs:
             echo "One or more release draft checks failed. See the Monthly release draft issue body."
             exit "$status"
           fi
-
-# RESEARCH-GRADE-EXPANSION:BEGIN
-# Research-grade maintenance notes:
-# - Role: GitHub Actions workflow.
-# - Review this file for clear inputs, outputs, side effects, and failure behavior.
-# - Keep examples public-safe and repository-relative; avoid secrets or private paths.
-# - When behavior changes, update adjacent tests, docs, and changelog evidence.
-# - Prefer deterministic, reviewable operations over hidden or networked side effects.
-# RESEARCH-GRADE-EXPANSION:END

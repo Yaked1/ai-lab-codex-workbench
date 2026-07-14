@@ -8,12 +8,14 @@ run, and it can never go missing from the installer's manifest without the
 test suite noticing.
 """
 import importlib.util
+import hashlib
 import json
 import re
 import subprocess
 import sys
 import tempfile
 import unittest
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -33,6 +35,7 @@ def load_script(name):
 
 discover_ai_sources = load_script("discover_ai_sources")
 install_skill = load_script("install_skill")
+mechanical_research_expansion = load_script("mechanical_research_expansion")
 
 REQUIRED_SECTIONS = (
     "## Trigger",
@@ -57,8 +60,6 @@ ALLOWED_CATEGORIES = {
     "guides",
     "meta",
 }
-
-MINIMUM_SKILL_COUNT = 100
 
 REQUIRED_SKILL_SLUGS = {
     "use-codex-safely",
@@ -115,6 +116,96 @@ def load_manifest():
     return json.loads(manifest_path.read_text(encoding="utf-8"))
 
 
+def duplicate_values(values):
+    return sorted(value for value, count in Counter(values).items() if count > 1)
+
+
+def ordered_sequences_match(expected, actual):
+    return list(expected) == list(actual)
+
+
+def git_tree_entries(root):
+    result = subprocess.run(
+        ["git", "-C", str(root), "ls-tree", "-rz", "--full-tree", "HEAD"],
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    entries = {}
+    for record in result.stdout.split(b"\0"):
+        if not record:
+            continue
+        metadata, path_bytes = record.split(b"\t", 1)
+        mode, object_type, object_id = metadata.decode("ascii").split()
+        path = path_bytes.decode("utf-8", "surrogateescape")
+        if path in entries:
+            raise AssertionError(f"duplicate Git tree path: {path}")
+        entries[path] = {
+            "mode": mode,
+            "type": object_type,
+            "oid": object_id,
+        }
+    return entries
+
+
+def committed_source_blob(root, source, entries):
+    resolved = resolve_declared_source(root, source)
+    relative = Path(source).as_posix()
+    entry = entries.get(relative)
+    if entry is None:
+        raise ValueError(f"source path is not committed at HEAD: {source}")
+    if entry["mode"] not in {"100644", "100755"} or entry["type"] != "blob":
+        raise ValueError(f"source path must be a regular Git blob: {source}")
+    if not resolved.is_file():
+        raise ValueError(f"source path must resolve to an existing repository file: {source}")
+    if "blob" in entry:
+        return entry["blob"]
+    blob = subprocess.run(
+        ["git", "-C", str(root), "cat-file", "blob", entry["oid"]],
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    ).stdout
+    object_bytes = b"blob " + str(len(blob)).encode("ascii") + b"\0" + blob
+    object_hash = hashlib.sha256 if len(entry["oid"]) == 64 else hashlib.sha1
+    computed_oid = object_hash(object_bytes).hexdigest()
+    if computed_oid != entry["oid"]:
+        raise AssertionError(f"Git blob identity mismatch for {source}")
+    entry["blob"] = blob
+    entry["sha256"] = hashlib.sha256(blob).hexdigest()
+    return blob
+
+
+def parse_index_slugs(index_text):
+    row_pattern = re.compile(
+        r"\| `(?P<slug>[a-z0-9][a-z0-9-]*)` \| [^|]+ \| [^|]+ \| [^|]+ \|"
+    )
+    slugs = []
+    for line in index_text.splitlines():
+        if not line.startswith("| `"):
+            continue
+        match = row_pattern.fullmatch(line)
+        if match is None:
+            raise AssertionError(f"noncanonical skill index row: {line}")
+        slugs.append(match.group("slug"))
+    return slugs
+
+
+def resolve_declared_source(root, source):
+    source_path = Path(source)
+    if source_path.is_absolute() or ".." in source_path.parts:
+        raise ValueError(f"source path must stay repository-relative: {source}")
+    resolved_root = root.resolve(strict=True)
+    try:
+        resolved = (resolved_root / source_path).resolve(strict=True)
+        resolved.relative_to(resolved_root)
+    except (FileNotFoundError, ValueError) as exc:
+        raise ValueError(f"source path must resolve to an existing repository file: {source}") from exc
+    if not resolved.is_file():
+        raise ValueError(f"source path must resolve to an existing repository file: {source}")
+    return resolved
+
+
 class SkillsPackageStructureTests(unittest.TestCase):
     def test_package_scaffolding_exists(self):
         for relative in ("skills/README.md", "skills/INDEX.md", "skills/manifest.json"):
@@ -126,13 +217,8 @@ class SkillsPackageStructureTests(unittest.TestCase):
             with self.subTest(relative=relative):
                 self.assertTrue((ROOT / relative).is_file(), f"missing {relative}")
 
-    def test_catalog_contains_100_plus_skills_and_core_workflows(self):
+    def test_catalog_contains_required_core_workflows(self):
         skill_slugs = {p.name for p in iter_skill_dirs()}
-        self.assertGreaterEqual(
-            len(skill_slugs),
-            MINIMUM_SKILL_COUNT,
-            f"expected at least {MINIMUM_SKILL_COUNT} skill bundles",
-        )
         self.assertTrue(
             REQUIRED_SKILL_SLUGS.issubset(skill_slugs),
             f"missing required skill(s): {sorted(REQUIRED_SKILL_SLUGS - skill_slugs)}",
@@ -167,13 +253,33 @@ class SkillBundleContentTests(unittest.TestCase):
             self.assertTrue(sources, f"{skill_dir.name} declares no source paths")
             for source in sources:
                 with self.subTest(skill=skill_dir.name, source=source):
-                    self.assertTrue((ROOT / source).exists(), f"{skill_dir.name} points at missing file {source}")
+                    resolved = resolve_declared_source(ROOT, source)
+                    self.assertTrue(resolved.is_file())
+
+    def test_declared_source_guard_rejects_absolute_traversal_and_directories(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            safe = root / "docs" / "safe.md"
+            safe.parent.mkdir()
+            safe.write_text("safe\n", encoding="utf-8")
+            self.assertEqual(safe.resolve(), resolve_declared_source(root, "docs/safe.md"))
+            for invalid in (str(safe.resolve()), "../outside.md", "docs"):
+                with self.subTest(source=invalid):
+                    with self.assertRaisesRegex(ValueError, "repository-relative|repository file"):
+                        resolve_declared_source(root, invalid)
 
     def test_no_skill_has_secret_looking_text(self):
         for skill_dir in iter_skill_dirs():
             text = (skill_dir / "SKILL.md").read_text(encoding="utf-8")
             with self.subTest(skill=skill_dir.name):
                 self.assertFalse(discover_ai_sources.has_secret_looking_text(text))
+
+    def test_no_skill_has_generated_expansion_blocks(self):
+        for skill_dir in iter_skill_dirs():
+            relative = (skill_dir / "SKILL.md").relative_to(ROOT).as_posix()
+            text = (skill_dir / "SKILL.md").read_text(encoding="utf-8")
+            with self.subTest(skill=skill_dir.name):
+                self.assertEqual([], mechanical_research_expansion.audit_text(relative, text))
 
     def test_no_skill_uses_the_banned_hardware_phrase(self):
         for skill_dir in iter_skill_dirs():
@@ -201,10 +307,13 @@ class SkillBundleContentTests(unittest.TestCase):
 class SkillManifestAndIndexTests(unittest.TestCase):
     def test_manifest_matches_skill_directories_exactly(self):
         manifest = load_manifest()
-        manifest_slugs = {entry["slug"] for entry in manifest["skills"]}
-        directory_slugs = {p.name for p in iter_skill_dirs()}
-
-        self.assertEqual(manifest_slugs, directory_slugs, "skills/manifest.json is out of sync with skills/")
+        manifest_slug_sequence = [entry["slug"] for entry in manifest["skills"]]
+        self.assertEqual([], duplicate_values(manifest_slug_sequence), "duplicate manifest skill slug")
+        directory_slug_sequence = [p.name for p in iter_skill_dirs()]
+        self.assertTrue(
+            ordered_sequences_match(sorted(manifest_slug_sequence), directory_slug_sequence),
+            "skills/manifest.json is out of sync with skills/",
+        )
 
     def test_manifest_entries_have_required_fields(self):
         manifest = load_manifest()
@@ -216,12 +325,78 @@ class SkillManifestAndIndexTests(unittest.TestCase):
                 self.assertIsInstance(entry["source"], list)
                 self.assertTrue(entry["source"])
 
-    def test_index_lists_every_skill(self):
+    def test_index_manifest_and_directories_have_exact_unique_skill_slugs(self):
         index_text = (SKILLS_DIR / "INDEX.md").read_text(encoding="utf-8")
         manifest = load_manifest()
+        index_slug_sequence = parse_index_slugs(index_text)
+        manifest_slug_sequence = [entry["slug"] for entry in manifest["skills"]]
+        directory_slug_sequence = [path.name for path in iter_skill_dirs()]
+        self.assertEqual([], duplicate_values(index_slug_sequence), "duplicate index skill slug")
+        self.assertEqual([], duplicate_values(manifest_slug_sequence), "duplicate manifest skill slug")
+        self.assertTrue(ordered_sequences_match(index_slug_sequence, manifest_slug_sequence))
+        self.assertTrue(ordered_sequences_match(sorted(manifest_slug_sequence), directory_slug_sequence))
+
+    def test_ordered_catalog_guard_detects_reordered_manifest_or_index(self):
+        canonical = ["first", "second"]
+        self.assertTrue(ordered_sequences_match(canonical, list(canonical)))
+        self.assertFalse(ordered_sequences_match(canonical, list(reversed(canonical))))
+
+    def test_duplicate_helpers_reject_manifest_and_canonical_index_duplicates(self):
+        self.assertEqual(["dup"], duplicate_values(["dup", "unique", "dup"]))
+        duplicate_index = (
+            "| `dup` | guides | First row. | `docs/one.md` |\n"
+            "| `dup` | guides | Second row. | `docs/two.md` |\n"
+        )
+        self.assertEqual(["dup", "dup"], parse_index_slugs(duplicate_index))
+        self.assertEqual(["dup"], duplicate_values(parse_index_slugs(duplicate_index)))
+        with self.assertRaisesRegex(AssertionError, "noncanonical skill index row"):
+            parse_index_slugs("| `broken` | missing cells |\n")
+
+    def test_manifest_source_guard_rejects_unsafe_or_nonregular_sources(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            subprocess.run(["git", "init", str(root)], check=True, capture_output=True)
+            subprocess.run(["git", "-C", str(root), "config", "user.name", "Skill Test"], check=True)
+            subprocess.run(
+                ["git", "-C", str(root), "config", "user.email", "skill-test@example.invalid"],
+                check=True,
+            )
+            safe = root / "docs" / "safe.md"
+            safe.parent.mkdir()
+            safe.write_text("safe\n", encoding="utf-8")
+            subprocess.run(["git", "-C", str(root), "add", "docs/safe.md"], check=True)
+            subprocess.run(["git", "-C", str(root), "commit", "-m", "fixture"], check=True, capture_output=True)
+            entries = git_tree_entries(root)
+
+            committed_source_blob(root, "docs/safe.md", entries)
+            for invalid in (str(safe.resolve()), "../outside.md", "missing.md", "docs"):
+                with self.subTest(source=invalid):
+                    with self.assertRaises(ValueError):
+                        committed_source_blob(root, invalid, entries)
+
+            nonregular = dict(entries)
+            nonregular["docs/safe.md"] = {**entries["docs/safe.md"], "mode": "120000"}
+            with self.assertRaisesRegex(ValueError, "regular Git blob"):
+                committed_source_blob(root, "docs/safe.md", nonregular)
+
+    def test_manifest_sources_must_match_skill_frontmatter_in_order(self):
+        manifest_sources = ["docs/one.md", "docs/two.md"]
+        self.assertTrue(ordered_sequences_match(manifest_sources, list(manifest_sources)))
+        self.assertFalse(ordered_sequences_match(manifest_sources, list(reversed(manifest_sources))))
+        self.assertFalse(ordered_sequences_match(manifest_sources, ["docs/other.md"]))
+
+    def test_every_manifest_source_is_an_exact_head_blob_and_matches_frontmatter(self):
+        manifest = load_manifest()
+        entries = git_tree_entries(ROOT)
         for entry in manifest["skills"]:
+            skill_text = (SKILLS_DIR / entry["slug"] / "SKILL.md").read_text(encoding="utf-8")
+            frontmatter, _ = parse_frontmatter(skill_text)
             with self.subTest(slug=entry["slug"]):
-                self.assertIn(entry["slug"], index_text, f"{entry['slug']} missing from skills/INDEX.md")
+                self.assertTrue(ordered_sequences_match(entry["source"], frontmatter["source"]))
+            for source in entry["source"]:
+                with self.subTest(slug=entry["slug"], source=source):
+                    blob = committed_source_blob(ROOT, source, entries)
+                    self.assertEqual(entries[source]["sha256"], hashlib.sha256(blob).hexdigest())
 
 
 class SkillInstallerBehaviorTests(unittest.TestCase):
@@ -346,12 +521,3 @@ class SkillInstallerBehaviorTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
-# RESEARCH-GRADE-EXPANSION:BEGIN
-# Research-grade maintenance notes:
-# - Role: repository regression test.
-# - Review this file for clear inputs, outputs, side effects, and failure behavior.
-# - Keep examples public-safe and repository-relative; avoid secrets or private paths.
-# - When behavior changes, update adjacent tests, docs, and changelog evidence.
-# - Prefer deterministic, reviewable operations over hidden or networked side effects.
-# RESEARCH-GRADE-EXPANSION:END

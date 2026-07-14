@@ -72,7 +72,7 @@ Run a broader review before a release or workshop.
 | Area | Review |
 | --- | --- |
 | README | Still explains purpose, audience, start path, workflows, safety, validation, package, and maintenance. |
-| Prompting OS | File count, byte count, shortest file size, required modules, package manifest. |
+| Prompting OS | Required modules, examples, failures, source identity, and package parity. |
 | Prompt templates | Required sections present and examples still match repository checks. |
 | Tool docs | Fast-changing claims are conservative or marked for official verification. |
 | Automation docs | Allowed files, forbidden files, dry-run/apply behavior, rollback, and failure modes are clear. |
@@ -100,14 +100,13 @@ Review prompt changes with at least one normal case and one failure case.
 
 ## Prompting OS Package Maintenance
 
-The package should stay substantial. Maintain these expectations:
+Maintain these package contracts:
 
-- At least 35 Markdown files.
-- At least 300 KB of Markdown payload.
 - Required numbered modules are present.
-- Master template and rubric remain non-trivial.
-- Short modules are intentional indexes, schemas, or visual companions.
+- Master template and rubric preserve their named behavior sections.
+- Worked example, failure case, and verification command remain present.
 - Package manifest uses relative paths.
+- Committed source, manifest, and archive paths match.
 - Exclusions protect caches, archives, private-looking files, `.env` files,
   and oversized files.
 
@@ -191,7 +190,7 @@ Evidence:
 - Added Prompting OS modules 24-32.
 - Updated README and package index.
 - Ran health check, safe autofix check, unit tests, package builder, diff check.
-- Manifest: markdown files, markdown bytes, shortest markdown, ZIP SHA-256.
+- Manifest: source commit, required paths, path parity, ZIP SHA-256.
 - Public-safety scan: private paths and secret patterns.
 ```
 
@@ -218,29 +217,3 @@ Evidence:
 - [ ] Package manifest is inspected when package changed.
 - [ ] Public-safety searches pass.
 - [ ] Final report names skipped checks and skipped sources.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Prompting OS module** surface. During broad
-maintenance, reviewers should treat `docs/prompting-os/31-workbench-maintainer-runbook.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `31 workbench maintainer runbook` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

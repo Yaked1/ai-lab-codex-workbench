@@ -4,7 +4,7 @@ Prompting OS is useful only if it stays maintained. A prompt package can become
 misleading when product behavior changes, source links rot, prompt examples get
 copied without review, or release artifacts stop matching the repository.
 
-This manual defines how to maintain a public-safe, substantial prompt package.
+This manual defines how to maintain a public-safe, verifiable prompt package.
 
 ## Maintenance Surfaces
 
@@ -60,29 +60,12 @@ Confirm:
 - File hashes are present.
 - Required modules are included.
 - Private-looking files are excluded.
-- Markdown payload meets depth targets.
+- Worked examples, failure behavior, and verification commands remain usable.
 
-## Package Depth Policy
+## Package Behavior Policy
 
-The package should be broad and deep enough to study offline. Current tests
-should enforce:
-
-- A minimum Markdown file count.
-- A minimum count of substantial Markdown files.
-- A minimum total Markdown byte count.
-- Required production, security, evaluation, benchmark, template, and rubric
-  files.
-
-Do not satisfy these tests with filler. Add useful technical material:
-
-- Procedures.
-- Decision tables.
-- Examples.
-- Failure modes.
-- Checklists.
-- Rubrics.
-- Package evidence.
-- Source-policy notes.
+Tests enforce named artifacts, worked examples, failure behavior, executable
+verification, row-level source identity, and commit-exact package parity.
 
 ## Changelog Discipline
 
@@ -148,7 +131,7 @@ When changing package source:
 - Run package tests.
 - Build package.
 - Inspect manifest.
-- Compare file count and Markdown payload.
+- Compare committed source, manifest, and archive paths.
 - Confirm required modules.
 - Confirm README/index links.
 - Confirm changelog.
@@ -183,29 +166,3 @@ Do not silently delete public docs without a note unless the content is unsafe.
 
 Maintenance is part of prompt engineering. A prompt package without tests,
 source policy, release notes, and package manifests is not a durable artifact.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Prompting OS module** surface. During broad
-maintenance, reviewers should treat `docs/prompting-os/15-maintenance-and-release-manual.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `15 maintenance and release manual` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

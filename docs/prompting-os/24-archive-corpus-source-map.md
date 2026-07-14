@@ -83,11 +83,11 @@ The source corpus encouraged this package to expand in specific ways.
 | Pattern | Why it matters | Local implementation |
 | --- | --- | --- |
 | Multiple indexes | Readers need entry points by role and task, not one linear document. | Root README, Prompting OS README, guide README, release docs, and offline site cross-link each other. |
-| Long technical modules | Thin docs cannot teach repeatable prompting. | Prompting OS files are required to stay substantial through tests. |
+| Behavior-focused modules | Readers need procedures, examples, failures, and checks. | Tests preserve those bounded surfaces. |
 | Tool boundary sections | Agent and browser tooling can touch files, pages, commands, and accounts. | Agent, RAG/tool, permission, and safety modules define allowed actions and verification. |
 | Package manifests | Release artifacts need reviewable evidence. | The Prompting OS package writes a manifest with relative paths, sizes, and SHA-256 hashes. |
 | Release notes | Users need to know why a snapshot changed. | Changelog entries describe documentation expansion, package gates, and public-safety changes. |
-| Test READMEs and rubrics | Human docs still need objective gates. | Unit tests enforce README depth, package payload, required modules, and prompt-template sections. |
+| Test READMEs and rubrics | Human docs still need objective gates. | Unit tests enforce named paths, behavior, evidence, parity, and prompt-template sections. |
 | Public-safe source policy | Prompting repositories often mix official, community, inferred, and unsafe material. | Source status labels keep structural inspiration separate from direct claims. |
 | Troubleshooting tables | Beginners recover faster when failures are named. | Guides include failure modes, checks, and repair paths. |
 
@@ -157,9 +157,8 @@ The archive scan produced the following translation rules.
    claims, data, or examples.
 
 6. Tests should defend the documentation promise.
-   If the repository promises a substantial Prompting OS, tests should fail
-   when the package becomes too small, required modules disappear, or templates
-   lose required sections.
+   Tests should fail when named modules disappear or examples, failure behavior,
+   verification, source identity, or package parity drift.
 
 ## Audit Trail Template
 
@@ -204,34 +203,8 @@ Before closing a corpus-inspired expansion:
 - [ ] No local archive path appears in public repository files.
 - [ ] No leaked prompt text or private source text appears in the docs.
 - [ ] New docs are original and tied to this workbench's audience.
-- [ ] Package tests enforce the new depth promise.
+- [ ] Package tests enforce the named behavior and evidence promise.
 - [ ] Release docs explain how to inspect the package manifest.
 - [ ] Changelog records user-visible expansion.
 - [ ] Public-safety scans cover secrets, private paths, and unsupported claims.
 - [ ] The final report distinguishes verified evidence from skipped sources.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Prompting OS module** surface. During broad
-maintenance, reviewers should treat `docs/prompting-os/24-archive-corpus-source-map.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `24 archive corpus source map` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: AI Prompting and Coding Agent Workbench
+message: Please cite this repository using the metadata below.
+type: software
+authors:
+  - family-names: Yaked1
+repository-code: https://github.com/Yaked1/ai-lab-codex-workbench
+url: https://yaked1.github.io/ai-lab-codex-workbench/
+license: MIT
+version: 0.1.0

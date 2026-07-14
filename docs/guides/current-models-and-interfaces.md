@@ -128,12 +128,16 @@ and coding work. That positioning is a vendor claim.
 | Claude Code CLI, remote, and desktop | Fable 5 confirmed; the promotion page requires CLI 2.1.170 or later. | `/effort` supports `low`, `medium`, `high`, `xhigh`, `max`, and `auto`. Ultracode is separately documented. |
 | Claude API | `claude-fable-5`. | `low`, `medium`, `high`, `xhigh`, and `max`; `high` is the recommended default. No `auto` or `ultracode` API value. |
 
-Anthropic originally said included promotional access would end July 7. Its
-newer Help Center article extends access through July 12, 2026 at 11:59:59 PM
-PT, for up to 50% of weekly limits on Pro, Max, Team, and eligible premium
-Enterprise seats. After that, Fable remains available through usage credits.
-Free, standard Enterprise, usage-based Enterprise, and API use are not covered
-by the promotion.
+Anthropic originally said included promotional access would end July 7, then
+extended it through July 12. Both dates are superseded. Its
+[current Help Center article](https://support.claude.com/en/articles/15424964-claude-fable-5-promotional-access),
+updated July 13, 2026, extends included promotional access through **July 19,
+2026 at 11:59:59 PM PT** for Pro, Max, Team, and eligible premium Enterprise
+seats. A separate promotion increases Claude Code weekly limits by 50% through
+the same exact deadline. After July 19, Fable is no longer included in
+subscription weekly limits, but the model remains available using usage
+credits. Free, standard Enterprise, usage-based Enterprise, and API use are not
+covered by the included-access promotion.
 
 ### Prompting by Fable effort
 

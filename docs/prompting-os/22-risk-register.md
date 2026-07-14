@@ -12,7 +12,7 @@ work. Use it during design, review, release, and incident response.
 | Unsupported claims | Docs become misleading. | Official-doc verification. |
 | Scope creep | Agent changes unrelated files. | Include/exclude paths. |
 | False success | Agent claims unrun checks passed. | Require command output. |
-| Thin package | ZIP is not useful offline. | Package-depth tests. |
+| Hollow package | Required teaching behavior is missing. | Named artifact, example, failure, verification, and parity tests. |
 | Copied leaked prompts | Legal and safety risk. | Structural-only leak policy. |
 | Dependency creep | Repo gets heavier. | Approval for dependencies. |
 | Stale docs | Product behavior changes. | Mark current claims for verification. |
@@ -48,7 +48,7 @@ Treat these as high risk:
 | Required-file health check | Missing core docs or scripts. |
 | Secret-pattern scan | Private keys and token-shaped strings. |
 | Final-newline check | Basic text hygiene. |
-| Package-depth tests | Thin ZIP regressions. |
+| Behavior and evidence tests | Missing procedures, examples, failures, or verification. |
 | Manifest inspection | Missing files and unsafe paths. |
 | Source policy | Unsafe external content. |
 | Changelog | Untracked user-visible changes. |
@@ -99,16 +99,17 @@ Replace exact claim with a conservative note and link official docs.
 Verification:
 Review source link and date checked.
 
-### Prompt Package Too Thin
+### Prompt Package Lacks Teaching Behavior
 
 Risk:
-The ZIP technically builds but does not teach enough offline.
+The ZIP technically builds but required teaching behavior is absent.
 
 Mitigation:
-Add long technical modules and package-depth tests.
+Preserve named artifacts, procedures, worked examples, failure cases, and
+executable verification.
 
 Verification:
-Build package and inspect manifest byte counts.
+Run behavior/evidence tests and confirm source, manifest, and archive parity.
 
 ### Leaked Prompt Copying
 
@@ -166,7 +167,8 @@ Maintain a comprehensive README with table of contents, workflow, Prompting OS
 map, safety rules, validation commands, and maintainer guidance.
 
 Verification:
-Check README size, headings, links, and tests that enforce minimum depth.
+Check named required sections and reader routes, live links, executable commands,
+and behavior tests.
 
 ### Thin Module Regression
 
@@ -175,11 +177,11 @@ New packaged modules become short stubs that technically exist but do not teach
 a complete concept.
 
 Mitigation:
-Require every packaged Markdown module to exceed a minimum useful size and to
-include procedure, examples, failure modes, or review questions.
+Require each packaged teaching module to include a procedure, worked example,
+failure or counterexample, and executable verification or review question.
 
 Verification:
-Run package-depth tests and inspect the shortest files.
+Run the named behavior and evidence tests for those bounded sections.
 
 ## Risk Closure Criteria
 
@@ -194,29 +196,3 @@ A risk is closed only when:
 
 Most prompt risks are mundane: vague scope, weak checks, stale sources, and
 private data. Catch those before looking for exotic failures.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Prompting OS module** surface. During broad
-maintenance, reviewers should treat `docs/prompting-os/22-risk-register.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `22 risk register` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

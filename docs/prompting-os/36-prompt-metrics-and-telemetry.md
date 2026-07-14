@@ -25,9 +25,8 @@ counts.
 | Metric | Use | Evidence source |
 | --- | --- | --- |
 | Prompt-template section coverage | Ensures reusable prompts remain operational. | Tests over `prompts/**`. |
-| Markdown file count | Ensures package breadth. | Source scan or manifest. |
-| Markdown byte count | Ensures package depth. | Source scan or manifest. |
-| Shortest packaged Markdown size | Catches thin required modules. | Source scan or manifest. |
+| Package inventory counts | Describes an artifact; does not grade quality. | Manifest. |
+| Source/manifest/archive parity | Detects missing, extra, or renamed package paths. | Git tree, manifest, and ZIP listing. |
 | Required module presence | Prevents accidental package omissions. | Health check and package tests. |
 | Secret/private-path matches | Public-safety guard. | Health check and targeted search. |
 | Unit test pass/fail | Regression guard. | `python -m unittest discover -s tests`. |
@@ -147,29 +146,3 @@ If a metric creates bad incentives, pair it with a human review gate.
 - [ ] Prompt metrics include required-section coverage.
 - [ ] RAG metrics include source status and unsupported-claim handling.
 - [ ] Final reports include unverified items, not only success metrics.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **Prompting OS module** surface. During broad
-maintenance, reviewers should treat `docs/prompting-os/36-prompt-metrics-and-telemetry.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `36 prompt metrics and telemetry` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->

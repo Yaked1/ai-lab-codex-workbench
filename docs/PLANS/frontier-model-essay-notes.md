@@ -24,9 +24,12 @@ Checked: 2026-07-11
   xhigh, max, and ultra; Luna exposes low through max.
 - The API exposes none, low, medium, high, xhigh, and max. Multi-agent beta is
   separate from API reasoning effort.
-- Fable 5 promotional included access ends 2026-07-12 at 11:59:59 PM PT. After
-  that it remains available through usage credits. API use is always billed
-  separately.
+- Historical snapshot: the 2026-07-12 Fable deadline recorded here was
+  superseded. Anthropic's [current promotion terms](https://support.claude.com/en/articles/15424964-claude-fable-5-promotional-access),
+  updated July 13, 2026, extend included promotional access through July 19,
+  2026 at 11:59:59 PM PT. A separate 50% Claude Code weekly-limit increase ends
+  at the same time. Afterward Fable remains available using usage credits; API
+  use is always billed separately.
 - Artificial Analysis Coding Agent Index: Sol Max in Codex 80, Terra Max 77,
   Fable Max with fallback in Claude Code 77, Grok 4.5 in Grok Build 76, Luna
   Max 75, and Opus 4.8 Max in Claude Code 73.

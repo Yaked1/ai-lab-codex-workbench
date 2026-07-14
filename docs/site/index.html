@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI Agent Coding Workbench Quick Start</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="search-index.js" defer></script>
+  <script src="search.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -57,10 +59,15 @@
           beginner-friendly AI coding work: define the task, make a branch, prompt an agent, run checks,
           review the diff, and merge only when the result is public-safe.
         </p>
-        <div class="hero-actions">
-          <a class="button" href="agent-workflow.html">Open workflow guide</a>
-          <a class="button" href="prompt-engineering.html">Open prompt patterns</a>
-          <a class="button" href="skills-and-tools.html">Open tool setup</a>
+        <div class="hero-actions" aria-label="Primary routes">
+          <a class="button" href="../../examples/first-reviewed-agent-task/README.md">Run a task</a>
+          <a class="button" href="../prompting-os/00-first-success.md">Learn prompting</a>
+          <a class="button" href="../../CONTRIBUTING.md">Contribute</a>
+        </div>
+        <div class="local-search">
+          <label for="site-search">Search the offline guide index</label>
+          <input id="site-search" type="search" autocomplete="off" placeholder="Try: starter, model, contribution">
+          <ul id="search-results" class="search-results" hidden aria-live="polite"></ul>
         </div>
       </header>
 
@@ -162,6 +169,11 @@ python scripts/repo_autopilot_status.py</code></pre>
             <a href="skills-and-tools.html">Read setup notes</a>
           </article>
           <article class="card">
+            <h3>Copyable Starter</h3>
+            <p>A small offline task template, safety rules, evaluation rubric, and example.</p>
+            <a href="../../starter/README.md">Open the starter boundary</a>
+          </article>
+          <article class="card">
             <h3>Research Loop</h3>
             <p>Cheap daily discovery, local Codex prompt prep, source labels, dry runs, and PR review.</p>
             <a href="../research/source-policy.md">Read source policy</a>
@@ -246,22 +258,6 @@ python scripts/repo_autopilot_status.py</code></pre>
           Offline-safe page. No external scripts, no analytics, no CDNs, no remote fonts, and no private links.
         </p>
       </footer>
-
-  <!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-  <section class="research-grade-addendum">
-    <h2>Research-Grade Review Notes</h2>
-    <p>This page belongs to the repository's offline static-site asset surface. Keep it
-    offline-safe, public-safe, and useful for a reviewer who opens the file
-    without additional context.</p>
-    <ul>
-      <li>Preserve local-only assets and relative repository links.</li>
-      <li>Avoid trackers, analytics, remote fonts, external scripts, private
-      paths, and account-specific URLs.</li>
-      <li>Make each workflow claim traceable to a guide, prompt, script, test,
-      or explicit verification step.</li>
-    </ul>
-  </section>
-  <!-- RESEARCH-GRADE-EXPANSION:END -->
 
 </main>
   </div>

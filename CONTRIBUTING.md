@@ -2,6 +2,20 @@
 
 This repository uses a small, reviewable workflow. The goal is to teach reliable AI-assisted repository work, not to reward large unreviewed diffs.
 
+## First Contribution
+
+Start with the [first reviewed agent task](examples/first-reviewed-agent-task/README.md),
+then choose an issue whose file scope and acceptance command are explicit. Read
+[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), [SUPPORT.md](SUPPORT.md), and
+[branch policy](docs/maintenance/branch-policy.md) before opening a pull request.
+
+## Branch Names
+
+Use `agent/<topic>`, `codex/<topic>`, or `cleanup/<topic>` for human-reviewed
+work. Automation uses a fresh `autopilot/<run-id>` branch for each run. Branches
+do not merge themselves and are retired only after their disposition is
+recorded and owner-side state is verified.
+
 ## Contribution Principles
 
 - One task per branch.
@@ -28,23 +42,16 @@ This repository uses a small, reviewable workflow. The goal is to teach reliable
 12. Squash merge only after the change is understood.
 13. Update [CHANGELOG.md](CHANGELOG.md) when the change is user-visible.
 
-## Branch Names
-
-Use:
-
-```text
-agent/<short-task-name>
-```
-
-Examples:
+Example branch names:
 
 ```text
 agent/expand-codex-guide
-agent/add-public-safety-checklist
-agent/fix-local-check-docs
+codex/add-public-safety-checklist
+cleanup/fix-local-check-docs
 ```
 
-Avoid branch names that include private project names, account IDs, internal tickets, or sensitive context.
+Avoid branch names that include private project names, account IDs, internal
+tickets, or sensitive context.
 
 ## Local Checks
 
@@ -202,29 +209,3 @@ Do not claim broad outcomes in commit messages unless the diff proves them.
 - [ ] Every touched file is materially more useful, not only longer.
 - [ ] Changelog was updated when needed.
 - [ ] PR can be squash merged cleanly.
-<!-- RESEARCH-GRADE-EXPANSION:BEGIN -->
-## Research-Grade Review Addendum
-
-This file is part of the repository's **top-level repository policy document** surface. During broad
-maintenance, reviewers should treat `CONTRIBUTING.md` as a contract-bearing artifact
-rather than passive prose. The file should keep a clear audience, explicit
-scope, concrete operating steps, public-safety boundaries, and verification
-evidence that a maintainer can inspect without trusting an agent summary.
-
-Research-grade review questions for this file:
-
-- Does `CONTRIBUTING` state what decision, workflow, or reusable behavior it supports?
-- Are included scope, excluded scope, and unsafe actions clear enough for an
-  agent or contributor to follow?
-- Are examples public-safe, repository-relative, and free of private data?
-- Are fast-changing product or platform claims phrased conservatively or marked
-  for official-doc verification?
-- Does the file point to the next artifact a reader should inspect: a command,
-  template, test, manifest, package, or deeper guide?
-- Could a reviewer cite this file in a PR review and know what evidence proves
-  the work is complete?
-
-Keep future edits focused on stronger evidence, clearer failure modes, better
-navigation, and safer automation boundaries. Do not add length unless the new
-material makes the repository easier to operate, teach, audit, or recover.
-<!-- RESEARCH-GRADE-EXPANSION:END -->
