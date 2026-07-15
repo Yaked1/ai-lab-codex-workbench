@@ -1,7 +1,19 @@
 # Sample Codex Task
 
-The maintained beginner exercise is
-[first-reviewed-agent-task](first-reviewed-agent-task/README.md).
+## Objective
 
-It asks an agent to review a bounded note, produce one report, and pass one
-local verification command. Use it before attempting repository edits.
+Add a short section to `README.md` explaining how to run the local checks.
+
+## Success criteria
+
+- README includes the exact PowerShell commands.
+- No unrelated files changed.
+- Safe autofix check passes.
+
+## Prompt to Codex
+
+Use `prompts/codex/docs-update.goal.md` and replace `[Topic.]` with:
+
+```text
+how to run local checks before opening a pull request
+```

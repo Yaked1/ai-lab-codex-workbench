@@ -53,7 +53,6 @@ def make_package_fixture(root):
     write_file(root, "tests/test_helper.py", "def test_helper():\n    assert True\n")
     write_file(root, "skills/example/SKILL.md", "# Skill\n")
     write_file(root, "examples/quickstart.md", "# Example\n")
-    write_file(root, "starter/README.md", "# Starter\n")
     write_file(root, ".github/workflows/release-package.yml", "name: Release Package\n")
     write_file(root, ".github/codex/prompts/daily-guide-curator.md", "Prompt\n")
     return commit_all(root)
@@ -96,7 +95,6 @@ class BuildReleasePackageTests(unittest.TestCase):
 
             self.assertIn("skills/example/SKILL.md", extracted)
             self.assertIn("examples/quickstart.md", extracted)
-            self.assertIn("starter/README.md", extracted)
             self.assertNotIn("docs/private-notes.md", extracted)
             self.assertNotIn("docs/cache.zip", extracted)
 

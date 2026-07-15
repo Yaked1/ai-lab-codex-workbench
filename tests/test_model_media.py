@@ -8,33 +8,13 @@ import xml.etree.ElementTree as element_tree
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 ASSET_DIR = REPO_ROOT / "docs" / "assets" / "model-guides"
-FRONTIER_SUBJECT_FILES = (
-    "docs/guides/frontier-overview-and-selection.md",
-    "docs/guides/frontier-openai-and-anthropic.md",
-    "docs/guides/frontier-open-and-specialist-models.md",
-    "docs/guides/frontier-evaluation-and-deployment.md",
-    "docs/guides/frontier-google-and-media.md",
-    "docs/guides/frontier-sources-and-method.md",
-)
-
-DEF_FRONTIER_LANDING = "docs/guides/frontier-models-and-multimodal-systems-2026.md"
-
-def frontier_corpus() -> str:
-    return "\n".join(
-        (REPO_ROOT / relative).read_text(encoding="utf-8")
-        for relative in (DEF_FRONTIER_LANDING, *FRONTIER_SUBJECT_FILES)
-    )
-
-
 READER_FACING_MODEL_FILES = {
     "README.md",
     "docs/PLANS/model-media-notes.md",
     "docs/guides/current-models-and-interfaces.md",
     "docs/guides/fable-vs-sol.md",
     "docs/guides/live-audio-and-translation.md",
-    "docs/guides/frontier-openai-and-anthropic.md",
-    "docs/guides/frontier-open-and-specialist-models.md",
-    "docs/guides/frontier-google-and-media.md",
+    "docs/guides/frontier-models-and-multimodal-systems-2026.md",
     "docs/research/current-model-claim-ledger-2026-07-11.md",
     "docs/research/model-media-provenance-2026-07-11.md",
 }
@@ -76,7 +56,12 @@ class ModelMediaTests(unittest.TestCase):
             content = (REPO_ROOT / relative_path).read_text(encoding="utf-8")
             self.assertIn(f"]({link})", content, relative_path)
 
-        essay = frontier_corpus()
+        essay = (
+            REPO_ROOT
+            / "docs"
+            / "guides"
+            / "frontier-models-and-multimodal-systems-2026.md"
+        ).read_text(encoding="utf-8")
         for link in {
             "../assets/model-guides/gpt-5-6-effort-surfaces.svg",
             "../assets/model-guides/aa-frontier-benchmark-2026-07-11.svg",
@@ -106,14 +91,10 @@ class ModelMediaTests(unittest.TestCase):
             "docs/guides/live-audio-and-translation.md": {
                 "QjuuTHJKxWI": "launch-discussion"
             },
-            "docs/guides/frontier-openai-and-anthropic.md": {
+            "docs/guides/frontier-models-and-multimodal-systems-2026.md": {
                 "xDXX2M5DrO0": "gpt-5-6-family-test",
-            },
-            "docs/guides/frontier-open-and-specialist-models.md": {
                 "5J6HCDEkg64": "grok-4-5-test",
                 "XCYYDhG9zKw": "muse-spark-test",
-            },
-            "docs/guides/frontier-google-and-media.md": {
                 "TdN-YdFLWvY": "gemini-3-5-flash-test",
                 "FDhx79PU5KQ": "image-model-comparison",
                 "sWkGomJ3TLI": "gpt-image-2-official",
@@ -235,7 +216,12 @@ class ModelMediaTests(unittest.TestCase):
 
     def test_research_pack_is_linked_from_essay_and_provenance(self) -> None:
         link = "video-research-pack-2026-07-11.md"
-        essay = frontier_corpus()
+        essay = (
+            REPO_ROOT
+            / "docs"
+            / "guides"
+            / "frontier-models-and-multimodal-systems-2026.md"
+        ).read_text(encoding="utf-8")
         provenance = (
             REPO_ROOT
             / "docs"
@@ -246,7 +232,12 @@ class ModelMediaTests(unittest.TestCase):
         self.assertIn(link, provenance)
 
     def test_benchmark_and_model_names_are_not_conflated(self) -> None:
-        essay = frontier_corpus()
+        essay = (
+            REPO_ROOT
+            / "docs"
+            / "guides"
+            / "frontier-models-and-multimodal-systems-2026.md"
+        ).read_text(encoding="utf-8")
         pack = (
             REPO_ROOT
             / "docs"
@@ -292,7 +283,12 @@ class ModelMediaTests(unittest.TestCase):
         )
 
     def test_frontier_essay_keeps_product_and_benchmark_corrections(self) -> None:
-        essay = frontier_corpus()
+        essay = (
+            REPO_ROOT
+            / "docs"
+            / "guides"
+            / "frontier-models-and-multimodal-systems-2026.md"
+        ).read_text(encoding="utf-8")
 
         expected_sections = {
             "## GPT-5.6 Is a Family, Not a Ladder of Nicknames",

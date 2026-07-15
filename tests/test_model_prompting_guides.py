@@ -101,11 +101,14 @@ def read(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
+<<<<<<< Updated upstream
 
 def frontier_corpus() -> str:
     return "\n".join(read(ROOT / "docs" / "guides" / name) for name in FRONTIER_FILES)
 
 
+=======
+>>>>>>> Stashed changes
 def normalize_markdown(text: str) -> str:
     """Collapse Markdown wrapping without changing claim text."""
     return " ".join(text.split())
@@ -223,9 +226,17 @@ class ModelPromptingPackTests(unittest.TestCase):
                 continue
             text = read(PACK / name)
             with self.subTest(name=name):
+<<<<<<< Updated upstream
                 for heading in forbidden:
                     self.assertNotIn(heading, text)
                 self.assertIn("shared-execution-contract.md", text)
+=======
+                for heading in PRECISION_HEADINGS:
+                    self.assertIn(heading, text, f"{name} missing {heading}")
+                for field in PRECISION_FIELDS:
+                    self.assertIn(field, text, f"{name} missing {field}")
+
+>>>>>>> Stashed changes
     def test_precision_contract_identifies_unknowns_and_evidence(self):
         text = read(PACK / "shared-execution-contract.md")
         self.assertIn("Unknown or unverified:", text)
@@ -317,8 +328,13 @@ class ModelPromptingPackTests(unittest.TestCase):
             "README.md": "## Current Model Guides",
             "docs/PLANS/current.md": "## Decisions",
             "docs/guides/current-models-and-interfaces.md": "## Claude Fable 5",
+<<<<<<< Updated upstream
             "docs/guides/frontier-openai-and-anthropic.md": "## Claude Fable 5 and Claude Opus 4.8",
             "docs/guides/model-prompting/claude-fable-5-prompting.md": "# Claude Fable 5 Prompting Guide",
+=======
+            "docs/guides/frontier-models-and-multimodal-systems-2026.md": "## Claude Fable 5 and Claude Opus 4.8",
+            "docs/guides/model-prompting/claude-fable-5-prompting.md": "### Model and version identity",
+>>>>>>> Stashed changes
             "docs/guides/model-prompting/sources-and-observations.md": "## Anthropic and Claude",
             "docs/guides/model-prompting/surface-and-effort-map.md": "### Fable 5 subscription cutoff",
         }
@@ -333,8 +349,13 @@ class ModelPromptingPackTests(unittest.TestCase):
         sections = {
             "docs/PLANS/current.md": "## Decisions",
             "docs/guides/current-models-and-interfaces.md": "## Claude Fable 5",
+<<<<<<< Updated upstream
             "docs/guides/frontier-openai-and-anthropic.md": "## Claude Fable 5 and Claude Opus 4.8",
             "docs/guides/model-prompting/claude-fable-5-prompting.md": "# Claude Fable 5 Prompting Guide",
+=======
+            "docs/guides/frontier-models-and-multimodal-systems-2026.md": "## Claude Fable 5 and Claude Opus 4.8",
+            "docs/guides/model-prompting/claude-fable-5-prompting.md": "### Model and version identity",
+>>>>>>> Stashed changes
             "docs/guides/model-prompting/sources-and-observations.md": "## Anthropic and Claude",
             "docs/guides/model-prompting/surface-and-effort-map.md": "### Fable 5 subscription cutoff",
         }
@@ -348,7 +369,16 @@ class ModelPromptingPackTests(unittest.TestCase):
                 self.assertIn("usage credits", section)
 
     def test_fable_access_update_does_not_infer_api_availability(self):
+<<<<<<< Updated upstream
         essay = frontier_corpus()
+=======
+        essay = read(
+            ROOT
+            / "docs"
+            / "guides"
+            / "frontier-models-and-multimodal-systems-2026.md"
+        )
+>>>>>>> Stashed changes
         section = markdown_section(
             essay, "### The July 19 Subscription Access Update"
         )

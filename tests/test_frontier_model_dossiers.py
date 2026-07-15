@@ -42,6 +42,31 @@ EPISTEMIC_BOUNDARY_PATTERN = re.compile(
     r"trade \w+ for)\b"
 )
 
+CORE_DOSSIER_PREFIXES = {
+    "GPT-5.6 Sol",
+    "Claude Fable 5",
+    "DeepSeek-V4-Pro",
+    "Mistral Small 4",
+    "Gemma 4 12B",
+    "Gemini 3.5 Flash",
+    "GPT-Live-1",
+    "GPT Image 2",
+    "Veo 3.1 Lite Preview",
+    "Gemini Robotics-ER 1.6",
+}
+
+EPISTEMIC_BOUNDARY_PATTERN = re.compile(
+    r"(?i)\b(?:undisclosed|(?:does|do) not disclose|not disclosed|"
+    r"(?:does|do) not publish|not published|no public|unknown|"
+    r"does not (?:by itself )?establish|not established|not inferred|"
+    r"does not imply|"
+    r"(?:does|do) not guarantee|not guaranteed|(?:does|do) not support|"
+    r"unsupported|explicit constraint|failure (?:mode|case|boundary)|cannot prove|does not prove|"
+    r"areas to verify|remain incomplete|require explicit current documentation|"
+    r"not evidence|not identical|unless documented|should not be used to promise|"
+    r"trade \w+ for)\b"
+)
+
 
 def guide_text() -> str:
     return "\n".join((GUIDES / name).read_text(encoding="utf-8") for name in FRONTIER_PAGES)
