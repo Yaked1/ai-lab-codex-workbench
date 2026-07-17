@@ -43,6 +43,26 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run the local PowerShell gate
+      - name: Repository health check
         shell: pwsh
-        run: pwsh -NoProfile -File scripts/local_check.ps1
+        run: python scripts/repo_health_check.py --ci
+
+      - name: Safe autofix check
+        shell: pwsh
+        run: python scripts/safe_autofix.py --check
+
+      - name: Run Windows tests file by file
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $testFiles = Get-ChildItem tests -Filter "test_*.py" | Sort-Object Name
+          foreach ($file in $testFiles) {
+            $module = "tests." + [System.IO.Path]::GetFileNameWithoutExtension($file.Name)
+            Write-Host "=== Running $module ==="
+            python -m unittest $module -v
+            if ($LASTEXITCODE -ne 0) {
+              Write-Host "::error title=Windows test failure::$module failed"
+              exit $LASTEXITCODE
+            }
+          }
+          Write-Host "All Windows test files passed individually."

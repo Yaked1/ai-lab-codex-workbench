@@ -1,30 +1,38 @@
 # Pull Request
 
-## Summary
+## Outcome
 
--
+Describe the observable result and the user or maintainer it helps.
 
-## Why this change is needed
+## Scope
 
--
+- Included files or areas:
+- Explicitly excluded files or actions:
+- Related issue:
 
-## Files changed
+## Evidence
 
--
+- Commands run and exact results:
+- Source or claim verification, when applicable:
+- Screenshots or rendered output, when applicable:
+- Skipped checks and reason:
 
-## Checks run
+## Safety and review
+
+- [ ] I read `AGENTS.md` and preserved unrelated work.
+- [ ] No secrets, credentials, private paths, or private links were added.
+- [ ] No unapproved destructive action, dependency change, workflow change, or publication occurred.
+- [ ] Current product claims are dated and sourced.
+- [ ] The final diff contains only files mapped to this PR's scope.
+- [ ] Changelog and documentation links were updated when reader-visible behavior changed.
+
+## Checks
 
 - [ ] `python scripts/repo_health_check.py`
 - [ ] `python scripts/safe_autofix.py --check`
 - [ ] `python -m unittest discover -s tests`
+- [ ] `git diff --check`
 
-## Safety review
+## Reviewer focus
 
-- [ ] No secrets or credentials added.
-- [ ] No unrelated files changed.
-- [ ] No destructive commands required.
-- [ ] No heavy dependencies added.
-
-## Notes for reviewer
-
--
+Name the riskiest assumption, file, or behavior the reviewer should inspect.

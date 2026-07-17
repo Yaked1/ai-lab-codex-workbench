@@ -18,16 +18,19 @@ The package builder uses a small allowlist. It includes:
 | Path | Purpose |
 | --- | --- |
 | `README.md` | Project overview and quick start. |
-| `AGENTS.md` | Local agent operating rules. |
-| `CONTRIBUTING.md` | Contribution workflow. |
+| `AGENTS.md` and `CLAUDE.md` | Authoritative local rules and a thin Claude adapter. |
+| `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, and `SUPPORT.md` | Contribution, conduct, and support boundaries. |
 | `SECURITY.md` | Public repository safety policy. |
+| `CITATION.cff` | Citation metadata. |
 | `CHANGELOG.md` | User-visible change history. |
 | `LICENSE` | License terms. |
 | `docs/` | Markdown guides and offline HTML docs. |
 | `prompts/` | Prompt templates. |
 | `scripts/` | Standard-library helper scripts. |
 | `tests/` | Unit tests for local scripts. |
-| `.github/workflows/` | Reviewable GitHub Actions workflows. |
+| `skills/` and `examples/` | Installable wrappers and worked examples. |
+| `starter/` | Minimal copyable task, safety, evaluation, and example pack. |
+| `.github/workflows/` and `.github/codex/prompts/` | Reviewable automation and Codex prompt files. |
 
 The package excludes `.git/`, `dist/`, Python caches, virtual environments, `node_modules/`, `.env`, `.env.*`, secret or private file names, existing archives, logs, temporary files, and large binary or model files.
 
@@ -57,6 +60,25 @@ Expand-Archive .\dist\ai-agent-coding-workbench-v0.1.0.zip .\dist\inspect-v0.1.0
 Get-ChildItem .\dist\inspect-v0.1.0
 Get-Content .\dist\package-manifest-v0.1.0.json -TotalCount 80
 ```
+
+
+## Live GitHub Settings Are a Separate Gate
+
+Repository files can define workflows and intended policy, but they cannot
+prove that the default branch, rulesets, required checks, Actions permissions,
+environments, Pages, Discussions, security features, or tag protections are
+currently configured on GitHub.
+
+Before publishing, an owner must complete the
+[GitHub owner settings and ref-retirement checklist](../maintenance/github-owner-settings.md)
+and retain dated UI or read-only API evidence. Record unavailable controls as
+`not verified`. Do not convert a policy statement into a claim about live
+protection merely because both contain the word "required."
+
+Historical branch cleanup is not part of the release workflow. The owner
+checklist records `keep`, `archive`, `prune`, or `delete after verification`
+dispositions, but this runbook intentionally performs no destructive ref
+action.
 
 ## Manual GitHub Release
 
@@ -115,6 +137,8 @@ Before triggering a release:
 - [ ] No npm, PyPI, Docker, binary package, or GitHub Packages publishing has been added without a separate explicit decision.
 - [ ] Source-inspired prompting content has a source map, original wording, anti-slop review, and no copied prompt dumps.
 - [ ] Automation pages still describe candidate/source preparation only; they do not imply unattended publication of AI-written guides.
+- [ ] Owner-only GitHub settings were reviewed using [the evidence checklist](../maintenance/github-owner-settings.md), and every unverified control is stated as unverified rather than inferred from repository files.
+- [ ] Historical branch dispositions were reviewed without hiding destructive ref cleanup inside release work.
 
 ## Source-Inspired Release Review
 
@@ -178,11 +202,11 @@ dist/package-manifest-<version>.json
 
 `scripts/build_release_package.py` builds this from the exact Git `HEAD`
 selected at build start, using a fixed allowlist
-(`README.md`, `AGENTS.md`, `CONTRIBUTING.md`, `SECURITY.md`, `CHANGELOG.md`,
+(`README.md`, `AGENTS.md`, `CLAUDE.md`, `CONTRIBUTING.md`, `SECURITY.md`,
+`CODE_OF_CONDUCT.md`, `SUPPORT.md`, `CITATION.cff`, `CHANGELOG.md`, and
 `LICENSE`, plus the `data/`, `docs/`, `prompts/`, `scripts/`, `tests/`,
-`skills/`, and `examples/`
-directories and the `.github/workflows/` and `.github/codex/prompts/`
-subdirectories), and it excludes caches, virtual environments, existing
+`skills/`, `examples/`, and `starter/` directories and the
+`.github/workflows/` and `.github/codex/prompts/` subdirectories), and it excludes caches, virtual environments, existing
 archives, `.env` files, secret- or private-named files, and any file over
 5 MB. The ZIP uses a fixed internal timestamp so rebuilding it from the same
 source tree is deterministic. The manifest records that selected commit as
@@ -311,7 +335,20 @@ git push origin v0.1.0
 Tagging locally does not publish anything by itself. It only creates a
 reference point; the GitHub Release is a separate, manual step next.
 
-### Step 10: Trigger the manual release workflow
+
+### Step 10: Verify owner-only GitHub settings
+
+Complete the dated checklist in
+[docs/maintenance/github-owner-settings.md](../maintenance/github-owner-settings.md).
+At minimum, verify or explicitly mark `not verified` for the default branch,
+active ruleset or branch protection, required checks, Actions permissions,
+publishing environments, tag protection, Pages state, and release target.
+
+Do not delete stale branches as part of this step. Record their disposition and
+perform any later cleanup as a separately approved owner action after checking
+worktrees, open pull requests, unmerged commits, and external references.
+
+### Step 11: Trigger the manual release workflow
 
 ```powershell
 gh workflow run release-package.yml -f version=v0.1.0 -f prerelease=false
@@ -326,7 +363,7 @@ tests inside CI, rebuilds the package, and refuses to proceed if
 `docs/releases/v0.1.0.md` is missing or if a release for that tag already
 exists. It never runs on a schedule and never runs on a plain push.
 
-### Step 11: Review the published release
+### Step 12: Review the published release
 
 ```powershell
 gh release view v0.1.0 --web
@@ -354,7 +391,7 @@ edit:
 3. **If the shared artifact contains a real secret or credential**, rotate
    that credential immediately, independent of anything else in this list.
    A fixed release does not undo an exposed credential.
-4. **Cut a corrected patch release** following Steps 1 through 11 above
+4. **Cut a corrected patch release** following Steps 1 through 12 above
    with the next patch version (for example `v0.1.1`), and reference the
    problem plainly in that release's Summary and Known Limitations
    sections.

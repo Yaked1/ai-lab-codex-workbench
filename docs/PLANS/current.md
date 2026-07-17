@@ -50,12 +50,12 @@ The detailed implementation contract is the
 - [x] Task 8: Add Windows runtime CI and immutable action references.
 - [x] Task 9: Remove mechanical expansion safely.
 - [x] Task 10: Replace volume gates with behavior and source contracts.
-- [ ] Task 11: Reduce model-guide duplication and split the frontier reference.
-- [ ] Task 12: Create a real first-success path and simplify Prompting OS.
-- [ ] Task 13: Align governance and contributor surfaces.
-- [ ] Task 14: Improve the static discovery surface and starter distribution.
-- [ ] Task 15: Record owner-only GitHub actions and release readiness.
-- [ ] Task 16: Full review, verification, and branch finish.
+- [x] Task 11: Reduce model-guide duplication and split the frontier reference.
+- [x] Task 12: Create a real first-success path and simplify Prompting OS.
+- [x] Task 13: Align governance and contributor surfaces.
+- [x] Task 14: Improve the static discovery surface and starter distribution.
+- [x] Task 15: Record owner-only GitHub actions and release readiness.
+- [x] Task 16: Full review, verification, and branch finish.
 
 ## Validation
 
@@ -73,12 +73,21 @@ The detailed implementation contract is the
 - 2026-07-13: Task 10 passed its exact six-module suite with 147 tests,
   all repository gates, and a final Luna xhigh verdict of `SPEC: PASS` and
   `CODE QUALITY: APPROVED`.
+- 2026-07-14: Tasks 11 through 15 completed locally: the frontier guide is
+  split losslessly across six bounded pages, generic model execution policy has
+  one owner, first-success and starter paths are executable, governance and
+  offline discovery are aligned, and owner-only GitHub settings remain
+  evidence-gated with no destructive ref action.
+- 2026-07-14: Task 16 completed. Repository health, safe formatting,
+  whitespace checks, all 256 tests, the executable first-task checker, the main
+  release package, and the focused Prompting OS package pass. Both archives
+  extract cleanly, contain unique safe paths, and match their manifest hashes.
 
 ## Checkpoints
 
 - Branch: `codex/apply-repository-audit-fixes`.
-- Completed: Tasks 1 through 10.
-- Active: Task 11.
+- Completed: Tasks 1 through 16.
+- Active: None. The branch is ready for owner review and optional push.
 - Detailed task definitions remain in the linked 16-task plan.
 
 ## Risks and Open Questions
@@ -90,6 +99,7 @@ The detailed implementation contract is the
 
 ## Final Handoff
 
-Not ready. Complete Tasks 11 through 16, run the full validation set,
-review the final owned diff, and then present the permitted branch disposition
-options without pushing unless explicitly authorized.
+Ready for owner review. The remediation is committed locally and verified.
+No push, publication, ref deletion, or live GitHub settings change was
+performed. Owner-only settings remain `not verified` until dated GitHub UI or
+read-only API evidence is recorded.
