@@ -426,3 +426,46 @@ code {
     grid-template-columns: 1fr;
   }
 }
+
+.local-search {
+  margin-top: 1.5rem;
+  max-width: 44rem;
+}
+
+.local-search label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.45rem;
+}
+
+.local-search input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid currentColor;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: inherit;
+}
+
+.search-results {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid currentColor;
+  border-radius: 0.5rem;
+}
+
+.search-results li {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.65rem 0.8rem;
+}
+
+.search-results li + li {
+  border-top: 1px solid currentColor;
+}
+
+.search-results span {
+  font-size: 0.9rem;
+}
