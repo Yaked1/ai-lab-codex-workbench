@@ -51,6 +51,29 @@ jobs:
         shell: pwsh
         run: python scripts/safe_autofix.py --check
 
-      - name: Unit tests
+      - name: Manifest tests
         shell: pwsh
-        run: python -m unittest discover -s tests
+        continue-on-error: true
+        run: python -m unittest tests.test_repository_manifest -v
+
+      - name: Kimi K3 tests
+        shell: pwsh
+        continue-on-error: true
+        run: python -m unittest tests.test_kimi_k3_frontier -v
+
+      - name: Release package tests
+        shell: pwsh
+        continue-on-error: true
+        run: python -m unittest tests.test_build_release_package -v
+
+      - name: Frontier guide tests
+        shell: pwsh
+        continue-on-error: true
+        run: |
+          python -m unittest tests.test_model_prompting_guides -v
+          python -m unittest tests.test_model_media -v
+          python -m unittest tests.test_frontier_model_dossiers -v
+
+      - name: Full unit suite
+        shell: pwsh
+        run: python -m unittest discover -s tests -v
