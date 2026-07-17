@@ -17,8 +17,11 @@ from typing import NamedTuple
 PACKAGE_NAME = "ai-agent-coding-workbench"
 FIXED_ZIP_TIMESTAMP = (2026, 1, 1, 0, 0, 0)
 MAX_PACKAGE_FILE_BYTES = 5_000_000
-TOP_LEVEL_FILES = ("README.md", "AGENTS.md", "CONTRIBUTING.md", "SECURITY.md", "CHANGELOG.md", "LICENSE")
-PACKAGE_DIRS = ("data", "docs", "prompts", "scripts", "tests", "skills", "examples")
+TOP_LEVEL_FILES = (
+    "README.md", "AGENTS.md", "CLAUDE.md", "CONTRIBUTING.md", "SECURITY.md",
+    "CODE_OF_CONDUCT.md", "SUPPORT.md", "CITATION.cff", "CHANGELOG.md", "LICENSE",
+)
+PACKAGE_DIRS = ("data", "docs", "prompts", "scripts", "tests", "skills", "examples", "starter")
 PACKAGE_SUBDIRS = (PurePosixPath(".github/workflows"), PurePosixPath(".github/codex/prompts"))
 REQUIRED_PACKAGE_PATHS = tuple(PurePosixPath(path) for path in TOP_LEVEL_FILES + PACKAGE_DIRS) + PACKAGE_SUBDIRS
 EXCLUDED_DIR_NAMES = {".git", ".venv", "venv", "node_modules", "__pycache__", ".pytest_cache", ".mypy_cache", ".cache", "dist", "build", "logs", "outputs", "secret", "secrets", "private"}
