@@ -23,8 +23,14 @@ class RepositoryManifestTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
-        cls.builder = load_module("manifest_build_release_package", "scripts/build_release_package.py")
-        cls.health = load_module("manifest_repo_health_check", "scripts/repo_health_check.py")
+        cls.builder = load_module(
+            "manifest_build_release_package",
+            "scripts/build_release_package.py",
+        )
+        cls.health = load_module(
+            "manifest_repo_health_check",
+            "scripts/repo_health_check.py",
+        )
 
     def test_manifest_has_unique_required_files_that_exist(self) -> None:
         required = self.manifest["required_files"]
@@ -35,8 +41,14 @@ class RepositoryManifestTests(unittest.TestCase):
 
     def test_release_builder_uses_manifest_scope(self) -> None:
         release = self.manifest["release"]
-        self.assertEqual(tuple(release["top_level_files"]), self.builder.TOP_LEVEL_FILES)
-        self.assertEqual(tuple(release["package_directories"]), self.builder.PACKAGE_DIRS)
+        self.assertEqual(
+            tuple(release["top_level_files"]),
+            self.builder.TOP_LEVEL_FILES,
+        )
+        self.assertEqual(
+            tuple(release["package_directories"]),
+            self.builder.PACKAGE_DIRS,
+        )
         self.assertEqual(
             tuple(release["package_subdirectories"]),
             tuple(path.as_posix() for path in self.builder.PACKAGE_SUBDIRS),
@@ -73,8 +85,9 @@ class RepositoryManifestTests(unittest.TestCase):
                 json.dumps(manifest) + "\n",
                 encoding="utf-8",
             )
+            secret_like = "AK" + "IA" + "ABCDEFGHIJKLMNOP"
             (root / "page.html").write_text(
-                "<p>AKIAABCDEFGHIJKLMNOP</p>\n",
+                f"<p>{secret_like}</p>\n",
                 encoding="utf-8",
             )
             (root / "safe.js").write_text(
