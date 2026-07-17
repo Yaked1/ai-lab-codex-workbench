@@ -43,6 +43,14 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run the local PowerShell gate
+      - name: Repository health check
         shell: pwsh
-        run: pwsh -NoProfile -File scripts/local_check.ps1
+        run: python scripts/repo_health_check.py --ci
+
+      - name: Safe autofix check
+        shell: pwsh
+        run: python scripts/safe_autofix.py --check
+
+      - name: Unit tests
+        shell: pwsh
+        run: python -m unittest discover -s tests
