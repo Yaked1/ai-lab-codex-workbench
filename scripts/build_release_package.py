@@ -17,16 +17,82 @@ from typing import NamedTuple
 PACKAGE_NAME = "ai-agent-coding-workbench"
 FIXED_ZIP_TIMESTAMP = (2026, 1, 1, 0, 0, 0)
 MAX_PACKAGE_FILE_BYTES = 5_000_000
-TOP_LEVEL_FILES = (
-    "README.md", "AGENTS.md", "CLAUDE.md", "CONTRIBUTING.md", "SECURITY.md",
-    "CODE_OF_CONDUCT.md", "SUPPORT.md", "CITATION.cff", "CHANGELOG.md", "LICENSE",
-)
-PACKAGE_DIRS = ("data", "docs", "prompts", "scripts", "tests", "skills", "examples", "starter")
-PACKAGE_SUBDIRS = (PurePosixPath(".github/workflows"), PurePosixPath(".github/codex/prompts"))
-REQUIRED_PACKAGE_PATHS = tuple(PurePosixPath(path) for path in TOP_LEVEL_FILES + PACKAGE_DIRS) + PACKAGE_SUBDIRS
-EXCLUDED_DIR_NAMES = {".git", ".venv", "venv", "node_modules", "__pycache__", ".pytest_cache", ".mypy_cache", ".cache", "dist", "build", "logs", "outputs", "secret", "secrets", "private"}
-EXCLUDED_SUFFIXES = {".7z", ".bak", ".bin", ".ckpt", ".db", ".gguf", ".gz", ".h5", ".joblib", ".key", ".log", ".onnx", ".p12", ".pem", ".pickle", ".pkl", ".pth", ".pt", ".pyc", ".pyo", ".rar", ".safetensors", ".sqlite", ".tar", ".tgz", ".tmp", ".zip"}
+REPOSITORY_MANIFEST = Path(__file__).resolve().parents[1] / "repository-manifest.json"
+EXCLUDED_DIR_NAMES = {
+    ".git",
+    ".venv",
+    "venv",
+    "node_modules",
+    "__pycache__",
+    ".pytest_cache",
+    ".mypy_cache",
+    ".cache",
+    "dist",
+    "build",
+    "logs",
+    "outputs",
+    "secret",
+    "secrets",
+    "private",
+}
+EXCLUDED_SUFFIXES = {
+    ".7z",
+    ".bak",
+    ".bin",
+    ".ckpt",
+    ".db",
+    ".gguf",
+    ".gz",
+    ".h5",
+    ".joblib",
+    ".key",
+    ".log",
+    ".onnx",
+    ".p12",
+    ".pem",
+    ".pickle",
+    ".pkl",
+    ".pth",
+    ".pt",
+    ".pyc",
+    ".pyo",
+    ".rar",
+    ".safetensors",
+    ".sqlite",
+    ".tar",
+    ".tgz",
+    ".tmp",
+    ".zip",
+}
 VERSION_PATTERN = re.compile(r"v?\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?")
+
+
+def _load_release_policy() -> dict[str, object]:
+    """Load the canonical release scope from the repository manifest."""
+    try:
+        manifest = json.loads(REPOSITORY_MANIFEST.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise RuntimeError(f"Cannot load {REPOSITORY_MANIFEST.name}: {exc}") from exc
+    release = manifest.get("release")
+    if not isinstance(release, dict):
+        raise RuntimeError("repository manifest must contain a release object")
+    for key in ("top_level_files", "package_directories", "package_subdirectories"):
+        value = release.get(key)
+        if not isinstance(value, list) or not all(isinstance(item, str) and item for item in value):
+            raise RuntimeError(f"repository manifest release.{key} must be a non-empty string list")
+    return release
+
+
+_RELEASE_POLICY = _load_release_policy()
+TOP_LEVEL_FILES = tuple(_RELEASE_POLICY["top_level_files"])
+PACKAGE_DIRS = tuple(_RELEASE_POLICY["package_directories"])
+PACKAGE_SUBDIRS = tuple(
+    PurePosixPath(path) for path in _RELEASE_POLICY["package_subdirectories"]
+)
+REQUIRED_PACKAGE_PATHS = (
+    tuple(PurePosixPath(path) for path in TOP_LEVEL_FILES + PACKAGE_DIRS)
+    + PACKAGE_SUBDIRS
+)
 
 
 class BuildOutputs(NamedTuple):
@@ -42,7 +108,10 @@ class PublishedOutput(NamedTuple):
 def validate_version(version: str) -> str:
     version = version.strip()
     if not VERSION_PATTERN.fullmatch(version) or ".." in version:
-        raise ValueError("Version must look like vMAJOR.MINOR.PATCH, for example v0.1.0 or v0.2.0-beta.1.")
+        raise ValueError(
+            "Version must look like vMAJOR.MINOR.PATCH, for example "
+            "v0.1.0 or v0.2.0-beta.1."
+        )
     return version
 
 
@@ -55,11 +124,15 @@ def _git(root: Path, *args: str) -> bytes:
             stderr=subprocess.PIPE,
         ).stdout
     except (OSError, subprocess.CalledProcessError) as exc:
-        raise ValueError("Git repository with a committed HEAD is required for packaging.") from exc
+        raise ValueError(
+            "Git repository with a committed HEAD is required for packaging."
+        ) from exc
 
 
 def source_commit(root: Path) -> str:
-    repository_root = Path(os.fsdecode(_git(root, "rev-parse", "--show-toplevel")).rstrip("\r\n")).resolve()
+    repository_root = Path(
+        os.fsdecode(_git(root, "rev-parse", "--show-toplevel")).rstrip("\r\n")
+    ).resolve()
     if repository_root != root.resolve():
         raise ValueError("Packaging root must be the Git repository top level.")
     return _git(root, "rev-parse", "--verify", "HEAD^{commit}").decode("ascii").strip()
@@ -74,7 +147,13 @@ def _tree_entries(root: Path, commit: str) -> list[tuple[str, str, int]]:
         mode, object_type, _object_id, raw_size = metadata.split()
         if object_type != b"blob":
             continue
-        entries.append((mode.decode("ascii"), raw_path.decode("utf-8", "surrogateescape"), int(raw_size)))
+        entries.append(
+            (
+                mode.decode("ascii"),
+                raw_path.decode("utf-8", "surrogateescape"),
+                int(raw_size),
+            )
+        )
     return entries
 
 
@@ -93,7 +172,10 @@ def _is_allowed(relative: PurePosixPath) -> bool:
         return True
     if relative.parts and relative.parts[0] in PACKAGE_DIRS:
         return True
-    return any(relative == directory or directory in relative.parents for directory in PACKAGE_SUBDIRS)
+    return any(
+        relative == directory or directory in relative.parents
+        for directory in PACKAGE_SUBDIRS
+    )
 
 
 def _validate_required_paths(paths: set[str]) -> None:
@@ -107,12 +189,16 @@ def _validate_required_paths(paths: set[str]) -> None:
         if not present:
             missing.append(name)
     if missing:
-        raise FileNotFoundError(f"Missing required committed package path(s): {', '.join(missing)}")
+        raise FileNotFoundError(
+            f"Missing required committed package path(s): {', '.join(missing)}"
+        )
 
 
 def committed_package_paths(root: Path, commit: str) -> list[str]:
     candidates = _tree_entries(root, commit)
-    _validate_required_paths({path for mode, path, _size in candidates if mode != "120000"})
+    _validate_required_paths(
+        {path for mode, path, _size in candidates if mode != "120000"}
+    )
     included = []
     for mode, path, size in candidates:
         relative = PurePosixPath(path)
@@ -150,17 +236,32 @@ def _write_zip(path: Path, blobs: dict[str, bytes]) -> None:
             archive.writestr(info, data)
 
 
-def _manifest(version: str, zip_path: Path, commit: str, blobs: dict[str, bytes]) -> dict[str, object]:
-    entries = []
-    for relative, data in blobs.items():
-        entries.append({"path": relative, "size_bytes": len(data), "sha256": sha256_bytes(data)})
+def _manifest(
+    version: str,
+    zip_path: Path,
+    commit: str,
+    blobs: dict[str, bytes],
+) -> dict[str, object]:
+    entries = [
+        {"path": relative, "size_bytes": len(data), "sha256": sha256_bytes(data)}
+        for relative, data in blobs.items()
+    ]
     return {
         "package_name": PACKAGE_NAME,
         "version": version,
         "source_commit": commit,
-        "archive": {"name": zip_path.name, "size_bytes": zip_path.stat().st_size, "sha256": sha256_file(zip_path)},
+        "archive": {
+            "name": zip_path.name,
+            "size_bytes": zip_path.stat().st_size,
+            "sha256": sha256_file(zip_path),
+        },
         "included_paths": [path.as_posix() for path in REQUIRED_PACKAGE_PATHS],
-        "excluded_rules": {"directories": sorted(EXCLUDED_DIR_NAMES), "suffixes": sorted(EXCLUDED_SUFFIXES), "env_files": [".env", ".env.*"], "max_file_bytes": MAX_PACKAGE_FILE_BYTES},
+        "excluded_rules": {
+            "directories": sorted(EXCLUDED_DIR_NAMES),
+            "suffixes": sorted(EXCLUDED_SUFFIXES),
+            "env_files": [".env", ".env.*"],
+            "max_file_bytes": MAX_PACKAGE_FILE_BYTES,
+        },
         "files": entries,
     }
 
@@ -219,7 +320,11 @@ def _rollback_outputs(outputs: list[PublishedOutput]) -> list[OSError]:
     return errors
 
 
-def build_package(version: str, root: Path, output_dir: Path | None = None) -> BuildOutputs:
+def build_package(
+    version: str,
+    root: Path,
+    output_dir: Path | None = None,
+) -> BuildOutputs:
     version = validate_version(version)
     root = root.resolve()
     commit = source_commit(root)
@@ -228,7 +333,9 @@ def build_package(version: str, root: Path, output_dir: Path | None = None) -> B
     zip_path = output_dir / f"{PACKAGE_NAME}-{version}.zip"
     manifest_path = output_dir / f"package-manifest-{version}.json"
     if zip_path.exists() or manifest_path.exists():
-        raise FileExistsError(f"Refusing to overwrite existing package output for {version}.")
+        raise FileExistsError(
+            f"Refusing to overwrite existing package output for {version}."
+        )
 
     output_dir.mkdir(parents=True, exist_ok=True)
     zip_temp: Path | None = None
@@ -241,20 +348,33 @@ def build_package(version: str, root: Path, output_dir: Path | None = None) -> B
         _write_zip(zip_temp, blobs)
         manifest = _manifest(version, zip_temp, commit, blobs)
         manifest["archive"]["name"] = zip_path.name
-        manifest_temp.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        manifest_temp.write_text(
+            json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
         published.append(PublishedOutput(zip_path, _publish_new(zip_temp, zip_path)))
-        published.append(PublishedOutput(manifest_path, _publish_new(manifest_temp, manifest_path)))
+        published.append(
+            PublishedOutput(manifest_path, _publish_new(manifest_temp, manifest_path))
+        )
     except Exception as exc:
-        cleanup_errors = _rollback_outputs(published) + _cleanup_temps([zip_temp, manifest_temp])
+        cleanup_errors = _rollback_outputs(published) + _cleanup_temps(
+            [zip_temp, manifest_temp]
+        )
         if cleanup_errors and hasattr(exc, "add_note"):
-            exc.add_note("Package cleanup also failed: " + "; ".join(str(error) for error in cleanup_errors))
+            exc.add_note(
+                "Package cleanup also failed: "
+                + "; ".join(str(error) for error in cleanup_errors)
+            )
         raise
     cleanup_errors = _cleanup_temps([zip_temp, manifest_temp])
     if cleanup_errors:
         rollback_errors = _rollback_outputs(published)
         retry_errors = _cleanup_temps([zip_temp, manifest_temp])
         details = cleanup_errors + rollback_errors + retry_errors
-        raise OSError("Package publication cleanup failed: " + "; ".join(str(error) for error in details))
+        raise OSError(
+            "Package publication cleanup failed: "
+            + "; ".join(str(error) for error in details)
+        )
     return BuildOutputs(zip_path=zip_path, manifest_path=manifest_path)
 
 
@@ -266,14 +386,20 @@ def display_path(path: Path) -> Path:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Build a commit-exact release zip package and manifest.")
+    parser = argparse.ArgumentParser(
+        description="Build a commit-exact release zip package and manifest."
+    )
     parser.add_argument("--version", required=True, help="Release version, for example v0.1.0")
-    parser.add_argument("--root", default=Path(__file__).resolve().parents[1], type=Path)
+    parser.add_argument(
+        "--root",
+        default=Path(__file__).resolve().parents[1],
+        type=Path,
+    )
     parser.add_argument("--output-dir", default=None, type=Path)
     args = parser.parse_args()
     try:
         outputs = build_package(args.version, args.root, args.output_dir)
-    except (OSError, ValueError) as exc:
+    except (OSError, ValueError, RuntimeError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
     print(f"Built {display_path(outputs.zip_path)}")
