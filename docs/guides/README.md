@@ -4,6 +4,7 @@
 
 - [Current models, interfaces, and effort controls](current-models-and-interfaces.md)
 - [Frontier models and multimodal systems in 2026](frontier-models-and-multimodal-systems-2026.md)
+- [Frontier model additions: September 2026](frontier-model-additions-2026-09.md)
 - [Model and effort prompting guides](model-prompting/README.md) (Sol/Terra/Luna, Claude, DeepSeek, GLM, Mistral, Google, Muse, Live, image/video)
 - [Surface and effort map](model-prompting/surface-and-effort-map.md)
 - [Effort evaluation playbook](model-prompting/effort-evaluation-playbook.md)

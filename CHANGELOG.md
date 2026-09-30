@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Add a dated September 2026 frontier-model supplement covering the current
+  OpenAI, Anthropic, Google, DeepSeek, and GLM lines plus major omitted
+  open-weight families, with first-party sources and evaluation guidance.
+- Refresh the compact frontier model list and guide navigation for the new
+  coverage while retaining the July research as historical context.
+
 ### Repository audit remediation
 
 - Split the frontier-model reference into six bounded subject pages with stable compatibility anchors and a lossless migration manifest.

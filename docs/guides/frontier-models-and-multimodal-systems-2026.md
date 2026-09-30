@@ -33,6 +33,10 @@ verified videos and discovery searches separately.
 
 ## Subject pages
 
+- [September 2026 frontier model additions](frontier-model-additions-2026-09.md) —
+  current hosted successors and previously omitted open-model ecosystems,
+  researched after this compatibility index's July source window.
+
 This landing page keeps stable anchors for the pre-split guide. Full
 subject content lives in the bounded pages below.
 
